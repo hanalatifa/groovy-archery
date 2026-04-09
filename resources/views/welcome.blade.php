@@ -16,7 +16,7 @@
 
     <nav class="flex items-center justify-between px-10 py-6 bg-white sticky top-0 z-50">
         <div class="flex items-center">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-10">
+            <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-10">
         </div>
         <div class="hidden md:flex items-center space-x-8">
             <a href="#" class="text-gray-700 font-medium">Home</a>
@@ -51,7 +51,8 @@
             </div>
         </section>
 
-        <section class="max-w-4xl mx-auto px-6 py-20 text-center">
+        {{-- About Us Section --}}
+        <section class="max-w-4xl mx-auto px-20 py-20 text-center">
             <p class="text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase mb-3">Tentang Kami</p>
             <h2 class="text-4xl md:text-5xl font-extrabold mb-8 text-gray-900">Groovy Archery</h2>
             <div class="space-x-5 text-gray-600 text-lg leading-relaxed">
@@ -61,6 +62,7 @@
             </div>
         </section>
 
+        {{-- Visi Misi Section --}}
         <section class="text-center pb-12">
             <p class="text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase mb-3">Visi dan Misi</p>
             <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">Mengapa Kami Ada?</h2>
