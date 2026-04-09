@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groovy Archery - Landing Page</title>
+    <title>Groovy Archery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -54,10 +54,10 @@
         <section class="max-w-4xl mx-auto px-6 py-20 text-center">
             <p class="text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase mb-3">Tentang Kami</p>
             <h2 class="text-4xl md:text-5xl font-extrabold mb-8 text-gray-900">Groovy Archery</h2>
-            <div class="space-y-5 text-gray-600 text-lg leading-relaxed">
-                <p>Bagi pecinta olahraga panahan, kami menghadirkan klub panahan yang berlokasi di <span class="font-bold text-gray-800">Tanjung Priok, Jakarta Utara.</span></p>
-                <p>Klub ini dirancang ramah anak, dengan fokus pada pembentukan karakter, disiplin, serta pengembangan keterampilan memanah dalam lingkungan yang positif dan suportif.</p>
-                <p>Dengan identitas visual yang didominasi warna ungu, kami menciptakan suasana yang unik, modern, dan berkarakter.</p>
+            <div class="space-x-5 text-gray-600 text-lg leading-relaxed">
+                <p>Bagi pecinta olahraga panahan, kami menghadirkan klub panahan yang berlokasi di Tanjung Priok, Jakarta Utara.</p>
+                <p> Klub ini dirancang ramah anak, dengan fokus pada pembentukan karakter, disiplin, serta pengembangan keterampilan memanah dalam lingkungan yang positif dan suportif.</p>
+                <p> Dengan identitas visual yang didominasi warna ungu, kami menciptakan suasana yang unik, modern, dan berkarakter.</p>
             </div>
         </section>
 
@@ -69,7 +69,7 @@
 
         <section class="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-2 gap-6">
             <div class="relative rounded-sm h-[550px] overflow-hidden group shadow-lg">
-                <img src="{{ asset('images/visi-bg.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+                <img src="{{ asset('assets/image 1.jpeg') }}" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1e2a78]/95 to-transparent"></div>
                 <div class="absolute bottom-0 p-12 text-white">
                     <p class="text-sm mb-2 opacity-80 uppercase tracking-widest">Groovy Archery</p>
@@ -79,12 +79,12 @@
             </div>
 
             <div class="relative rounded-sm h-[550px] overflow-hidden group shadow-lg">
-                <img src="{{ asset('images/misi-bg.jpg') }}" class="absolute inset-0 w-full h-full object-cover">
+                <img src="{{ asset('assets/champion.jpeg') }}" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1e2a78]/95 to-transparent"></div>
                 <div class="absolute bottom-0 p-12 text-white">
                     <p class="text-sm mb-2 opacity-80 uppercase tracking-widest">Groovy Archery</p>
                     <h3 class="text-5xl font-bold mb-6">Misi</h3>
-                    <ul class="space-y-3 text-lg font-light leading-snug">
+                    <ul class="space-x-3 text-lg font-light leading-snug">
                         <li>1. Memasalkan olahraga panahan di Sekolah-Sekolah dan lingkungan sekitar</li>
                         <li>2. Menjadikan olahraga panahan wadah untuk pengembangan karakter</li>
                         <li>3. Membantu atlet mengembangkan bakat dan kemampuan memanah hingga mencapai jalur prestasi</li>
