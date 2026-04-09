@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Groovy Archery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -53,8 +53,8 @@
 
         {{-- About Us Section --}}
         <section class="max-w-4xl mx-auto px-20 py-20 text-center">
-            <p class="text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase mb-3">Tentang Kami</p>
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 text-gray-900">Groovy Archery</h2>
+            <p class="text-sm font-medium text-gray-900 uppercase mb-3">Tentang Kami</p>
+            <h2 class="text-4xl md:text-5xl font-semibold mb-8 text-gray-900">Groovy Archery</h2>
             <div class="space-x-5 text-gray-600 text-lg leading-relaxed">
                 <p>Bagi pecinta olahraga panahan, kami menghadirkan klub panahan yang berlokasi di Tanjung Priok, Jakarta Utara.</p>
                 <p> Klub ini dirancang ramah anak, dengan fokus pada pembentukan karakter, disiplin, serta pengembangan keterampilan memanah dalam lingkungan yang positif dan suportif.</p>
@@ -64,8 +64,8 @@
 
         {{-- Visi Misi Section --}}
         <section class="text-center pb-12">
-            <p class="text-sm font-semibold tracking-[0.2em] text-gray-400 uppercase mb-3">Visi dan Misi</p>
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">Mengapa Kami Ada?</h2>
+            <p class="text-sm font-medium text-gray-900 uppercase mb-3">Visi dan Misi</p>
+            <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-gray-900">Mengapa Kami Ada?</h2>
             <p class="text-gray-400 italic">Choose the program that matches your experience and goals.</p>
         </section>
 
