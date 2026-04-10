@@ -96,70 +96,82 @@
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-6 py-20">
+        {{-- card value --}}
+<section class="max-w-7xl mx-auto px-6 py-20 font-sans">
     <div class="text-center mb-12">
-        <p class="text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase mb-2">Values</p>
+        <p class="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase mb-2">Values</p>
         <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-gray-900">Apa yang kami perjuangkan</h2>
         <p class="text-gray-500 text-sm">Setiap tembakan itu penting. Setiap momen itu berarti.</p>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-4 w-full md:h-[450px]">
+    <div class="flex flex-col md:flex-row gap-6 w-full md:h-[550px] items-stretch justify-center">
 
-        <div class="group relative flex-[1] hover:md:flex-[2.2] flex flex-col hover:md:flex-row bg-[#4c4494] text-white overflow-hidden transition-all duration-500 ease-in-out cursor-pointer shadow-md rounded-sm">
-            <div class="w-full h-48 md:h-64 group-hover:md:h-full group-hover:md:w-1/2 shrink-0 transition-all duration-500">
-                <img src="{{ asset('images/value1.jpg') }}" alt="Ketepatan" class="w-full h-full object-cover">
+        <div class="group relative w-full md:w-[300px] hover:md:w-[600px] flex flex-col hover:md:flex-row bg-[#4c4494] text-white overflow-hidden transition-all duration-500 ease-in-out cursor-pointer shadow-xl rounded-sm shrink-0">
+            <div class="w-full h-[50%] md:h-[50%] group-hover:md:h-full group-hover:md:w-1/2 shrink-0 transition-all duration-500">
+                <img src="{{ asset('assets/latihanrutin1.jpeg') }}" alt="Ketepatan" class="w-full h-full object-cover">
             </div>
 
-            <div class="p-6 md:p-8 flex flex-col justify-center w-full transition-all duration-500">
-                <div>
-                    <p class="text-[10px] uppercase tracking-widest opacity-70 mb-1">Ketepatan</p>
-                    <h4 class="text-xl font-bold mb-3 group-hover:md:text-2xl transition-all">Ketepatan dalam gerakan</h4>
-                    <p class="text-xs md:text-sm leading-relaxed opacity-80 mb-6">
-                        The arrow finds its mark through steady hands and unwavering focus. We demand nothing less than perfection in every draw.
-                    </p>
-                    <a href="#" class="inline-flex items-center text-xs font-semibold group">
-                        Jelajah
-                        <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
+            <div class="p-8 flex flex-col justify-between flex-grow transition-all duration-500 min-w-[300px]">
+                <div class="flex flex-col flex-grow justify-start group-hover:justify-center transition-all duration-500">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-blue-200 mb-2 opacity-80">Ketepatan</p>
+                        <h4 class="text-xl md:text-2xl font-bold mb-4 leading-tight transition-all">Ketepatan dalam gerakan</h4>
+
+                        <div class="max-h-[100px] group-hover:max-h-[300px] overflow-hidden opacity-100 transition-all duration-500">
+                            <p class="text-sm leading-relaxed text-blue-100/80 mb-8">
+                                The arrow finds its mark through steady hands and unwavering focus. We demand nothing less than perfection.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
+                <a href="#" class="inline-flex items-center text-xs font-bold tracking-widest uppercase mt-4 shrink-0">
+                    Jelajah <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
             </div>
         </div>
 
-        <div class="group relative flex-[1] hover:md:flex-[2.2] flex flex-col hover:md:flex-row bg-[#4c4494] text-white overflow-hidden transition-all duration-500 ease-in-out cursor-pointer shadow-md rounded-sm">
-            <div class="w-full h-48 md:h-64 group-hover:md:h-full group-hover:md:w-1/2 shrink-0 transition-all duration-500">
-                <img src="{{ asset('images/value2.jpg') }}" alt="Disiplin" class="w-full h-full object-cover">
+        <div class="group relative w-full md:w-[300px] hover:md:w-[600px] flex flex-col hover:md:flex-row bg-[#4c4494] text-white overflow-hidden transition-all duration-500 ease-in-out cursor-pointer shadow-xl rounded-sm shrink-0">
+            <div class="w-full h-[50%] md:h-[50%] group-hover:md:h-full group-hover:md:w-1/2 shrink-0 transition-all duration-500">
+                <img src="{{ asset('assets/latihanrutin1.jpeg') }}" alt="Disiplin" class="w-full h-full object-cover">
             </div>
-            <div class="p-6 md:p-8 flex flex-col justify-center w-full transition-all duration-500">
-                <div>
-                    <p class="text-[10px] uppercase tracking-widest opacity-70 mb-1">Disiplin</p>
-                    <h4 class="text-xl font-bold mb-3 group-hover:md:text-2xl transition-all">Latihan yang terarah</h4>
-                    <p class="text-xs md:text-sm leading-relaxed opacity-80 mb-6">
-                        Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
-                    </p>
-                    <a href="#" class="inline-flex items-center text-xs font-semibold group">
-                        Jelajah
-                        <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
+            <div class="p-8 flex flex-col justify-between flex-grow transition-all duration-500 min-w-[300px]">
+                <div class="flex flex-col flex-grow justify-start group-hover:justify-center transition-all duration-500">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-blue-200 mb-2 opacity-80">Disiplin</p>
+                        <h4 class="text-xl md:text-2xl font-bold mb-4 leading-tight">Latihan yang terarah</h4>
+                        <div class="max-h-[100px] group-hover:max-h-[300px] overflow-hidden opacity-100 transition-all duration-500">
+                            <p class="text-sm leading-relaxed text-blue-100/80 mb-8">
+                                Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                <a href="#" class="inline-flex items-center text-xs font-bold tracking-widest uppercase mt-4 shrink-0">
+                    Jelajah <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
             </div>
         </div>
 
-        <div class="group relative flex-[1] hover:md:flex-[2.2] flex flex-col hover:md:flex-row bg-[#4c4494] text-white overflow-hidden transition-all duration-500 ease-in-out cursor-pointer shadow-md rounded-sm">
-            <div class="w-full h-48 md:h-64 group-hover:md:h-full group-hover:md:w-1/2 shrink-0 transition-all duration-500">
-                <img src="{{ asset('images/value3.jpg') }}" alt="Keunggulan" class="w-full h-full object-cover">
+        <div class="group relative w-full md:w-[300px] hover:md:w-[600px] flex flex-col hover:md:flex-row bg-[#4c4494] text-white overflow-hidden transition-all duration-500 ease-in-out cursor-pointer shadow-xl rounded-sm shrink-0">
+            <div class="w-full h-[50%] md:h-[50%] group-hover:md:h-full group-hover:md:w-1/2 shrink-0 transition-all duration-500">
+                <img src="{{ asset('assets/latihanrutin1.jpeg') }}" alt="Keunggulan" class="w-full h-full object-cover">
             </div>
-            <div class="p-6 md:p-8 flex flex-col justify-center w-full transition-all duration-500">
-                <div>
-                    <p class="text-[10px] uppercase tracking-widest opacity-70 mb-1">Keunggulan</p>
-                    <h4 class="text-xl font-bold mb-3 group-hover:md:text-2xl transition-all">Keunggulan atlet</h4>
-                    <p class="text-xs md:text-sm leading-relaxed opacity-80 mb-6">
-                        Keunggulan bukanlah tujuan akhir, melainkan upaya yang terus-menerus. Kami berkompetisi di level tertinggi.
-                    </p>
-                    <a href="#" class="inline-flex items-center text-xs font-semibold group">
-                        Jelajah
-                        <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
+            <div class="p-8 flex flex-col justify-between flex-grow transition-all duration-500 min-w-[300px]">
+                <div class="flex flex-col flex-grow justify-start group-hover:justify-center transition-all duration-500">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-blue-200 mb-2 opacity-80">Keunggulan</p>
+                        <h4 class="text-xl md:text-2xl font-bold mb-4 leading-tight">Keunggulan atlet</h4>
+                        <div class="max-h-[100px] group-hover:max-h-[300px] overflow-hidden opacity-100 transition-all duration-500">
+                            <p class="text-sm leading-relaxed text-blue-100/80 mb-8">
+                                Keunggulan bukanlah tujuan akhir, melainkan upaya yang terus-menerus. Kami berkompetisi di level tertinggi.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                <a href="#" class="inline-flex items-center text-xs font-bold tracking-widest uppercase mt-4 shrink-0">
+                    Jelajah <svg class="ml-2 w-3 h-3 transition-transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
             </div>
         </div>
 
