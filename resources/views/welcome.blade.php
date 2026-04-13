@@ -20,6 +20,7 @@
 
 <body class="antialiased bg-white text-gray-900">
 
+    {{-- navbar section --}}
     <nav class="flex items-center justify-between px-10 py-6 bg-white sticky top-0 z-50">
         <div class="flex items-center">
             <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-10">
@@ -33,10 +34,11 @@
                     <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </button>
-            <a href="#" class="bg-[#2b459a] text-white px-6 py-2 rounded-md font-medium">Login as Admin</a>
+            <a href="#" class="bg-[#2b459a] text-white px-6 py-2 font-medium">Login as Admin</a>
         </div>
     </nav>
 
+        {{-- hero section --}}
     <main>
         <section class="px-6 md:px-20 py-10">
             <div
@@ -56,7 +58,7 @@
                         purpose, compete with precision, and build a community bound by respect for the sport.
                     </p>
                     <a href="#"
-                        class="bg-white text-gray-900 px-10 py-3 font-semibold text-lg shadow-lg hover:bg-gray-100 transition inline-block">
+                        class="bg-white text-black px-10 py-3 font-medium text-lg shadow-lg hover:bg-gray-100 transition inline-block">
                         Daftar Sebagai Member
                     </a>
                 </div>
@@ -79,9 +81,9 @@
 
         {{-- Visi Misi Section --}}
         <section class="text-center pb-12">
-            <p class="text-sm font-medium text-gray-900 uppercase mb-3">Visi dan Misi</p>
+            <p class="text-sm font-medium text-black uppercase mb-3">Visi dan Misi</p>
             <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-gray-900">Mengapa Kami Ada?</h2>
-            <p class="text-gray-400 italic">Choose the program that matches your experience and goals.</p>
+            <p class="text-black">Choose the program that matches your experience and goals.</p>
         </section>
 
         <section class="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-2 gap-6">
@@ -115,11 +117,11 @@
         </section>
 
         {{-- card value --}}
-        <section class="max-w-7xl mx-auto px-6 py-20 font-sans">
+        <section class="mx-auto px-6 py-20">
             <div class="text-center mb-12">
-                <p class="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase mb-2">Values</p>
-                <h2 class="text-3xl md:text-4xl font-extrabold mb-3 text-gray-900">Apa yang kami perjuangkan</h2>
-                <p class="text-gray-500 text-sm">Setiap tembakan itu penting. Setiap momen itu berarti.</p>
+                <p class="text-[10px] font-medium text-black uppercase mb-2">Values</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900">Apa yang kami perjuangkan</h2>
+                <p class="text-black text-sm">Setiap tembakan itu penting. Setiap momen itu berarti.</p>
             </div>
 
             <div class="flex flex-col md:flex-row gap-6 w-full md:h-[550px] items-stretch justify-center">
@@ -238,7 +240,7 @@
             <div class="relative flex justify-center items-center mb-16 mx-auto" style="max-width: fit-content;">
 
                 <div class="absolute inset-[-4px] md:inset-[-8px] rounded-lg animate-spin-slow blur-[1px]"
-                    style="background: conic-gradient(from 0deg, #4c4494, #a78bfa, #4c4494); z-index: 1;">
+                    style="background: conic-gradient(from 0deg, #85488F, #254292, #85488F); z-index: 1;">
                 </div>
 
                 <div class="relative rounded-sm overflow-hidden shadow-2xl bg-white" style="z-index: 2;">
@@ -252,7 +254,7 @@
                     <img src="{{ asset('assets/Logo.jpeg') }}" alt="Logo" class="w-14 h-14 object-contain">
                 </div>
 
-                <h2 class="text-3xl md:text-5xl font-extrabold mb-8 text-gray-900 tracking-tight leading-tight">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-black tracking-tight leading-tight">
                     Dibangun di atas sunnah dan keahlian
                 </h2>
 
@@ -264,13 +266,13 @@
             </div>
         </section>
 
-        <section class="relative py-24 overflow-hidden bg-gradient-to-br from-[#4c4494] via-[#6d5dfc] to-[#4c4494]">
+        <section class="relative py-24 overflow-hidden bg-gradient-to-br from-[#85488F] to-[#254292]">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight max-w-xl">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight max-w-xl">
                         Angka-angka yang mencerminkan komitmen kami
                     </h2>
-                    <p class="text-blue-100/80 text-lg max-w-md">
+                    <p class="text-white/80 text-lg max-w-md">
                         Para atlet kami telah meraih pengakuan di berbagai kompetisi tingkat regional dan nasional.
                         Prestasi ini merupakan buah dari dedikasi bertahun-tahun.
                     </p>
@@ -278,27 +280,27 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div
-                        class="relative p-10 rounded-sm border border-white/20 bg-white/5 backdrop-blur-sm text-center">
+                        class="relative p-10 rounded-sm border border-white/50 bg-gradient-to-br from-[#85488F] to-[#254292] text-center">
                         <div class="text-5xl md:text-7xl font-black text-white mb-4">
                             <span class="counter" data-target="100">0</span>+
                         </div>
-                        <p class="text-blue-200 uppercase tracking-widest text-sm font-bold">Member aktif</p>
+                        <p class="text-white uppercase text-sm font-medium">Member aktif</p>
                     </div>
 
                     <div
-                        class="relative p-10 rounded-sm border border-white/20 bg-white/5 backdrop-blur-sm text-center">
+                        class="relative p-10 rounded-sm border border-white/50 bg-gradient-to-br from-[#85488F] to-[#254292] text-center">
                         <div class="text-5xl md:text-7xl font-black text-white mb-4">
                             <span class="counter" data-target="45">0</span>+
                         </div>
-                        <p class="text-blue-200 uppercase tracking-widest text-sm font-bold">Perlombaan</p>
+                        <p class="text-white uppercase text-sm font-medium">Perlombaan</p>
                     </div>
 
                     <div
-                        class="relative p-10 rounded-sm border border-white/20 bg-white/5 backdrop-blur-sm text-center">
+                        class="relative p-10 rounded-sm border border-white/50 bg-gradient-to-br from-[#85488F] to-[#254292] text-center">
                         <div class="text-5xl md:text-7xl font-black text-white mb-4">
                             <span class="counter" data-target="9">0</span>
                         </div>
-                        <p class="text-blue-200 uppercase tracking-widest text-sm font-bold">Tahun berdiri</p>
+                        <p class="text-white uppercase text-sm font-medium">Tahun berdiri</p>
                     </div>
                 </div>
             </div>
@@ -306,7 +308,7 @@
 
         <script>
     const counters = document.querySelectorAll('.counter');
-    const speed = 50; // Semakin kecil angka, semakin cepat hitungannya
+    const speed = 50;
 
     const startCounter = (entries, observer) => {
         entries.forEach(entry => {
@@ -327,7 +329,6 @@
                 };
 
                 updateCount();
-                // Hentikan observer setelah animasi jalan sekali
                 observer.unobserve(counter);
             }
         });
