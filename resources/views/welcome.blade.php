@@ -488,7 +488,7 @@
             <div class="swiper-pagination !-bottom-12"></div>
         </div>
 
-        <button class="mt-28 bg-[#2b459a] text-white px-10 py-3 font-semibold hover:bg-blue-900 transition rounded-sm shadow-md">
+        <button class="mt-28 bg-[#2b459a] text-white px-10 py-3 font-medium hover:bg-blue-900 transition rounded-sm shadow-md">
             Beri Testimoni
         </button>
     </div>
@@ -496,14 +496,14 @@
 
 <section class="py-24 bg-white text-center">
     <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-6xl font-extrabold mb-6 text-black tracking-tight">Siap untuk menjadi champions?</h2>
+        <h2 class="text-5xl font-bold mb-6 text-black tracking-tight">Siap untuk menjadi champions?</h2>
         <p class="text-gray-600 text-xl mb-12">Bergabunglah dengan komunitas yang berlatih dengan tekad kuat dan bertindak dengan presisi.</p>
         
         <div class="flex justify-center gap-4">
-            <a href="#" class="bg-[#2b459a] text-white px-10 py-4 font-bold rounded-sm hover:bg-blue-900 transition shadow-lg">
+            <a href="#" class="bg-[#2b459a] text-white px-10 py-4 font-medium rounded-sm hover:bg-blue-900 transition shadow-lg">
                 Daftar
             </a>
-            <a href="#" class="bg-[#e24a43] text-white px-10 py-4 font-bold rounded-sm hover:bg-red-700 transition shadow-lg">
+            <a href="#" class="bg-[#e24a43] text-white px-10 py-4 font-medium rounded-sm hover:bg-red-700 transition shadow-lg">
                 Hubungi Admin
             </a>
         </div>
@@ -609,11 +609,11 @@
     {{-- Footer --}}
     <footer class="bg-[#8b5a8c] text-white py-20">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-20">
             
             <div class="md:col-span-1">
                 <div class="mb-8">
-                    <img src="{{ asset('assets/logo-white.png') }}" alt="Logo" class="h-16 w-auto">
+                    <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-16 w-auto">
                 </div>
                 <p class="text-sm mb-6 opacity-90">Get updates on competitions, training tips, and club news.</p>
                 
