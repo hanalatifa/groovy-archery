@@ -4,10 +4,16 @@ use App\Http\Controllers\AtletController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Halaman Publik
+// Halaman Publik (HOME)
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+
+
+Route::get('/athletes', function () {
+    return view('athletes-page.athletes');
+})->name('athletes');
+
 
 // Halaman yang butuh Login
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -28,10 +34,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Halaman Athletes (Bisa diakses publik atau sesuai kebutuhanmu)
-Route::get('/athletes', function () {
-    return view('athletes.athletes');
-})->name('athletes');
-
-// Memanggil sistem autentikasi dari Laravel Breeze
+// Auth bawaan Laravel
 require __DIR__.'/auth.php';
