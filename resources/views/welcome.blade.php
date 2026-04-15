@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <script src="https://cdn.jsdelivr.net/gh/ashthornton/gradient/gradient.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body {
@@ -38,6 +39,22 @@
             <a href="#" class="bg-[#2b459a] text-white px-6 py-2 font-medium">Login as Admin</a>
         </div>
     </nav>
+    <div class="flex items-center">
+        <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-10">
+    </div>
+    <div class="hidden md:flex items-center space-x-8">
+        <a href="{{ route('dashboard') }}" class="text-gray-700 font-medium">Home</a>
+        <a href="{{ route('athletes') }}" class="text-gray-700 font-medium">Athletes</a>
+        <a href="#" class="text-gray-700 font-medium">Achievement</a>
+
+        <button class="flex items-center text-gray-700 font-medium">
+            More <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+        <a href="{{ route('login') }}" class="bg-[#2b459a] text-white px-6 py-2 rounded-md font-medium">Login as Admin</a>
+    </div>
+</nav>
 
         {{-- hero section --}}
     <main>
@@ -236,19 +253,24 @@
             </div>
         </section>
 
-        {{-- sunnah section --}}
-        <section class="max-w-7xl mx-auto px-6 py-24 font-sans bg-white">
-            <div class="relative flex justify-center items-center mb-16 mx-auto" style="max-width: fit-content;">
+        {{-- section sunnah --}}
+<section class="max-w-7xl mx-auto px-6 py-24 font-sans bg-white overflow-hidden relative">
+    <div class="relative flex justify-center items-center mb-16 mx-auto" style="max-width: fit-content;">
 
                 <div class="absolute inset-[-4px] md:inset-[-8px] rounded-lg animate-spin-slow blur-[1px]"
                     style="background: conic-gradient(from 0deg, #85488F, #254292, #85488F); z-index: 1;">
                 </div>
+        <div class="absolute inset-[-20px] md:inset-[-40px] opacity-80" style="z-index: 1;">
+            <canvas id="gradient-canvas" data-transition-in></canvas>
+        </div>
 
-                <div class="relative rounded-sm overflow-hidden shadow-2xl bg-white" style="z-index: 2;">
-                    <img src="{{ asset('assets/sunnaharchery.jpeg') }}" alt="United Through Archery"
-                        class="w-full h-auto object-cover max-w-[900px]">
-                </div>
-            </div>
+        <div class="relative rounded-sm overflow-hidden shadow-2xl bg-white p-1" style="z-index: 2;">
+            <img src="{{ asset('assets/sunnaharchery.jpeg') }}"
+                 alt="United Through Archery"
+                 class="w-full h-auto object-cover max-w-[900px] block relative"
+                 style="z-index: 1;">
+        </div>
+    </div>
 
             <div class="text-center max-w-3xl mx-auto px-4">
                 <div class="flex justify-center mb-8">
@@ -266,6 +288,7 @@
                 </p>
             </div>
         </section>
+    </section>
 
         <section class="relative py-24 overflow-hidden bg-gradient-to-br from-[#85488F] to-[#254292]">
             <div class="max-w-7xl mx-auto px-6">
@@ -308,6 +331,37 @@
         </section>
 
         <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Inisialisasi library Gradient.js
+        const gradient = new Gradient();
+
+        // Panggil initGradient dengan ID canvas
+        // Library ini akan otomatis mencari variabel CSS --gradient-color-X
+        gradient.initGradient('#gradient-canvas');
+
+        // Tips: Untuk mengatur kecepatan secara manual di library ini,
+        // kita bisa menggunakan interval kecil atau membiarkannya default (0.01)
+        // karena library ini sudah di-optimize untuk fluid motion.
+    });
+</script>
+
+        <style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Konfigurasi Warna untuk Gradient.js agar terbaca otomatis */
+    #gradient-canvas {
+        width: 100%;
+        height: 100%;
+        --gradient-color-1: #4c4494;
+        --gradient-color-2: #6d5dfc;
+        --gradient-color-3: #2b459a;
+        --gradient-color-4: #a78bfa;
+    }
+</style>
+
+        <script>
     const counters = document.querySelectorAll('.counter');
     const speed = 50;
 
@@ -336,7 +390,7 @@
     };
 
     const options = {
-        threshold: 0.5 
+        threshold: 0.5
     };
 
     const counterObserver = new IntersectionObserver(startCounter, options);
@@ -349,17 +403,17 @@
 
     {{-- Training & Coaching Section --}}
      <section class="max-w-7xl mx-auto px-6 py-24 space-y-24">
-    
+
     <div class="grid md:grid-cols-2 gap-10 items-center">
         <div class="flex flex-col justify-center">
             <div class="flex items-center gap-4 mb-10 text-gray-900">
                 <span class="text-sm font-bold">02</span>
                 <span class="text-sm font-bold uppercase tracking-wider">Training</span>
             </div>
-            
+
             <p class="text-xs font-bold text-gray-400 uppercase mb-3">Program</p>
             <h2 class="text-5xl font-bold mb-8 text-black leading-tight">Pelatihan Bertahap</h2>
-            
+
             <p class="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
                 Program pelatihan kami dirancang untuk semua tingkatan, mulai dari pemula yang mempelajari dasar-dasar hingga atlet tingkat lanjut yang mengasah teknik bertanding. Setiap sesi dirancang untuk menghasilkan peningkatan yang terukur.
             </p>
@@ -369,12 +423,12 @@
                     Daftar
                 </a>
                 <a href="#" class="flex items-center gap-2 font-bold text-black hover:underline group">
-                    Details 
+                    Details
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
             </div>
         </div>
-        
+
         <div>
             <img src="{{ asset('assets/champion.jpeg') }}" alt="Training" class="w-full h-auto object-cover shadow-sm">
         </div>
@@ -391,7 +445,7 @@
 
             <p class="text-xs font-bold text-gray-400 uppercase mb-3">Pelatihan</p>
             <h2 class="text-5xl font-bold mb-8 text-black leading-tight">Pelatihan Expert</h2>
-            
+
             <p class="text-gray-600 text-lg leading-relaxed mb-10 max-w-md">
                 Para pelatih kami memiliki pengalaman bertahun-tahun di bidang kompetisi serta pengetahuan teknis yang mendalam. Mereka akan mendampingi Anda secara pribadi untuk mengidentifikasi kelemahan, menyempurnakan teknik, dan mempersiapkan diri untuk kompetisi.
             </p>
@@ -401,7 +455,7 @@
                     Daftar
                 </a>
                 <a href="#" class="flex items-center gap-2 font-bold text-black hover:underline group">
-                    Details 
+                    Details
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 </a>
             </div>
@@ -418,10 +472,10 @@
     <div class="max-w-7xl mx-auto px-6 text-center">
         <h2 class="text-5xl font-extrabold mb-4 text-black tracking-tight">Testimoni Member</h2>
         <p class="text-gray-500 mb-20 italic">Dari harapan menjadi kenyataan</p>
-        
+
         <div class="swiper mySwiper overflow-visible">
             <div class="swiper-wrapper flex items-stretch">
-                
+
                 <div class="swiper-slide h-auto">
                     <div class="bg-gradient-to-br from-[#6d5dfc] to-[#4c4494] p-10 text-left text-white rounded-sm shadow-xl flex flex-col justify-between h-full">
                         <div>
@@ -477,14 +531,14 @@
                 </div>
 
             </div>
-            
+
             <div class="swiper-button-next text-black hover:scale-110 transition after:content-[''] after:text-4xl">
                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div class="swiper-button-prev text-black hover:scale-110 transition after:content-[''] after:text-4xl">
                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            
+
             <div class="swiper-pagination !-bottom-12"></div>
         </div>
 
@@ -498,7 +552,7 @@
     <div class="max-w-4xl mx-auto px-6">
         <h2 class="text-5xl font-bold mb-6 text-black tracking-tight">Siap untuk menjadi champions?</h2>
         <p class="text-gray-600 text-xl mb-12">Bergabunglah dengan komunitas yang berlatih dengan tekad kuat dan bertindak dengan presisi.</p>
-        
+
         <div class="flex justify-center gap-4">
             <a href="#" class="bg-[#2b459a] text-white px-10 py-4 font-medium rounded-sm hover:bg-blue-900 transition shadow-lg">
                 Daftar
@@ -516,13 +570,13 @@
             slidesPerView: 1, // Berapa slide yang muncul di mobile
             spaceBetween: 30, // Jarak antar slide
             loop: true, // Kembali ke awal setelah slide terakhir
-            
+
             // Pengaturan untuk tombol panah
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
-            
+
             // Pengaturan untuk titik-titik indikator
             pagination: {
                 el: ".swiper-pagination",
@@ -601,7 +655,7 @@
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                  </svg>
             </div>
-            
+
             </div>
     </div>
 </section>
@@ -610,17 +664,17 @@
     <footer class="bg-[#8b5a8c] text-white py-20">
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-20">
-            
+
             <div class="md:col-span-1">
                 <div class="mb-8">
                     <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-16 w-auto">
                 </div>
                 <p class="text-sm mb-6 opacity-90">Get updates on competitions, training tips, and club news.</p>
-                
+
                 <form action="#" class="flex gap-2">
-                    <input type="email" placeholder="Your email" 
+                    <input type="email" placeholder="Your email"
                         class="w-full px-4 py-3 text-black text-sm focus:outline-none rounded-sm">
-                    <button type="submit" 
+                    <button type="submit"
                         class="bg-[#e24a43] hover:bg-red-700 px-6 py-3 font-bold transition rounded-sm text-sm">
                         Subscribe
                     </button>
