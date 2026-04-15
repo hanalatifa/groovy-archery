@@ -16,7 +16,7 @@ Route::get('/athletes', function () {
 
 Route::get('/achievements', function () {
     return view('achievements.achievements');
-})->name('athletes');
+})->name('achievements');
 
 
 // Halaman yang butuh Login
