@@ -14,6 +14,10 @@ Route::get('/athletes', function () {
     return view('athletes-page.athletes');
 })->name('athletes');
 
+Route::get('/achievements', function () {
+    return view('achievements.achievements');
+})->name('athletes');
+
 
 // Halaman yang butuh Login
 Route::middleware(['auth', 'verified'])->group(function () {
