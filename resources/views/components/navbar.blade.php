@@ -7,7 +7,7 @@
     <div class="hidden md:flex items-center space-x-8">
         <a href="{{ route('dashboard') }}" class="text-gray-700 font-medium hover:text-blue-600 transition">Home</a>
         <a href="{{ route('athletes') }}" class="text-gray-700 font-medium hover:text-blue-600 transition">Athletes</a>
-        <a href="#" class="text-gray-700 font-medium hover:text-blue-600 transition">Achievement</a>
+        <a href="{{ route('achievements') }}" class="text-gray-700 font-medium hover:text-blue-600 transition">Achievement</a>
 
         <button class="flex items-center text-gray-700 font-medium hover:text-blue-600 transition">
             More
