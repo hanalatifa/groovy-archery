@@ -12,12 +12,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function() {
 
-    // Manage Atlet (Gaya Kelas 10)
+    // Manage Atlet 
     Route::controller(AtletController::class)->group(function() {
         // Menampilkan Form
         Route::get('/tambah/atlet', 'create')->name('atlet.create'); 
         
-        // Memproses Simpan (Nanti aktifkan jika Controller sudah siap)
+        // Memproses Simpan
         Route::post('/simpan/atlet', 'store')->name('atlet.store');
     });
 
