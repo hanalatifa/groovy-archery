@@ -16,7 +16,7 @@ Route::get('/athletes', function () {
 
 Route::get('/achievements', function () {
     return view('achievements.achievements');
-})->name('athletes');
+})->name('achievements');
 
 
 // Halaman yang butuh Login
@@ -38,5 +38,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Auth bawaan Laravel
 require __DIR__.'/auth.php';

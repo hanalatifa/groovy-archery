@@ -7,20 +7,20 @@
 
 <body>
 
-@include('components.navbar')
+@include('src.components.navbar')
 
 <main>
-    @include('pages.hero')
-    @include('pages.about-us')
-    @include('pages.visi-misi')
-    @include('pages.values')
-    @include('pages.sunnah')
-    @include('pages.training')
-    @include('pages.testimoni')
-    @include('pages.contacts')
+    @include('landing.hero')
+    @include('landing.about-us')
+    @include('landing.visi-misi')
+    @include('landing.values')
+    @include('landing.sunnah')
+    @include('landing.training')
+    @include('landing.testimoni')
+    @include('landing.contacts')
 </main>
 
-@include('components.footer')
+@include('src.components.footer')
 
 </body>
 </html>
