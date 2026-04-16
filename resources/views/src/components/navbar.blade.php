@@ -5,15 +5,9 @@
     </div>
 
     <div class="hidden md:flex items-center space-x-8">
-<<<<<<< HEAD:resources/views/src/components/navbar.blade.php
         <a href="{{ route('welcome') }}" class="text-gray-700 font-small text-sm  hover:text-blue-600 transition">Home</a>
         <a href="{{ route('athletes') }}" class="text-gray-700 font-small text-sm hover:text-blue-600 transition">Athletes</a>
         <a href="{{ route('achievements') }}" class="text-gray-700 font-small text-sm hover:text-blue-600 transition">Achievement</a>
-=======
-        <a href="{{ route('dashboard') }}" class="text-gray-700 font-medium hover:text-blue-600 transition">Home</a>
-        <a href="{{ route('athletes') }}" class="text-gray-700 font-medium hover:text-blue-600 transition">Athletes</a>
-        <a href="{{ route('achievements') }}" class="text-gray-700 font-medium hover:text-blue-600 transition">Achievement</a>
->>>>>>> 88ad3fa9fbb7f07dfc90c150dc7b0df7749568e1:resources/views/components/navbar.blade.php
 
         <button class="flex items-center text-gray-700 font-small text-sm hover:text-blue-600 transition">
             More
