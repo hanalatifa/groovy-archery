@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     // Manage Atlet
-    Route::controller(AtletController::class)->group(function () {
+    Route::controller(AtletController::class)->group(function() {
         Route::get('/tambah/atlet', 'create')->name('atlet.create');
         Route::post('/simpan/atlet', 'store')->name('atlet.store');
     });
@@ -38,5 +38,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

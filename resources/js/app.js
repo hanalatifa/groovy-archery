@@ -1,7 +1,34 @@
-import './bootstrap';
+document.addEventListener('DOMContentLoaded', () => {
+    const gradient = new Gradient();
+    gradient.initGradient('#gradient-canvas');
 
-import Alpine from 'alpinejs';
+    const counters = document.querySelectorAll('.counter');
+    const speed = 50;
 
-window.Alpine = Alpine;
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
 
-Alpine.start();
+                const counter = entry.target;
+                const target = +counter.dataset.target;
+
+                const update = () => {
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(update, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                update();
+                obs.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(c => observer.observe(c));
+});
