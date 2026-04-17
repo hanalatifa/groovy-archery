@@ -1,0 +1,90 @@
+.nav-link {
+    position: relative;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: #2b459a;
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+    color: #2b459a;
+    background: #eff3fb;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Panah More rotate saat hover */
+.nav-link:hover svg {
+    transform: rotate(180deg);
+}
+
+.nav-link svg {
+    transition: transform 0.2s ease;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-wrapper:hover .dropdown-menu {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #374151;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.dropdown-item:hover {
+    background: #eff3fb;
+    color: #2b459a;
+}
+
+.btn-admin {
+    padding: 9px 22px;
+    background: #2b459a;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-admin:hover {
+    background: #1e3278;
+}
