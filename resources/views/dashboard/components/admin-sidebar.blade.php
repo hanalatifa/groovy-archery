@@ -89,12 +89,18 @@
 
     <!-- Logout -->
     <div class="p-6 border-t border-gray-100 mt-auto">
-        <a href="#" class="flex items-center gap-3 px-5 py-3.5 text-red-600 hover:bg-red-50 rounded-2xl font-medium transition-colors">
+        <a href="{{ route('logout') }}" 
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+           class="flex items-center gap-3 px-5 py-3.5 text-red-600 hover:bg-red-50 rounded-2xl font-medium transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4V7m-4 4V7" />
             </svg>
             <span>Logout</span>
         </a>
+    
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
 
 </aside>
