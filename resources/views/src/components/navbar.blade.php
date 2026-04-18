@@ -65,7 +65,12 @@
         </div>
 
         {{-- Tombol Admin --}}
-        <a href="{{ route('login') }}"
+        <form id="force-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        
+        <a href="#" 
+           onclick="event.preventDefault(); document.getElementById('force-logout').submit();"
            class="ml-2 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-medium
                   hover:bg-[#1e3278] transition-colors duration-200">
             Login as Admin
