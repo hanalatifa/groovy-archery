@@ -18,6 +18,10 @@ Route::get('/achievements', function () {
     return view('achievements.achievements');
 })->name('achievements');
 
+Route::get('/dashboard-view', function () {
+        return view('dashboard.dashboard');
+    })->name('dashboard');
+
 
 // Halaman yang butuh Login
 Route::middleware(['auth', 'verified'])->group(function () {
