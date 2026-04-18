@@ -16,12 +16,18 @@
                 <div class="w-10 h-0.5 bg-[#2b459a] mb-6 rounded-full"></div>
                 <p class="text-gray-500 text-base leading-relaxed mb-10 max-w-md">{{ $desc }}</p>
                 <div class="flex items-center gap-6">
-                    <a href="#" class="inline-flex items-center gap-2 bg-[#e24a43] text-white px-8 py-3 font-bold text-sm uppercase tracking-wide hover:bg-red-700 transition-colors duration-200 shadow-sm">
-                        Daftar
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+                    <div>
+    <p class="text-[10px] text-gray-400 mb-1.5 tracking-wide">Hubungi coach kami</p>
+    <button onclick="openDaftarModal()"
+            class="inline-flex items-center gap-2 bg-[#e24a43] text-white px-8 py-3
+                   font-bold text-sm uppercase tracking-wide hover:bg-red-700
+                   transition-colors duration-200 shadow-sm">
+        Daftar
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+    </button>
+</div>
                     <a href="#" class="flex items-center gap-2 font-bold text-sm text-black hover:text-[#2b459a] transition-colors group">
                         Details
                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

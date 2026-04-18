@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/css/style.css'])
 </head>
 <body class="antialiased bg-white text-gray-900 overflow-x-hidden">
 
@@ -29,6 +29,9 @@
     </main>
 
     @include('src.components.footer')
+
+    @include('src.components.modal-daftar')
+    @include('src.components.modal-testimoni')
 
 </body>
 </html>
