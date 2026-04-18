@@ -1,22 +1,27 @@
     <section class="flex flex-col items-center justify-center py-20 px-6 text-center bg-gray-50">
-        <h1 class="text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+        <h1 class="text-5xl font-bold text-black mb-6 tracking-tight">
             Ketepatan. Fokus. Keunggulan.
         </h1>
 
-        <p class="text-lg text-gray-600 max-w-2xl mb-10">
-            Bergabunglah dengan komunitas pemanah yang berdedikasi...
+        <p class="text-base md:text-lg leading-relaxed text-gray-500 font-light max-w-2xl mx-auto mb-5">
+            Bergabunglah dengan komunitas pemanah yang berdedikasi. Berlatihlah bersama pelatih 
+            berpengalaman, berkompetisilah di tingkat tertinggi, dan raih tujuan Anda.
         </p>
 
         <div class="flex gap-4">
-            <a href="#"
-                class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-md font-semibold transition duration-300">
-                Daftar
-            </a>
+        <button type="button" onclick="#"
+                class="inline-flex items-center gap-2 px-8 py-3 bg-[#DA4139]
+                       text-white font-bold text-sm hover:bg-[#D31414]
+                       transition-colors duration-200">
+            Daftar
+        </button>
 
-            <a href="{{ route('athletes') }}"
-                class="border-2 border-gray-300 hover:border-gray-400 text-gray-700 px-8 py-3 rounded-md font-semibold transition duration-300">
-                Lihat Atlet
-            </a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-3
+                                   border border-gray-300 text-gray-700 font-bold text-sm
+                                   hover:border-[#2b459a] hover:text-[#2b459a]
+                                   transition-colors duration-200">
+            Lihat Athlete
+        </a>
         </div>
     </section>
 

@@ -1,39 +1,133 @@
-    <section class="py-20 px-6 bg-white">
-        <div class="text-center mb-16">
-            <p class="text-blue-600 font-semibold uppercase tracking-widest text-sm">Athlete</p>
-            <h2 class="text-4xl font-bold text-gray-900 mt-2">Atlet Kami</h2>
-        </div>
+<section class="py-24 bg-white">
 
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+    <!-- HEADER -->
+    <div class="text-center max-w-2xl mx-auto mb-16 px-6">
+        <p class="text-xs font-bold text-[#2b459a] uppercase tracking-[4px] mb-4">
+            Athlete
+        </p>
 
-            @for ($i = 0; $i < 4; $i++)
-                <div
-                    class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
-                    <img src="{{ asset('assets/atlet.jpg') }}" class="w-full h-60 object-cover block">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+            Atlet Kami
+        </h2>
 
-                    <div class="p-5 flex flex-col flex-grow">
-                        <h3 class="text-lg font-bold text-gray-900 mt-2 mb-2">Latihan yang terarah</h3>
-                        <p class="text-gray-600 text-sm mb-4 flex-grow">
-                            Discipline separates the serious from the casual...
-                        </p>
+        <p class="text-gray-400 text-sm">
+            Setiap tembakan itu penting. Setiap momen itu berarti.
+        </p>
+    </div>
 
-                        <div class="mt-auto pt-2 border-t border-gray-100">
-                            <a href="#" class="text-blue-600 font-semibold text-sm">
-                                Jelajah →
-                            </a>
-                        </div>
-                    </div>
+    <!-- CARD GRID -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
+
+        <!-- CARD -->
+        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
+            
+            <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
+
+            <div class="p-6 flex flex-col flex-grow">
+                
+                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                    Latihan yang terarah
+                </h3>
+
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                </p>
+
+                <div class="mt-auto pt-4 border-t border-gray-100">
+                    <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                        Jelajah <span>→</span>
+                    </a>
                 </div>
-            @endfor
-
+            </div>
         </div>
 
-        <div class="text-center mt-12">
+        <!-- CARD -->
+        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
+            
+            <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
 
-            <a href="{{ route('athletes') }}"
-                class="bg-[#2b459a] text-white px-8 py-3 rounded-md font-medium hover:bg-blue-800 transition">
-                Lihat Semua
-            </a>
+            <div class="p-6 flex flex-col flex-grow">
+                
+                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
 
+                <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                    Latihan yang terarah
+                </h3>
+
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                </p>
+
+                <div class="mt-auto pt-4 border-t border-gray-100">
+                    <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                        Jelajah <span>→</span>
+                    </a>
+                </div>
+            </div>
         </div>
-    </section>
+
+        <!-- CARD -->
+        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
+            
+            <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
+
+            <div class="p-6 flex flex-col flex-grow">
+                
+                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                    Latihan yang terarah
+                </h3>
+
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                </p>
+
+                <div class="mt-auto pt-4 border-t border-gray-100">
+                    <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                        Jelajah <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD -->
+        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
+            
+            <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
+
+            <div class="p-6 flex flex-col flex-grow">
+                
+                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
+
+                <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                    Latihan yang terarah
+                </h3>
+
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                </p>
+
+                <div class="mt-auto pt-4 border-t border-gray-100">
+                    <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                        Jelajah <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- BUTTON -->
+    <div class="text-center mt-16">
+        <button type="button" onclick="#"
+                class="inline-flex items-center gap-2 px-8 py-3 bg-[#2b459a]
+                       text-white font-bold text-sm hover:bg-[#1e3278]
+                       transition-colors duration-200">
+            Lihat Semua
+        </button>
+    </div>
+</section>
