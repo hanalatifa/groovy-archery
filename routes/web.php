@@ -49,5 +49,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 });
 
+<<<<<<< HEAD
 
 require __DIR__ . '/auth.php';
+=======
+require __DIR__.'/auth.php';
+>>>>>>> a4c4ca7269f55d95df65b0ac1807ec5f0b62a0f3
