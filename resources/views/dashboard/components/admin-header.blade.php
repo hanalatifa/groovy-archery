@@ -20,8 +20,8 @@
                  class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm"
                  alt="Profile">
             <div>
-                <p class="font-semibold text-sm text-gray-800">Raisa Amanda</p>
-                <p class="text-xs text-gray-500 -mt-0.5">Data Assistant</p>
+                <p class="font-semibold text-sm text-gray-800">{{ auth()->user()->name }}</p>
+                <p class="text-xs text-gray-500 -mt-0.5">Admin</p>
             </div>
         </div>
     </div>
