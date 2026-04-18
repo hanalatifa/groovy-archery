@@ -11,8 +11,10 @@ class DocumentationController extends Controller
     public function index()
     {
         $docs = Documentation::all();
-        return view('documentations.index', compact('docs'));
+        $totalDocs = Documentation::count();
+        return view('documentations.index', compact('docs', 'totalDocs'));
     }
+
 
     public function create()
     {
@@ -73,7 +75,7 @@ class DocumentationController extends Controller
             }
 
             // upload foto baru
-            $images = []; 
+            $images = [];
             foreach ($request->file('foto') as $file) {
                 if (count($images) >= 9) break;
                 $path = $file->store('docs', 'public');
