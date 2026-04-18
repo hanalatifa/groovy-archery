@@ -7,9 +7,9 @@
             </div>
             <div class="flex flex-col md:flex-row gap-5 w-full md:h-[520px] items-stretch justify-center">
                 @foreach([
-                    ['Ketepatan','Ketepatan dalam gerakan','Panah menemukan sasaran melalui tangan yang stabil dan fokus yang tak goyah. Kami menuntut tidak kurang dari kesempurnaan.','assets/latihanrutin1.jpeg'],
-                    ['Disiplin','Latihan yang terarah','Disiplin membedakan mereka yang serius dari yang sekadar iseng. Para atlet kami berlatih tanpa henti, menyempurnakan teknik mereka.','assets/latihanrutin1.jpeg'],
-                    ['Keunggulan','Keunggulan atlet','Keunggulan bukanlah tujuan akhir, melainkan upaya yang terus-menerus. Kami berkompetisi di level tertinggi.','assets/latihanrutin1.jpeg'],
+                    ['Ketepatan','Ketepatan dalam gerakan','Panah menemukan sasaran melalui tangan yang stabil dan fokus yang tak goyah. Kami menuntut tidak kurang dari kesempurnaan.','assets/gambar-2.png'],
+                    ['Disiplin','Latihan yang terarah','Disiplin membedakan mereka yang serius dari yang sekadar iseng. Para atlet kami berlatih tanpa henti, menyempurnakan teknik mereka.','assets/gambar-1.png'],
+                    ['Keunggulan','Keunggulan atlet','Keunggulan bukanlah tujuan akhir, melainkan upaya yang terus-menerus. Kami berkompetisi di level tertinggi.','assets/gambar-3.png'],
                 ] as [$tag,$title,$desc,$img])
                 <div class="value-card group relative flex-1 md:flex-none md:w-[28%] hover:md:w-[44%] flex flex-col bg-[#4c4494] text-white overflow-hidden rounded-sm shadow-xl cursor-pointer">
                     <div class="h-48 md:h-52 w-full overflow-hidden shrink-0">

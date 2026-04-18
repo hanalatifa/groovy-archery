@@ -1,7 +1,7 @@
     {{-- ═══════════════════════ TRAINING & COACHING ═══════════════════════ --}}
     <section class="max-w-7xl mx-auto px-6 py-28 space-y-28">
         @foreach([
-            ['02','Training','Program','Pelatihan Bertahap','Program pelatihan kami dirancang untuk semua tingkatan, mulai dari pemula yang mempelajari dasar-dasar hingga atlet tingkat lanjut yang mengasah teknik bertanding. Setiap sesi dirancang untuk menghasilkan peningkatan yang terukur.','assets/champion.jpeg',false],
+            ['02','Training','Program','Pelatihan Bertahap','Program pelatihan kami dirancang untuk semua tingkatan, mulai dari pemula yang mempelajari dasar-dasar hingga atlet tingkat lanjut yang mengasah teknik bertanding. Setiap sesi dirancang untuk menghasilkan peningkatan yang terukur.','assets/training-1.jpeg',false],
             ['03','Coaching','Pelatihan','Pelatihan Expert','Para pelatih kami memiliki pengalaman bertahun-tahun di bidang kompetisi serta pengetahuan teknis yang mendalam. Mereka akan mendampingi Anda secara pribadi untuk mengidentifikasi kelemahan, menyempurnakan teknik, dan mempersiapkan diri untuk kompetisi.','assets/champion.jpeg',true],
         ] as [$num,$type,$tag,$title,$desc,$img,$reverse])
         <div class="grid md:grid-cols-2 gap-16 items-center {{ $reverse ? 'md:[direction:rtl]' : '' }}">
