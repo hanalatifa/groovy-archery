@@ -49,7 +49,7 @@
             </a>
         </li>
         <li>
-            <a href="#"
+            <a href="{{ route('kelola.atlet')}}"
                class="flex items-center gap-3 px-5 py-3.5 text-gray-700 hover:bg-gray-100 rounded-2xl font-medium transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 01-5.356-1.857M17 20H7m5-2v2m-5-2v2m-5-2v2" />

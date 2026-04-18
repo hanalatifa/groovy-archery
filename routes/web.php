@@ -37,6 +37,16 @@ Route::post('/tambah-atlet/create', function () {
         ->with('success', 'Data atlet berhasil ditambahkan!');
 })->name('tambah.atlet.store');
 
+// kelola data atlet
+Route::get('/kelola-atlet', function () {
+    return view('dashboard.kelola-atlet');
+})->name('kelola.atlet');
+
+// edit data atlet
+Route::get('/kelola-atlet/{id}/edit', function ($id) {
+    return view('dashboard.edit-atlet', compact('id'));
+})->name('kelola.atlet.edit');
+
 // Halaman yang butuh Login
 Route::middleware(['auth', 'verified'])->group(function () {
 
