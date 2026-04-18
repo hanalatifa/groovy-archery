@@ -20,9 +20,22 @@ Route::get('/achievements', function () {
 })->name('achievements');
 
 Route::get('/dashboard-view', function () {
-        return view('dashboard.dashboard');
-    })->name('dashboard');
+    return view('dashboard.dashboard');
+})->name('dashboard');
 
+Route::get('/tambah-atlet', function () {
+    return view('dashboard.tambah-atlet');
+})->name('tambah.atlet');
+
+Route::get('/tambah-atlet/create', function () {
+    return view('dashboard.form-tambah-atlet');
+})->name('tambah.atlet.create');
+
+Route::post('/tambah-atlet/create', function () {
+
+    return redirect()->route('tambah.atlet')
+        ->with('success', 'Data atlet berhasil ditambahkan!');
+})->name('tambah.atlet.store');
 
 // Halaman yang butuh Login
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -43,16 +56,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-   // Documentation
+    // Documentation
     Route::get('/documentations', [DocumentationController::class, 'index'])->name('documentations.index');
     Route::get('/documentations/create', [DocumentationController::class, 'create'])->name('documentations.create');
     Route::post('/documentations', [DocumentationController::class, 'store'])->name('documentations.store');
     Route::get('/documentations/{id}/edit', [DocumentationController::class, 'edit'])->name('documentations.edit');
     Route::put('/documentations/{id}', [DocumentationController::class, 'update'])->name('documentations.update');
     Route::delete('/documentations/{id}', [DocumentationController::class, 'destroy'])->name('documentations.destroy');
-
 });
 
 
 require __DIR__ . '/auth.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
