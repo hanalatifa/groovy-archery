@@ -17,7 +17,9 @@
             </div>
             <div class="bg-white rounded-3xl p-8 shadow-sm">
                 <p class="text-gray-500 text-sm">Total Dokumentasi</p>
-                <p class="text-5xl font-bold text-gray-800 mt-3">3</p>
+                <p class="text-5xl font-bold text-gray-800 mt-3">
+                    {{ \App\Models\Documentation::count() }}
+                </p>
             </div>
             <div class="bg-white rounded-3xl p-8 shadow-sm">
                 <p class="text-gray-500 text-sm">Total Pertandingan</p>
