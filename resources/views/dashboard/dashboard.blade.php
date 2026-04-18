@@ -4,7 +4,7 @@
         <!-- Greeting -->
         <div class="mb-10">
             <h2 class="text-3xl font-semibold text-gray-800">
-                Selamat Datang Kembali, <span class="text-purple-600">{{ auth()->user()->name }}</span>!
+                Selamat Datang Kembali, <span class="text-purple-600">Raisa Amanda</span> !
             </h2>
             <p class="text-gray-500 mt-1">Ini adalah dashboard admin untuk saat ini</p>
         </div>

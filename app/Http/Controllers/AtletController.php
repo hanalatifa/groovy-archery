@@ -3,21 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAtletRequest;
+use App\Http\Requests\UpdateAtletRequest;
 use App\Models\Atlet;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AtletController extends Controller
 {
     // menampilkan semua data atlet
     public function index() {
         $atlets =Atlet::all();
-        return view('', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet 
+        return view('atlet.index', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet 
     }
 
     // menampilkan form tambah atlet
     public function create() {
-        return view(''); // TODO: masukin link page atau file untuk form tambah atlet
+        return view('atlet.create'); // TODO: masukin link page atau file untuk form tambah atlet
     }
 
     // proses menyimpan data atlet
@@ -40,7 +39,7 @@ class AtletController extends Controller
     }
 
     // proses update data atlet
-    public function update(Request $request, $id) {
+    public function update(UpdateAtletRequest $request, $id) {
         $atlets = Atlet::findOrFail($id);
         $data = $request->all();
         if ($request->hasFile('foto')) {
@@ -50,7 +49,7 @@ class AtletController extends Controller
             $data['foto'] = $request->file('foto')->store('atlets', 'public');
         }
         $atlets->update($data);
-        return redirect()->route('')->with('success', 'Data berhasil diupdate!');
+        return redirect()->route('atlet.update')->with('success', 'Data berhasil diupdate!');
     }
 
     // proses delete data
@@ -66,6 +65,6 @@ class AtletController extends Controller
 
         $atlets->delete();
 
-        return redirect()->route('')->with('success', 'Data atlet sudah dihapus!');
+        return redirect()->route('atlet.destroy')->with('success', 'Data atlet sudah dihapus!');
     }
 }
