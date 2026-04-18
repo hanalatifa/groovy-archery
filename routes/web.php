@@ -23,6 +23,33 @@ Route::get('/achievements', function () {
     return view('achievements.achievements');
 })->name('achievements');
 
+Route::get('/dashboard-view', function () {
+    return view('dashboard.dashboard');
+})->name('dashboard');
+
+Route::get('/tambah-atlet', function () {
+    return view('dashboard.tambah-atlet');
+})->name('tambah.atlet');
+
+Route::get('/tambah-atlet/create', function () {
+    return view('dashboard.form-tambah-atlet');
+})->name('tambah.atlet.create');
+
+Route::post('/tambah-atlet/create', function () {
+
+    return redirect()->route('tambah.atlet')
+        ->with('success', 'Data atlet berhasil ditambahkan!');
+})->name('tambah.atlet.store');
+
+// kelola data atlet
+Route::get('/kelola-atlet', function () {
+    return view('dashboard.kelola-atlet');
+})->name('kelola.atlet');
+
+// edit data atlet
+Route::get('/kelola-atlet/{id}/edit', function ($id) {
+    return view('dashboard.edit-atlet', compact('id'));
+})->name('kelola.atlet.edit');
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +77,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
 
-    // Manajemen Dokumentasi (Ditulis Manual)
+    // Manajemen Dokumentasi
     Route::controller(DocumentationController::class)->group(function () {
         Route::get('/documentations', 'index')->name('documentations.index');
         Route::get('/documentations/create', 'create')->name('documentations.create');
@@ -62,10 +89,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 });
 
-/*
-|--------------------------------------------------------------------------
-| 3. Auth Routes (Bawaan Laravel Breeze)
-|--------------------------------------------------------------------------
-*/
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
