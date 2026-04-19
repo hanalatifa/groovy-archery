@@ -14,12 +14,12 @@
                     <p class="fade-up delay-3 text-base md:text-lg font-light mb-10 max-w-2xl mx-auto leading-relaxed text-white/80">
                         Klub Panahan menyatukan para atlet yang berdedikasi dan berkomitmen untuk mencapai yang terbaik. Kami berlatih dengan tekad yang kuat, bertanding dengan ketepatan, dan membangun komunitas yang diikat oleh rasa hormat.
                     </p>
-                    <a href="#" class="fade-up delay-4 inline-flex items-center gap-3 bg-white text-black px-10 py-3.5 font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition">
+                    <button onclick="openDaftarModal()" class="fade-up delay-4 inline-flex items-center gap-3 bg-white text-black px-10 py-3.5 font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition">
                         Daftar Sebagai Member
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                         </svg>
-                    </a>
+                    </button>
                 </div>
                 <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
                     <span class="text-[9px] uppercase tracking-[4px] text-white/40 mb-1">Scroll</span>
