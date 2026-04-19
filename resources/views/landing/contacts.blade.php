@@ -42,10 +42,10 @@
                 </div>
                 <div>
                     <p class="font-bold text-sm text-gray-900 mb-1">Phone</p>
-                    <p class="text-xs text-gray-400 mb-1">Hubungi kami pada jam kerja</p>
-                    <a href="https://wa.me/6281298005503"
+                    <p class="text-xs text-gray-400 mb-1">Hubungi kami pada jam kerja (08.00 - 17.00)</p>
+                    <a href="https://wa.me/6281214711219"
                        class="text-sm text-gray-700 font-medium hover:text-[#2b459a] transition-colors">
-                        +62 812 9800 5503
+                        +62 812 1471 1219
                     </a>
                     <span class="ml-2 text-xs text-gray-400">(Contact Kami)</span>
                 </div>

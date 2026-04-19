@@ -38,38 +38,47 @@ document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
 // ════════════════════════════════════════
 //  TESTIMONI SLIDER
 // ════════════════════════════════════════
+// ── Testimoni Slider ──
 const slider = document.getElementById('testiSlider');
 
 if (slider) {
     const cards       = slider.querySelectorAll('.testi-card');
     const dotsWrap    = document.getElementById('testiDots');
     const perView     = window.innerWidth >= 768 ? 3 : 1;
-    const totalSlides = Math.ceil(cards.length / perView);
+    const totalSlides = Math.ceil(cards.length / perView); // ← jumlah halaman
     let current = 0;
 
     // Set lebar tiap card
     cards.forEach(c => c.style.width = `${100 / perView}%`);
 
-    // Build dots
+    // Build dots — 1 dot per halaman
+    dotsWrap.innerHTML = ''; // reset dulu biar tidak duplikat
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('button');
-        dot.className = 'rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-[#2b459a] w-5 h-2' : 'bg-gray-300 w-2 h-2');
+        dot.className = 'rounded-full transition-all duration-300 ' +
+            (i === 0 ? 'bg-[#2b459a] w-5 h-2' : 'bg-gray-300 w-2 h-2');
         dot.addEventListener('click', () => goTo(i));
         dotsWrap.appendChild(dot);
     }
 
     function goTo(idx) {
         current = Math.max(0, Math.min(idx, totalSlides - 1));
-        const offset = (100 / perView) * current * perView;
-        slider.style.transform = `translateX(-${offset / cards.length * 100}%)`;
+
+        // Geser slider: setiap halaman = perView card
+        // translateX dalam % relatif terhadap lebar slider wrapper
+        slider.style.transform = `translateX(-${current * 100}%)`;
+
+        // Update dots
         dotsWrap.querySelectorAll('button').forEach((d, i) => {
             d.className = 'rounded-full transition-all duration-300 ' +
                 (i === current ? 'bg-[#2b459a] w-5 h-2' : 'bg-gray-300 w-2 h-2');
         });
     }
 
-    document.getElementById('testiPrev')?.addEventListener('click', () => goTo(current - 1));
-    document.getElementById('testiNext')?.addEventListener('click', () => goTo(current + 1));
+    document.getElementById('testiPrev')
+        ?.addEventListener('click', () => goTo(current - 1));
+    document.getElementById('testiNext')
+        ?.addEventListener('click', () => goTo(current + 1));
 }
 
 

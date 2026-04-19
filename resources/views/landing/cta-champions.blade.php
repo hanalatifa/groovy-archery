@@ -14,12 +14,11 @@
                        transition-colors duration-200">
             Daftar
         </button>
-        <a href="#contact" class="inline-flex items-center gap-2 px-8 py-3
-                                   border border-gray-300 text-gray-700 font-bold text-sm
-                                   hover:border-[#2b459a] hover:text-[#2b459a]
-                                   transition-colors duration-200">
-            Hubungi Kami
-        </a>
+       <a href="https://wa.me/6281214711219?text=Halo%20Coach%2C%20saya%20tertarik%20untuk%20bergabung%20di%20Groovy%20Archery" 
+       target="_blank" 
+       class="inline-flex items-center gap-2 px-8 py-3 border border-gray-300 text-gray-700 font-bold text-sm hover:border-[#2b459a] hover:text-[#2b459a] transition-colors duration-200">
+       Hubungi Kami
+    </a>
     </div>
 </div>
     </section>

@@ -69,3 +69,48 @@
 
     </div>
 </div>
+
+<style>
+     /* Toast */
+    @keyframes toastIn {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes toastOut {
+        from { opacity: 1; transform: translateY(0); }
+        to   { opacity: 0; transform: translateY(16px); }
+    }
+    .toast-notif {
+        position: fixed; bottom: 28px; right: 28px; z-index: 99999;
+        background: #1a1a2e; color: #fff;
+        padding: 14px 20px; border-radius: 10px;
+        font-size: 13px; font-weight: 600;
+        display: flex; align-items: center; gap: 10px;
+        animation: toastIn 0.35s ease forwards;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        font-family: 'Montserrat', sans-serif;
+    }
+    .toast-notif.hide { animation: toastOut 0.35s ease forwards; }
+    .toast-icon-wrap {
+        width: 20px; height: 20px;
+        background: #22c55e; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+</style>
+<script>
+     // Toast notifikasi
+        const toast = document.createElement('div');
+        toast.className = 'toast-notif';
+        toast.innerHTML = `
+            <div class="toast-icon-wrap">
+                <svg width="12" height="12" fill="none" stroke="white" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            <span>Testimoni berhasil dikirim! Terima kasih 🎯</span>`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.classList.add('hide');
+            setTimeout(() => toast.remove(), 400);
+        }, 3500);
+</script>
