@@ -19,10 +19,11 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        Blade::anonymousComponentNamespace(
-        'dashboard.components',   // lokasi folder relative ke resources/views
-        'dashboard'               // prefix yang akan dipakai
-    );
-    }
+{
+    // Jika file kamu ada di resources/views/dashboard/admin-layout.blade.php
+    Blade::component('dashboard.admin-layout', 'admin-layout');
+
+    // Jika kamu ingin menggunakan namespace untuk folder komponen
+    Blade::anonymousComponentNamespace('dashboard/components', 'dashboard');
+}
 }
