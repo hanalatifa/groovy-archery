@@ -183,13 +183,13 @@ if (daftarModal) {
         // Redirest pesan ke WA
         const waNumber = '6281214711219';
         const pesan =
-            `Halo Coach Groovy Archery! 👋\n\n` +
+            `Halo Coach Groovy Archery! \n\n` +
             `Saya ingin mendaftar dengan detail berikut:\n\n` +
-            `🏹 Nama: ${nama}\n` +
-            `🎂 Umur: ${umur} tahun\n` +
-            `📅 Program: ${program.value}\n` +
-            `📍 Lokasi Latihan: ${lokasiMap[lokasiTab.dataset.lokasi]}\n\n` +
-            `Bisa bantu saya untuk menentukan jadwal? \n Terima kasih! 🙏`;
+            `Nama: ${nama}\n` +
+            `Umur: ${umur} tahun\n` +
+            `Program: ${program.value}\n` +
+            `Lokasi Latihan: ${lokasiMap[lokasiTab.dataset.lokasi]}\n\n` +
+            `Bisa bantu saya untuk menentukan jadwal? \n Terima kasih!`;
 
         window.closeDaftarModal();
 

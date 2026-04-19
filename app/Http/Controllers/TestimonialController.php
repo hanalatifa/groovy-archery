@@ -12,7 +12,6 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'nama'      => 'required|string|max:255',
             'rating'    => 'required|integer|min:1|max:5',
@@ -29,28 +28,46 @@ class TestimonialController extends Controller
         return redirect()->back()->with('success', 'Terima kasih! Testimoni kamu sedang ditinjau admin.');
     }
 
-    // Halaman Utama Kelola Testimoni (Hanya yang Approved)
-    public function adminIndex()
+    /**
+     * 1. Halaman Dashboard Utama (Ringkasan Statistik & Tabel Kecil)
+     */
+    public function dashboardIndex() 
+    {
+        $pendingTestis = Testimonial::where('status', 'pending')->latest()->get();
+        $pendingCount = $pendingTestis->count();
+        
+        // Kirim ke view dashboard utama
+        return view('dashboard.dashboard', compact('pendingTestis', 'pendingCount'));
+    }
+
+    /**
+     * 2. Halaman Kelola Testimoni (Daftar Testimoni yang sudah Live/Approved)
+     */
+    public function adminIndex() 
     {
         $approvedTestis = Testimonial::where('status', 'approved')->latest()->get();
-        // Hitung jumlah pending untuk notifikasi di button nanti
         $pendingCount = Testimonial::where('status', 'pending')->count();
-
+    
+        // Kirim ke view kelola testimoni
         return view('dashboard.testimonials.index', compact('approvedTestis', 'pendingCount'));
     }
 
-    // Halaman Khusus Permintaan (Pending)
+    /**
+     * 3. Halaman Khusus Permintaan Baru (Pending)
+     */
     public function adminRequests()
     {
         $pendingTestis = Testimonial::where('status', 'pending')->latest()->get();
         return view('dashboard.testimonials.requests', compact('pendingTestis'));
     }
 
+    /* --- AKSI --- */
+
     public function makePending($id)
     {
         $testi = Testimonial::findOrFail($id);
         $testi->update(['status' => 'pending']);
-        return redirect()->back()->with('success', 'Testimoni dipindahkan ke daftar tunggu.');
+        return redirect()->back()->with('success', 'Testimoni disembunyikan.');
     }
 
     public function approve($id)
@@ -64,6 +81,6 @@ class TestimonialController extends Controller
     {
         $testi = Testimonial::findOrFail($id);
         $testi->delete();
-        return redirect()->back()->with('error', 'Testimoni dihapus.');
+        return redirect()->back()->with('error', 'Testimoni berhasil dihapus.');
     }
 }

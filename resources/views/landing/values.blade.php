@@ -19,9 +19,9 @@
                     <div class="p-7 flex flex-col justify-between flex-grow">
                         <div>
                             <p class="text-[9px] uppercase tracking-[4px] text-blue-200/60 mb-2">{{ $tag }}</p>
-                            <h4 class="text-lg font-bold mb-3 leading-snug">{{ $title }}</h4>
+                            <h4 class="text-[30px] font-bold mb-3 leading-snug">{{ $title }}</h4>
                             <div class="value-desc">
-                                <p class="text-sm leading-relaxed text-blue-100/75">{{ $desc }}</p>
+                                <p class="text-l leading-relaxed text-blue-100/75">{{ $desc }}</p>
                             </div>
                         </div>
                         <a href="#" class="inline-flex items-center gap-2 text-[10px] font-bold tracking-[3px] uppercase mt-5 opacity-50 group-hover:opacity-100 transition-opacity duration-300">

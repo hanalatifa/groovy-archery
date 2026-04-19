@@ -73,8 +73,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Manajemen Testimoni (Admin)
     Route::controller(TestimonialController::class)->group(function () {
+        // Dashboard Utama (Halaman greeting & stats)
+        Route::get('/dashboard-view', 'dashboardIndex')->name('dashboard');
+    
+        // Halaman List Testimoni Approved
         Route::get('/dashboard/testimonials', 'adminIndex')->name('testi.index');
-        Route::get('/dashboard/testimonials/requests', 'adminRequests')->name('testi.requests'); // Route Baru
+    
+        // Halaman List Testimoni Pending
+        Route::get('/dashboard/testimonials/requests', 'adminRequests')->name('testi.requests');
+    
+        // Action Routes
         Route::post('/admin/testimoni/{id}/approve', 'approve')->name('testi.approve');
         Route::post('/admin/testimoni/{id}/reject', 'reject')->name('testi.reject');
         Route::post('/admin/testimoni/{id}/pending', 'makePending')->name('testi.pending');
