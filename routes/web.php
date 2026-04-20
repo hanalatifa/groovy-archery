@@ -24,6 +24,10 @@ Route::get('/achievements', function () {
     return view('achievements.achievements');
 })->name('achievements');
 
+Route::get('/gallery', function () {
+    return view('gallery.gallery');
+})->name('gallery');
+
 // User kirim testimoni
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 
