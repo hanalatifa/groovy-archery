@@ -1,4 +1,4 @@
-<x-dashboard::admin-layout title="Dashboard">
+<x-layouts.admin-layout title="Dashboard">
 
     <div class="max-w-7xl mx-auto">
         <div class="mb-10">
@@ -24,13 +24,13 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            
+
             <div class="bg-white rounded-3xl p-8 shadow-sm">
                 <div class="flex items-center justify-between mb-6">
                     <h3 class="font-semibold text-lg text-gray-800">Permintaan Testimoni</h3>
                     <a href="{{ route('testi.requests') }}" class="text-xs text-[#2b459a] font-bold hover:underline">Lihat Semua</a>
                 </div>
-                
+
                 <div class="overflow-x-auto">
                     <table class="w-full text-left">
                         <tbody class="divide-y divide-gray-50">
@@ -78,4 +78,4 @@
         </div>
     </div>
 
-</x-dashboard::admin-layout>
+</x-layouts.admin-layout>

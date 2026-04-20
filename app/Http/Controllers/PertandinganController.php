@@ -33,13 +33,13 @@ class PertandinganController extends Controller
         }
 
         $data['dokumentasi'] = $files;
-        
+
         Pertandingan::create($data);
 
         return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil ditambah!');
     }
 
-    // menampilkan form edit 
+    // menampilkan form edit
     public function edit($id) {
         $pertandingan = Pertandingan::findOrFail($id);
         return view('pertandingan.edit', compact('pertandingan'));
