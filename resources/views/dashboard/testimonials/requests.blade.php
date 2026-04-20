@@ -1,4 +1,4 @@
-<x-dashboard::admin-layout title="Permintaan Testimoni">
+<x-layouts.admin-layout title="Permintaan Testimoni">
     <div class="max-w-7xl mx-auto">
         <div class="mb-8 flex items-center gap-4">
             <a href="{{ route('testi.index') }}" class="p-2 bg-white rounded-full shadow-sm hover:bg-gray-50">
@@ -41,4 +41,4 @@
             </table>
         </div>
     </div>
-</x-dashboard::admin-layout>
+</x-layouts.admin-layout>

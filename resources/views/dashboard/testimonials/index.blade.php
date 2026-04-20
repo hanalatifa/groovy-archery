@@ -1,6 +1,6 @@
-<x-dashboard::admin-layout title="Kelola Testimoni">
+<x-layouts.admin-layout title="Kelola Testimoni">
     <div class="max-w-7xl mx-auto space-y-10">
-        
+
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-8 rounded-3xl shadow-sm">
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800">Testimoni Aktif</h2>
@@ -65,5 +65,5 @@
         </div>
     </div>
 
-    @include('components.modal-testimoni') 
-</x-dashboard::admin-layout>
+    @include('components.modal-testimoni')
+</x-layouts.admin-layout>
