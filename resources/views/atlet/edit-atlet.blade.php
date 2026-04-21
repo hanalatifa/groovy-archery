@@ -1,4 +1,4 @@
-<x-dashboard::admin-layout title="Edit Data Atlet">
+<x-layouts.admin-layout title="Edit Data Atlet">
 
     <div class="max-w-4xl mx-auto">
         <div class="mb-6">
@@ -63,4 +63,4 @@
         </div>
     </div>
 
-</x-dashboard::admin-layout>
+</x-layouts.admin-layout>

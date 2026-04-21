@@ -1,4 +1,4 @@
-<x-dashboard::admin-layout title="Tambah Data Atlet">
+<x-layouts.admin-layout title="Tambah Data Atlet">
 
     <div class="max-w-5xl mx-auto">
         <div class="mb-8">
@@ -58,4 +58,4 @@
         </div>
     </div>
 
-</x-dashboard::admin-layout>
+</x-layouts.admin-layout>
