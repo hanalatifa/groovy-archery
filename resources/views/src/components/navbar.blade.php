@@ -48,7 +48,7 @@
                         opacity-0 pointer-events-none -translate-y-1
                         group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0
                         transition-all duration-200">
-                <a href="#" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Gallery</a>
+                <a href="{{ route('gallery') }}" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Gallery</a>
                 <a href="#" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Schedule</a>
                 <a href="#contact" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Contact Us</a>
                 <a href="#" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">About</a>
@@ -126,7 +126,7 @@
             {{-- More Section --}}
             <div class="pt-2">
                 <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">More</p>
-                <a href="#"
+                <a href="{{ route('gallery') }}"
                    class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
                           rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
                     Gallery
