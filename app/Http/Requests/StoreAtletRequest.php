@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAtletRequest extends FormRequest
@@ -12,13 +11,11 @@ class StoreAtletRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;        // ← Ubah dari false menjadi true
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -31,7 +28,6 @@ class StoreAtletRequest extends FormRequest
         ];
     }
 
-    // Custom Message
     public function messages(): array
     {
         return [

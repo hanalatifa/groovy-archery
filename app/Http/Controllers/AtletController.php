@@ -11,7 +11,7 @@ class AtletController extends Controller
     // menampilkan semua data atlet
     public function index() {
         $atlets =Atlet::all();
-        return view('atlet.index', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet 
+        return view('atlet.index', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet
     }
 
     // menampilkan form tambah atlet
@@ -20,17 +20,19 @@ class AtletController extends Controller
     }
 
     // proses menyimpan data atlet
-    public function store(StoreAtletRequest $request) {
-        $data = $request->all();
+    public function store(StoreAtletRequest $request)
+{
+    $data = $request->validated();   // lebih aman
 
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('atlets', 'public');
-        }
-
-        \App\Models\Atlet::create($data);
-
-        return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil disimpan!');
+    if ($request->hasFile('foto')) {
+        $data['foto'] = $request->file('foto')->store('atlets', 'public');
     }
+
+    Atlet::create($data);
+
+    return redirect()->route('atlet.index')
+                     ->with('success', 'Data atlet berhasil disimpan!');
+}
 
     // menampilkan form edit data atlet
     public function edit($id) {

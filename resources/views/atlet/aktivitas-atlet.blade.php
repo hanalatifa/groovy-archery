@@ -1,17 +1,12 @@
-<x-dashboard::admin-layout title="Tambah Atlet">
+<x-layouts.admin-layout title="Tambah Atlet">
 
     <div class="max-w-6xl mx-auto">
-        <div class="flex justify-between items-center mb-10">
-            <div>
-                <h1 class="text-3xl font-semibold text-gray-800">Tambah Atlet</h1>
-                <p class="text-gray-500 mt-1">Daftar aktivitas penambahan atlet terbaru</p>
-            </div>
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-semibold text-gray-800">Tambah Atlet</h1>
 
-            <!-- Tombol Tambah yang benar -->
-            <a href="{{ route('tambah.atlet.create') }}"
-               class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3.5 rounded-2xl font-medium flex items-center gap-2 transition shadow-sm">
-                <span class="text-xl leading-none">+</span>
-                Tambah Atlet Baru
+            <a href="{{ route('tambah.atlet') }}"
+               class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3.5 rounded-2xl font-medium flex items-center gap-2 transition">
+                <span>+</span> Tambah Atlet
             </a>
         </div>
 
@@ -28,14 +23,14 @@
                             <th class="text-left py-5 px-6 font-medium text-gray-600">Status</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-100 text-sm">
+                    <tbody class="divide-y divide-gray-100">
                         @for ($i = 0; $i < 8; $i++)
-                        <tr class="hover:bg-gray-50 transition-colors">
+                        <tr class="hover:bg-gray-50">
                             <td class="py-5 px-6 text-gray-600">14.33 PM, 07 March 2026</td>
                             <td class="py-5 px-6 font-medium text-gray-800">Althaf Kharuni</td>
                             <td class="py-5 px-6 text-gray-600">Junior</td>
                             <td class="py-5 px-6">
-                                <span class="inline-flex items-center px-5 py-1.5 bg-emerald-100 text-emerald-700 rounded-2xl text-xs font-medium">
+                                <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-2xl text-sm font-medium">
                                     Berhasil
                                 </span>
                             </td>
@@ -45,10 +40,9 @@
                 </table>
             </div>
 
-            <div class="text-center mt-12">
-                <button onclick="alert('Fitur Lihat Semua akan dibuat nanti')"
-                        class="bg-purple-600 text-white px-8 py-3 rounded-2xl font-medium hover:bg-purple-700 transition">
-                    Lihat Semua Aktivitas
+            <div class="flex justify-center mt-10">
+                <button class="bg-purple-600 text-white px-8 py-3 rounded-2xl font-medium hover:bg-purple-700 transition">
+                    Lihat Semua
                 </button>
             </div>
         </div>

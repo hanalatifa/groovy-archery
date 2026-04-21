@@ -1,4 +1,4 @@
-<x-dashboard::admin-layout title="Kelola Data Atlet">
+<x-layouts.admin-layout title="Kelola Data Atlet">
 
     <div class="max-w-6xl mx-auto">
         <h1 class="text-3xl font-semibold text-gray-800 mb-8">Kelola Data Atlet</h1>
@@ -40,7 +40,7 @@
         </div>
     </div>
 
-</x-dashboard::admin-layout>
+</x-layouts.admin-layout>
 
 <script>
 // Data dummy awal
