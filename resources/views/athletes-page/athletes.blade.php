@@ -14,9 +14,9 @@
     @include('src.components.navbar')
 
     <main class="flex-grow">
-        @include('athletes-page.pages.header')
-        @include('athletes-page.pages.atlet')
-        @include('athletes-page.pages.cta-daftar')
+        @include('athletes-page.components.header')
+        @include('athletes-page.components.atlet')
+        @include('athletes-page.components.cta-daftar')
         @include('landing.contacts')
     </main>
 

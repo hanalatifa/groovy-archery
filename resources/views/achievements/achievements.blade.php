@@ -15,8 +15,8 @@
     @include('src.components.navbar')
 
     <main>
-    @include('achievements.pages.header')
-    @include('achievements.pages.achievement-grid')
+    @include('achievements.components.header')
+    @include('achievements.components.achievement-grid')
     @include('landing.contacts')
     </main>
 

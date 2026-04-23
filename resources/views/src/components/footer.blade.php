@@ -1,7 +1,7 @@
     {{-- ═══════════════════════ FOOTER ═══════════════════════ --}}
     <footer class="gradient-animated text-white pt-16 pb-8 px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-14">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-20 mb-14">
 
                 {{-- Brand --}}
                 <div class="col-span-2 md:col-span-1">

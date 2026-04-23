@@ -13,15 +13,15 @@
     @include('src.components.navbar')
 
     <main>
-        @include('gallery.pages.header')
-        @include('gallery.pages.filter')
-        @include('gallery.pages.grid')
-        @include('gallery.pages.cta')
+        @include('gallery.components.header')
+        @include('gallery.components.filter')
+        @include('gallery.components.grid')
+        @include('gallery.components.cta')
     </main>
 
     @include('src.components.footer')
     @include('src.components.modal-daftar')
-    @include('gallery.pages.lightbox')
+    @include('gallery.components.lightbox')
 
 </body>
 </html>
