@@ -46,7 +46,7 @@
                     <!-- Tanggal Bergabung -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal bergabung</label>
-                        <input type="date" name="tanggal_bergabung" value="{{ old('tanggal_bergabung') }}"
+                        <input type="date" name="tgl_bergabung" value="{{ old('tgl_bergabung') }}"
                             class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500"
                             required>
                     </div>

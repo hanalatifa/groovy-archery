@@ -13,8 +13,9 @@
 
     <div class="px-6 py-5 border-b border-gray-100">
         <div class="flex items-center gap-3">
-            <img src="{{ asset('assets/profile.jpg') }}"
-                class="w-10 h-10 rounded-2xl object-cover ring-2 ring-white shadow" alt="Raisa Amanda">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=6B21A5&color=fff"
+     class="w-10 h-10 rounded-2xl object-cover ring-2 ring-white shadow"
+     alt="Raisa Amanda">
             <div>
                 <p class="font-semibold text-gray-800">{{ auth()->user()->name }}</p>
                 <p class="text-xs text-gray-500">Admin</p>
