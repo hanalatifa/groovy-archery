@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('documentations', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
+            $table->string('kategori');
             $table->text('deskripsi');
-            $table->json('foto');
+            $table->string('foto');
             $table->timestamps();
         });
     }

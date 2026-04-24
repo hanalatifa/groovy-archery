@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentationController extends Controller
 {
+    public function gallery()
+    {
+        $docs = Documentation::all();
+        return view('gallery.gallery', compact('docs')); 
+    }
+
     public function index()
     {
         $docs = Documentation::all();
@@ -25,24 +31,22 @@ class DocumentationController extends Controller
     {
         $request->validate([
             'judul' => 'required',
+            'kategori' => 'required', // Tambah kategori
             'deskripsi' => 'required',
-            'foto' => 'required',
-            'foto.*' => 'image|mimes:jpeg,png,jpg|max:10240',
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:10240', // Validasi single image
         ]);
 
-        $images = [];
+        $fotoName = null;
         if ($request->hasFile('foto')) {
-            foreach ($request->file('foto') as $file) {
-                if (count($images) >= 9) break;
-                $path = $file->store('docs', 'public');
-                $images[] = basename($path);
-            }
+            $path = $request->file('foto')->store('docs', 'public');
+            $fotoName = basename($path);
         }
 
         Documentation::create([
             'judul' => $request->judul,
+            'kategori' => $request->kategori, // Simpan kategori
             'deskripsi' => $request->deskripsi,
-            'foto' => json_encode($images),
+            'foto' => $fotoName, // Simpan sebagai string biasa
         ]);
 
         return redirect('/documentations')->with('success', 'Data berhasil ditambah!');
@@ -60,33 +64,29 @@ class DocumentationController extends Controller
 
         $request->validate([
             'judul' => 'required',
+            'kategori' => 'required', // Tambah kategori
             'deskripsi' => 'required',
-            'foto.*' => 'image|mimes:jpeg,png,jpg|max:10240',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:10240', // Nullable jika tidak ingin ganti foto
         ]);
 
-        $images = json_decode($doc->foto, true) ?? [];
+        $fotoName = $doc->foto; // Gunakan foto lama sebagai default
 
         if ($request->hasFile('foto')) {
-            //hapus fisik foto lama dari folder
-            foreach ($images as $oldImage) {
-                if (Storage::disk('public')->exists('docs/' . $oldImage)) {
-                    Storage::disk('public')->delete('docs/' . $oldImage);
-                }
+            // Hapus fisik foto lama jika ada
+            if ($doc->foto && Storage::disk('public')->exists('docs/' . $doc->foto)) {
+                Storage::disk('public')->delete('docs/' . $doc->foto);
             }
 
-            // upload foto baru
-            $images = [];
-            foreach ($request->file('foto') as $file) {
-                if (count($images) >= 9) break;
-                $path = $file->store('docs', 'public');
-                $images[] = basename($path);
-            }
+            // Upload foto baru
+            $path = $request->file('foto')->store('docs', 'public');
+            $fotoName = basename($path);
         }
 
         $doc->update([
             'judul' => $request->judul,
+            'kategori' => $request->kategori,
             'deskripsi' => $request->deskripsi,
-            'foto' => json_encode($images),
+            'foto' => $fotoName,
         ]);
 
         return redirect('/documentations')->with('success', 'Data berhasil diupdate!');
@@ -95,14 +95,10 @@ class DocumentationController extends Controller
     public function destroy($id)
     {
         $doc = Documentation::findOrFail($id);
-        $images = json_decode($doc->foto, true);
 
-        if (is_array($images)) {
-            foreach ($images as $img) {
-                if (Storage::disk('public')->exists('docs/' . $img)) {
-                    Storage::disk('public')->delete('docs/' . $img);
-                }
-            }
+        // Hapus fisik foto tunggal
+        if ($doc->foto && Storage::disk('public')->exists('docs/' . $doc->foto)) {
+            Storage::disk('public')->delete('docs/' . $doc->foto);
         }
 
         $doc->delete();

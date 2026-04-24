@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Kelola Dokumentasi</h2>
             <a href="{{ url('/documentations/create') }}"
-                class="bg-purple-700 hover:bg-purple-800 text-white px-5 py-2 rounded-lg font-semibold text-sm transition">
+                class="bg-purple-700 hover:bg-purple-800 text-white px-5 py-2 rounded-lg font-semibold text-sm transition shadow-sm">
                 + Tambah Dokumentasi
             </a>
         </div>
@@ -20,6 +20,7 @@
                 <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
                         <th class="p-4 text-sm font-semibold text-gray-600">Judul</th>
+                        <th class="p-4 text-sm font-semibold text-gray-600">Kategori</th> {{-- Kolom Baru --}}
                         <th class="p-4 text-sm font-semibold text-gray-600">Deskripsi</th>
                         <th class="p-4 text-sm font-semibold text-gray-600">Foto</th>
                         <th class="p-4 text-sm font-semibold text-gray-600">Waktu</th>
@@ -30,24 +31,39 @@
                     @foreach ($docs as $doc)
                         <tr class="hover:bg-gray-50 transition">
                             <td class="p-4 text-sm text-gray-800 font-medium">{{ $doc->judul }}</td>
-                            <td class="p-4 text-sm text-gray-600">{{ Str::limit($doc->deskripsi, 50) }}</td>
+                            
+                            {{-- Badge Kategori --}}
                             <td class="p-4">
-                                <div class="flex gap-1 flex-wrap">
-                                    @php
-                                        $images = json_decode($doc->foto);
-                                    @endphp
-                                    @if ($images)
-                                        @foreach ($images as $img)
-                                            <img src="{{ asset('storage/docs/' . $img) }}"
-                                                class="w-10 h-10 rounded-md object-cover border border-gray-200">
-                                        @endforeach
-                                    @endif
-                                </div>
+                                <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-400 border border-purple-200">
+                                    {{ $doc->kategori }}
+                                </span>
                             </td>
+
+                            <td class="p-4 text-sm text-gray-600">
+                                {{-- Deskripsi dengan efek titik-titik (truncate) --}}
+                                <p class="line-clamp-2 leading-relaxed">
+                                    {{ $doc->deskripsi }}
+                                </p>
+                            </td>
+
+                            <td class="p-4">
+                                {{-- Tampilan Single Foto --}}
+                                @if ($doc->foto)
+                                    <img src="{{ asset('storage/docs/' . $doc->foto) }}"
+                                        class="w-12 h-12 rounded-lg object-cover border border-gray-200 shadow-sm"
+                                        alt="Foto {{ $doc->judul }}">
+                                @else
+                                    <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-[10px] text-gray-400">
+                                        No Image
+                                    </div>
+                                @endif
+                            </td>
+
                             <td class="p-4 text-sm text-gray-500">
-                                {{ $doc->created_at->format('d M Y') }}<br>
+                                <span class="font-medium text-gray-700">{{ $doc->created_at->format('d M Y') }}</span><br>
                                 <span class="text-xs text-gray-400">{{ $doc->created_at->format('H:i') }} WIB</span>
                             </td>
+
                             <td class="p-4 text-center">
                                 <div class="flex gap-2 justify-center">
                                     <a href="{{ url('/documentations/' . $doc->id . '/edit') }}"
@@ -66,9 +82,16 @@
                     @endforeach
                 </tbody>
             </table>
+            
+            @if($docs->isEmpty())
+                <div class="p-12 text-center">
+                    <p class="text-gray-400">Belum ada data dokumentasi.</p>
+                </div>
+            @endif
         </div>
     </div>
 
+    {{-- Modal Hapus Tetap Sama --}}
     <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full mx-4 overflow-hidden">
             <div class="p-8 text-center">
@@ -79,7 +102,7 @@
                 </div>
 
                 <h3 class="text-2xl font-semibold text-gray-900 mb-2">Anda yakin?</h3>
-                <p class="text-gray-500 mb-8">Data dokumentasi ini akan dihapus permanen dan tidak dapat dikembalikan.</p>
+                <p class="text-gray-500 mb-8">Data dokumentasi ini akan dihapus permanen.</p>
 
                 <div class="flex gap-3">
                     <button onclick="hideDeleteModal()"
@@ -103,7 +126,6 @@
         function showDeleteModal(id) {
             const form = document.getElementById('deleteForm');
             form.action = `/documentations/${id}`;
-
             const modal = document.getElementById('deleteModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -114,10 +136,6 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
-
-        document.getElementById('deleteModal').addEventListener('click', function(e) {
-            if (e.target === this) hideDeleteModal();
-        });
     </script>
 
 </x-layouts.admin-layout>

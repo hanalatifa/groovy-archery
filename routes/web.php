@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 
+Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
+
 Route::get('/athletes', function () {
     return view('athletes-page.athletes');
 })->name('athletes');
@@ -23,10 +25,6 @@ Route::get('/athletes', function () {
 Route::get('/achievements', function () {
     return view('achievements.achievements');
 })->name('achievements');
-
-Route::get('/gallery', function () {
-    return view('gallery.gallery');
-})->name('gallery');
 
 // User kirim testimoni
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
@@ -98,7 +96,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
-
 });
 
 require __DIR__ . '/auth.php';

@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Documentation extends Model
 {
-    protected $fillable = ['judul', 'deskripsi', 'foto'];
+    protected $fillable = ['judul', 'kategori', 'deskripsi', 'foto'];
 
-    protected $casts = [
-        'foto' => 'array',
-    ];
 }
