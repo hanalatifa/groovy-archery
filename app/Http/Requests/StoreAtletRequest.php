@@ -23,6 +23,7 @@ class StoreAtletRequest extends FormRequest
             'nama'              => 'required|string|max:225',
             'kategori'          => 'required|in:Junior,Senior',
             'tgl_bergabung'     => 'required|date',
+            'umur'              => 'required|integer',
             'foto'              => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'deskripsi'         => 'required|string|min:10|max:1100',
         ];
