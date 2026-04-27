@@ -1,42 +1,106 @@
 {{-- ═══════════════════════ NAVBAR ═══════════════════════ --}}
-<nav class="flex items-center justify-between px-6 md:px-10 py-4 bg-white sticky top-0 z-50 border-b border-gray-100">
+<style>
+/* ── CSS Variables ── */
+:root {
+    --nav-bg:        #ffffff;
+    --nav-border:    rgba(0,0,0,0.07);
+    --nav-text:      #374151;
+    --nav-text-hover:#2b459a;
+    --nav-hover-bg:  #eff6ff;
+    --nav-shadow:    0 4px 24px rgba(0,0,0,0.08);
+    --toggle-bg:     #f3f4f6;
+    --toggle-icon:   #6b7280;
+    --drawer-bg:     #ffffff;
+}
+[data-theme="dark"] {
+    --nav-bg:        #0f172a;
+    --nav-border:    rgba(255,255,255,0.08);
+    --nav-text:      #e2e8f0;
+    --nav-text-hover:#93c5fd;
+    --nav-hover-bg:  rgba(147,197,253,0.08);
+    --nav-shadow:    0 4px 24px rgba(0,0,0,0.4);
+    --toggle-bg:     rgba(255,255,255,0.07);
+    --toggle-icon:   #94a3b8;
+    --drawer-bg:     #1e293b;
+}
+
+/* ── Nav base ── */
+#gaNav {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+#gaNav.scrolled {
+    box-shadow: var(--nav-shadow);
+}
+
+/* ── Logo ── */
+.ga-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+.ga-logo-img { height:36px; width:auto; object-fit:contain; border-radius:6px; display:block; transition:opacity 0.2s; }
+.ga-logo:hover .ga-logo-img { opacity:0.85; }
+.ga-logo-name { font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; color:var(--nav-text); letter-spacing:0.2px; display:block; transition:color 0.25s; }
+.ga-logo-sub  { font-family:'Montserrat',sans-serif; font-size:9px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--toggle-icon); display:block; margin-top:2px; transition:color 0.25s; }
+
+/* ── Nav links ── */
+.ga-link {
+    position:relative; padding:8px 16px; font-size:14px; font-weight:500;
+    color:var(--nav-text); border-radius:6px;
+    transition:color 0.2s, background 0.2s;
+    text-decoration:none;
+}
+.ga-link::after {
+    content:''; position:absolute; bottom:4px; left:16px; right:16px;
+    height:2px; background:#2b459a; border-radius:99px;
+    transform:scaleX(0); transform-origin:left;
+    transition:transform 0.3s ease;
+}
+.ga-link:hover { color:var(--nav-text-hover); background:var(--nav-hover-bg); }
+.ga-link:hover::after { transform:scaleX(1); }
+
+/* ── Dark mode toggle ── */
+.ga-toggle {
+    width:36px; height:36px; border-radius:9px;
+    background:var(--toggle-bg); border:1px solid var(--nav-border);
+    color:var(--toggle-icon); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:all 0.25s; flex-shrink:0;
+}
+.ga-toggle:hover { background:var(--nav-hover-bg); color:var(--nav-text-hover); transform:rotate(15deg); }
+.icon-sun  { display:none; }
+.icon-moon { display:block; }
+[data-theme="dark"] .icon-sun  { display:block; }
+[data-theme="dark"] .icon-moon { display:none; }
+
+/* ── Ham lines ── */
+.ham-line { display:block; width:20px; height:2px; background:var(--nav-text); border-radius:99px; transition:all 0.3s; }
+
+/* ── Drawer dark mode ── */
+#menuDrawer { background:var(--drawer-bg); }
+.drawer-link { color:var(--nav-text); transition:color 0.2s, background 0.2s; }
+.drawer-link:hover { color:var(--nav-text-hover); background:var(--nav-hover-bg); }
+.drawer-section-label { color:var(--toggle-icon); }
+</style>
+
+{{-- ── NAV ── --}}
+<nav id="gaNav" class="flex items-center justify-between px-6 md:px-10 py-4 sticky top-0 z-50">
 
     {{-- Logo --}}
-    <div class="flex items-center">
-        <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-10">
-    </div>
+    <a href="{{ url('/') }}" class="ga-logo">
+        <img src="{{ asset('assets/Logo.jpeg') }}" alt="Groovy Archery" class="ga-logo-img">
+        <div>
+            <span class="ga-logo-name">Groovy Archery</span>
+            <span class="ga-logo-sub">Jakarta Utara</span>
+        </div>
+    </a>
 
-    {{-- Menu Desktop --}}
+    {{-- Desktop Menu --}}
     <div class="hidden md:flex items-center gap-1">
-
-        <a href="{{ route('welcome') }}" class="relative px-4 py-2 text-sm font-medium text-gray-700 rounded-md
-                           hover:text-[#2b459a] hover:bg-blue-50 transition-all duration-200
-                           after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5
-                           after:bg-[#2b459a] after:rounded-full after:scale-x-0 after:origin-left
-                           after:transition-transform after:duration-300 hover:after:scale-x-100">
-            Home
-        </a>
-
-        <a href="{{ route('athletes') }}" class="relative px-4 py-2 text-sm font-medium text-gray-700 rounded-md
-                           hover:text-[#2b459a] hover:bg-blue-50 transition-all duration-200
-                           after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5
-                           after:bg-[#2b459a] after:rounded-full after:scale-x-0 after:origin-left
-                           after:transition-transform after:duration-300 hover:after:scale-x-100">
-            Athletes
-        </a>
-
-        <a href="{{ route('achievements') }}" class="relative px-4 py-2 text-sm font-medium text-gray-700 rounded-md
-                           hover:text-[#2b459a] hover:bg-blue-50 transition-all duration-200
-                           after:absolute after:bottom-1 after:left-4 after:right-4 after:h-0.5
-                           after:bg-[#2b459a] after:rounded-full after:scale-x-0 after:origin-left
-                           after:transition-transform after:duration-300 hover:after:scale-x-100">
-            Achievement
-        </a>
+        <a href="{{ route('welcome') }}"    class="ga-link">Home</a>
+        <a href="{{ route('athletes') }}"   class="ga-link">Athletes</a>
+        <a href="{{ route('achievements') }}" class="ga-link">Achievement</a>
 
         {{-- Dropdown More --}}
         <div class="relative group">
-            <button class="relative flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 rounded-md
-                           hover:text-[#2b459a] hover:bg-blue-50 transition-all duration-200">
+            <button class="ga-link flex items-center gap-1">
                 More
                 <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180"
                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,133 +115,152 @@
                 <a href="{{ route('gallery') }}" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Gallery</a>
                 <a href="#" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Schedule</a>
                 <a href="#contact" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">Contact Us</a>
-                <a href="#" class="block px-3 py-2 text-sm text-gray-700 rounded-lg hover:bg-blue-50 hover:text-[#2b459a] transition-colors">About</a>
             </div>
         </div>
 
+        {{-- Dark mode toggle (desktop) --}}
+        <button class="ga-toggle ml-1" id="themeToggleDesktop" aria-label="Toggle dark mode">
+            <svg class="icon-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+        </button>
+
+        {{-- Login button --}}
         <a href="{{ route('login') }}"
-           class="ml-2 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-medium
-                  hover:bg-[#1e3278] transition-colors duration-200">
+           class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold
+                  hover:bg-[#1e3278] transition-colors duration-200 rounded-sm">
             Login as Admin
         </a>
     </div>
 
-    {{-- Hamburger Button (mobile only) --}}
-    <button id="hamburgerBtn" aria-label="Buka menu"
-            class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg
-                   hover:bg-gray-100 transition-colors duration-200">
-        <span class="ham-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300"></span>
-        <span class="ham-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300"></span>
-        <span class="ham-line block w-5 h-0.5 bg-gray-700 rounded-full transition-all duration-300"></span>
-    </button>
+    {{-- Mobile: toggle + hamburger --}}
+    <div class="flex md:hidden items-center gap-2">
+        {{-- Dark mode toggle (mobile) --}}
+        <button class="ga-toggle" id="themeToggleMobile" aria-label="Toggle dark mode">
+            <svg class="icon-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+        </button>
+
+        {{-- Hamburger --}}
+        <button id="hamburgerBtn" aria-label="Buka menu"
+                class="flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg
+                       hover:bg-gray-100 transition-colors duration-200">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+        </button>
+    </div>
 </nav>
 
-{{-- Mobile Menu Drawer --}}
-<div id="mobileMenu"
-     class="fixed inset-0 z-40 pointer-events-none md:hidden">
-
-    {{-- Backdrop --}}
-    <div id="menuBackdrop"
-         class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300"></div>
-
-    {{-- Drawer --}}
+{{-- Mobile Drawer --}}
+<div id="mobileMenu" class="fixed inset-0 z-40 pointer-events-none md:hidden">
+    <div id="menuBackdrop" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300"></div>
     <div id="menuDrawer"
-         class="absolute top-0 right-0 h-full w-72 bg-white shadow-2xl
+         class="absolute top-0 right-0 h-full w-72 shadow-2xl
                 translate-x-full transition-transform duration-300 ease-out flex flex-col">
 
-        {{-- Drawer Header --}}
+        {{-- Header --}}
         <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-            <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-9">
+            <img src="{{ asset('assets/Logo.jpeg') }}" alt="Logo" class="h-9">
             <button id="closeMenuBtn" aria-label="Tutup menu"
                     class="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors">
-                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
         </div>
 
-        {{-- Drawer Links --}}
+        {{-- Links --}}
         <div class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
-            <a href="{{ route('welcome') }}"
-               class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                      rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('welcome') }}" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
                 Home
             </a>
-            <a href="{{ route('athletes') }}"
-               class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                      rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('athletes') }}" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
                 Athletes
             </a>
-            <a href="{{ route('achievements') }}"
-               class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                      rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('achievements') }}" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                 </svg>
                 Achievement
             </a>
 
-            {{-- More Section --}}
-            <div class="pt-2">
-                <p class="px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">More</p>
-                <a href="{{ route('gallery') }}"
-                   class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                          rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                    Gallery
-                </a>
-                <a href="#"
-                   class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                          rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                    Schedule
-                </a>
-                <a href="#contact"
-                   class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                          rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                    Contact Us
-                </a>
-                <a href="#"
-                   class="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-gray-700
-                          rounded-xl hover:bg-blue-50 hover:text-[#2b459a] transition-colors duration-200">
-                    About
-                </a>
+            <div class="pt-3">
+                <p class="drawer-section-label px-4 text-[10px] font-bold uppercase tracking-widest mb-2">More</p>
+                <a href="{{ route('gallery') }}"  class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Gallery</a>
+                <a href="#" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Schedule</a>
+                <a href="#contact"                class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Contact Us</a>
             </div>
         </div>
 
-        {{-- Drawer Footer --}}
+        {{-- Footer --}}
         <div class="px-4 pb-8 pt-4 border-t border-gray-100">
             <a href="{{ route('login') }}"
-               class="flex items-center justify-center gap-2 w-full px-6 py-3.5
+               class="flex items-center justify-center w-full px-6 py-3.5
                       bg-[#2b459a] text-white text-sm font-bold
                       hover:bg-[#1e3278] transition-colors duration-200 rounded-xl">
                 Login as Admin
             </a>
         </div>
-
     </div>
 </div>
 
 <script>
 (function () {
-    const btn       = document.getElementById('hamburgerBtn');
-    const closeBtn  = document.getElementById('closeMenuBtn');
-    const menu      = document.getElementById('mobileMenu');
-    const drawer    = document.getElementById('menuDrawer');
-    const backdrop  = document.getElementById('menuBackdrop');
-    const lines     = document.querySelectorAll('.ham-line');
+    // ── Dark mode ──
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('ga-theme', theme);
+    }
+
+    const saved     = localStorage.getItem('ga-theme');
+    const sysDark   = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (sysDark ? 'dark' : 'light'));
+
+    function toggleTheme() {
+        const cur = document.documentElement.getAttribute('data-theme');
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+    }
+
+    document.getElementById('themeToggleDesktop')?.addEventListener('click', toggleTheme);
+    document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
+
+    // ── Scroll shadow ──
+    const nav = document.getElementById('gaNav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // ── Hamburger ──
+    const btn      = document.getElementById('hamburgerBtn');
+    const closeBtn = document.getElementById('closeMenuBtn');
+    const menu     = document.getElementById('mobileMenu');
+    const drawer   = document.getElementById('menuDrawer');
+    const backdrop = document.getElementById('menuBackdrop');
+    const lines    = document.querySelectorAll('.ham-line');
 
     function openMenu() {
         menu.classList.remove('pointer-events-none');
         backdrop.classList.add('opacity-100');
         drawer.classList.remove('translate-x-full');
         document.body.style.overflow = 'hidden';
-
-        // Animasi hamburger → X
         lines[0].style.transform = 'translateY(8px) rotate(45deg)';
         lines[1].style.opacity   = '0';
         lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
@@ -188,15 +271,13 @@
         backdrop.classList.remove('opacity-100');
         drawer.classList.add('translate-x-full');
         document.body.style.overflow = '';
-
-        // Reset hamburger
         lines[0].style.transform = '';
         lines[1].style.opacity   = '1';
         lines[2].style.transform = '';
     }
 
-    btn.addEventListener('click', openMenu);
-    closeBtn.addEventListener('click', closeMenu);
-    backdrop.addEventListener('click', closeMenu);
+    btn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    backdrop?.addEventListener('click', closeMenu);
 })();
 </script>

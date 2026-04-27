@@ -20,21 +20,15 @@
 
         <!-- CARD -->
         <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
-            
             <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
-
             <div class="p-6 flex flex-col flex-grow">
-                
-                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
-
+                <p class="text-sm text-gray-500 mb-2">Senior</p>
                 <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
-                    Latihan yang terarah
+                    Fiorenza
                 </h3>
-
                 <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
-                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                    Atlet senior yang bergabung sejak 2020, telah meraih 10+ medali emas..
                 </p>
-
                 <div class="mt-auto pt-4 border-t border-gray-100">
                     <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
                         Jelajah <span>→</span>
@@ -43,23 +37,17 @@
             </div>
         </div>
 
-        <!-- CARD -->
+         <!-- CARD -->
         <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
-            
             <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
-
             <div class="p-6 flex flex-col flex-grow">
-                
-                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
-
+                <p class="text-sm text-gray-500 mb-2">Senior</p>
                 <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
-                    Latihan yang terarah
+                    Fiorenza
                 </h3>
-
                 <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
-                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                    Atlet senior yang bergabung sejak 2020, telah meraih 10+ medali emas..
                 </p>
-
                 <div class="mt-auto pt-4 border-t border-gray-100">
                     <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
                         Jelajah <span>→</span>
@@ -68,23 +56,16 @@
             </div>
         </div>
 
-        <!-- CARD -->
-        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
-            
+         <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
             <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
-
             <div class="p-6 flex flex-col flex-grow">
-                
-                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
-
+                <p class="text-sm text-gray-500 mb-2">Senior</p>
                 <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
-                    Latihan yang terarah
+                    Fiorenza
                 </h3>
-
                 <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
-                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                    Atlet senior yang bergabung sejak 2020, telah meraih 10+ medali emas..
                 </p>
-
                 <div class="mt-auto pt-4 border-t border-gray-100">
                     <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
                         Jelajah <span>→</span>
@@ -93,23 +74,16 @@
             </div>
         </div>
 
-        <!-- CARD -->
-        <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
-            
+         <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
             <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
-
             <div class="p-6 flex flex-col flex-grow">
-                
-                <p class="text-sm text-gray-500 mb-2">Disiplin</p>
-
+                <p class="text-sm text-gray-500 mb-2">Senior</p>
                 <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
-                    Latihan yang terarah
+                    Fiorenza
                 </h3>
-
                 <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
-                    Discipline separates the serious from the casual. Our athletes train relentlessly, refining technique and building mental strength.
+                    Atlet senior yang bergabung sejak 2020, telah meraih 10+ medali emas..
                 </p>
-
                 <div class="mt-auto pt-4 border-t border-gray-100">
                     <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
                         Jelajah <span>→</span>
@@ -118,7 +92,23 @@
             </div>
         </div>
 
-
+         <div class="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
+            <img src="{{ asset('assets/image 1.jpeg') }}" class="w-full h-64 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+                <p class="text-sm text-gray-500 mb-2">Senior</p>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                    Fiorenze
+                </h3>
+                <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-grow">
+                    Atlet senior yang bergabung sejak 2020, telah meraih 10+ medali emas..
+                </p>
+                <div class="mt-auto pt-4 border-t border-gray-100">
+                    <a href="#" class="text-black font-medium text-sm flex items-center gap-2 hover:gap-3 transition-all">
+                        Jelajah <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- BUTTON -->
