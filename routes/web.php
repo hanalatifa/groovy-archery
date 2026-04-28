@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AtletController;
+use App\Http\Controllers\AtletLandingController;
 use App\Http\Controllers\PertandinganController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DocumentationController;
@@ -18,9 +19,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 
 Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
 
-Route::get('/athletes', function () {
-    return view('athletes-page.athletes');
-})->name('athletes');
+Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
 
 Route::get('/achievements', function () {
     return view('achievements.achievements');
