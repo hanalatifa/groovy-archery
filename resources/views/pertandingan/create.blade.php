@@ -44,7 +44,7 @@
                     <!-- Tanggal -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Tanggal Pertandingan</label>
-                        <input type="date" name="tanggal" value="{{ old('tanggal') }}"
+                        <input type="date" name="tgl_pertandingan" value="{{ old('tgl_pertandingan') }}"
                             class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500"
                             required>
                     </div>
@@ -61,21 +61,20 @@
                     <!-- Deskripsi -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Pertandingan</label>
-                        <textarea name="deskripsi" rows="5"
-                            class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>
+                        <textarea name="deskripsi_kegiatan" rows="5"
+                            class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi_kegiatan') }}</textarea>
                     </div>
-                </div>
 
-                <div class="flex justify-end gap-4 mt-10">
-                    <a href="{{ route('pertandingan.index') }}"
-                        class="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-2xl transition">
-                        Cancel
-                    </a>
-                    <button type="submit"
-                        class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl transition">
-                        Simpan
-                    </button>
-                </div>
+                    <div class="flex justify-end gap-4 mt-10">
+                        <a href="{{ route('pertandingan.index') }}"
+                            class="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-2xl transition">
+                            Cancel
+                        </a>
+                        <button type="submit"
+                            class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-2xl transition">
+                            Simpan
+                        </button>
+                    </div>
             </form>
         </div>
     </div>
