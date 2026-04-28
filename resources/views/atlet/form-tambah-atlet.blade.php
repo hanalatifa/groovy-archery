@@ -2,7 +2,7 @@
 
     <div class="max-w-5xl mx-auto">
         <div class="mb-8">
-            <a href="{{ route('tambah.atlet') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
+            <a href="{{ route('atlet.create') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
                 ← Kembali ke Daftar
             </a>
         </div>

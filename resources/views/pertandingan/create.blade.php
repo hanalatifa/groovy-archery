@@ -23,7 +23,7 @@
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Nama Pertandingan</label>
                         <input type="text" name="nama_pertandingan" value="{{ old('nama_pertandingan') }}"
-                            class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500"
+                            placeholder="Masukan nama pertandingan..." class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500"
                             required>
                     </div>
 
@@ -44,7 +44,7 @@
                     <!-- Tanggal -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Tanggal Pertandingan</label>
-                        <input type="date" name="tanggal" value="{{ old('tanggal') }}"
+                        <input type="date" name="tgl_pertandingan" value="{{ old('tanggal') }}"
                             class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500"
                             required>
                     </div>
@@ -61,8 +61,8 @@
                     <!-- Deskripsi -->
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Pertandingan</label>
-                        <textarea name="deskripsi" rows="5"
-                            class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>
+                        <textarea name="deskripsi_kegiatan" rows="5"
+                            placeholder="Deskripsi pertandingan..." class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>
                     </div>
                 </div>
 

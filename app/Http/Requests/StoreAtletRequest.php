@@ -37,6 +37,8 @@ class StoreAtletRequest extends FormRequest
             'kategori.required'         => 'Pilih salah satu kategori',
             'tgl_bergabung.required'    => 'Isi tanggal kapan atlet ini bergabung',
             'tgl_bergabung.date'        => 'Format tanggalnya tidak valid',
+            'umur.required'             => 'Umur atlet wajib diisi',
+            'umur.integer'              => 'Umur harus berupa angka',
             'foto.image'                => 'Yang kamu upload bukan gambar, coba cek lagi',
             'foto.mimes'                => 'Foto harus format .jpeg, .jpg, atau .png',
             'foto.max'                  => 'Fotonya kegedean! Maksimal cuma 2MB',

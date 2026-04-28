@@ -9,6 +9,7 @@ class Atlet extends Model
     protected $fillable = [
     'nama', 
     'kategori', 
+    'umur',
     'tgl_bergabung', 
     'foto', 
     'deskripsi'

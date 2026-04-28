@@ -22,7 +22,7 @@ class PertandinganController extends Controller
 
     // looping untuk menyimpan foto satu persatu (menyimpan data)
     public function store(StorePertandinganRequest $request) {
-        $data = $request->validate();
+        $data = $request->validated();
         $files = [];
 
         if ($request->hasFile('dokumentasi')) {

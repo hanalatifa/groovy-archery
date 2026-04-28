@@ -1,0 +1,717 @@
+diff --git a/app/Http/Controllers/AtletController.php b/app/Http/Controllers/AtletController.php
+index 4256743..43a67e5 100644
+--- a/app/Http/Controllers/AtletController.php
++++ b/app/Http/Controllers/AtletController.php
+@@ -10,61 +10,103 @@ class AtletController extends Controller
+ {
+     // menampilkan semua data atlet
+     public function index() {
+-        $atlets =Atlet::all();
+-        return view('atlet.index', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet 
++        $atlets = Atlet::all();
++        // $totalAtlet = Atlet::count();
++        // $atletTerbaru = Atlet::latest()->take(5)->get();
++        return view('dashboard.kelola-atlet', compact('atlets')); 
+     }
+ 
+     // menampilkan form tambah atlet
+     public function create() {
+-        return view('atlet.create'); // TODO: masukin link page atau file untuk form tambah atlet
++        return view('dashboard.form-tambah-atlet'); 
+     }
+ 
+     // proses menyimpan data atlet
+-    public function store(StoreAtletRequest $request) {
+-        $data = $request->all();
++    public function store(StoreAtletRequest $request) 
++    {
++        $request->validate([
++            'nama' => 'required',
++            'umur' => 'required',
++            'tgl_bergabung' => 'required',
++            'kategori' => 'required',
++            'deskripsi' => 'required',
++        ]);
+ 
+-        if ($request->hasFile('foto')) {
+-            $data['foto'] = $request->file('foto')->store('atlets', 'public');
+-        }
++        try {
++            // 2. Simpan Data
++            $atlet = new Atlet();
++            $atlet->nama = $request->nama;
++            $atlet->umur = $request->umur;
++            $atlet->tgl_bergabung = $request->tgl_bergabung;
++            $atlet->kategori = $request->kategori;
++            $atlet->deskripsi = $request->deskripsi;
++
++            if ($request->hasFile('foto')) {
++                $file = $request->file('foto');
++                $nama_foto = time() . "_" . $file->getClientOriginalName();
++                $file->move(public_path('uploads/atlet'), $nama_foto);
++                $atlet->foto = $nama_foto;
++            }
+ 
+-        \App\Models\Atlet::create($data);
++            $atlet->save();
+ 
+-        return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil disimpan!');
++            return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil disimpan!');
++
++        } catch (\Exception $e) {
++            return back()->withErrors(['error' => 'Gagal ke database: ' . $e->getMessage()])->withInput();
++        }
+     }
+ 
++
+     // menampilkan form edit data atlet
+     public function edit($id) {
+-        $atlets = Atlet::findOrFail($id);
+-        return view('', compact('atlets'));
++        $atlet = Atlet::findOrFail($id);
++        return view('dashboard.edit-atlet', compact('atlet'));
+     }
+ 
+     // proses update data atlet
+     public function update(UpdateAtletRequest $request, $id) {
+-        $atlets = Atlet::findOrFail($id);
+-        $data = $request->all();
++    // 1. Gunakan nama variabel tunggal '$atlet' agar konsisten dengan bawahnya
++    $atlet = Atlet::findOrFail($id); 
++    $data = $request->all();
++
+         if ($request->hasFile('foto')) {
+-            if ($atlets->foto) {
+-                \Illuminate\Support\Facades\Storage::disk('public')->delete($atlets->foto);
++            $file = $request->file('foto');
++            $nama_foto = time() . "_" . $file->getClientOriginalName();
++            $file->move(public_path('upload/atlet'), $nama_foto);
++            
++            // 2. Sekarang variabel '$atlet' sudah cocok dengan yang di baris pertama
++            if ($atlet->foto && file_exists(public_path('upload/atlet/' . $atlet->foto))) {
++                unlink(public_path('upload/atlet/' . $atlet->foto));
+             }
+-            $data['foto'] = $request->file('foto')->store('atlets', 'public');
++
++            $data['foto'] = $nama_foto;
+         }
+-        $atlets->update($data);
+-        return redirect()->route('atlet.update')->with('success', 'Data berhasil diupdate!');
++
++    // 3. Update menggunakan variabel yang benar
++    $atlet->update($data);
++
++    // 4. PERBAIKAN PENTING: Redirect ke 'atlet.index' agar kembali ke tabel
++    // Jika tetap ke 'atlet.update', Laravel akan error karena 'update' butuh method PUT, bukan GET
++    return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');
+     }
+ 
+     // proses delete data
+     public function destroy($id) {
+-        $atlets = Atlet::findOrFail($id);
+-        if ($atlets->foto) {
+-            $lokasiFoto = public_path('storage/' .$atlets->foto);
++    $atlet = \App\Models\Atlet::findOrFail($id);
++    
++    // Gunakan ini jika kamu simpan foto di public/upload/atlet
++    $pathBaru = public_path('upload/atlet/' . $atlet->foto);
++    $pathLama = public_path('uploads/atlet/' . $atlet->foto);
+ 
+-            if (file_exists($lokasiFoto)) {
+-                @unlink($lokasiFoto);
+-            }
+-        }
++    if ($atlet->foto && file_exists($pathBaru)) {
++        unlink($pathBaru);
++    } elseif ($atlet->foto && file_exists($pathLama)) {
++        unlink($pathLama);
++    }
+ 
+-        $atlets->delete();
++    $atlet->delete();
+ 
+-        return redirect()->route('atlet.destroy')->with('success', 'Data atlet sudah dihapus!');
+-    }
++    return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil dihapus!');
++}
+ }
+diff --git a/app/Http/Requests/StoreAtletRequest.php b/app/Http/Requests/StoreAtletRequest.php
+index e107983..25b2b9a 100644
+--- a/app/Http/Requests/StoreAtletRequest.php
++++ b/app/Http/Requests/StoreAtletRequest.php
+@@ -12,7 +12,7 @@ class StoreAtletRequest extends FormRequest
+      */
+     public function authorize(): bool
+     {
+-        return false;
++        return true;
+     }
+ 
+     /**
+@@ -24,6 +24,7 @@ public function rules(): array
+     {
+         return [
+             'nama'              => 'required|string|max:225',
++            'umur'              => 'required',
+             'kategori'          => 'required|in:Junior,Senior',
+             'tgl_bergabung'     => 'required|date',
+             'foto'              => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+diff --git a/app/Http/Requests/StorePertandinganRequest.php b/app/Http/Requests/StorePertandinganRequest.php
+index 0011761..2586ab5 100644
+--- a/app/Http/Requests/StorePertandinganRequest.php
++++ b/app/Http/Requests/StorePertandinganRequest.php
+@@ -12,7 +12,7 @@ class StorePertandinganRequest extends FormRequest
+      */
+     public function authorize(): bool
+     {
+-        return false;
++        return true;
+     }
+ 
+     /**
+diff --git a/app/Http/Requests/UpdateAtletRequest.php b/app/Http/Requests/UpdateAtletRequest.php
+index 4452e75..11816e3 100644
+--- a/app/Http/Requests/UpdateAtletRequest.php
++++ b/app/Http/Requests/UpdateAtletRequest.php
+@@ -12,7 +12,7 @@ class UpdateAtletRequest extends FormRequest
+      */
+     public function authorize(): bool
+     {
+-        return false;
++        return true;
+     }
+ 
+     /**
+@@ -24,6 +24,7 @@ public function rules(): array
+     {
+         return [
+             'nama'              => 'required|string|max:225',
++            'umur'              => 'required',
+             'kategori'          => 'required|in:Junior,Senior',
+             'tgl_bergabung'     => 'required|date',
+             'foto'              => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+diff --git a/app/Models/Atlet.php b/app/Models/Atlet.php
+index 864803d..e816d24 100644
+--- a/app/Models/Atlet.php
++++ b/app/Models/Atlet.php
+@@ -6,9 +6,12 @@
+ 
+ class Atlet extends Model
+ {
++    protected $table = 'atlets';
++
+     protected $fillable = [
+     'nama', 
+     'kategori', 
++    'umur',
+     'tgl_bergabung', 
+     'foto', 
+     'deskripsi'
+diff --git a/resources/views/dashboard/edit-atlet.blade.php b/resources/views/dashboard/edit-atlet.blade.php
+index 71af3e2..b7af05a 100644
+--- a/resources/views/dashboard/edit-atlet.blade.php
++++ b/resources/views/dashboard/edit-atlet.blade.php
+@@ -2,59 +2,86 @@
+ 
+     <div class="max-w-4xl mx-auto">
+         <div class="mb-6">
+-            <a href="{{ route('kelola.atlet') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
++            <a href="{{ route('atlet.index') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
+                 ← Kembali ke Kelola Atlet
+             </a>
+         </div>
+ 
+-        <h1 class="text-3xl font-semibold text-gray-800 mb-8">Edit Data Atlet</h1>
++        <h1 class="text-3xl font-semibold text-gray-800 mb-8">Edit Data Atlet: {{ $atlet->nama }}</h1>
+ 
+         <div class="bg-white rounded-3xl shadow-sm p-10">
+-            <form action="#" method="POST">
++            <form action="{{ route('atlet.update', $atlet->id) }}" method="POST" enctype="multipart/form-data">
+                 @csrf
++                @method('PUT')
+ 
+                 <div class="grid grid-cols-2 gap-8">
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama atlet</label>
+-                        <input type="text" value="Zenia Karina"
+-                               class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
++                        <input type="text" name="nama" value="{{ old('nama', $atlet->nama) }}"
++                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
+                     </div>
+ 
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+-                        <select class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 bg-white">
+-                            <option value="Junior">Junior</option>
+-                            <option value="Senior" selected>Senior</option>
++                        <select name="kategori" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 bg-white">
++                            <option value="Junior" {{ $atlet->kategori == 'Junior' ? 'selected' : '' }}>Junior</option>
++                            <option value="Senior" {{ $atlet->kategori == 'Senior' ? 'selected' : '' }}>Senior</option>
+                         </select>
+                     </div>
+ 
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal bergabung</label>
+-                        <input type="date" value="2025-09-26"
+-                               class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
++                        <input type="date" name="tgl_bergabung" value="{{ $atlet->tgl_bergabung }}"
++                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
++                    </div>
++
++                    <div>
++                        <label class="block text-sm font-medium text-gray-700 mb-2">Umur</label>
++                        <input type="number" name="umur" value="{{ old('umur', $atlet->umur) }}"
++                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
+                     </div>
+ 
+                     <div class="col-span-2">
+-                        <label class="block text-sm font-medium text-gray-700 mb-2">Upload foto atlet</label>
+-                        <div class="border-2 border-dashed border-gray-300 rounded-3xl h-64 flex flex-col items-center justify-center">
+-                            <img src="{{ asset('assets/archer.jpg') }}" class="h-52 rounded-2xl shadow" alt="Foto Atlet">
++                        <label class="block text-sm font-medium text-gray-700 mb-2">Foto atlet</label>
++                        <div class="border-2 border-dashed border-gray-300 rounded-3xl min-h-64 flex flex-wrap gap-4 items-start justify-start p-6 bg-gray-50">
++                            @if($atlet->foto)
++                                @php
++                                    // Cek apakah file ada di folder 'upload/atlet' (hasil update)
++                                    $pathBaru = public_path('upload/atlet/' . $atlet->foto);
++                                    // Cek apakah file ada di folder 'uploads/atlet' (data awal)
++                                    $pathLama = public_path('uploads/atlet/' . $atlet->foto);
++                                @endphp
++
++                                @if(file_exists($pathBaru))
++                                    <img src="{{ asset('upload/atlet/' . $atlet->foto) }}" class="h-52 w-auto rounded-2xl shadow-md object-cover">
++                                @elseif(file_exists($pathLama))
++                                    <img src="{{ asset('uploads/atlet/' . $atlet->foto) }}" class="h-52 w-auto rounded-2xl shadow-md object-cover">
++                                @else
++                                    <div class="text-center p-4">
++                                        <p class="text-red-500">File foto tidak ditemukan di folder upload maupun uploads</p>
++                                        <p class="text-xs text-gray-400">Nama file: {{ $atlet->foto }}</p>
++                                    </div>
++                                @endif
++                            @else
++                                <p class="text-gray-400">Belum ada foto</p>
++                            @endif
+                         </div>
++                        <input type="file" name="foto" class="mt-4 text-sm text-gray-500">
+                     </div>
+ 
+                     <div class="col-span-2">
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Atlet</label>
+-                        <textarea rows="5"
+-                                  class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:outline-none focus:border-purple-500">Halo! Aku Zenia dari Jakarta Utara. 
+Aku bergabung dengan Groovy semenjak tahun 2020.</textarea>
++                        <textarea name="deskripsi" rows="5"
++                                class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:outline-none focus:border-purple-500">{{ old('deskripsi', $atlet->deskripsi)
+ }}</textarea>
+                     </div>
+                 </div>
+ 
+                 <div class="flex justify-end gap-4 mt-12">
+-                    <a href="{{ route('kelola.atlet') }}"
+-                       class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">
++                    <a href="{{ route('atlet.index') }}"
++                    class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">
+                         Cancel
+                     </a>
+                     <button type="submit"
+-                            onclick="event.preventDefault(); alert('Data berhasil disimpan!'); window.location.href = '{{ route('kelola.atlet') }}';"
+                             class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl transition">
+                         Simpan
+                     </button>
+diff --git a/resources/views/dashboard/form-tambah-atlet.blade.php b/resources/views/dashboard/form-tambah-atlet.blade.php
+index 8064c58..4ad4590 100644
+--- a/resources/views/dashboard/form-tambah-atlet.blade.php
++++ b/resources/views/dashboard/form-tambah-atlet.blade.php
+@@ -2,7 +2,7 @@
+ 
+     <div class="max-w-5xl mx-auto">
+         <div class="mb-8">
+-            <a href="{{ route('tambah.atlet') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
++            <a href="{{ route('atlet.store') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
+                 ← Kembali ke Daftar
+             </a>
+         </div>
+@@ -11,41 +11,84 @@
+ 
+         <div class="bg-white rounded-3xl shadow-sm p-10">
+             <!-- Form akan saya kasih lengkap seperti sebelumnya -->
+-            <form action="#" method="POST">
++            <form action="{{ route('atlet.store') }}" method="POST" enctype="multipart/form-data">                  
+                 @csrf
++                @if ($errors->any())
++                    <div class="bg-red-100 text-red-600 p-4 mb-4 rounded-xl">
++                        <ul>
++                            @foreach ($errors->all() as $error)
++                                <li>{{ $error }}</li>
++                            @endforeach
++                        </ul>
++                    </div>
++                @endif
+                 <div class="grid grid-cols-2 gap-x-10 gap-y-8">
+                     <!-- Isi form sama seperti yang saya berikan sebelumnya -->
+                     <!-- Nama Atlet, Umur, Tanggal Bergabung, Kategori, Upload Foto, Deskripsi -->
+ 
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama atlet</label>
+-                        <input type="text" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="Zenia Karina">
++                        <input type="text" name="nama" placeholder="Isi nama atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" va
+lue="{{ old('nama') }}">
+                     </div>
+ 
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Umur</label>
+-                        <input type="number" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="16">
++                        <input type="number" name="umur" placeholder="Isi umur atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" 
+value="{{ old('umur') }}">
+                     </div>
+ 
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal bergabung</label>
+-                        <input type="date" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="2025-09-26">
++                        <input type="date" name="tgl_bergabung" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="{{ old('tgl_bergab
+ung') }}">
+                     </div>
+ 
+                     <div>
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+-                        <select class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500 bg-white">
+-                            <option>Junior</option>
+-                            <option selected>Senior</option>
++                        <select class=" w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500 bg-white" name="kategori">
++                            <option value="">Pilih Kategori</option>
++                            <option value="Junior" {{ old('kategori') == 'Junior' ? 'selected' : '' }}>Junior</option>
++                            <option value="Senior" {{ old('kategori') == 'Senior' ? 'selected' : '' }}>Senior</option>
+                         </select>
+                     </div>
+ 
+-                    <!-- Upload Foto & Deskripsi (sama seperti sebelumnya) -->
++                <div>
++                    <label class="block text-sm font-medium text-gray-700 mb-2">Upload foto atlet</label>
++                    <div id="photo-preview-container" class="relative border-2 border-dashed border-gray-200 rounded-3xl p-8 flex flex-col items-center justify-center bg-gra
+y-50 hover:bg-gray-100 transition cursor-pointer h-[280px] overflow-hidden">
++                        
++                        <input type="file" name="foto" id="foto-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
++                        
++                        <div id="default-upload-state" class="flex flex-col items-center justify-center">
++                            <div class="bg-gray-200 p-4 rounded-full mb-3">
++                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
++                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13
+l-3-3m0 0l-3 3m3-3v12" />
++                                </svg>
++                            </div>
++                            <p class="text-sm text-gray-400 text-center">Klik atau tarik foto ke sini</p>
++                        </div>
++
++                        <img id="image-preview-el" src="#" alt="Preview Foto" class="absolute inset-0 w-full h-full object-cover hidden">
++                        
++                        <button type="button" id="remove-photo-btn" class="absolute top-4 right-4 bg-red-500 text-white p-2 rounded-full hidden z-20 hover:bg-red-600 transit
+ion">
++                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
++                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
++                            </svg>
++                        </button>
++                    </div>
++                </div>
+ 
++            <div>
++                <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Atlet</label>
++                <textarea 
++                    name="deskripsi" 
++                    rows="10" 
++                    class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:border-purple-500 bg-white h-[280px] resize-none"
++                    placeholder="Tuliskan deskripsi lengkap atlet di sini..."
++                    {{ old('deskripsi') }}
++                ></textarea>
++            </div>
+                 </div>
+ 
+                 <div class="flex justify-end gap-4 mt-12">
+-                    <a href="{{ route('tambah.atlet') }}"
++                    <a href="{{ route('atlet.create') }}"
+                        class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">
+                         Batal
+                     </a>
+@@ -58,4 +101,38 @@ class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2
+         </div>
+     </div>
+ 
++<script>
++    document.addEventListener('DOMContentLoaded', function () {
++        const fotoInput = document.getElementById('foto-input');
++        const imagePreviewEl = document.getElementById('image-preview-el');
++        const defaultUploadState = document.getElementById('default-upload-state');
++        const removePhotoBtn = document.getElementById('remove-photo-btn');
++        const previewContainer = document.getElementById('photo-preview-container');
++
++        fotoInput.addEventListener('change', function () {
++            if (this.files && this.files[0]) {
++                const reader = new FileReader();
++                reader.onload = function (e) {
++                    imagePreviewEl.src = e.target.result;
++                    imagePreviewEl.classList.remove('hidden');
++                    removePhotoBtn.classList.remove('hidden');
++                    defaultUploadState.classList.add('hidden');
++                    previewContainer.classList.replace('border-dashed', 'border-solid');
++                }
++                reader.readAsDataURL(this.files[0]);
++            }
++        });
++
++        removePhotoBtn.addEventListener('click', function (e) {
++            e.preventDefault();
++            fotoInput.value = "";
++            imagePreviewEl.src = "#";
++            imagePreviewEl.classList.add('hidden');
++            removePhotoBtn.classList.add('hidden');
++            defaultUploadState.classList.remove('hidden');
++            previewContainer.classList.replace('border-solid', 'border-dashed');
++        });
++    });
++</script>
++
+ </x-dashboard::admin-layout>
+diff --git a/resources/views/dashboard/kelola-atlet.blade.php b/resources/views/dashboard/kelola-atlet.blade.php
+index b2d3b04..41323b6 100644
+--- a/resources/views/dashboard/kelola-atlet.blade.php
++++ b/resources/views/dashboard/kelola-atlet.blade.php
+@@ -2,7 +2,6 @@
+ 
+     <div class="max-w-6xl mx-auto">
+         <h1 class="text-3xl font-semibold text-gray-800 mb-8">Kelola Data Atlet</h1>
+-
+         <div class="bg-white rounded-3xl shadow-sm overflow-hidden">
+             <table class="w-full" id="atletTable">
+                 <thead class="bg-gray-50">
+@@ -14,7 +13,31 @@
+                     </tr>
+                 </thead>
+                 <tbody class="divide-y divide-gray-100" id="tableBody">
+-                    <!-- Data akan diisi oleh JavaScript -->
++                    @forelse ($atlets as $index => $atlet)
++                        <tr class="hover:bg-gray-50">
++                            <td class="py-5 px-6">{{ $index + 1 }}.</td>
++                            <td class="py-5 px-6 font-medium">{{ $atlet->nama }}</td>
++                            <td class="py-5 px-6 text-gray-600">{{ $atlet->kategori }}</td>
++                            <td class="py-5 px-6">
++                                <div class="flex gap-2 justify-center">
++                                    <a href="{{ route('atlet.edit', $atlet->id) }}"
++                                    class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
++                                        Edit
++                                    </a>
++                                    <button onclick="showDeleteModal({{ $atlet->id }})"
++                                            class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
++                                        Hapus
++                                    </button>
++                                </div>
++                            </td>
++                        </tr>
++                    @empty
++                        <tr>
++                            <td colspan="4" class="py-10 text-center text-gray-500">
++                                Data tidak ditemukan di database.
++                            </td>
++                        </tr>
++                    @endforelse
+                 </tbody>
+             </table>
+         </div>
+@@ -32,10 +55,15 @@
+                         class="flex-1 py-4 bg-gray-200 hover:bg-gray-300 rounded-2xl font-medium transition">
+                     Cancel
+                 </button>
+-                <button onclick="confirmDelete()"
+-                        class="flex-1 py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-medium transition">
+-                    Ya, Hapus
+-                </button>
++                <form action="{{ route('atlet.destroy', $atlet->id) }}" method="POST" class="inline">
++                    @csrf
++                    @method('DELETE')
++                    <button type="submit" 
++                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
++                            class="flex-1 px-10 py-4 bg-red-500 hover:bg-red-600 text-white rounded-xl transition">
++                        Hapus
++                    </button>
++                </form>
+             </div>
+         </div>
+     </div>
+@@ -55,33 +83,36 @@ class="flex-1 py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-mediu
+ let currentEditId = null;
+ 
+ // Render tabel
+-function renderTable() {
+-    const tbody = document.getElementById('tableBody');
+-    tbody.innerHTML = '';
+-
+-    atletData.forEach((atlet, index) => {
+-        const row = `
+-            <tr class="hover:bg-gray-50" id="row-${atlet.id}">
+-                <td class="py-5 px-6">${index + 1}.</td>
+-                <td class="py-5 px-6 font-medium">${atlet.nama}</td>
+-                <td class="py-5 px-6 text-gray-600">${atlet.kategori}</td>
+-                <td class="py-5 px-6">
+-                    <div class="flex gap-2 justify-center">
+-                        <button onclick="editAtlet(${atlet.id})"
+-                                class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
+-                            Edit
+-                        </button>
+-                        <button onclick="showDeleteModal(${atlet.id})"
+-                                class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
+-                            Hapus
+-                        </button>
+-                    </div>
+-                </td>
+-            </tr>
+-        `;
+-        tbody.innerHTML += row;
+-    });
+-}
++// function renderTable() {
++//     const tbody = document.getElementById('tableBody');
++//     <tbody class="divide-y divide-gray-100" id="tableBody">
++//     @forelse ($atlets as $index => $atlet)
++//         <tr class="hover:bg-gray-50">
++//             <td class="py-5 px-6">{{ $index + 1 }}.</td>
++//             <td class="py-5 px-6 font-medium">{{ $atlet->nama }}</td>
++//             <td class="py-5 px-6 text-gray-600">{{ $atlet->kategori }}</td>
++//             <td class="py-5 px-6">
++//                 <div class="flex gap-2 justify-center">
++//                     <a href="{{ route('atlet.edit', $atlet->id) }}"
++//                        class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
++//                         Edit
++//                     </a>
++//                     <button onclick="showDeleteModal({{ $atlet->id }})"
++//                             class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
++//                         Hapus
++//                     </button>
++//                 </div>
++//             </td>
++//         </tr>
++//     @empty
++//         <tr>
++//             <td colspan="4" class="py-10 text-center text-gray-500">
++//                 Data tidak ditemukan di database.
++//             </td>
++//         </tr>
++//     @endforelse
++// </tbody>
++// }
+ 
+ // === HAPUS ===
+ let deleteCandidateId = null;
+@@ -97,9 +128,18 @@ function closeDeleteModal() {
+ 
+ function confirmDelete() {
+     if (deleteCandidateId) {
+-        atletData = atletData.filter(atlet => atlet.id !== deleteCandidateId);
+-        renderTable();
+-        closeDeleteModal();
++        const form = document.createElement('form');
++        
++        // URL ini harus sama dengan yang ada di web.php
++        form.action = '/atlet/' + deleteCandidateId; 
++        
++        form.method = 'POST';
++        form.innerHTML = `
++            <input type="hidden" name="_token" value="{{ csrf_token() }}">
++            <input type="hidden" name="_method" value="DELETE">
++        `;
++        document.body.appendChild(form);
++        form.submit();
+     }
+ }
+ 
+@@ -120,10 +160,23 @@ function editAtlet(id) {
+     atlet.nama = namaBaru.trim();
+     atlet.kategori = kategoriBaru.trim();
+ 
+-    renderTable();
+-    alert("Data berhasil diperbarui!");
+ }
+ 
+-// Render pertama kali
+-renderTable();
+ </script>
++
++<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
++
++@if(session('success'))
++<script>
++    Swal.fire({
++        title: "Berhasil!",
++        text: "{{ session('success') }}",
++        icon: "success",
++        timer: 3000,
++        showConfirmButton: false,
++        customClass: {
++            popup: 'rounded-3xl'
++        }
++    });
++</script>
++@endif
+diff --git a/resources/views/layouts/app.blade.php b/resources/views/layouts/app.blade.php
+index c5ff315..5f5f8f6 100644
+--- a/resources/views/layouts/app.blade.php
++++ b/resources/views/layouts/app.blade.php
+@@ -33,4 +33,5 @@
+             </main>
+         </div>
+     </body>
++    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ </html>
+diff --git a/routes/web.php b/routes/web.php
+index ab07641..bb37c3d 100644
+--- a/routes/web.php
++++ b/routes/web.php
+@@ -44,11 +44,11 @@
+     // Manajemen Atlet
+     Route::controller(AtletController::class)->group(function () {
+         Route::get('/atlet', 'index')->name('atlet.index');
+-        Route::get('/tambah/atlet', 'create')->name('atlet.create');
+-        Route::post('/simpan/atlet', 'store')->name('atlet.store');
+-        Route::get('/edit/atlet/{id}', 'edit')->name('atlet.edit');
++        Route::get('/tambah/atlet', [AtletController::class, 'create'])->name('atlet.create');
++        Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
++        Route::get('/edit/atlet/{id}', [AtletController::class, 'edit'])->name('atlet.edit');
+         Route::put('/update/atlet/{id}', 'update')->name('atlet.update');
+-        Route::delete('/hapus/atlet/{id}', 'destroy')->name('atlet.destroy');
++        Route::delete('/atlet/{id}', [AtletController::class, 'destroy'])->name('atlet.destroy');
+     });
+ 
+     // Manajemen Pertandingan
+(END)
++        }
++    });
++</script>
++@endif
+diff --git a/resources/views/layouts/app.blade.php b/resources/views/layouts/app.blade.php
+index c5ff315..5f5f8f6 100644
+--- a/resources/views/layouts/app.blade.php
++++ b/resources/views/layouts/app.blade.php
+@@ -33,4 +33,5 @@
+             </main>
+         </div>
+     </body>
++    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ </html>
+diff --git a/routes/web.php b/routes/web.php
+index ab07641..bb37c3d 100644
+--- a/routes/web.php
++++ b/routes/web.php
+@@ -44,11 +44,11 @@
+     // Manajemen Atlet
+     Route::controller(AtletController::class)->group(function () {
+         Route::get('/atlet', 'index')->name('atlet.index');
+-        Route::get('/tambah/atlet', 'create')->name('atlet.create');
+-        Route::post('/simpan/atlet', 'store')->name('atlet.store');
+-        Route::get('/edit/atlet/{id}', 'edit')->name('atlet.edit');
++        Route::get('/tambah/atlet', [AtletController::class, 'create'])->name('atlet.create');
++        Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
++        Route::get('/edit/atlet/{id}', [AtletController::class, 'edit'])->name('atlet.edit');
+         Route::put('/update/atlet/{id}', 'update')->name('atlet.update');
+-        Route::delete('/hapus/atlet/{id}', 'destroy')->name('atlet.destroy');
++        Route::delete('/atlet/{id}', [AtletController::class, 'destroy'])->name('atlet.destroy');
+     });
+ 
+     // Manajemen Pertandingan
+(END)

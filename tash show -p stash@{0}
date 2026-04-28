@@ -1,0 +1,673 @@
+[1mdiff --git a/app/Http/Controllers/AtletController.php b/app/Http/Controllers/AtletController.php[m
+[1mindex 4256743..43a67e5 100644[m
+[1m--- a/app/Http/Controllers/AtletController.php[m
+[1m+++ b/app/Http/Controllers/AtletController.php[m
+[36m@@ -10,61 +10,103 @@[m [mclass AtletController extends Controller[m
+ {[m
+     // menampilkan semua data atlet[m
+     public function index() {[m
+[31m-        $atlets =Atlet::all();[m
+[31m-        return view('atlet.index', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet [m
+[32m+[m[32m        $atlets = Atlet::all();[m
+[32m+[m[32m        // $totalAtlet = Atlet::count();[m
+[32m+[m[32m        // $atletTerbaru = Atlet::latest()->take(5)->get();[m
+[32m+[m[32m        return view('dashboard.kelola-atlet', compact('atlets'));[m[41m [m
+     }[m
+ [m
+     // menampilkan form tambah atlet[m
+     public function create() {[m
+[31m-        return view('atlet.create'); // TODO: masukin link page atau file untuk form tambah atlet[m
+[32m+[m[32m        return view('dashboard.form-tambah-atlet');[m[41m [m
+     }[m
+ [m
+     // proses menyimpan data atlet[m
+[31m-    public function store(StoreAtletRequest $request) {[m
+[31m-        $data = $request->all();[m
+[32m+[m[32m    public function store(StoreAtletRequest $request)[m[41m [m
+[32m+[m[32m    {[m
+[32m+[m[32m        $request->validate([[m
+[32m+[m[32m            'nama' => 'required',[m
+[32m+[m[32m            'umur' => 'required',[m
+[32m+[m[32m            'tgl_bergabung' => 'required',[m
+[32m+[m[32m            'kategori' => 'required',[m
+[32m+[m[32m            'deskripsi' => 'required',[m
+[32m+[m[32m        ]);[m
+ [m
+[31m-        if ($request->hasFile('foto')) {[m
+[31m-            $data['foto'] = $request->file('foto')->store('atlets', 'public');[m
+[31m-        }[m
+[32m+[m[32m        try {[m
+[32m+[m[32m            // 2. Simpan Data[m
+[32m+[m[32m            $atlet = new Atlet();[m
+[32m+[m[32m            $atlet->nama = $request->nama;[m
+[32m+[m[32m            $atlet->umur = $request->umur;[m
+[32m+[m[32m            $atlet->tgl_bergabung = $request->tgl_bergabung;[m
+[32m+[m[32m            $atlet->kategori = $request->kategori;[m
+[32m+[m[32m            $atlet->deskripsi = $request->deskripsi;[m
+[32m+[m
+[32m+[m[32m            if ($request->hasFile('foto')) {[m
+[32m+[m[32m                $file = $request->file('foto');[m
+[32m+[m[32m                $nama_foto = time() . "_" . $file->getClientOriginalName();[m
+[32m+[m[32m                $file->move(public_path('uploads/atlet'), $nama_foto);[m
+[32m+[m[32m                $atlet->foto = $nama_foto;[m
+[32m+[m[32m            }[m
+ [m
+[31m-        \App\Models\Atlet::create($data);[m
+[32m+[m[32m            $atlet->save();[m
+ [m
+[31m-        return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil disimpan!');[m
+[32m+[m[32m            return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil disimpan!');[m
+[32m+[m
+[32m+[m[32m        } catch (\Exception $e) {[m
+[32m+[m[32m            return back()->withErrors(['error' => 'Gagal ke database: ' . $e->getMessage()])->withInput();[m
+[32m+[m[32m        }[m
+     }[m
+ [m
+[32m+[m
+     // menampilkan form edit data atlet[m
+     public function edit($id) {[m
+[31m-        $atlets = Atlet::findOrFail($id);[m
+[31m-        return view('', compact('atlets'));[m
+[32m+[m[32m        $atlet = Atlet::findOrFail($id);[m
+[32m+[m[32m        return view('dashboard.edit-atlet', compact('atlet'));[m
+     }[m
+ [m
+     // proses update data atlet[m
+     public function update(UpdateAtletRequest $request, $id) {[m
+[31m-        $atlets = Atlet::findOrFail($id);[m
+[31m-        $data = $request->all();[m
+[32m+[m[32m    // 1. Gunakan nama variabel tunggal '$atlet' agar konsisten dengan bawahnya[m
+[32m+[m[32m    $atlet = Atlet::findOrFail($id);[m[41m [m
+[32m+[m[32m    $data = $request->all();[m
+[32m+[m
+         if ($request->hasFile('foto')) {[m
+[31m-            if ($atlets->foto) {[m
+[31m-                \Illuminate\Support\Facades\Storage::disk('public')->delete($atlets->foto);[m
+[32m+[m[32m            $file = $request->file('foto');[m
+[32m+[m[32m            $nama_foto = time() . "_" . $file->getClientOriginalName();[m
+[32m+[m[32m            $file->move(public_path('upload/atlet'), $nama_foto);[m
+[32m+[m[41m            [m
+[32m+[m[32m            // 2. Sekarang variabel '$atlet' sudah cocok dengan yang di baris pertama[m
+[32m+[m[32m            if ($atlet->foto && file_exists(public_path('upload/atlet/' . $atlet->foto))) {[m
+[32m+[m[32m                unlink(public_path('upload/atlet/' . $atlet->foto));[m
+             }[m
+[31m-            $data['foto'] = $request->file('foto')->store('atlets', 'public');[m
+[32m+[m
+[32m+[m[32m            $data['foto'] = $nama_foto;[m
+         }[m
+[31m-        $atlets->update($data);[m
+[31m-        return redirect()->route('atlet.update')->with('success', 'Data berhasil diupdate!');[m
+[32m+[m
+[32m+[m[32m    // 3. Update menggunakan variabel yang benar[m
+[32m+[m[32m    $atlet->update($data);[m
+[32m+[m
+[32m+[m[32m    // 4. PERBAIKAN PENTING: Redirect ke 'atlet.index' agar kembali ke tabel[m
+[32m+[m[32m    // Jika tetap ke 'atlet.update', Laravel akan error karena 'update' butuh method PUT, bukan GET[m
+[32m+[m[32m    return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');[m
+     }[m
+ [m
+     // proses delete data[m
+     public function destroy($id) {[m
+[31m-        $atlets = Atlet::findOrFail($id);[m
+[31m-        if ($atlets->foto) {[m
+[31m-            $lokasiFoto = public_path('storage/' .$atlets->foto);[m
+[32m+[m[32m    $atlet = \App\Models\Atlet::findOrFail($id);[m
+[32m+[m[41m    [m
+[32m+[m[32m    // Gunakan ini jika kamu simpan foto di public/upload/atlet[m
+[32m+[m[32m    $pathBaru = public_path('upload/atlet/' . $atlet->foto);[m
+[32m+[m[32m    $pathLama = public_path('uploads/atlet/' . $atlet->foto);[m
+ [m
+[31m-            if (file_exists($lokasiFoto)) {[m
+[31m-                @unlink($lokasiFoto);[m
+[31m-            }[m
+[31m-        }[m
+[32m+[m[32m    if ($atlet->foto && file_exists($pathBaru)) {[m
+[32m+[m[32m        unlink($pathBaru);[m
+[32m+[m[32m    } elseif ($atlet->foto && file_exists($pathLama)) {[m
+[32m+[m[32m        unlink($pathLama);[m
+[32m+[m[32m    }[m
+ [m
+[31m-        $atlets->delete();[m
+[32m+[m[32m    $atlet->delete();[m
+ [m
+[31m-        return redirect()->route('atlet.destroy')->with('success', 'Data atlet sudah dihapus!');[m
+[31m-    }[m
+[32m+[m[32m    return redirect()->route('atlet.index')->with('success', 'Data atlet berhasil dihapus!');[m
+[32m+[m[32m}[m
+ }[m
+[1mdiff --git a/app/Http/Requests/StoreAtletRequest.php b/app/Http/Requests/StoreAtletRequest.php[m
+[1mindex e107983..25b2b9a 100644[m
+[1m--- a/app/Http/Requests/StoreAtletRequest.php[m
+[1m+++ b/app/Http/Requests/StoreAtletRequest.php[m
+[36m@@ -12,7 +12,7 @@[m [mclass StoreAtletRequest extends FormRequest[m
+      */[m
+     public function authorize(): bool[m
+     {[m
+[31m-        return false;[m
+[32m+[m[32m        return true;[m
+     }[m
+ [m
+     /**[m
+[36m@@ -24,6 +24,7 @@[m [mpublic function rules(): array[m
+     {[m
+         return [[m
+             'nama'              => 'required|string|max:225',[m
+[32m+[m[32m            'umur'              => 'required',[m
+             'kategori'          => 'required|in:Junior,Senior',[m
+             'tgl_bergabung'     => 'required|date',[m
+             'foto'              => 'nullable|image|mimes:jpeg,png,jpg|max:2048',[m
+[1mdiff --git a/app/Http/Requests/StorePertandinganRequest.php b/app/Http/Requests/StorePertandinganRequest.php[m
+[1mindex 0011761..2586ab5 100644[m
+[1m--- a/app/Http/Requests/StorePertandinganRequest.php[m
+[1m+++ b/app/Http/Requests/StorePertandinganRequest.php[m
+[36m@@ -12,7 +12,7 @@[m [mclass StorePertandinganRequest extends FormRequest[m
+      */[m
+     public function authorize(): bool[m
+     {[m
+[31m-        return false;[m
+[32m+[m[32m        return true;[m
+     }[m
+ [m
+     /**[m
+[1mdiff --git a/app/Http/Requests/UpdateAtletRequest.php b/app/Http/Requests/UpdateAtletRequest.php[m
+[1mindex 4452e75..11816e3 100644[m
+[1m--- a/app/Http/Requests/UpdateAtletRequest.php[m
+[1m+++ b/app/Http/Requests/UpdateAtletRequest.php[m
+[36m@@ -12,7 +12,7 @@[m [mclass UpdateAtletRequest extends FormRequest[m
+      */[m
+     public function authorize(): bool[m
+     {[m
+[31m-        return false;[m
+[32m+[m[32m        return true;[m
+     }[m
+ [m
+     /**[m
+[36m@@ -24,6 +24,7 @@[m [mpublic function rules(): array[m
+     {[m
+         return [[m
+             'nama'              => 'required|string|max:225',[m
+[32m+[m[32m            'umur'              => 'required',[m
+             'kategori'          => 'required|in:Junior,Senior',[m
+             'tgl_bergabung'     => 'required|date',[m
+             'foto'              => 'nullable|image|mimes:jpeg,png,jpg|max:2048',[m
+[1mdiff --git a/app/Models/Atlet.php b/app/Models/Atlet.php[m
+[1mindex 864803d..e816d24 100644[m
+[1m--- a/app/Models/Atlet.php[m
+[1m+++ b/app/Models/Atlet.php[m
+[36m@@ -6,9 +6,12 @@[m
+ [m
+ class Atlet extends Model[m
+ {[m
+[32m+[m[32m    protected $table = 'atlets';[m
+[32m+[m
+     protected $fillable = [[m
+     'nama', [m
+     'kategori', [m
+[32m+[m[32m    'umur',[m
+     'tgl_bergabung', [m
+     'foto', [m
+     'deskripsi'[m
+[1mdiff --git a/resources/views/dashboard/edit-atlet.blade.php b/resources/views/dashboard/edit-atlet.blade.php[m
+[1mindex 71af3e2..b7af05a 100644[m
+[1m--- a/resources/views/dashboard/edit-atlet.blade.php[m
+[1m+++ b/resources/views/dashboard/edit-atlet.blade.php[m
+[36m@@ -2,59 +2,86 @@[m
+ [m
+     <div class="max-w-4xl mx-auto">[m
+         <div class="mb-6">[m
+[31m-            <a href="{{ route('kelola.atlet') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">[m
+[32m+[m[32m            <a href="{{ route('atlet.index') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">[m
+                 ← Kembali ke Kelola Atlet[m
+             </a>[m
+         </div>[m
+ [m
+[31m-        <h1 class="text-3xl font-semibold text-gray-800 mb-8">Edit Data Atlet</h1>[m
+[32m+[m[32m        <h1 class="text-3xl font-semibold text-gray-800 mb-8">Edit Data Atlet: {{ $atlet->nama }}</h1>[m
+ [m
+         <div class="bg-white rounded-3xl shadow-sm p-10">[m
+[31m-            <form action="#" method="POST">[m
+[32m+[m[32m            <form action="{{ route('atlet.update', $atlet->id) }}" method="POST" enctype="multipart/form-data">[m
+                 @csrf[m
+[32m+[m[32m                @method('PUT')[m
+ [m
+                 <div class="grid grid-cols-2 gap-8">[m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama atlet</label>[m
+[31m-                        <input type="text" value="Zenia Karina"[m
+[31m-                               class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">[m
+[32m+[m[32m                        <input type="text" name="nama" value="{{ old('nama', $atlet->nama) }}"[m
+[32m+[m[32m                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">[m
+                     </div>[m
+ [m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>[m
+[31m-                        <select class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 bg-white">[m
+[31m-                            <option value="Junior">Junior</option>[m
+[31m-                            <option value="Senior" selected>Senior</option>[m
+[32m+[m[32m                        <select name="kategori" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 bg-white">[m
+[32m+[m[32m                            <option value="Junior" {{ $atlet->kategori == 'Junior' ? 'selected' : '' }}>Junior</option>[m
+[32m+[m[32m                            <option value="Senior" {{ $atlet->kategori == 'Senior' ? 'selected' : '' }}>Senior</option>[m
+                         </select>[m
+                     </div>[m
+ [m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal bergabung</label>[m
+[31m-                        <input type="date" value="2025-09-26"[m
+[31m-                               class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">[m
+[32m+[m[32m                        <input type="date" name="tgl_bergabung" value="{{ $atlet->tgl_bergabung }}"[m
+[32m+[m[32m                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">[m
+[32m+[m[32m                    </div>[m
+[32m+[m
+[32m+[m[32m                    <div>[m
+[32m+[m[32m                        <label class="block text-sm font-medium text-gray-700 mb-2">Umur</label>[m
+[32m+[m[32m                        <input type="number" name="umur" value="{{ old('umur', $atlet->umur) }}"[m
+[32m+[m[32m                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">[m
+                     </div>[m
+ [m
+                     <div class="col-span-2">[m
+[31m-                        <label class="block text-sm font-medium text-gray-700 mb-2">Upload foto atlet</label>[m
+[31m-                        <div class="border-2 border-dashed border-gray-300 rounded-3xl h-64 flex flex-col items-center justify-center">[m
+[31m-                            <img src="{{ asset('assets/archer.jpg') }}" class="h-52 rounded-2xl shadow" alt="Foto Atlet">[m
+[32m+[m[32m                        <label class="block text-sm font-medium text-gray-700 mb-2">Foto atlet</label>[m
+[32m+[m[32m                        <div class="border-2 border-dashed border-gray-300 rounded-3xl min-h-64 flex flex-wrap gap-4 items-start justify-start p-6 bg-gray-50">[m
+[32m+[m[32m                            @if($atlet->foto)[m
+[32m+[m[32m                                @php[m
+[32m+[m[32m                                    // Cek apakah file ada di folder 'upload/atlet' (hasil update)[m
+[32m+[m[32m                                    $pathBaru = public_path('upload/atlet/' . $atlet->foto);[m
+[32m+[m[32m                                    // Cek apakah file ada di folder 'uploads/atlet' (data awal)[m
+[32m+[m[32m                                    $pathLama = public_path('uploads/atlet/' . $atlet->foto);[m
+[32m+[m[32m                                @endphp[m
+[32m+[m
+[32m+[m[32m                                @if(file_exists($pathBaru))[m
+[32m+[m[32m                                    <img src="{{ asset('upload/atlet/' . $atlet->foto) }}" class="h-52 w-auto rounded-2xl shadow-md object-cover">[m
+[32m+[m[32m                                @elseif(file_exists($pathLama))[m
+[32m+[m[32m                                    <img src="{{ asset('uploads/atlet/' . $atlet->foto) }}" class="h-52 w-auto rounded-2xl shadow-md object-cover">[m
+[32m+[m[32m                                @else[m
+[32m+[m[32m                                    <div class="text-center p-4">[m
+[32m+[m[32m                                        <p class="text-red-500">File foto tidak ditemukan di folder upload maupun uploads</p>[m
+[32m+[m[32m                                        <p class="text-xs text-gray-400">Nama file: {{ $atlet->foto }}</p>[m
+[32m+[m[32m                                    </div>[m
+[32m+[m[32m                                @endif[m
+[32m+[m[32m                            @else[m
+[32m+[m[32m                                <p class="text-gray-400">Belum ada foto</p>[m
+[32m+[m[32m                            @endif[m
+                         </div>[m
+[32m+[m[32m                        <input type="file" name="foto" class="mt-4 text-sm text-gray-500">[m
+                     </div>[m
+ [m
+                     <div class="col-span-2">[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Atlet</label>[m
+[31m-                        <textarea rows="5"[m
+[31m-                                  class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:outline-none focus:border-purple-500">Halo! Aku Zenia dari Jakarta Utara. Aku bergabung dengan Groovy semenjak tahun 2020.</textarea>[m
+[32m+[m[32m                        <textarea name="deskripsi" rows="5"[m
+[32m+[m[32m                                class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:outline-none focus:border-purple-500">{{ old('deskripsi', $atlet->deskripsi) }}</textarea>[m
+                     </div>[m
+                 </div>[m
+ [m
+                 <div class="flex justify-end gap-4 mt-12">[m
+[31m-                    <a href="{{ route('kelola.atlet') }}"[m
+[31m-                       class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">[m
+[32m+[m[32m                    <a href="{{ route('atlet.index') }}"[m
+[32m+[m[32m                    class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">[m
+                         Cancel[m
+                     </a>[m
+                     <button type="submit"[m
+[31m-                            onclick="event.preventDefault(); alert('Data berhasil disimpan!'); window.location.href = '{{ route('kelola.atlet') }}';"[m
+                             class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl transition">[m
+                         Simpan[m
+                     </button>[m
+[1mdiff --git a/resources/views/dashboard/form-tambah-atlet.blade.php b/resources/views/dashboard/form-tambah-atlet.blade.php[m
+[1mindex 8064c58..4ad4590 100644[m
+[1m--- a/resources/views/dashboard/form-tambah-atlet.blade.php[m
+[1m+++ b/resources/views/dashboard/form-tambah-atlet.blade.php[m
+[36m@@ -2,7 +2,7 @@[m
+ [m
+     <div class="max-w-5xl mx-auto">[m
+         <div class="mb-8">[m
+[31m-            <a href="{{ route('tambah.atlet') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">[m
+[32m+[m[32m            <a href="{{ route('atlet.store') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">[m
+                 ← Kembali ke Daftar[m
+             </a>[m
+         </div>[m
+[36m@@ -11,41 +11,84 @@[m
+ [m
+         <div class="bg-white rounded-3xl shadow-sm p-10">[m
+             <!-- Form akan saya kasih lengkap seperti sebelumnya -->[m
+[31m-            <form action="#" method="POST">[m
+[32m+[m[32m            <form action="{{ route('atlet.store') }}" method="POST" enctype="multipart/form-data">[m[41m                  [m
+                 @csrf[m
+[32m+[m[32m                @if ($errors->any())[m
+[32m+[m[32m                    <div class="bg-red-100 text-red-600 p-4 mb-4 rounded-xl">[m
+[32m+[m[32m                        <ul>[m
+[32m+[m[32m                            @foreach ($errors->all() as $error)[m
+[32m+[m[32m                                <li>{{ $error }}</li>[m
+[32m+[m[32m                            @endforeach[m
+[32m+[m[32m                        </ul>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                @endif[m
+                 <div class="grid grid-cols-2 gap-x-10 gap-y-8">[m
+                     <!-- Isi form sama seperti yang saya berikan sebelumnya -->[m
+                     <!-- Nama Atlet, Umur, Tanggal Bergabung, Kategori, Upload Foto, Deskripsi -->[m
+ [m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama atlet</label>[m
+[31m-                        <input type="text" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="Zenia Karina">[m
+[32m+[m[32m                        <input type="text" name="nama" placeholder="Isi nama atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="{{ old('nama') }}">[m
+                     </div>[m
+ [m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Umur</label>[m
+[31m-                        <input type="number" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="16">[m
+[32m+[m[32m                        <input type="number" name="umur" placeholder="Isi umur atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="{{ old('umur') }}">[m
+                     </div>[m
+ [m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal bergabung</label>[m
+[31m-                        <input type="date" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="2025-09-26">[m
+[32m+[m[32m                        <input type="date" name="tgl_bergabung" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500" value="{{ old('tgl_bergabung') }}">[m
+                     </div>[m
+ [m
+                     <div>[m
+                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>[m
+[31m-                        <select class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500 bg-white">[m
+[31m-                            <option>Junior</option>[m
+[31m-                            <option selected>Senior</option>[m
+[32m+[m[32m                        <select class=" w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500 bg-white" name="kategori">[m
+[32m+[m[32m                            <option value="">Pilih Kategori</option>[m
+[32m+[m[32m                            <option value="Junior" {{ old('kategori') == 'Junior' ? 'selected' : '' }}>Junior</option>[m
+[32m+[m[32m                            <option value="Senior" {{ old('kategori') == 'Senior' ? 'selected' : '' }}>Senior</option>[m
+                         </select>[m
+                     </div>[m
+ [m
+[31m-                    <!-- Upload Foto & Deskripsi (sama seperti sebelumnya) -->[m
+[32m+[m[32m                <div>[m
+[32m+[m[32m                    <label class="block text-sm font-medium text-gray-700 mb-2">Upload foto atlet</label>[m
+[32m+[m[32m                    <div id="photo-preview-container" class="relative border-2 border-dashed border-gray-200 rounded-3xl p-8 flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 transition cursor-pointer h-[280px] overflow-hidden">[m
+[32m+[m[41m                        [m
+[32m+[m[32m                        <input type="file" name="foto" id="foto-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">[m
+[32m+[m[41m                        [m
+[32m+[m[32m                        <div id="default-upload-state" class="flex flex-col items-center justify-center">[m
+[32m+[m[32m                            <div class="bg-gray-200 p-4 rounded-full mb-3">[m
+[32m+[m[32m                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">[m
+[32m+[m[32m                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />[m
+[32m+[m[32m                                </svg>[m
+[32m+[m[32m                            </div>[m
+[32m+[m[32m                            <p class="text-sm text-gray-400 text-center">Klik atau tarik foto ke sini</p>[m
+[32m+[m[32m                        </div>[m
+[32m+[m
+[32m+[m[32m                        <img id="image-preview-el" src="#" alt="Preview Foto" class="absolute inset-0 w-full h-full object-cover hidden">[m
+[32m+[m[41m                        [m
+[32m+[m[32m                        <button type="button" id="remove-photo-btn" class="absolute top-4 right-4 bg-red-500 text-white p-2 rounded-full hidden z-20 hover:bg-red-600 transition">[m
+[32m+[m[32m                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">[m
+[32m+[m[32m                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />[m
+[32m+[m[32m                            </svg>[m
+[32m+[m[32m                        </button>[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+ [m
+[32m+[m[32m            <div>[m
+[32m+[m[32m                <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Atlet</label>[m
+[32m+[m[32m                <textarea[m[41m [m
+[32m+[m[32m                    name="deskripsi"[m[41m [m
+[32m+[m[32m                    rows="10"[m[41m [m
+[32m+[m[32m                    class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:border-purple-500 bg-white h-[280px] resize-none"[m
+[32m+[m[32m                    placeholder="Tuliskan deskripsi lengkap atlet di sini..."[m
+[32m+[m[32m                    {{ old('deskripsi') }}[m
+[32m+[m[32m                ></textarea>[m
+[32m+[m[32m            </div>[m
+                 </div>[m
+ [m
+                 <div class="flex justify-end gap-4 mt-12">[m
+[31m-                    <a href="{{ route('tambah.atlet') }}"[m
+[32m+[m[32m                    <a href="{{ route('atlet.create') }}"[m
+                        class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">[m
+                         Batal[m
+                     </a>[m
+[36m@@ -58,4 +101,38 @@[m [mclass="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2[m
+         </div>[m
+     </div>[m
+ [m
+[32m+[m[32m<script>[m
+[32m+[m[32m    document.addEventListener('DOMContentLoaded', function () {[m
+[32m+[m[32m        const fotoInput = document.getElementById('foto-input');[m
+[32m+[m[32m        const imagePreviewEl = document.getElementById('image-preview-el');[m
+[32m+[m[32m        const defaultUploadState = document.getElementById('default-upload-state');[m
+[32m+[m[32m        const removePhotoBtn = document.getElementById('remove-photo-btn');[m
+[32m+[m[32m        const previewContainer = document.getElementById('photo-preview-container');[m
+[32m+[m
+[32m+[m[32m        fotoInput.addEventListener('change', function () {[m
+[32m+[m[32m            if (this.files && this.files[0]) {[m
+[32m+[m[32m                const reader = new FileReader();[m
+[32m+[m[32m                reader.onload = function (e) {[m
+[32m+[m[32m                    imagePreviewEl.src = e.target.result;[m
+[32m+[m[32m                    imagePreviewEl.classList.remove('hidden');[m
+[32m+[m[32m                    removePhotoBtn.classList.remove('hidden');[m
+[32m+[m[32m                    defaultUploadState.classList.add('hidden');[m
+[32m+[m[32m                    previewContainer.classList.replace('border-dashed', 'border-solid');[m
+[32m+[m[32m                }[m
+[32m+[m[32m                reader.readAsDataURL(this.files[0]);[m
+[32m+[m[32m            }[m
+[32m+[m[32m        });[m
+[32m+[m
+[32m+[m[32m        removePhotoBtn.addEventListener('click', function (e) {[m
+[32m+[m[32m            e.preventDefault();[m
+[32m+[m[32m            fotoInput.value = "";[m
+[32m+[m[32m            imagePreviewEl.src = "#";[m
+[32m+[m[32m            imagePreviewEl.classList.add('hidden');[m
+[32m+[m[32m            removePhotoBtn.classList.add('hidden');[m
+[32m+[m[32m            defaultUploadState.classList.remove('hidden');[m
+[32m+[m[32m            previewContainer.classList.replace('border-solid', 'border-dashed');[m
+[32m+[m[32m        });[m
+[32m+[m[32m    });[m
+[32m+[m[32m</script>[m
+[32m+[m
+ </x-dashboard::admin-layout>[m
+[1mdiff --git a/resources/views/dashboard/kelola-atlet.blade.php b/resources/views/dashboard/kelola-atlet.blade.php[m
+[1mindex b2d3b04..41323b6 100644[m
+[1m--- a/resources/views/dashboard/kelola-atlet.blade.php[m
+[1m+++ b/resources/views/dashboard/kelola-atlet.blade.php[m
+[36m@@ -2,7 +2,6 @@[m
+ [m
+     <div class="max-w-6xl mx-auto">[m
+         <h1 class="text-3xl font-semibold text-gray-800 mb-8">Kelola Data Atlet</h1>[m
+[31m-[m
+         <div class="bg-white rounded-3xl shadow-sm overflow-hidden">[m
+             <table class="w-full" id="atletTable">[m
+                 <thead class="bg-gray-50">[m
+[36m@@ -14,7 +13,31 @@[m
+                     </tr>[m
+                 </thead>[m
+                 <tbody class="divide-y divide-gray-100" id="tableBody">[m
+[31m-                    <!-- Data akan diisi oleh JavaScript -->[m
+[32m+[m[32m                    @forelse ($atlets as $index => $atlet)[m
+[32m+[m[32m                        <tr class="hover:bg-gray-50">[m
+[32m+[m[32m                            <td class="py-5 px-6">{{ $index + 1 }}.</td>[m
+[32m+[m[32m                            <td class="py-5 px-6 font-medium">{{ $atlet->nama }}</td>[m
+[32m+[m[32m                            <td class="py-5 px-6 text-gray-600">{{ $atlet->kategori }}</td>[m
+[32m+[m[32m                            <td class="py-5 px-6">[m
+[32m+[m[32m                                <div class="flex gap-2 justify-center">[m
+[32m+[m[32m                                    <a href="{{ route('atlet.edit', $atlet->id) }}"[m
+[32m+[m[32m                                    class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">[m
+[32m+[m[32m                                        Edit[m
+[32m+[m[32m                                    </a>[m
+[32m+[m[32m                                    <button onclick="showDeleteModal({{ $atlet->id }})"[m
+[32m+[m[32m                                            class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">[m
+[32m+[m[32m                                        Hapus[m
+[32m+[m[32m                                    </button>[m
+[32m+[m[32m                                </div>[m
+[32m+[m[32m                            </td>[m
+[32m+[m[32m                        </tr>[m
+[32m+[m[32m                    @empty[m
+[32m+[m[32m                        <tr>[m
+[32m+[m[32m                            <td colspan="4" class="py-10 text-center text-gray-500">[m
+[32m+[m[32m                                Data tidak ditemukan di database.[m
+[32m+[m[32m                            </td>[m
+[32m+[m[32m                        </tr>[m
+[32m+[m[32m                    @endforelse[m
+                 </tbody>[m
+             </table>[m
+         </div>[m
+[36m@@ -32,10 +55,15 @@[m
+                         class="flex-1 py-4 bg-gray-200 hover:bg-gray-300 rounded-2xl font-medium transition">[m
+                     Cancel[m
+                 </button>[m
+[31m-                <button onclick="confirmDelete()"[m
+[31m-                        class="flex-1 py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-medium transition">[m
+[31m-                    Ya, Hapus[m
+[31m-                </button>[m
+[32m+[m[32m                <form action="{{ route('atlet.destroy', $atlet->id) }}" method="POST" class="inline">[m
+[32m+[m[32m                    @csrf[m
+[32m+[m[32m                    @method('DELETE')[m
+[32m+[m[32m                    <button type="submit"[m[41m [m
+[32m+[m[32m                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"[m
+[32m+[m[32m                            class="flex-1 px-10 py-4 bg-red-500 hover:bg-red-600 text-white rounded-xl transition">[m
+[32m+[m[32m                        Hapus[m
+[32m+[m[32m                    </button>[m
+[32m+[m[32m                </form>[m
+             </div>[m
+         </div>[m
+     </div>[m
+[36m@@ -55,33 +83,36 @@[m [mclass="flex-1 py-4 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-mediu[m
+ let currentEditId = null;[m
+ [m
+ // Render tabel[m
+[31m-function renderTable() {[m
+[31m-    const tbody = document.getElementById('tableBody');[m
+[31m-    tbody.innerHTML = '';[m
+[31m-[m
+[31m-    atletData.forEach((atlet, index) => {[m
+[31m-        const row = `[m
+[31m-            <tr class="hover:bg-gray-50" id="row-${atlet.id}">[m
+[31m-                <td class="py-5 px-6">${index + 1}.</td>[m
+[31m-                <td class="py-5 px-6 font-medium">${atlet.nama}</td>[m
+[31m-                <td class="py-5 px-6 text-gray-600">${atlet.kategori}</td>[m
+[31m-                <td class="py-5 px-6">[m
+[31m-                    <div class="flex gap-2 justify-center">[m
+[31m-                        <button onclick="editAtlet(${atlet.id})"[m
+[31m-                                class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">[m
+[31m-                            Edit[m
+[31m-                        </button>[m
+[31m-                        <button onclick="showDeleteModal(${atlet.id})"[m
+[31m-                                class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">[m
+[31m-                            Hapus[m
+[31m-                        </button>[m
+[31m-                    </div>[m
+[31m-                </td>[m
+[31m-            </tr>[m
+[31m-        `;[m
+[31m-        tbody.innerHTML += row;[m
+[31m-    });[m
+[31m-}[m
+[32m+[m[32m// function renderTable() {[m
+[32m+[m[32m//     const tbody = document.getElementById('tableBody');[m
+[32m+[m[32m//     <tbody class="divide-y divide-gray-100" id="tableBody">[m
+[32m+[m[32m//     @forelse ($atlets as $index => $atlet)[m
+[32m+[m[32m//         <tr class="hover:bg-gray-50">[m
+[32m+[m[32m//             <td class="py-5 px-6">{{ $index + 1 }}.</td>[m
+[32m+[m[32m//             <td class="py-5 px-6 font-medium">{{ $atlet->nama }}</td>[m
+[32m+[m[32m//             <td class="py-5 px-6 text-gray-600">{{ $atlet->kategori }}</td>[m
+[32m+[m[32m//             <td class="py-5 px-6">[m
+[32m+[m[32m//                 <div class="flex gap-2 justify-center">[m
+[32m+[m[32m//                     <a href="{{ route('atlet.edit', $atlet->id) }}"[m
+[32m+[m[32m//                        class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">[m
+[32m+[m[32m//                         Edit[m
+[32m+[m[32m//                     </a>[m
+[32m+[m[32m//                     <button onclick="showDeleteModal({{ $atlet->id }})"[m
+[32m+[m[32m//                             class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">[m
+[32m+[m[32m//                         Hapus[m
+[32m+[m[32m//                     </button>[m
+[32m+[m[32m//                 </div>[m
+[32m+[m[32m//             </td>[m
+[32m+[m[32m//         </tr>[m
+[32m+[m[32m//     @empty[m
+[32m+[m[32m//         <tr>[m
+[32m+[m[32m//             <td colspan="4" class="py-10 text-center text-gray-500">[m
+[32m+[m[32m//                 Data tidak ditemukan di database.[m
+[32m+[m[32m//             </td>[m
+[32m+[m[32m//         </tr>[m
+[32m+[m[32m//     @endforelse[m
+[32m+[m[32m// </tbody>[m
+[32m+[m[32m// }[m
+ [m
+ // === HAPUS ===[m
+ let deleteCandidateId = null;[m
+[36m@@ -97,9 +128,18 @@[m [mfunction closeDeleteModal() {[m
+ [m
+ function confirmDelete() {[m
+     if (deleteCandidateId) {[m
+[31m-        atletData = atletData.filter(atlet => atlet.id !== deleteCandidateId);[m
+[31m-        renderTable();[m
+[31m-        closeDeleteModal();[m
+[32m+[m[32m        const form = document.createElement('form');[m
+[32m+[m[41m        [m
+[32m+[m[32m        // URL ini harus sama dengan yang ada di web.php[m
+[32m+[m[32m        form.action = '/atlet/' + deleteCandidateId;[m[41m [m
+[32m+[m[41m        [m
+[32m+[m[32m        form.method = 'POST';[m
+[32m+[m[32m        form.innerHTML = `[m
+[32m+[m[32m            <input type="hidden" name="_token" value="{{ csrf_token() }}">[m
+[32m+[m[32m            <input type="hidden" name="_method" value="DELETE">[m
+[32m+[m[32m        `;[m
+[32m+[m[32m        document.body.appendChild(form);[m
+[32m+[m[32m        form.submit();[m
+     }[m
+ }[m
+ [m
+[36m@@ -120,10 +160,23 @@[m [mfunction editAtlet(id) {[m
+     atlet.nama = namaBaru.trim();[m
+     atlet.kategori = kategoriBaru.trim();[m
+ [m
+[31m-    renderTable();[m
+[31m-    alert("Data berhasil diperbarui!");[m
+ }[m
+ [m
+[31m-// Render pertama kali[m
+[31m-renderTable();[m
+ </script>[m
+[32m+[m
+[32m+[m[32m<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>[m
+[32m+[m
+[32m+[m[32m@if(session('success'))[m
+[32m+[m[32m<script>[m
+[32m+[m[32m    Swal.fire({[m
+[32m+[m[32m        title: "Berhasil!",[m
+[32m+[m[32m        text: "{{ session('success') }}",[m
+[32m+[m[32m        icon: "success",[m
+[32m+[m[32m        timer: 3000,[m
+[32m+[m[32m        showConfirmButton: false,[m
+[32m+[m[32m        customClass: {[m
+[32m+[m[32m            popup: 'rounded-3xl'[m
+[32m+[m[32m        }[m
+[32m+[m[32m    });[m
+[32m+[m[32m</script>[m
+[32m+[m[32m@endif[m
+[1mdiff --git a/resources/views/layouts/app.blade.php b/resources/views/layouts/app.blade.php[m
+[1mindex c5ff315..5f5f8f6 100644[m
+[1m--- a/resources/views/layouts/app.blade.php[m
+[1m+++ b/resources/views/layouts/app.blade.php[m
+[36m@@ -33,4 +33,5 @@[m
+             </main>[m
+         </div>[m
+     </body>[m
+[32m+[m[32m    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>[m
+ </html>[m
+[1mdiff --git a/routes/web.php b/routes/web.php[m
+[1mindex ab07641..bb37c3d 100644[m
+[1m--- a/routes/web.php[m
+[1m+++ b/routes/web.php[m
+[36m@@ -44,11 +44,11 @@[m
+     // Manajemen Atlet[m
+     Route::controller(AtletController::class)->group(function () {[m
+         Route::get('/atlet', 'index')->name('atlet.index');[m
+[31m-        Route::get('/tambah/atlet', 'create')->name('atlet.create');[m
+[31m-        Route::post('/simpan/atlet', 'store')->name('atlet.store');[m
+[31m-        Route::get('/edit/atlet/{id}', 'edit')->name('atlet.edit');[m
+[32m+[m[32m        Route::get('/tambah/atlet', [AtletController::class, 'create'])->name('atlet.create');[m
+[32m+[m[32m        Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');[m
+[32m+[m[32m        Route::get('/edit/atlet/{id}', [AtletController::class, 'edit'])->name('atlet.edit');[m
+         Route::put('/update/atlet/{id}', 'update')->name('atlet.update');[m
+[31m-        Route::delete('/hapus/atlet/{id}', 'destroy')->name('atlet.destroy');[m
+[32m+[m[32m        Route::delete('/atlet/{id}', [AtletController::class, 'destroy'])->name('atlet.destroy');[m
+     });[m
+ [m
+     // Manajemen Pertandingan[m

@@ -31,7 +31,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama atlet</label>
                         <input type="text" name="nama" value="{{ old('nama') }}"
-                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
+                            placeholder="Masukan nama atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
                             required>
                     </div>
 
@@ -39,7 +39,7 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Umur</label>
                         <input type="number" name="umur" value="{{ old('umur') }}"
-                            class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500"
+                            placeholder="Masukan umur atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:border-purple-500"
                             min="10" max="60" required>
                     </div>
 
@@ -91,7 +91,7 @@
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Atlet</label>
                         <textarea name="deskripsi" rows="5"
-                            class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>
+                            placeholder="Masukan deskripsi tentang atlet..." class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>
                     </div>
 
                 </div>

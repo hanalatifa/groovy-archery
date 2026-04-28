@@ -1,4 +1,4 @@
-<x-layouts.admin-layout title="Kelola Data Atlet">
+<x-dashboard::admin-layout title="Kelola Data Atlet">
 
     <div class="max-w-6xl mx-auto">
         <h1 class="text-3xl font-semibold text-gray-800 mb-8">Kelola Data Atlet</h1>
@@ -40,17 +40,17 @@
         </div>
     </div>
 
-</x-layouts.admin-layout>
+</x-dashboard::admin-layout>
 
 <script>
-// Data dummy awal
-let atletData = [
-    { id: 1, nama: "Zenia Karina", kategori: "Senior" },
-    { id: 2, nama: "Althaf Kharuni", kategori: "Junior" },
-    { id: 3, nama: "Raisa Amanda", kategori: "Senior" },
-    { id: 4, nama: "Dimas Saputra", kategori: "Junior" },
-    { id: 5, nama: "Sinta Dewi", kategori: "Senior" },
-];
+// // Data dummy awal
+// let atletData = [
+//     { id: 1, nama: "Zenia Karina", kategori: "Senior" },
+//     { id: 2, nama: "Althaf Kharuni", kategori: "Junior" },
+//     { id: 3, nama: "Raisa Amanda", kategori: "Senior" },
+//     { id: 4, nama: "Dimas Saputra", kategori: "Junior" },
+//     { id: 5, nama: "Sinta Dewi", kategori: "Senior" },
+// ];
 
 let currentEditId = null;
 
