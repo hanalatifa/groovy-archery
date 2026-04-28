@@ -1,9 +1,10 @@
         {{-- ═══════════════════════ VALUES ═══════════════════════ --}}
         <section class="mx-auto px-6 py-20">
-            <div class="text-center mb-14">
-                <p class="text-[10px] font-bold text-[#2b459a] uppercase tracking-[5px] mb-4">Values</p>
-                <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900">Apa yang kami perjuangkan</h2>
-                <p class="text-gray-400 text-sm">Setiap tembakan itu penting. Setiap momen itu berarti.</p>
+            <div class="text-center mb-14 transition-colors duration-300">  
+                <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Values</p>
+                    {{-- Tambahkan dark:text-white --}}
+                <h2 class="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white">Apa yang kami perjuangkan</h2>
+                <p class="text-gray-400 dark:text-gray-500 text-sm">Setiap tembakan itu penting. Setiap momen itu berarti.</p>
             </div>
             <div class="flex flex-col md:flex-row gap-5 w-full md:h-[520px] items-stretch justify-center">
                 @foreach([

@@ -1,4 +1,4 @@
- <section class="py-24 px-6 text-center bg-gray-50 border-t border-gray-100">
+ <section class="py-24 px-6 text-center border-t border-gray-100">
          <p class="text-[10px] font-bold text-[#2b459a] uppercase tracking-[5px] mb-4">Bergabung</p>
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Jadilah bagian dari kami</h2>
         <p class="text-gray-500 text-sm max-w-md mx-auto mb-10">

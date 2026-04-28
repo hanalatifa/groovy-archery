@@ -1,5 +1,5 @@
 {{-- ═══════════════════════ HERO ═══════════════════════ --}}
-<section class="relative min-h-screen overflow-hidden bg-white">
+<section class="relative min-h-screen overflow-hidden">
 
     {{-- Background image dengan overlay --}}
     <div class="absolute inset-0 z-0">

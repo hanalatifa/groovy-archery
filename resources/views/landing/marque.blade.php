@@ -121,15 +121,45 @@
         }
         .toast.hide { animation: toastOut 0.35s ease forwards; }
         .toast-icon { width: 20px; height: 20px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+        /* ── Dark Mode untuk Modal ── */
+        [data-theme="dark"] .modal-box {
+            background: #1e293b; /* slate-800 */
+            color: #f1f5f9;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ── Perbaikan Img Frame untuk Dark Mode ── */
+        .img-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(43,69,154,0.18);
+            transform: translate(10px, 10px);
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        /* Di mode gelap, buat border frame lebih terang sedikit */
+        [data-theme="dark"] .img-frame::before {
+            border-color: rgba(96,165,250,0.3);
+        }
+
+        /* ── Marquee Dark Mode ── */
+        [data-theme="dark"] .marquee-container {
+            background: #0f172a; /* slate-900 */
+            border-color: rgba(255,255,255,0.05);
+        }
     </style>
         {{-- ═══════════════════════ MARQUEE ═══════════════════════ --}}
-        <div class="overflow-hidden border-y border-gray-100 bg-gray-50 py-3.5">
-            <div class="marquee-track">
-                @php $words = ['Ketepatan','Disiplin','Keunggulan','Sunnah','Prestasi','Komunitas','Fokus','Dedikasi']; @endphp
-                @foreach(array_merge($words,$words) as $word)
-                <span class="flex items-center gap-5 mr-10 text-[10px] font-bold uppercase tracking-[4px] text-gray-400">
-                    {{ $word }}<span class="w-1 h-1 rounded-full bg-[#2b459a] opacity-40 inline-block shrink-0"></span>
-                </span>
-                @endforeach
-            </div>
-        </div>
+<div class="marquee-container overflow-hidden border-y border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900/50 py-3.5 transition-colors duration-300">
+    <div class="marquee-track">
+        @php $words = ['Ketepatan','Disiplin','Keunggulan','Sunnah','Prestasi','Komunitas','Fokus','Dedikasi']; @endphp
+        {{-- Mengulang kata agar marquee tidak putus --}}
+        @foreach(array_merge($words, $words, $words) as $word)
+        <span class="flex items-center gap-5 mr-10 text-[10px] font-bold uppercase tracking-[4px] text-gray-400 dark:text-gray-500">
+            {{ $word }}
+            <span class="w-1 h-1 rounded-full bg-[#2b459a] dark:bg-blue-400 opacity-40 inline-block shrink-0"></span>
+        </span>
+        @endforeach
+    </div>
+</div>
