@@ -1,5 +1,5 @@
 {{-- ═══ FILTER ═══ --}}
-<section id="galeri" class="bg-white px-6 py-8 sticky top-[73px] z-30 border-b border-gray-100">
+<section id="galeri" class="px-6 py-8 sticky top-[73px] z-30 border-b border-gray-100">
     <div class="max-w-7xl mx-auto">
         <div class="flex items-center gap-3 overflow-x-auto pb-1 scrollbar-hide">
 

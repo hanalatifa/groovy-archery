@@ -2,7 +2,7 @@
     $docs = $docs ?? [];
 @endphp
 
-<section class="bg-gray-50 px-6 py-16">
+<section class="bg-gray px-6 py-16">
     <div class="max-w-7xl mx-auto">
 
         <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4" id="glryGrid">

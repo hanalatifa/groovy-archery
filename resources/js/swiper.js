@@ -1,35 +1,56 @@
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('testiSlider');
+    const items = slider.querySelectorAll('.testi-item');
+    const nextBtn = document.getElementById('testiNext');
+    const prevBtn = document.getElementById('testiPrev');
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+    let currentIndex = 0;
 
-document.addEventListener('DOMContentLoaded', function () {
-    new Swiper('.mySwiper', {
-        modules: [Navigation, Pagination],
+    function scrollToCard(index) {
+        if (index < 0) index = 0;
+        if (index >= items.length) index = items.length - 1;
+        
+        currentIndex = index;
+        
+        // Gunakan scrollIntoView agar browser yang menghitung posisi
+        items[currentIndex].scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center' // Ini kuncinya agar kartu berada di tengah
+        });
+        
+        updateButtons();
+    }
 
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
+    function updateButtons() {
+        // Sembunyikan tombol jika sudah di paling ujung
+        prevBtn.style.opacity = currentIndex === 0 ? "0" : "1";
+        prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+        
+        // Di desktop (3 kartu), tombol next hilang lebih awal
+        const offset = window.innerWidth >= 768 ? 3 : 1;
+        nextBtn.style.opacity = currentIndex >= items.length - offset ? "0" : "1";
+        nextBtn.style.pointerEvents = currentIndex >= items.length - offset ? "none" : "auto";
+    }
 
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
+    nextBtn.addEventListener('click', () => {
+        scrollToCard(currentIndex + 1);
+    });
 
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+    prevBtn.addEventListener('click', () => {
+        scrollToCard(currentIndex - 1);
+    });
 
-        breakpoints: {
-            768: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        },
+    // Jalankan pengecekan tombol saat awal
+    updateButtons();
+
+    // Biarkan user scroll manual (touch), tapi update index-nya
+    slider.addEventListener('scroll', () => {
+        clearTimeout(window.scrollFinished);
+        window.scrollFinished = setTimeout(() => {
+            const index = Math.round(slider.scrollLeft / items[0].offsetWidth);
+            currentIndex = index;
+            updateButtons();
+        }, 100);
     });
 });
