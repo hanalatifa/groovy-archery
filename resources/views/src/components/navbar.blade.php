@@ -101,13 +101,8 @@ body {
     </a>
 
     <div class="hidden md:flex items-center gap-1">
-<<<<<<< HEAD
         <a href="{{ route('welcome') }}"    class="ga-link">Home</a>
         <a href="/athletes"   class="ga-link">Athletes</a>
-=======
-        <a href="{{ route('welcome') }}" class="ga-link">Home</a>
-        <a href="{{ route('athletes') }}" class="ga-link">Athletes</a>
->>>>>>> 680537c6145293499cd81397c3c282f240964efe
         <a href="{{ route('achievements') }}" class="ga-link">Achievement</a>
 
         <div class="relative group">
