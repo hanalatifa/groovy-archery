@@ -63,9 +63,7 @@
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Pertandingan</label>
                         <textarea name="deskripsi_kegiatan" rows="5"
-                            placeholder="Deskripsi pertandingan..." class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>
-                            class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi_kegiatan') }}</textarea>
-                    </div>
+                            placeholder="Deskripsi pertandingan..." class="w-full px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-purple-500 resize-y">{{ old('deskripsi') }}</textarea>                    </div>
 
                     <div class="flex justify-end gap-4 mt-10">
                         <a href="{{ route('pertandingan.index') }}"
