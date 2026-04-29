@@ -42,7 +42,7 @@ class PertandinganController extends Controller
     // menampilkan form edit
     public function edit($id) {
         $pertandingan = Pertandingan::findOrFail($id);
-        return view('pertandingan.edit', compact('pertandingan'));
+        return view('profile.edit', compact('pertandingan'));
     }
 
     // update data

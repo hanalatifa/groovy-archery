@@ -22,6 +22,12 @@ class AtletController extends Controller
         return view('atlet.create');
     }
 
+    public function kelola()
+{
+    $atlets = Atlet::latest()->get();
+    return view('atlet.kelola-atlet', compact('atlets'));   // ← Ubah jadi kelola-atlet
+}
+
     // proses menyimpan data atlet
     public function store(StoreAtletRequest $request)
     {
@@ -43,6 +49,7 @@ class AtletController extends Controller
     {
         $atlets = Atlet::findOrFail($id);
         return view('atlet.edit', compact('atlets'));
+        return view('atlet.edit', compact('atlets')); // Pastikan file blade-nya ada di resources/views/atlet/edit.blade.php
     }
 
     // proses update data atlet
@@ -50,6 +57,7 @@ class AtletController extends Controller
     {
         $atlets = Atlet::findOrFail($id);
         $data = $request->validated();
+        $data = $request->all();
 
         if ($request->hasFile('foto')) {
             if ($atlets->foto && Storage::disk('public')->exists('atlet/' . $atlets->foto)) {
@@ -64,6 +72,8 @@ class AtletController extends Controller
 
         return redirect()->route('atlet.index')
             ->with('success', 'Data berhasil diupdate!');
+        // Redirect ke index, bukan ke update
+        return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');
     }
 
     // proses delete data
@@ -73,11 +83,19 @@ class AtletController extends Controller
 
         if ($atlets->foto && Storage::disk('public')->exists('atlet/' . $atlets->foto)) {
             Storage::disk('public')->delete('atlet/' . $atlets->foto);
+        if ($atlets->foto) {
+            $lokasiFoto = public_path('storage/' . $atlets->foto);
+            if (file_exists($lokasiFoto)) {
+                @unlink($lokasiFoto);
+            }
         }
 
         $atlets->delete();
 
         return redirect()->route('atlet.index')
             ->with('success', 'Data atlet sudah dihapus!');
+        // Redirect ke index, bukan ke destroy
+        return redirect()->route('atlet.index')->with('success', 'Data atlet sudah dihapus!');
     }
+}
 }

@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/atlet', 'index')->name('atlet.index');
         Route::get('/tambah/atlet', 'create')->name('atlet.create');
         Route::post('/simpan/atlet', 'store')->name('atlet.store');
+        Route::get('/kelola/atlet', 'kelola')->name('atlet.kelola');
         Route::get('/edit/atlet/{id}', 'edit')->name('atlet.edit');
         Route::put('/update/atlet/{id}', 'update')->name('atlet.update');
         Route::delete('/hapus/atlet/{id}', 'destroy')->name('atlet.destroy');
