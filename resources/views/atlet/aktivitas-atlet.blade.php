@@ -48,4 +48,4 @@
         </div>
     </div>
 
-</x-dashboard::admin-layout>
+</x-layouts.admin-layout>

@@ -21,6 +21,12 @@ class AtletController extends Controller
         return view('atlet.create'); // TODO: masukin link page atau file untuk form tambah atlet
     }
 
+    public function kelola()
+{
+    $atlets = Atlet::latest()->get();
+    return view('atlet.kelola-atlet', compact('atlets'));   // ← Ubah jadi kelola-atlet
+}
+
     // proses menyimpan data atlet
     public function store(StoreAtletRequest $request)
     {
@@ -40,7 +46,7 @@ class AtletController extends Controller
     public function edit($id)
     {
         $atlets = Atlet::findOrFail($id);
-        return view('', compact('atlets'));
+        return view('atlet.edit', compact('atlets')); // Pastikan file blade-nya ada di resources/views/atlet/edit.blade.php
     }
 
     // proses update data atlet
@@ -48,14 +54,18 @@ class AtletController extends Controller
     {
         $atlets = Atlet::findOrFail($id);
         $data = $request->all();
+
         if ($request->hasFile('foto')) {
             if ($atlets->foto) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($atlets->foto);
             }
             $data['foto'] = $request->file('foto')->store('atlets', 'public');
         }
+
         $atlets->update($data);
-        return redirect()->route('atlet.update')->with('success', 'Data berhasil diupdate!');
+
+        // Redirect ke index, bukan ke update
+        return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');
     }
 
     // proses delete data
@@ -64,7 +74,6 @@ class AtletController extends Controller
         $atlets = Atlet::findOrFail($id);
         if ($atlets->foto) {
             $lokasiFoto = public_path('storage/' . $atlets->foto);
-
             if (file_exists($lokasiFoto)) {
                 @unlink($lokasiFoto);
             }
@@ -72,6 +81,7 @@ class AtletController extends Controller
 
         $atlets->delete();
 
-        return redirect()->route('atlet.destroy')->with('success', 'Data atlet sudah dihapus!');
+        // Redirect ke index, bukan ke destroy
+        return redirect()->route('atlet.index')->with('success', 'Data atlet sudah dihapus!');
     }
 }
