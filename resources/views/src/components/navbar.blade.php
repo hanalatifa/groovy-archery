@@ -28,11 +28,13 @@
     --drawer-bg:     #1e293b;
 }
 
+
 body {
     background-color: var(--body-bg);
     color: var(--body-text);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
 /* ── Nav base ── */
 #gaNav {
@@ -44,12 +46,14 @@ body {
     box-shadow: var(--nav-shadow);
 }
 
+
 /* ── Logo ── */
 .ga-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
 .ga-logo-img { height:36px; width:auto; object-fit:contain; border-radius:6px; display:block; transition:opacity 0.2s; }
 .ga-logo:hover .ga-logo-img { opacity:0.85; }
 .ga-logo-name { font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; color:var(--nav-text); letter-spacing:0.2px; display:block; transition:color 0.25s; }
 .ga-logo-sub  { font-family:'Montserrat',sans-serif; font-size:9px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--toggle-icon); display:block; margin-top:2px; transition:color 0.25s; }
+
 
 /* ── Nav links ── */
 .ga-link {
@@ -67,6 +71,7 @@ body {
 .ga-link:hover { color:var(--nav-text-hover); background:var(--nav-hover-bg); }
 .ga-link:hover::after { transform:scaleX(1); }
 
+
 /* ── Dark mode toggle ── */
 .ga-toggle {
     width:36px; height:36px; border-radius:9px;
@@ -80,8 +85,10 @@ body {
 [data-theme="dark"] .icon-sun  { display:block; }
 [data-theme="dark"] .icon-moon { display:none; }
 
+
 /* ── Ham lines ── */
 .ham-line { display:block; width:20px; height:2px; background:var(--nav-text); border-radius:99px; transition:all 0.3s; }
+
 
 /* ── Drawer dark mode ── */
 #menuDrawer { background:var(--drawer-bg); }
@@ -89,6 +96,7 @@ body {
 .drawer-link:hover { color:var(--nav-text-hover); background:var(--nav-hover-bg); }
 .drawer-section-label { color:var(--toggle-icon); }
 </style>
+
 
 {{-- ── NAV ── --}}
 <nav id="gaNav" class="flex items-center justify-between px-6 md:px-10 py-4 sticky top-0 z-50 transition-colors">
@@ -100,10 +108,12 @@ body {
         </div>
     </a>
 
+
     <div class="hidden md:flex items-center gap-1">
-        <a href="{{ route('welcome') }}"    class="ga-link">Home</a>
-        <a href="/athletes"   class="ga-link">Athletes</a>
+        <a href="{{ route('welcome') }}" class="ga-link">Home</a>
+        <a href="{{ route('athletes') }}" class="ga-link">Athletes</a>
         <a href="{{ route('achievements') }}" class="ga-link">Achievement</a>
+
 
         <div class="relative group">
             <button class="ga-link flex items-center gap-1">
@@ -119,14 +129,42 @@ body {
             </div>
         </div>
 
+
         <button class="ga-toggle ml-1" id="themeToggleDesktop">
             <svg class="icon-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             <svg class="icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
         </button>
-        
+       
         <a href="{{ route('login') }}" class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold hover:bg-[#1e3278] transition-colors rounded-sm">Login as Admin</a>
     </div>
+
+
+     {{-- Mobile: toggle + hamburger --}}
+    <div class="flex md:hidden items-center gap-2">
+        {{-- Dark mode toggle (mobile) --}}
+        <button class="ga-toggle" id="themeToggleMobile" aria-label="Toggle dark mode">
+            <svg class="icon-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+            <svg class="icon-moon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+        </button>
+
+
+        {{-- Hamburger --}}
+        <button id="hamburgerBtn" aria-label="Buka menu"
+                class="flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg
+                       hover:bg-gray-100 transition-colors duration-200">
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+            <span class="ham-line"></span>
+        </button>
+    </div>
 </nav>
+
 
 {{-- Mobile Drawer --}}
 <div id="mobileMenu" class="fixed inset-0 z-40 pointer-events-none md:hidden">
@@ -134,6 +172,7 @@ body {
     <div id="menuDrawer"
          class="absolute top-0 right-0 h-full w-72 shadow-2xl
                 translate-x-full transition-transform duration-300 ease-out flex flex-col">
+
 
         {{-- Header --}}
         <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
@@ -146,6 +185,7 @@ body {
             </button>
         </div>
 
+
         {{-- Links --}}
         <div class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
             <a href="{{ route('welcome') }}" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
@@ -154,7 +194,7 @@ body {
                 </svg>
                 Home
             </a>
-            <a href="/athletes" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
+            <a href="{{ route('athletes') }}" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
@@ -167,6 +207,7 @@ body {
                 Achievement
             </a>
 
+
             <div class="pt-3">
                 <p class="drawer-section-label px-4 text-[10px] font-bold uppercase tracking-widest mb-2">More</p>
                 <a href="{{ route('gallery') }}"  class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Gallery</a>
@@ -174,6 +215,7 @@ body {
                 <a href="#contact"                class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Contact Us</a>
             </div>
         </div>
+
 
         {{-- Footer --}}
         <div class="px-4 pb-8 pt-4 border-t border-gray-100">
@@ -187,6 +229,7 @@ body {
     </div>
 </div>
 
+
 <script>
 (function () {
     function applyTheme(theme) {
@@ -198,15 +241,56 @@ body {
         }
         localStorage.setItem('ga-theme', theme);
     }
-
+ 
     function toggleTheme() {
         const cur = document.documentElement.getAttribute('data-theme');
         applyTheme(cur === 'dark' ? 'light' : 'dark');
     }
 
+
     document.getElementById('themeToggleDesktop')?.addEventListener('click', toggleTheme);
     document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
-    
-    // (Tambahkan script scroll & hamburger kamu di sini seperti biasa)
+   
+   
+    // ── Scroll shadow ──
+
+
+    const nav = document.getElementById('gaNav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+    // ── Hamburger ──
+    const btn      = document.getElementById('hamburgerBtn');
+    const closeBtn = document.getElementById('closeMenuBtn');
+    const menu     = document.getElementById('mobileMenu');
+    const drawer   = document.getElementById('menuDrawer');
+    const backdrop = document.getElementById('menuBackdrop');
+    const lines    = document.querySelectorAll('.ham-line');
+
+
+    function openMenu() {
+        menu.classList.remove('pointer-events-none');
+        backdrop.classList.add('opacity-100');
+        drawer.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+        lines[0].style.transform = 'translateY(8px) rotate(45deg)';
+        lines[1].style.opacity   = '0';
+        lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+    }
+
+
+    function closeMenu() {
+        menu.classList.add('pointer-events-none');
+        backdrop.classList.remove('opacity-100');
+        drawer.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        lines[0].style.transform = '';
+        lines[1].style.opacity   = '1';
+        lines[2].style.transform = '';
+    }
+    btn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    backdrop?.addEventListener('click', closeMenu);
 })();
 </script>
+

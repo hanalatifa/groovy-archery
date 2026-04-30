@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAtletRequest;
 use App\Http\Requests\UpdateAtletRequest;
 use App\Models\Atlet;
+use Illuminate\Support\Facades\Storage;
 
 class AtletController extends Controller
 {
@@ -12,22 +13,29 @@ class AtletController extends Controller
     public function index()
     {
         $atlets = Atlet::all();
-        return view('atlet.index', compact('atlets')); // TODO: masukin link page atau file untuk dashboard all atlet
+        return view('atlet.index', compact('atlets'));
     }
 
     // menampilkan form tambah atlet
     public function create()
     {
-        return view('atlet.create'); // TODO: masukin link page atau file untuk form tambah atlet
+        return view('atlet.create');
     }
+
+    public function kelola()
+{
+    $atlets = Atlet::latest()->get();
+    return view('atlet.kelola-atlet', compact('atlets'));   // ← Ubah jadi kelola-atlet
+}
 
     // proses menyimpan data atlet
     public function store(StoreAtletRequest $request)
     {
-        $data = $request->validated();   // lebih aman
+        $data = $request->validated();
 
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('atlets', 'public');
+            $path = $request->file('foto')->store('atlet', 'public');
+            $data['foto'] = basename($path); // simpan nama file aja
         }
 
         Atlet::create($data);
@@ -40,31 +48,43 @@ class AtletController extends Controller
     public function edit($id)
     {
         $atlets = Atlet::findOrFail($id);
-        return view('', compact('atlets'));
+        return view('atlet.edit', compact('atlets'));
+        return view('atlet.edit', compact('atlets')); // Pastikan file blade-nya ada di resources/views/atlet/edit.blade.php
     }
 
     // proses update data atlet
     public function update(UpdateAtletRequest $request, $id)
     {
         $atlets = Atlet::findOrFail($id);
+        $data = $request->validated();
         $data = $request->all();
+
         if ($request->hasFile('foto')) {
-            if ($atlets->foto) {
-                \Illuminate\Support\Facades\Storage::disk('public')->delete($atlets->foto);
+            if ($atlets->foto && Storage::disk('public')->exists('atlet/' . $atlets->foto)) {
+                Storage::disk('public')->delete('atlet/' . $atlets->foto);
             }
-            $data['foto'] = $request->file('foto')->store('atlets', 'public');
+
+            $path = $request->file('foto')->store('atlet', 'public');
+            $data['foto'] = basename($path);
         }
+
         $atlets->update($data);
-        return redirect()->route('atlet.update')->with('success', 'Data berhasil diupdate!');
+
+        return redirect()->route('atlet.index')
+            ->with('success', 'Data berhasil diupdate!');
+        // Redirect ke index, bukan ke update
+        return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');
     }
 
     // proses delete data
     public function destroy($id)
     {
         $atlets = Atlet::findOrFail($id);
+
+        if ($atlets->foto && Storage::disk('public')->exists('atlet/' . $atlets->foto)) {
+            Storage::disk('public')->delete('atlet/' . $atlets->foto);
         if ($atlets->foto) {
             $lokasiFoto = public_path('storage/' . $atlets->foto);
-
             if (file_exists($lokasiFoto)) {
                 @unlink($lokasiFoto);
             }
@@ -72,6 +92,10 @@ class AtletController extends Controller
 
         $atlets->delete();
 
-        return redirect()->route('atlet.destroy')->with('success', 'Data atlet sudah dihapus!');
+        return redirect()->route('atlet.index')
+            ->with('success', 'Data atlet sudah dihapus!');
+        // Redirect ke index, bukan ke destroy
+        return redirect()->route('atlet.index')->with('success', 'Data atlet sudah dihapus!');
     }
+}
 }
