@@ -8,18 +8,6 @@
             <p class="text-gray-500 mt-1">Berikut adalah ringkasan aktivitas Groovy Archery hari ini.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="bg-white rounded-3xl p-8 shadow-sm">
-                <p class="text-gray-500 text-sm">Total Atlet</p>
-                <p class="text-4xl font-bold text-gray-800 mt-3">{{ \App\Models\Atlet::count() }}</p>
-            </div>
-            <div class="bg-white rounded-3xl p-8 shadow-sm">
-                <p class="text-gray-500 text-sm">Dokumentasi</p>
-                <p class="text-4xl font-bold text-gray-800 mt-3">{{ \App\Models\Documentation::count() }}</p>
-            </div>
-            <div class="bg-white rounded-3xl p-8 shadow-sm">
-                <p class="text-gray-500 text-sm">Pertandingan</p>
-                <p class="text-4xl font-bold text-gray-800 mt-3">{{ \App\Models\Pertandingan::count() }}</p>
        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 mt-6">
  
     {{-- Total Atlet --}}
