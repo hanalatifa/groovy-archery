@@ -1,4 +1,4 @@
-<section id="athletes" class="py-24 bg-white">
+<section id="athletes" class="py-24 ">
 <section class="py-24 bg-white dark:bg-slate-900 transition-colors duration-300">
 
     <div class="text-center max-w-2xl mx-auto mb-16 px-6">

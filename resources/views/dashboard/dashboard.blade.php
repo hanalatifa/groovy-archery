@@ -19,7 +19,7 @@
             </div>
             <div class="bg-white rounded-3xl p-8 shadow-sm">
                 <p class="text-gray-500 text-sm">Pertandingan</p>
-                <p class="text-4xl font-bold text-gray-800 mt-3">0</p>
+                <p class="text-4xl font-bold text-gray-800 mt-3">{{ \App\Models\Pertandingan::count() }}</p>
             </div>
         </div>
 
