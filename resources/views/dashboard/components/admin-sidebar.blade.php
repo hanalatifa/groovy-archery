@@ -4,19 +4,18 @@
         <div class="flex items-center gap-3">
             <img src="{{ asset('assets/Logo.jpeg') }}" class="h-10 w-10 object-contain" alt="Groovy Archery Logo">
             <div>
-                <p class="text-2xl font-bold tracking-tight text-gray-900">Groovy</p>
-                <p class="text-xs -mt-1 text-purple-600 font-medium">Archery</p>
+                <p class="text-2xl font-bold tracking-tight text-gray-900">Groovy Archery</p>
+                <p class="text-xs -mt-1 text-gray-500 font-medium">Admin Panel</p>
             </div>
         </div>
-        <p class="text-[10px] text-gray-400 mt-1 pl-1">Admin Panel</p>
     </div>
 
     <div class="px-6 py-5 border-b border-gray-100">
         <div class="flex items-center gap-3">
             <img src="{{ asset('assets/profile.jpg') }}"
-                class="w-10 h-10 rounded-2xl object-cover ring-2 ring-white shadow" alt="Raisa Amanda">
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-white shadow" alt="Raisa Amanda">
             <div>
-                <p class="font-semibold text-gray-800">{{ auth()->user()->name }}</p>
+                <p class="font-semibold" style="color: #4B5563;">{{ auth()->user()->name }}</p>
                 <p class="text-xs text-gray-500">Admin</p>
             </div>
         </div>
