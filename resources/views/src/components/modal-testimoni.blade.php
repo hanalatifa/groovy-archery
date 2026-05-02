@@ -1,6 +1,6 @@
 {{-- ═══════════════════════ MODAL TESTIMONI ═══════════════════════ --}}
 <div class="modal-backdrop" id="testiModal">
-    <div class="modal-box dark:text-black">
+    <div class="modal-box">
 
         {{-- Header --}}
         <div class="flex items-center justify-between mb-6">

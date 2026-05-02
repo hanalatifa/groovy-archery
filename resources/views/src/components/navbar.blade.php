@@ -138,7 +138,6 @@ body {
         <a href="{{ route('login') }}" class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold hover:bg-[#1e3278] transition-colors rounded-sm">Login as Admin</a>
     </div>
 
-
      {{-- Mobile: toggle + hamburger --}}
     <div class="flex md:hidden items-center gap-2">
         {{-- Dark mode toggle (mobile) --}}
@@ -152,7 +151,6 @@ body {
                       d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
             </svg>
         </button>
-
 
         {{-- Hamburger --}}
         <button id="hamburgerBtn" aria-label="Buka menu"
@@ -250,10 +248,9 @@ body {
 
     document.getElementById('themeToggleDesktop')?.addEventListener('click', toggleTheme);
     document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
-   
-   
+    
+    
     // ── Scroll shadow ──
-
 
     const nav = document.getElementById('gaNav');
     window.addEventListener('scroll', () => {
@@ -267,7 +264,6 @@ body {
     const backdrop = document.getElementById('menuBackdrop');
     const lines    = document.querySelectorAll('.ham-line');
 
-
     function openMenu() {
         menu.classList.remove('pointer-events-none');
         backdrop.classList.add('opacity-100');
@@ -277,7 +273,6 @@ body {
         lines[1].style.opacity   = '0';
         lines[2].style.transform = 'translateY(-8px) rotate(-45deg)';
     }
-
 
     function closeMenu() {
         menu.classList.add('pointer-events-none');
