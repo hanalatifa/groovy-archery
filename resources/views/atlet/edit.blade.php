@@ -2,7 +2,7 @@
 
     <div class="max-w-4xl mx-auto">
         <div class="mb-6">
-            <a href="{{ route('kelola.atlet') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
+            <a href="{{ route('atlet.kelola') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
                 ← Kembali ke Kelola Atlet
             </a>
         </div>
@@ -49,12 +49,12 @@
                 </div>
 
                 <div class="flex justify-end gap-4 mt-12">
-                    <a href="{{ route('kelola.atlet') }}"
+                    <a href="{{ route('atlet.kelola') }}"
                        class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">
                         Cancel
                     </a>
                     <button type="submit"
-                            onclick="event.preventDefault(); alert('Data berhasil disimpan!'); window.location.href = '{{ route('kelola.atlet') }}';"
+                            onclick="event.preventDefault(); alert('Data berhasil disimpan!'); window.location.href = '{{ route('atlet.kelola') }}';"
                             class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-2xl transition">
                         Simpan
                     </button>

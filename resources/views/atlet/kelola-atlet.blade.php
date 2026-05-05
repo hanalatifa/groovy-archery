@@ -98,9 +98,9 @@
                 <td class="py-5 px-6">
                     <div class="flex gap-2 justify-center">
                         <a href="${editUrl.replace(':id', atlet.id)}"
-                           class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition inline-block">
-                            Edit
-                        </a>
+   class="bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white px-5 py-2 rounded-xl text-sm font-semibold transition duration-200 inline-block shadow-md">
+    ✏️ Edit
+</a>
                         <button onclick="showDeleteModal(${atlet.id})"
                                 class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
                             Hapus
