@@ -69,32 +69,31 @@ class AtletController extends Controller
 
         $atlets->update($data);
 
-        return redirect()->route('atlet.index')
-            ->with('success', 'Data berhasil diupdate!');
-        // Redirect ke index, bukan ke update
         return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');
     }
 
     // proses delete data
-    public function destroy($id)
-    {
-        $atlets = Atlet::findOrFail($id);
+    public function destroy($id) {
+        $atlet = Atlet::findOrFail($id);
 
-        if ($atlets->foto && Storage::disk('public')->exists('atlet/' . $atlets->foto)) {
-            Storage::disk('public')->delete('atlet/' . $atlets->foto);
-            if ($atlets->foto) {
-                $lokasiFoto = public_path('storage/' . $atlets->foto);
-                if (file_exists($lokasiFoto)) {
-                    @unlink($lokasiFoto);
-                }
+        // 1. Hapus Foto jika ada (Proses di background)
+        if ($atlet->foto) {
+            // Hapus dari Storage disk public
+            if (Storage::disk('public')->exists('atlet/' . $atlet->foto)) {
+                Storage::disk('public')->delete('atlet/' . $atlet->foto);
             }
-
-            $atlets->delete();
-
-            return redirect()->route('atlet.index')
-                ->with('success', 'Data atlet sudah dihapus!');
-            // Redirect ke index, bukan ke destroy
-            return redirect()->route('atlet.index')->with('success', 'Data atlet sudah dihapus!');
+            
+            // Hapus paksa jika masih ada di public path (opsional)
+            $lokasiFoto = public_path('storage/atlet/' . $atlet->foto);
+            if (file_exists($lokasiFoto)) {
+                @unlink($lokasiFoto);
+            }
         }
+
+        // 2. Hapus Data dari Database (Wajib di luar IF foto)
+        $atlet->delete();
+
+        // 3. Kembalikan ke halaman index
+        return redirect()->route('atlet.index')->with('success', 'Data atlet sudah dihapus!');
     }
 }
