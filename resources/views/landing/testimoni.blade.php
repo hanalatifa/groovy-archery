@@ -15,7 +15,6 @@
                  style="-ms-overflow-style: none; scrollbar-width: none;">
                 
                 @foreach($testimonis as $testi)
-                {{-- Penyesuaian Lebar: Mobile 100%, Tablet 50%, Desktop 33.3% --}}
                 <div class="testi-card w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 snap-center px-3 py-4">
                     <div class="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-6 md:p-8 shadow-sm h-full flex flex-col">
                         {{-- Bintang --}}
@@ -57,7 +56,7 @@
     {{-- Tombol Beri Testimoni --}}
     <div class="text-center mt-10">
         <button id="openTestiModal"
-                class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#2b459a] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#1e3278] transition-all rounded-full shadow-lg active:scale-95">
+                class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#2b459a] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#1e3278] transition-all shadow-lg active:scale-95">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
             Beri Testimoni
         </button>
