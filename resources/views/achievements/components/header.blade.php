@@ -3,7 +3,7 @@
 
     {{-- Background image dengan overlay --}}
     <div class="absolute inset-0 z-0">
-        <img src="{{ asset('assets/athletesimage.png') }}" alt="Komunitas Pemanah"
+        <img src="{{ asset('assets/hero-image.jpeg') }}" alt="Komunitas Pemanah"
              class="w-full h-full object-cover object-center hero-img">
         {{-- Overlay gradient: gelap di kiri, transparan di kanan --}}
         <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
