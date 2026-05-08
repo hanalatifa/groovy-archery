@@ -49,7 +49,6 @@ class AtletController extends Controller
     {
         $atlets = Atlet::findOrFail($id);
         return view('atlet.edit', compact('atlets'));
-        return view('atlet.edit', compact('atlets')); // Pastikan file blade-nya ada di resources/views/atlet/edit.blade.php
     }
 
     // proses update data atlet
@@ -72,8 +71,6 @@ class AtletController extends Controller
 
         return redirect()->route('atlet.index')
             ->with('success', 'Data berhasil diupdate!');
-        // Redirect ke index, bukan ke update
-        return redirect()->route('atlet.index')->with('success', 'Data berhasil diupdate!');
     }
 
     // proses delete data
@@ -94,8 +91,6 @@ class AtletController extends Controller
 
         return redirect()->route('atlet.index')
             ->with('success', 'Data atlet sudah dihapus!');
-        // Redirect ke index, bukan ke destroy
-        return redirect()->route('atlet.index')->with('success', 'Data atlet sudah dihapus!');
     }
 }
 }
