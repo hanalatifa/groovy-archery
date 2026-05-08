@@ -1,5 +1,5 @@
 {{-- ═══════════════════════ TESTIMONI ═══════════════════════ --}}
-<section class="py-12 md:py-24 px-4 md:px-6 transition-colors duration-300 font-roboto overflow-hidden" id="testimoni">
+<section class="py-12 md:py-24 px-4 md:px-6 transition-colors duration-300 font-roboto" id="testimoni">
     <div class="text-center mb-10 md:mb-14">
         <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Testimoni</p>
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">Testimoni Member</h2>
@@ -8,14 +8,17 @@
 
     {{-- Slider wrapper --}}
     <div class="relative max-w-6xl mx-auto px-2 md:px-16">
+        {{-- Wrapper Slider --}}
         <div class="overflow-hidden">
             <div id="testiSlider" 
-                 class="flex flex-nowrap overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar gap-0"
-                 style="ms-overflow-style: none; scrollbar-width: none;">
+                 class="flex flex-nowrap overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar"
+                 style="-ms-overflow-style: none; scrollbar-width: none;">
                 
                 @foreach($testimonis as $testi)
-                <div class="testi-card w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 snap-center md:snap-start px-2 py-4">
-                    <div class="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-6 md:p-8 shadow-sm h-full flex flex-col transition-all">
+                {{-- Penyesuaian Lebar: Mobile 100%, Tablet 50%, Desktop 33.3% --}}
+                <div class="testi-card w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 snap-center px-3 py-4">
+                    <div class="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-6 md:p-8 shadow-sm h-full flex flex-col">
+                        {{-- Bintang --}}
                         <div class="flex gap-1 mb-4 text-amber-400">
                             @for($i = 1; $i <= 5; $i++)
                             <svg class="w-4 h-4 {{ $i <= $testi->rating ? 'fill-current' : 'text-gray-200' }}" fill="currentColor" viewBox="0 0 20 20">
@@ -29,8 +32,8 @@
                                 {{ strtoupper(substr($testi->nama, 0, 1)) }}
                             </div>
                             <div>
-                                <p class="font-bold text-sm text-gray-800 dark:text-white leading-none">{{ $testi->nama }}</p>
-                                <p class="text-[10px] uppercase text-gray-400 tracking-wider mt-1">Verified Member</p>
+                                <p class="font-bold text-sm text-gray-800 dark:text-white">{{ $testi->nama }}</p>
+                                <p class="text-[10px] uppercase text-gray-400 tracking-wider">Verified Member</p>
                             </div>
                         </div>
                     </div>
@@ -39,78 +42,65 @@
             </div>
         </div>
 
-        {{-- Navigasi Desktop --}}
-        <button id="testiPrev" class="hidden md:flex absolute top-1/2 -left-4 -translate-y-1/2 w-11 h-11 bg-white dark:bg-slate-700 shadow-md border border-gray-100 dark:border-slate-600 rounded-full items-center justify-center z-20 text-gray-700 dark:text-white hover:bg-gray-50 transition-all">
+        {{-- Navigasi (Hidden di Mobile, muncul di Desktop) --}}
+        <button id="testiPrev" class="hidden md:flex absolute top-1/2 -left-4 -translate-y-1/2 w-11 h-11 bg-white dark:bg-slate-700 shadow-md border border-gray-100 dark:border-slate-600 rounded-full items-center justify-center z-20 text-gray-700 dark:text-white transition-all hover:bg-gray-50">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
         </button>
-        <button id="testiNext" class="hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 w-11 h-11 bg-white dark:bg-slate-700 shadow-md border border-gray-100 dark:border-slate-600 rounded-full items-center justify-center z-20 text-gray-700 dark:text-white hover:bg-gray-50 transition-all">
+        <button id="testiNext" class="hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 w-11 h-11 bg-white dark:bg-slate-700 shadow-md border border-gray-100 dark:border-slate-600 rounded-full items-center justify-center z-20 text-gray-700 dark:text-white transition-all hover:bg-gray-50">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </button>
     </div>
 
-    {{-- Dots Indikator --}}
+    {{-- Dots --}}
     <div class="flex justify-center gap-2 mt-8" id="testiDots"></div>
+
+    {{-- Tombol Beri Testimoni --}}
+    <div class="text-center mt-10">
+        <button id="openTestiModal"
+                class="inline-flex items-center gap-2 px-8 py-3.5 bg-[#2b459a] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#1e3278] transition-all rounded-full shadow-lg active:scale-95">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+            Beri Testimoni
+        </button>
+    </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.getElementById('testiSlider');
-    const dotsContainer = document.getElementById('testiDots');
-    
-    function updateSliderLogic() {
-        const cards = document.querySelectorAll('.testi-card');
-        if (!slider || cards.length === 0) return;
+{{-- ═══════════════════════ MODAL TESTIMONI (Responsive Optimized) ═══════════════════════ --}}
+<div class="modal-backdrop fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4" id="testiModal">
+    <div class="bg-white dark:bg-slate-900 border dark:border-slate-700 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl transition-all">
+        <form action="{{ route('testimoni.store') }}" method="POST" id="formTestimoni">
+            @csrf
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Beri Testimoni</h3>
+                <button type="button" id="closeTestiModal" class="text-gray-400 hover:text-red-500 transition-colors">✕</button>
+            </div>
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-[10px] font-bold mb-1 dark:text-gray-400 uppercase tracking-widest">NAMA LENGKAP</label>
+                    <input type="text" name="nama" required class="w-full border-gray-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 rounded-xl focus:ring-2 focus:ring-[#2b459a] outline-none" placeholder="Nama Anda">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold mb-2 dark:text-gray-400 uppercase tracking-widest">RATING</label>
+                    <div class="flex flex-row-reverse justify-end gap-2">
+                        @for($i = 5; $i >= 1; $i--)
+                        <input type="radio" name="rating" id="star{{ $i }}" value="{{ $i }}" class="peer hidden" required>
+                        <label for="star{{ $i }}" class="cursor-pointer text-3xl text-gray-300 peer-checked:text-amber-400 hover:text-amber-300 transition-colors">★</label>
+                        @endfor
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold mb-1 dark:text-gray-400 uppercase tracking-widest">DESKRIPSI</label>
+                    <textarea name="deskripsi" required rows="4" class="w-full border-gray-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 rounded-xl focus:ring-2 focus:ring-[#2b459a] outline-none" placeholder="Ceritakan pengalaman Anda..."></textarea>
+                </div>
+            </div>
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                <button type="submit" class="flex-1 order-1 sm:order-2 py-3.5 bg-[#2b459a] hover:bg-[#1e3278] text-white font-bold rounded-xl transition-all shadow-md">Kirim Testimoni</button>
+                <button type="button" id="cancelTesti" class="flex-1 order-2 sm:order-1 py-3.5 border border-gray-200 dark:border-slate-700 dark:text-white rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 transition-all text-sm font-medium">Batal</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-        // 1. Reset dan Bangun Ulang Dots
-        dotsContainer.innerHTML = '';
-        cards.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.className = `h-1.5 transition-all duration-300 rounded-full ${i === 0 ? 'bg-[#2b459a] w-6' : 'bg-gray-300 w-2'}`;
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = dotsContainer.querySelectorAll('div');
-
-        // 2. Fungsi Update Dots (Akurat untuk Scroll & Button)
-        function syncDots() {
-            const cardWidth = cards[0].offsetWidth;
-            const index = Math.round(slider.scrollLeft / cardWidth);
-            
-            dots.forEach((dot, i) => {
-                if (i === index) {
-                    dot.classList.add('bg-[#2b459a]', 'w-6');
-                    dot.classList.remove('bg-gray-300', 'w-2');
-                } else {
-                    dot.classList.remove('bg-[#2b459a]', 'w-6');
-                    dot.classList.add('bg-gray-300', 'w-2');
-                }
-            });
-        }
-
-        // 3. Kontrol Navigasi Button (Menggunakan scrollTo agar lebih pasti)
-        const btnNext = document.getElementById('testiNext');
-        const btnPrev = document.getElementById('testiPrev');
-
-        btnNext.onclick = () => {
-            const cardWidth = cards[0].offsetWidth;
-            // Scroll ke posisi kartu berikutnya
-            slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
-        };
-
-        btnPrev.onclick = () => {
-            const cardWidth = cards[0].offsetWidth;
-            // Scroll ke posisi kartu sebelumnya
-            slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
-        };
-
-        // Listener Scroll untuk update dots
-        slider.addEventListener('scroll', syncDots);
-    }
-
-    // Jalankan Logika
-    updateSliderLogic();
-
-    // Opsional: Jika kamu menambah testimoni via AJAX/Modal tanpa refresh halaman, 
-    // panggil updateSliderLogic() lagi setelah data berhasil disimpan.
-});
-</script>
+<style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

@@ -27,7 +27,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
     
     <style>
-        /* CSS Variable tetap ada untuk mendukung transisi smooth di body */
         :root {
             --body-bg: #ffffff;
             --body-text: #1f2937;
@@ -41,12 +40,11 @@
             color: var(--body-text);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Jika mode gelap aktif, paksa semua teks dasar mengikuti variabel warna teks */
+
         .dark body {
             color: #f1f5f9 !important;
         }
 
-        /* Pastikan heading juga ikut berubah jika tidak pakai class text-xxx spesifik */
         .dark h1, .dark h2, .dark h3, .dark h4, .dark p, .dark span:not([class*="text-"]) {
             color: #f8fafc;
         }
