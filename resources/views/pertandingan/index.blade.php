@@ -3,6 +3,10 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Kelola Pertandingan</h2>
+            <a href="{{ route('atlet.create') }}"
+                class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-2xl font-medium flex items-center gap-2 transition">
+                <span class="text-xl">+</span> Tambah Pertandingan Baru
+            </a>
         </div>
 
         @if (session('success'))
