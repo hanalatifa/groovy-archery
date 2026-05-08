@@ -3,9 +3,9 @@
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Kelola Pertandingan</h2>
-            <a href="{{ route('pertandingan.create') }}"
-               class="bg-purple-700 hover:bg-purple-800 text-white px-5 py-2.5 rounded-lg font-semibold text-sm transition">
-                + Tambah Pertandingan
+            <a href="{{ route('atlet.create') }}"
+                class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-2xl font-medium flex items-center gap-2 transition">
+                <span class="text-xl">+</span> Tambah Pertandingan Baru
             </a>
         </div>
 
@@ -76,7 +76,7 @@
                 <p class="text-gray-500 mb-8">Data pertandingan ini akan dihapus permanen beserta fotonya.</p>
 
                 <div class="flex gap-3">
-                    <button onclick="hideDeleteModal()"
+                    <button type="button" onclick="hideDeleteModal()"
                             class="flex-1 py-3.5 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-2xl transition">
                         Batal
                     </button>
@@ -96,11 +96,11 @@
     <script>
         function showDeleteModal(id) {
             const form = document.getElementById('deleteForm');
-            form.action = `/hapus/pertandingan/${id}`;
+            // Pastikan URL mengarah ke /hapus/pertandingan/
+            form.action = "/hapus/atlet/{id}" + id; 
 
-            const modal = document.getElementById('deleteModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+            document.getElementById('deleteModal').classList.remove('hidden');
+            document.getElementById('deleteModal').classList.add('flex');
         }
 
         function hideDeleteModal() {
@@ -109,6 +109,7 @@
             modal.classList.remove('flex');
         }
 
+        // Close modal when clicking background
         document.getElementById('deleteModal').addEventListener('click', function(e) {
             if (e.target === this) hideDeleteModal();
         });

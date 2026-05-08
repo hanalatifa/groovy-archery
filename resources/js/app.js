@@ -34,52 +34,77 @@ const fadeObs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
 
+// TESTIMONI SLIDER
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('testiSlider');
+    const cards = document.querySelectorAll('.testi-card');
+    const dotsWrap = document.getElementById('testiDots');
+    
+    let currentIndex = 0;
 
-// ════════════════════════════════════════
-//  TESTIMONI SLIDER
-// ════════════════════════════════════════
-// ── Testimoni Slider ──
-const slider = document.getElementById('testiSlider');
-
-if (slider) {
-    const cards       = slider.querySelectorAll('.testi-card');
-    const dotsWrap    = document.getElementById('testiDots');
-    const perView     = window.innerWidth >= 768 ? 3 : 1;
-    const totalSlides = Math.ceil(cards.length / perView); // ← jumlah halaman
-    let current = 0;
-
-    // Set lebar tiap card
-    cards.forEach(c => c.style.width = `${100 / perView}%`);
-
-    // Build dots — 1 dot per halaman
-    dotsWrap.innerHTML = ''; // reset dulu biar tidak duplikat
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('button');
-        dot.className = 'rounded-full transition-all duration-300 ' +
-            (i === 0 ? 'bg-[#2b459a] w-5 h-2' : 'bg-gray-300 w-2 h-2');
-        dot.addEventListener('click', () => goTo(i));
-        dotsWrap.appendChild(dot);
+    function getItemsPerView() {
+        return window.innerWidth >= 768 ? 3 : 1;
     }
 
-    function goTo(idx) {
-        current = Math.max(0, Math.min(idx, totalSlides - 1));
+    function updateSlider() {
+        const perView = getItemsPerView();
+        const maxIndex = Math.max(0, cards.length - perView);
+        
+        // Mencegah index melampaui batas agar tidak ada area kosong
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-        // Geser slider: setiap halaman = perView card
-        // translateX dalam % relatif terhadap lebar slider wrapper
-        slider.style.transform = `translateX(-${current * 100}%)`;
+        // Hitung geseran: 100% dibagi jumlah item yang tampil
+        const offset = currentIndex * (100 / perView);
+        slider.style.transform = `translateX(-${offset}%)`;
 
-        // Update dots
-        dotsWrap.querySelectorAll('button').forEach((d, i) => {
-            d.className = 'rounded-full transition-all duration-300 ' +
-                (i === current ? 'bg-[#2b459a] w-5 h-2' : 'bg-gray-300 w-2 h-2');
-        });
+        updateDots(maxIndex + 1);
     }
 
-    document.getElementById('testiPrev')
-        ?.addEventListener('click', () => goTo(current - 1));
-    document.getElementById('testiNext')
-        ?.addEventListener('click', () => goTo(current + 1));
-}
+    function updateDots(totalDots) {
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.className = `h-2 transition-all duration-300 ${i === currentIndex ? 'bg-[#2b459a] w-6' : 'bg-gray-300 w-2'}`;
+            dot.onclick = () => {
+                currentIndex = i;
+                updateSlider();
+            };
+            dotsWrap.appendChild(dot);
+        }
+    }
+
+    document.getElementById('testiNext').addEventListener('click', () => {
+        const perView = getItemsPerView();
+        if (currentIndex < cards.length - perView) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Balik ke awal
+        }
+        updateSlider();
+    });
+
+    document.getElementById('testiPrev').addEventListener('click', () => {
+        const perView = getItemsPerView();
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = Math.max(0, cards.length - perView); // Lompat ke akhir
+        }
+        updateSlider();
+    });
+
+    // Support Swipe di HP (Touch)
+    let startX = 0;
+    slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    slider.addEventListener('touchend', e => {
+        const endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) document.getElementById('testiNext').click();
+        if (endX - startX > 50) document.getElementById('testiPrev').click();
+    });
+
+    window.addEventListener('resize', updateSlider);
+    updateSlider(); // Init
+});
 
 
 // ════════════════════════════════════════
