@@ -2,7 +2,7 @@
 
     <div class="p-6 max-w-5xl mx-auto">
         <div class="mb-8">
-            <a href="{{ route('atlet.index') }}"
+            <a href="{{ route('atlet.kelola') }}"
                 class="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-medium">
                 ← Kembali ke Daftar Atlet
             </a>
@@ -82,7 +82,7 @@
                                     </svg>
                                 </div>
                                 <p class="text-gray-600 font-medium">Klik atau tarik foto ke sini</p>
-                                <p class="text-xs text-gray-400 mt-1">PNG, JPG, JPEG • Maksimal 5MB</p>
+                                <p class="text-xs text-gray-400 mt-1">PNG, JPG, JPEG • Maksimal 10MB</p>
                             </div>
                         </div>
                     </div>

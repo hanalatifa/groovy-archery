@@ -1,33 +1,32 @@
 <?php
 
 use App\Http\Controllers\AtletController;
-use App\Http\Controllers\AtletLandingController;
 use App\Http\Controllers\PertandinganController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
 
-/*
-|--------------------------------------------------------------------------
-| 1. Public Routes (Tanpa Login)
-|--------------------------------------------------------------------------
-*/
 
+
+//Public Routes
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
-
 Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
-
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
+Route::get('/achievements', function () {return view('achievements.achievements');})->name('achievements');
 
 Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
 
 
 // User kirim testimoni
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
+Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
 
-
+Route::get('lang/{locale}', [LanguageController::class, 'switch'])
+    ->name('lang.switch')
+    ->where('locale', '[a-z]{2}');
 /*
 |--------------------------------------------------------------------------
 | 2. Protected Routes (Wajib Login)
@@ -36,20 +35,29 @@ Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testim
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    // Dashboard Utama
-    Route::get('/dashboard-view', function () {
-        return view('dashboard.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard-view', [AtletController::class, 'dashboardIndex'])->name('dashboard');
 
     // Manajemen Atlet
     Route::controller(AtletController::class)->group(function () {
         Route::get('/atlet', 'index')->name('atlet.index');
         Route::get('/tambah/atlet', 'create')->name('atlet.create');
-        Route::post('/simpan/atlet', 'store')->name('atlet.store');
         Route::get('/kelola/atlet', 'kelola')->name('atlet.kelola');
         Route::get('/edit/atlet/{id}', 'edit')->name('atlet.edit');
         Route::put('/update/atlet/{id}', 'update')->name('atlet.update');
         Route::delete('/hapus/atlet/{id}', 'destroy')->name('atlet.destroy');
+        Route::get('/atlet/requests', 'requests')->name('atlet.requests');
+        Route::post('/atlet/{id}/approve', 'approve')->name('atlet.approve');
+        Route::post('/atlet/{id}/reject', 'reject')->name('atlet.reject');
+        Route::post('/atlet/{id}/pending', 'makePending')->name('atlet.pending');
+    });
+
+    // Manajemen Testimoni
+    Route::controller(TestimonialController::class)->group(function () {
+        Route::get('/dashboard/testimonials', 'adminIndex')->name('testi.index');
+        Route::get('/dashboard/testimonials/requests', 'adminRequests')->name('testi.requests');
+        Route::post('/admin/testimoni/{id}/approve', 'approve')->name('testi.approve');
+        Route::post('/admin/testimoni/{id}/reject', 'reject')->name('testi.reject');
+        Route::post('/admin/testimoni/{id}/pending', 'makePending')->name('testi.pending');
     });
 
     // Manajemen Pertandingan
@@ -72,24 +80,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('/documentations/{id}', 'destroy')->name('documentations.destroy');
     });
 
-    // Manajemen Testimoni (Admin)
-    Route::controller(TestimonialController::class)->group(function () {
-        // Dashboard Utama (Halaman greeting & stats)
-        Route::get('/dashboard-view', 'dashboardIndex')->name('dashboard');
-
-        // Halaman List Testimoni Approved
-        Route::get('/dashboard/testimonials', 'adminIndex')->name('testi.index');
-
-        // Halaman List Testimoni Pending
-        Route::get('/dashboard/testimonials/requests', 'adminRequests')->name('testi.requests');
-
-        // Action Routes
-        Route::post('/admin/testimoni/{id}/approve', 'approve')->name('testi.approve');
-        Route::post('/admin/testimoni/{id}/reject', 'reject')->name('testi.reject');
-        Route::post('/admin/testimoni/{id}/pending', 'makePending')->name('testi.pending');
-    });
-
-    // Profile User
+    // Profile
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');

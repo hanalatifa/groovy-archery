@@ -4,24 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Atlet;
 use App\Models\Testimonial;
-
-
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
     public function index() {
+        // Hanya ambil testimoni yang sudah di-approve
         $testimonis = Testimonial::where('status', 'approved')->latest()->get();
-        $atlets = Atlet::all();
+        
+        // FIXED: Hanya ambil atlet yang sudah di-approve untuk landing page
+        $atlets = Atlet::where('status', 'approved')->latest()->get();
+        
         return view('welcome', compact('testimonis', 'atlets'));
     }
 
-    // TAMBAHKAN FUNGSI INI (Penyebab error 500 tadi)
     public function athletes()
     {
-        $atlets = \App\Models\Atlet::all(); 
+        // FIXED: Sama juga buat halaman list atlet lengkap, filter by status
+        $atlets = Atlet::where('status', 'approved')->latest()->get(); 
 
-    // Kirim dengan nama 'atlets' (TANPA HURUF H)
         return view('athletes-page.athletes', compact('atlets'));
     }
 }
