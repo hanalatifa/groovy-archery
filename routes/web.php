@@ -7,6 +7,8 @@ use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
+
 
 
 //Public Routes
@@ -18,6 +20,14 @@ Route::get('/achievements', function () {return view('achievements.achievements'
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
 
+Route::get('lang/{locale}', [LanguageController::class, 'switch'])
+    ->name('lang.switch')
+    ->where('locale', '[a-z]{2}');
+/*
+|--------------------------------------------------------------------------
+| 2. Protected Routes (Wajib Login)
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
