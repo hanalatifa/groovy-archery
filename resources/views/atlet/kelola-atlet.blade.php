@@ -1,6 +1,5 @@
 <x-layouts.admin-layout title="Kelola Data Atlet">
 
-<<<<<<< HEAD
     <div class="max-w-6xl mx-auto p-6">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-semibold text-gray-800">Kelola Data Atlet</h1>
@@ -12,7 +11,6 @@
 
         @if(session('success'))
             <div class="mb-4 p-4 bg-emerald-100 text-emerald-700 rounded-2xl">
-=======
     <div class="p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Kelola Data Atlet</h2>
@@ -20,12 +18,10 @@
 
         @if (session('success'))
             <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-6 border border-green-200">
->>>>>>> 0e14aee76d17899399249db39e2b71ad05eea548
                 {{ session('success') }}
             </div>
         @endif
 
-<<<<<<< HEAD
         <div class="bg-white rounded-3xl shadow-sm overflow-hidden">
             <table class="w-full" id="atletTable">
                 <thead class="bg-gray-50">
@@ -65,7 +61,6 @@
                                     <button type="button" 
                                             onclick="openDeleteModal({{ $atlet->id }})"
                                             class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-medium transition">
-=======
         <div class="bg-white shadow-sm rounded-xl overflow-hidden border border-gray-100">
             <table class="w-full text-left border-collapse">
                 <thead class="bg-gray-50 border-b border-gray-200">
@@ -98,7 +93,6 @@
                                     </a>
                                     <button type="button" onclick="showDeleteModal({{ $atlet->id }})"
                                             class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">
->>>>>>> 0e14aee76d17899399249db39e2b71ad05eea548
                                         Hapus
                                     </button>
                                 </div>
@@ -106,11 +100,8 @@
                         </tr>
                     @empty
                         <tr>
-<<<<<<< HEAD
                             <td colspan="5" class="py-12 text-center text-gray-500">Belum ada data atlet.</td>
-=======
                             <td colspan="4" class="p-12 text-center text-gray-500 italic">Belum ada data atlet.</td>
->>>>>>> 0e14aee76d17899399249db39e2b71ad05eea548
                         </tr>
                     @endforelse
                 </tbody>
@@ -118,7 +109,6 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     <div id="deleteModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 text-center">
             <div class="mx-auto w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-5xl mb-6">!</div>
@@ -139,7 +129,6 @@
                     </button>
                 </div>
             </form>
-=======
     <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full mx-4 overflow-hidden">
             <div class="p-8 text-center">
@@ -166,12 +155,10 @@
                     </form>
                 </div>
             </div>
->>>>>>> 0e14aee76d17899399249db39e2b71ad05eea548
         </div>
     </div>
 
     <script>
-<<<<<<< HEAD
         function openDeleteModal(id) {
             const modal = document.getElementById('deleteModal');
             const form = document.getElementById('deleteForm');
@@ -185,7 +172,6 @@
         function closeDeleteModal() {
             document.getElementById('deleteModal').classList.add('hidden');
         }
-=======
         function showDeleteModal(id) {
             const form = document.getElementById('deleteForm');
             form.action = `/hapus/atlet/${id}`; 
@@ -205,7 +191,6 @@
         document.getElementById('deleteModal').addEventListener('click', function(e) {
             if (e.target === this) hideDeleteModal();
         });
->>>>>>> 0e14aee76d17899399249db39e2b71ad05eea548
     </script>
 
 </x-layouts.admin-layout>

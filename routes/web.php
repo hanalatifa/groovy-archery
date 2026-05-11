@@ -21,9 +21,8 @@ Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('galle
 
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
 
-Route::get('/achievements', function () {
-    return view('achievements.achievements');
-})->name('achievements');
+Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
+
 
 // User kirim testimoni
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');

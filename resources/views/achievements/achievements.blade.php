@@ -58,7 +58,7 @@
 
     <main>
     @include('achievements.components.header')
-    @include('achievements.components.achievement-grid')
+    @include('achievements.components.achievement-grid', ['pertandingans' => $pertandingans])
     @include('landing.contacts')
     </main>
 

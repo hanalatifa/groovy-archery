@@ -26,27 +26,27 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    @forelse($pertandingan as $p)
+                    @forelse($pertandingans as $pertandingan)
                         <tr class="hover:bg-gray-50 transition">
                             <td class="p-4 text-sm text-gray-500">
-                                {{ $p->created_at->format('H.i A, d M Y') }}
+                                {{ $pertandingan->created_at->format('H.i A, d M Y') }}
                             </td>
                             <td class="p-4">
-                                @if($p->dokumentasi && count($p->dokumentasi) > 0)
-                                    <img src="{{ asset('storage/' . $p->dokumentasi[0]) }}"
+                                @if($pertandingan->dokumentasi && count($pertandingan->dokumentasi) > 0)
+                                    <img src="{{ asset('storage/' . $pertandingan->dokumentasi[0]) }}"
                                          class="w-12 h-12 rounded-md object-cover border border-gray-200">
                                 @else
                                     <span class="text-gray-400 text-xs">No photo</span>
                                 @endif
                             </td>
-                            <td class="p-4 text-sm font-medium text-gray-800">{{ $p->nama_pertandingan ?? 'N/A' }}</td>
+                            <td class="p-4 text-sm font-medium text-gray-800">{{ $pertandingan->nama_pertandingan ?? 'N/A' }}</td>
                             <td class="p-4 text-center">
                                 <div class="flex gap-2 justify-center">
-                                    <a href="{{ route('pertandingan.edit', $p->id) }}"
+                                    <a href="{{ route('pertandingan.edit', $pertandingan->id) }}"
                                        class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-xl text-xs font-semibold transition">
                                         Edit
                                     </a>
-                                    <button type="button" onclick="showDeleteModal({{ $p->id }})"
+                                    <button type="button" onclick="showDeleteModal({{ $pertandingan->id }})"
                                         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">
                                         Hapus
                                     </button>
