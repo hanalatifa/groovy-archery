@@ -15,6 +15,16 @@ Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('galle
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
 Route::get('/achievements', function () {return view('achievements.achievements');})->name('achievements');
 
+Route::get('/achievements', function () {
+    return view('achievements.achievements');
+})->name('achievements');
+
+Route::get('/schedule', function () {
+    return view('schedule.schedule');
+})->name('schedule');
+
+
+// User kirim testimoni
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
 
