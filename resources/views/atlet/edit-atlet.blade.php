@@ -2,7 +2,6 @@
 
     <div class="max-w-4xl mx-auto p-6">
         <div class="mb-6">
-            {{-- Sesuaikan route kembali ke halaman kelola --}}
             <a href="{{ route('atlet.index') }}" class="text-purple-600 hover:text-purple-700 flex items-center gap-2">
                 ← Kembali ke Kelola Atlet
             </a>
@@ -11,43 +10,38 @@
         <h1 class="text-3xl font-semibold text-gray-800 mb-8">Edit Data Atlet</h1>
 
         <div class="bg-white rounded-3xl shadow-sm p-10">
-            {{-- Update action ke route update dan tambahkan enctype untuk file --}}
-            <form action="{{ route('atlet.update', $atlets->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('atlet.update', $atlet->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="grid grid-cols-2 gap-8">
-                    {{-- Nama Atlet --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama atlet</label>
-                        <input type="text" name="nama" value="{{ old('nama', $atlets->nama) }}"
+                        <input type="text" name="nama" value="{{ old('nama', $atlet->nama) }}"
                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 @error('nama') border-red-500 @enderror">
                         @error('nama') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                     </div>
 
-                    {{-- Kategori --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
                         <select name="kategori" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 bg-white">
-                            <option value="Junior" {{ $atlets->kategori == 'Junior' ? 'selected' : '' }}>Junior</option>
-                            <option value="Senior" {{ $atlets->kategori == 'Senior' ? 'selected' : '' }}>Senior</option>
+                            <option value="Junior" {{ $atlet->kategori == 'Junior' ? 'selected' : '' }}>Junior</option>
+                            <option value="Senior" {{ $atlet->kategori == 'Senior' ? 'selected' : '' }}>Senior</option>
                         </select>
                     </div>
 
-                    {{-- Tanggal Bergabung (Jika ada di database) --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal bergabung</label>
-                        <input type="date" name="created_at" value="{{ $atlets->created_at->format('Y-m-d') }}"
+                        <input type="date" name="created_at" value="{{ $atlet->created_at->format('Y-m-d') }}"
                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
                     </div>
 
-                    {{-- Upload Foto --}}
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Foto atlet (Kosongkan jika tidak diubah)</label>
                         <div class="flex flex-col md:flex-row gap-6 items-center">
-                            @if($atlets->foto)
+                            @if($atlet->foto)
                                 <div class="w-40 h-40 overflow-hidden rounded-2xl shadow">
-                                    <img src="{{ asset('storage/atlet/' . $atlets->foto) }}" class="w-full h-full object-cover" alt="Foto Saat Ini">
+                                    <img src="{{ asset('storage/atlet/' . $atlet->foto) }}" class="w-full h-full object-cover" alt="Foto Saat Ini">
                                 </div>
                             @endif
                             <input type="file" name="foto" 
@@ -55,11 +49,10 @@
                         </div>
                     </div>
 
-                    {{-- Deskripsi --}}
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Atlet</label>
                         <textarea name="deskripsi" rows="5"
-                                  class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:outline-none focus:border-purple-500">{{ old('deskripsi', $atlets->deskripsi) }}</textarea>
+                                  class="w-full px-5 py-4 border border-gray-200 rounded-3xl focus:outline-none focus:border-purple-500">{{ old('deskripsi', $atlet->deskripsi) }}</textarea>
                     </div>
                 </div>
 

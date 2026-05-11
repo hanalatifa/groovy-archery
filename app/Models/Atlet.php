@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Atlet extends Model
 {
     protected $fillable = [
-    'nama', 
-    'kategori', 
-    'umur',
-    'tgl_bergabung', 
-    'foto', 
-    'deskripsi'
+        'nama', 
+        'kategori', 
+        'umur',
+        'tgl_bergabung', 
+        'foto', 
+        'deskripsi',
+        'status', 
     ];
 }
