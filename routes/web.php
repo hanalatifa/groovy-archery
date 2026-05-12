@@ -17,12 +17,12 @@ Route::get('/achievements', function () {return view('achievements.achievements'
 Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
-Route::get('/schedule', function () {
-    return view('schedule.schedule');
-})->name('schedule');
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
     ->where('locale', '[a-z]{2}');
+Route::get('/schedule', function () {
+    return view('schedule.schedule');
+})->name('schedule');
 
 // Auth
 
