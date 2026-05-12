@@ -16,8 +16,6 @@ Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athle
 Route::get('/achievements', function () {return view('achievements.achievements');})->name('achievements');
 Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
-<<<<<<< HEAD
-=======
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
@@ -25,7 +23,6 @@ Route::get('lang/{locale}', [LanguageController::class, 'switch'])
 
 // Auth
 
->>>>>>> 1247e56 (delete comment)
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard-view', [AtletController::class, 'dashboardIndex'])->name('dashboard');
