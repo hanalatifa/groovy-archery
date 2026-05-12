@@ -44,7 +44,7 @@
                 </a>
 
                 <a href="{{ route('atlet.create') }}"
-                   class="px-5 py-3 bg-[#85488F] hover:bg-purple-700 text-white font-semibold transition">
+                   class="px-6 py-3 bg-[#85488F] hover:bg-purple-700 text-white text-medium transition">
                     + Tambah Atlet
                 </a>
             </div>
