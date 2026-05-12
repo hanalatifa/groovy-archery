@@ -8,8 +8,8 @@
                 {{ __('dashboard.pertandingan_title') }}
             </h2>
             <a href="{{ route('pertandingan.create') }}"
-               class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-2xl font-medium flex items-center gap-2 transition">
-                <span class="text-xl">+</span> {{ __('dashboard.pertandingan_tambah_btn') }}
+               class="bg-[#85488F] hover:bg-purple-700 text-white px-6 py-3 font-medium flex items-center gap-2 transition">
+                <span class="text-xl"></span> {{ __('dashboard.pertandingan_tambah_btn') }}
             </a>
         </div>
 

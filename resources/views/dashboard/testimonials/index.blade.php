@@ -15,7 +15,7 @@
                         </span>
                     @endif
                 </a>
-                <button type="button" onclick="document.getElementById('testiModal').classList.remove('hidden')" class="px-5 py-2.5 bg-[#2b459a] text-white rounded-xl text-sm font-bold hover:bg-[#1e3278] transition shadow-lg shadow-blue-900/20">
+                <button type="button" onclick="document.getElementById('testiModal').classList.remove('hidden')" class="px-6 py-3 bg-[#85488F] text-white text-sm font-bold hover:bg-[#7F4689] transition">
                     + Tambah Testimoni
                 </button>
             </div>
