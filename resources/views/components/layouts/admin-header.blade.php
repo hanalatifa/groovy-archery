@@ -93,17 +93,6 @@
         <input
             type="text"
             placeholder="Search..."
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="2">
-
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
-
-                <circle cx="11" cy="11" r="6" />
-            </svg>
-        </div>
-
-        {{-- INPUT --}}
-        <input type="text" placeholder="Search..."
             class="
                 w-[700px] h-[56px]
                 border pl-14 pr-5
@@ -117,17 +106,6 @@
 
         {{-- LANGUAGE SWITCHER --}}
         <div class="admin-lang-wrap flex items-center p-1 border rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
-        <div
-            class="
-            flex
-            items-center
-            p-1
-            bg-white
-            border
-            border-gray-200
-            rounded-2xl
-            shadow-[0_4px_14px_rgba(0,0,0,0.05)]
-        ">
             @foreach (['id', 'en'] as $lang)
                 @php $isActive = app()->getLocale() === $lang; @endphp
                 <a href="{{ route('lang.switch', $lang) }}"
@@ -139,17 +117,6 @@
                             ? 'bg-[#85488F] text-white shadow-sm'
                             : 'admin-lang-link'
                         }}
-                    class="
-                        px-4
-                        py-2
-                        rounded-xl
-                        text-[11px]
-                        font-bold
-                        tracking-[2px]
-                        uppercase
-                        transition-all
-                        duration-200
-                        {{ $isActive ? 'bg-[#85488F] text-white shadow-sm' : 'text-gray-400 hover:text-gray-700' }}
                    ">
                     {{ strtoupper($lang) }}
                 </a>
@@ -159,30 +126,6 @@
         {{-- DARKMODE --}}
         <button id="admin-theme-toggle"
             class="w-[44px] h-[44px] flex items-center justify-center border rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
-        <button id="theme-toggle"
-            class="
-                w-[44px]
-                h-[44px]
-                flex
-                items-center
-                justify-center
-                bg-white
-                dark:bg-slate-800
-                border
-                border-gray-200
-                dark:border-slate-700
-                rounded-2xl
-                text-gray-500
-                dark:text-yellow-400
-                shadow-[0_4px_14px_rgba(0,0,0,0.05)]
-                hover:bg-gray-50
-                dark:hover:bg-slate-700
-                transition-all
-                duration-200
-            ">
-
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 
             {{-- SUN : muncul saat dark mode --}}
             <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
