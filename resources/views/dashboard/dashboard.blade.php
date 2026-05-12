@@ -1,6 +1,5 @@
 <x-layouts.admin-layout title="Dashboard">
 
-
     {{-- ══════════════════════════════════
          WELCOME HEADING
          ══════════════════════════════════ --}}
@@ -13,12 +12,10 @@
         <p class="text-gray-400 text-sm mt-1">{{ __('dashboard.subtitle') }}</p>
     </div>
 
-
     {{-- ══════════════════════════════════
          STAT CARDS — 3 kolom
          ══════════════════════════════════ --}}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
-
 
         {{-- Total Atlet --}}
         <div class="bg-white border border-gray-100 p-6"
@@ -38,7 +35,6 @@
             </p>
         </div>
 
-
         {{-- Total Dokumentasi --}}
         <div class="bg-white border border-gray-100 p-6"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
@@ -56,7 +52,6 @@
                 {{ \App\Models\Documentation::count() }}
             </p>
         </div>
-
 
         {{-- Total Pertandingan --}}
         <div class="bg-white border border-gray-100 p-6"
@@ -76,7 +71,6 @@
             </p>
         </div>
 
-
     </div>
 
 
@@ -86,14 +80,12 @@
          ══════════════════════════════════ --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-7">
 
-
         {{-- ── Permintaan Tambah Testimoni ── --}}
         <div class="bg-white border border-gray-100 flex flex-col"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="px-7 pt-7 pb-4">
                 <h3 class="text-lg font-bold text-gray-900">{{ __('dashboard.testi_title') }}</h3>
             </div>
-
 
             <div class="px-7 pb-1 overflow-x-auto flex-1">
                 <table class="w-full text-left">
@@ -158,7 +150,6 @@
                 </table>
             </div>
 
-
             {{-- Lihat Semua --}}
             <div class="px-7 py-5 mt-auto">
                 <a href="{{ route('testi.requests') }}"
@@ -169,14 +160,12 @@
             </div>
         </div>
 
-
         {{-- ── Permintaan Tambah Atlet ── --}}
         <div class="bg-white border border-gray-100 flex flex-col"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="px-7 pt-7 pb-4">
                 <h3 class="text-lg font-bold text-gray-900">{{ __('dashboard.atlet_req_title') }}</h3>
             </div>
-
 
             <div class="px-7 pb-1 overflow-x-auto flex-1">
                 <table class="w-full text-left">
@@ -236,7 +225,6 @@
                 </table>
             </div>
 
-
             {{-- Lihat Semua --}}
             <div class="px-7 py-5 mt-auto">
                 <a href="{{ route('atlet.requests') }}"
@@ -246,7 +234,6 @@
                 </a>
             </div>
         </div>
-
 
     </div>
 
@@ -259,7 +246,6 @@
         <div class="px-7 pt-7 pb-5 border-b border-gray-50">
             <h3 class="text-lg font-bold text-gray-900">{{ __('dashboard.activity_title') }}</h3>
         </div>
-
 
         <div class="px-7 py-2 overflow-x-auto">
             <table class="w-full text-left">
