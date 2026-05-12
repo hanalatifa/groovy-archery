@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Kelola Dokumentasi</h2>
             <a href="{{ url('/documentations/create') }}"
-                class="bg-[#85488F] hover:bg-purple-700 text-white px-6 py-3 font-semibold text-sm transition shadow-sm">
+                class="bg-[#85488F] hover:bg-purple-700 text-white px-6 py-3 text-medium transition shadow-sm">
                 + Tambah Dokumentasi
             </a>
         </div>
@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <div class="bg-white shadow-sm rounded-xl overflow-hidden border border-gray-100">
+        <div class="bg-white shadow-sm overflow-hidden border border-gray-100">
             <table class="w-full text-left border-collapse">
                 <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
