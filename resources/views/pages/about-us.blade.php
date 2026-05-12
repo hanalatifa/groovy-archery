@@ -1,4 +1,3 @@
-        {{-- About Us Section --}}
         <section class="max-w-4xl mx-auto px-20 py-20 text-center">
             <p class="text-sm font-medium text-gray-900 uppercase mb-3">Tentang Kami</p>
             <h2 class="text-4xl md:text-5xl font-semibold mb-8 text-gray-900">Groovy Archery</h2>

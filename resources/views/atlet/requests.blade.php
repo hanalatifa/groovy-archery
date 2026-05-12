@@ -1,7 +1,6 @@
 <x-layouts.admin-layout title="Permintaan Atlet Baru">
     <div class="max-w-7xl mx-auto space-y-10">
         
-        <!-- Header Section -->
         <div class="mb-8 flex items-center gap-4 bg-white p-8 rounded-3xl shadow-sm">
             <a href="{{ route('atlet.kelola') }}" class="p-2 bg-gray-100 rounded-full shadow-sm hover:bg-gray-200 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -12,7 +11,6 @@
             </div>
         </div>
 
-        <!-- Tabel Requests -->
         <div class="bg-white rounded-3xl p-8 shadow-sm border border-amber-50">
             <table class="w-full text-left">
                 <thead>
@@ -27,7 +25,6 @@
                 <tbody class="divide-y">
                     @forelse($pendingAtlets as $atlet)
                     <tr>
-                        <!-- Foto & Nama -->
                         <td class="py-5">
                             <div class="flex items-center gap-4">
                                 @if($atlet->foto)
@@ -45,7 +42,6 @@
                             </div>
                         </td>
 
-                        <!-- Kategori -->
                         <td class="py-5">
                             <div class="space-y-1">
                                 <span class="block w-fit bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs font-medium">
@@ -54,21 +50,18 @@
                             </div>
                         </td>
                         
-                         <!-- Umur -->
                         <td class="py-5">
                             <div class="space-y-1">
                                 <span class="text-sm text-gray-600 font-medium">{{ $atlet->umur }} Tahun</span>
                             </div>
                         </td>
 
-                        <!-- Deskripsi (Limit karakter biar gak kepanjangan) -->
                         <td class="py-5">
                             <p class="text-gray-500 text-sm leading-relaxed max-w-xs line-clamp-2">
                                 {{ $atlet->deskripsi ?? 'Tidak ada deskripsi.' }}
                             </p>
                         </td>
 
-                        <!-- Aksi -->
                         <td class="py-5 text-right">
                             <div class="flex justify-end gap-2">
                                 <form action="{{ route('atlet.approve', $atlet->id) }}" method="POST">

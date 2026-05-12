@@ -1,9 +1,7 @@
-    {{-- ═══════════════════════ FOOTER ═══════════════════════ --}}
     <footer class="gradient-animated text-white pt-16 pb-8 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-20 mb-14">
 
-                {{-- Brand --}}
                 <div class="col-span-2 md:col-span-1">
                     <img src="{{ asset('assets/logo.jpeg') }}" alt="Logo" class="h-16 mb-4">
                     <p class="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
@@ -21,7 +19,6 @@
                     </p>
                 </div>
 
-                {{-- About us --}}
                 <div>
                     <p class="font-bold text-xs uppercase tracking-[3px] text-white/50 mb-5">About us</p>
                     <ul class="space-y-3">
@@ -31,7 +28,6 @@
                     </ul>
                 </div>
 
-                {{-- Resources --}}
                 <div>
                     <p class="font-bold text-xs uppercase tracking-[3px] text-white/50 mb-5">Resources</p>
                     <ul class="space-y-3">
@@ -41,7 +37,6 @@
                     </ul>
                 </div>
 
-                {{-- Follow us --}}
                 <div>
                     <p class="font-bold text-xs uppercase tracking-[3px] text-white/50 mb-5">Follow us</p>
                     <ul class="space-y-3">

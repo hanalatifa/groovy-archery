@@ -1,8 +1,6 @@
-{{-- ═══════════════════════ MODAL DAFTAR ═══════════════════════ --}}
 <div class="modal-backdrop hidden opacity-0 transition-all duration-300 fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center" id="daftarModal">
     <div class="modal-daftar mx-4 bg-white dark:bg-slate-900 w-full max-w-lg rounded-2xl shadow-2xl overflow-y-auto max-h-[90vh] transition-transform duration-300 scale-95" id="modalContainer">
 
-        {{-- Header --}}
         <div class="sticky top-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md z-10 px-8 pt-8 pb-5 border-b border-gray-100 dark:border-slate-800 rounded-t-2xl">
             <div class="flex items-start justify-between">
                 <div>
@@ -18,10 +16,8 @@
             </div>
         </div>
 
-        {{-- Body Form --}}
         <div class="px-8 py-7 space-y-6">
 
-            {{-- Nama --}}
             <div>
                 <label class="block text-[10px] font-black text-gray-700 dark:text-gray-400 mb-2 uppercase tracking-widest">
                     Nama Lengkap <span class="text-red-400">*</span>
@@ -31,7 +27,6 @@
                 <p class="text-red-500 text-[10px] mt-1 hidden font-bold uppercase" id="errDaftarNama">Nama wajib diisi</p>
             </div>
 
-            {{-- Umur --}}
             <div>
                 <label class="block text-[10px] font-black text-gray-700 dark:text-gray-400 mb-2 uppercase tracking-widest">
                     Umur <span class="text-red-400">*</span>
@@ -41,7 +36,6 @@
                 <p class="text-red-500 text-[10px] mt-1 hidden font-bold uppercase" id="errDaftarUmur">Umur wajib diisi</p>
             </div>
 
-            {{-- Jenis Program --}}
             <div>
                 <label class="block text-[10px] font-black text-gray-700 dark:text-gray-400 mb-4 uppercase tracking-widest">
                     Jenis Program Latihan <span class="text-red-400">*</span>
@@ -71,13 +65,11 @@
                 </div>
             </div>
 
-{{-- Pilihan Tempat Latihan --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-3 uppercase tracking-wide">
                     Pilihan Tempat Latihan <span class="text-red-400">*</span>
                 </label>
 
-                {{-- Tab Lokasi --}}
                 <div class="flex gap-2 mb-4 flex-wrap">
                     <button type="button"
                             class="lokasi-tab active px-4 py-2 border border-gray-200 rounded-lg text-xs font-bold text-gray-600 hover:border-[#2b459a]"
@@ -96,7 +88,6 @@
                     </button>
                 </div>
 
-                {{-- Map GRTP Sunter --}}
                 <div class="lokasi-map active rounded-xl overflow-hidden border border-gray-100 shadow-sm" id="map-grtp">
                     <div class="bg-blue-50 border-b border-blue-100 px-4 py-2.5 flex items-center gap-2">
                         <svg class="w-3.5 h-3.5 text-[#2b459a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,7 +103,6 @@
                     </iframe>
                 </div>
 
-                {{-- Map BMW JIS --}}
                 <div class="lokasi-map rounded-xl overflow-hidden border border-gray-100 shadow-sm" id="map-bmw">
                     <div class="bg-blue-50 border-b border-blue-100 px-4 py-2.5 flex items-center gap-2">
                         <svg class="w-3.5 h-3.5 text-[#2b459a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,7 +118,6 @@
                     </iframe>
                 </div>
 
-                {{-- Map Yon Arhanud --}}
                 <div class="lokasi-map rounded-xl overflow-hidden border border-gray-100 shadow-sm" id="map-yon">
                     <div class="bg-blue-50 border-b border-blue-100 px-4 py-2.5 flex items-center gap-2">
                         <svg class="w-3.5 h-3.5 text-[#2b459a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -148,7 +137,6 @@
             </div>
         </div>
 
-        {{-- Footer --}}
         <div class="sticky bottom-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-gray-100 dark:border-slate-800 px-8 py-5">
             <button id="submitDaftar"
                     class="group w-full py-4 bg-[#274494] text-white font-bold text-xs uppercase tracking-[2px] rounded-xl flex items-center justify-center gap-3 hover:shadow-xl hover:shadow-green-500/20 active:scale-[0.98] transition-all">

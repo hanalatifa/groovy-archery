@@ -12,10 +12,8 @@
                 <div class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col hover:scale-[1.02]">
                     
                     @php
-                        // UI Avatar fallback
                         $avatarUrl = "https://ui-avatars.com/api/?name=" . urlencode($atlet->nama) . "&background=2b459a&color=fff&size=512";
                         
-                        // Cek file foto
                         if ($atlet->foto && Storage::disk('public')->exists('atlet/' . $atlet->foto)) {
                             $finalImageUrl = asset('storage/atlet/' . $atlet->foto);
                         } else {
@@ -35,7 +33,6 @@
                         </p>
                         
                         <div class="mt-auto pt-4 border-t border-gray-100 dark:border-slate-700">
-                            {{-- Button Modal Detail --}}
                             <button type="button" 
                                 onclick="showAthleteDetail(
                                     '{{ $atlet->nama }}',
@@ -60,7 +57,6 @@
     </div>
 </section>
 
-{{-- Pastikan SweetAlert2 sudah ter-load --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>

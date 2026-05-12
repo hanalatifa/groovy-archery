@@ -7,27 +7,24 @@ use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
 
 
-//Public Routes
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
 Route::get('/achievements', function () {return view('achievements.achievements');})->name('achievements');
-
-Route::get('/achievements', function () {
-    return view('achievements.achievements');
-})->name('achievements');
-
-Route::get('/schedule', function () {
-    return view('schedule.schedule');
-})->name('schedule');
-
-
-// User kirim testimoni
+Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
+Route::get('/schedule', function () {
+    return view('schedule');
+})->name('schedule');
+Route::get('lang/{locale}', [LanguageController::class, 'switch'])
+    ->name('lang.switch')
+    ->where('locale', '[a-z]{2}');
 
+// Auth
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -82,6 +79,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
+
+    // langsuage switcher
+    Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 });
 
 require __DIR__ . '/auth.php';

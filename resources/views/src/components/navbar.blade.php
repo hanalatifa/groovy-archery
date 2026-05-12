@@ -1,6 +1,4 @@
-{{-- ═══════════════════════ NAVBAR ═══════════════════════ --}}
 <style>
-/* ── CSS Variables ── */
 :root {
     --body-bg: #ffffff;
     --body-text: #1f2937;
@@ -36,7 +34,6 @@ body {
 }
 
 
-/* ── Nav base ── */
 #gaNav {
     background: var(--nav-bg);
     border-bottom: 1px solid var(--nav-border);
@@ -47,7 +44,6 @@ body {
 }
 
 
-/* ── Logo ── */
 .ga-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
 .ga-logo-img { height:36px; width:auto; object-fit:contain; border-radius:6px; display:block; transition:opacity 0.2s; }
 .ga-logo:hover .ga-logo-img { opacity:0.85; }
@@ -55,7 +51,6 @@ body {
 .ga-logo-sub  { font-family:'Montserrat',sans-serif; font-size:9px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--toggle-icon); display:block; margin-top:2px; transition:color 0.25s; }
 
 
-/* ── Nav links ── */
 .ga-link {
     position:relative; padding:8px 16px; font-size:14px; font-weight:500;
     color:var(--nav-text); border-radius:6px;
@@ -72,7 +67,6 @@ body {
 .ga-link:hover::after { transform:scaleX(1); }
 
 
-/* ── Dark mode toggle ── */
 .ga-toggle {
     width:36px; height:36px; border-radius:9px;
     background:var(--toggle-bg); border:1px solid var(--nav-border);
@@ -86,11 +80,9 @@ body {
 [data-theme="dark"] .icon-moon { display:none; }
 
 
-/* ── Ham lines ── */
 .ham-line { display:block; width:20px; height:2px; background:var(--nav-text); border-radius:99px; transition:all 0.3s; }
 
 
-/* ── Drawer dark mode ── */
 #menuDrawer { background:var(--drawer-bg); }
 .drawer-link { color:var(--nav-text); transition:color 0.2s, background 0.2s; }
 .drawer-link:hover { color:var(--nav-text-hover); background:var(--nav-hover-bg); }
@@ -98,7 +90,6 @@ body {
 </style>
 
 
-{{-- ── NAV ── --}}
 <nav id="gaNav" class="flex items-center justify-between px-6 md:px-10 py-4 sticky top-0 z-50 transition-colors">
     <a href="{{ url('/') }}" class="ga-logo">
         <img src="{{ asset('assets/Logo.jpeg') }}" alt="Groovy Archery" class="ga-logo-img">
@@ -138,9 +129,7 @@ body {
         <a href="{{ route('login') }}" class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold hover:bg-[#1e3278] transition-colors rounded-sm">Login as Admin</a>
     </div>
 
-     {{-- Mobile: toggle + hamburger --}}
     <div class="flex md:hidden items-center gap-2">
-        {{-- Dark mode toggle (mobile) --}}
         <button class="ga-toggle" id="themeToggleMobile" aria-label="Toggle dark mode">
             <svg class="icon-sun w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -152,7 +141,6 @@ body {
             </svg>
         </button>
 
-        {{-- Hamburger --}}
         <button id="hamburgerBtn" aria-label="Buka menu"
                 class="flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-lg
                        hover:bg-gray-100 transition-colors duration-200">
@@ -164,7 +152,6 @@ body {
 </nav>
 
 
-{{-- Mobile Drawer --}}
 <div id="mobileMenu" class="fixed inset-0 z-40 pointer-events-none md:hidden">
     <div id="menuBackdrop" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300"></div>
     <div id="menuDrawer"
@@ -172,7 +159,6 @@ body {
                 translate-x-full transition-transform duration-300 ease-out flex flex-col">
 
 
-        {{-- Header --}}
         <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
             <img src="{{ asset('assets/Logo.jpeg') }}" alt="Logo" class="h-9 object-fit-cover rounded-2">
             <button id="closeMenuBtn" aria-label="Tutup menu"
@@ -184,7 +170,6 @@ body {
         </div>
 
 
-        {{-- Links --}}
         <div class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
             <a href="{{ route('welcome') }}" class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
                 <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +200,6 @@ body {
         </div>
 
 
-        {{-- Footer --}}
         <div class="px-4 pb-8 pt-4 border-t border-gray-100">
             <a href="{{ route('login') }}"
                class="flex items-center justify-center w-full px-6 py-3.5
@@ -248,15 +232,11 @@ body {
 
     document.getElementById('themeToggleDesktop')?.addEventListener('click', toggleTheme);
     document.getElementById('themeToggleMobile')?.addEventListener('click', toggleTheme);
-    
-    
-    // ── Scroll shadow ──
 
     const nav = document.getElementById('gaNav');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 10);
     }, { passive: true });
-    // ── Hamburger ──
     const btn      = document.getElementById('hamburgerBtn');
     const closeBtn = document.getElementById('closeMenuBtn');
     const menu     = document.getElementById('mobileMenu');

@@ -1,5 +1,4 @@
 
-    {{-- Training & Coaching Section --}}
      <section class="max-w-7xl mx-auto px-6 py-24 space-y-24">
 
     <div class="grid md:grid-cols-2 gap-10 items-center">
@@ -31,8 +30,6 @@
             <img src="{{ asset('assets/champion.jpeg') }}" alt="Training" class="w-full h-auto object-cover shadow-sm">
         </div>
     </div>
-
-    {{-- <div class="border-t border-gray-100"></div> --}}
 
     <div class="grid md:grid-cols-2 gap-10 items-center">
         <div class="flex flex-col justify-center">

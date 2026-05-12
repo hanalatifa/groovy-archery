@@ -1,4 +1,3 @@
-        {{-- Visi Misi Section --}}
         <section class="text-center pb-12">
             <p class="text-sm font-medium text-black uppercase mb-3">Visi dan Misi</p>
             <h2 class="text-4xl md:text-5xl font-semibold mb-4 text-gray-900">Mengapa Kami Ada?</h2>

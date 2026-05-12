@@ -15,7 +15,6 @@
                 @method('PUT')
 
                 <div class="grid grid-cols-2 gap-8">
-                    {{-- 1. Nama Pertandingan --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Nama Pertandingan</label>
                         <input type="text" name="nama_pertandingan" 
@@ -23,7 +22,6 @@
                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
                     </div>
 
-                    {{-- 2. Kategori --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
                         <select name="kategori" class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500 bg-white">
@@ -32,21 +30,17 @@
                         </select>
                     </div>
 
-                    {{-- 3. Tanggal Pertandingan --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Pertandingan</label>
                         <input type="date" name="tgl_pertandingan" 
-                               {{-- Format Y-m-d wajib supaya muncul di input date --}}
                                value="{{ old('tgl_pertandingan', $pertandingan->tgl_pertandingan ? $pertandingan->tgl_pertandingan->format('Y-m-d') : '') }}"
                                class="w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
                     </div>
 
-                    {{-- 4. Dokumentasi (Foto) --}}
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Upload dokumentasi pertandingan</label>
                         <div class="border-2 border-dashed border-gray-300 rounded-3xl p-6 flex flex-col items-center justify-center min-h-[256px]">
                             
-                            {{-- Karena pakai $casts array, langsung foreach saja --}}
                             @if($pertandingan->dokumentasi && count($pertandingan->dokumentasi) > 0)
                                 <div class="flex flex-wrap justify-center gap-4 mb-4">
                                     @foreach($pertandingan->dokumentasi as $img)
@@ -60,7 +54,6 @@
                         </div>
                     </div>
 
-                    {{-- 5. Deskripsi --}}
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Deskripsi Pertandingan</label>
                         <textarea name="deskripsi_kegiatan" rows="5"

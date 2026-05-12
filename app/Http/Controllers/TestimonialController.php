@@ -32,7 +32,6 @@ class TestimonialController extends Controller
         $pendingTestis = Testimonial::where('status', 'pending')->latest()->get();
         $pendingCount = $pendingTestis->count();
         
-        // Kirim ke view dashboard utama
         return view('dashboard.dashboard', compact('pendingTestis', 'pendingCount'));
     }
 

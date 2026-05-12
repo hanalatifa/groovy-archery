@@ -1,4 +1,5 @@
 import './bootstrap';
+import '@fortawesome/fontawesome-free/css/all.min.css' 
 
 // ════════════════════════════════════════
 //  COUNTER ANGKA (section stats)
@@ -128,45 +129,86 @@ function showToast(msg) {
 }
 
 
-// ════════════════════════════════════════
-//  MODAL TESTIMONI
-// ════════════════════════════════════════
-const testiModal     = document.getElementById('testiModal');
-const openTestiBtn   = document.getElementById('openTestiModal');
-const closeTestiBtn  = document.getElementById('closeTestiModal');
-const cancelTestiBtn = document.getElementById('cancelTesti');
-const submitTestiBtn = document.getElementById('submitTesti');
+// ────────────────────────────────────────
+//  MODAL TESTIMONI (FIXED)
+// ────────────────────────────────────────
+const testiModal    = document.getElementById('testiModal');
+const formTestimoni = document.getElementById('formTestimoni');
 
 if (testiModal) {
-    function openTestiModal()  { testiModal.classList.add('open');    document.body.style.overflow = 'hidden'; }
-    function closeTestiModal() { testiModal.classList.remove('open'); document.body.style.overflow = ''; }
+    const openModal = () => {
+        testiModal.classList.remove('hidden');
+        // Delay kecil agar transisi opacity terlihat
+        setTimeout(() => {
+            testiModal.classList.add('flex');
+            testiModal.classList.add('opacity-100');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    };
 
-    openTestiBtn?.addEventListener('click', openTestiModal);
-    closeTestiBtn?.addEventListener('click', closeTestiModal);
-    cancelTestiBtn?.addEventListener('click', closeTestiModal);
+    const closeModal = () => {
+        testiModal.classList.remove('opacity-100');
+        testiModal.classList.add('opacity-0');
+        // Tunggu transisi (300ms) baru beri hidden
+        setTimeout(() => {
+            testiModal.classList.add('hidden');
+            testiModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }, 300);
+    };
 
-    // Tutup kalau klik area gelap
-    testiModal.addEventListener('click', e => { if (e.target === testiModal) closeTestiModal(); });
+    document.getElementById('openTestiModal')?.addEventListener('click', openModal);
+    document.getElementById('closeTestiModal')?.addEventListener('click', closeModal);
+    document.getElementById('cancelTesti')?.addEventListener('click', closeModal);
+    
+    // Klik area gelap untuk tutup
+    testiModal.addEventListener('click', e => { 
+        if (e.target === testiModal) closeModal(); 
+    });
 
-    submitTestiBtn?.addEventListener('click', () => {
-        const nama      = document.getElementById('testiNama').value.trim();
-        const rating    = document.querySelector('input[name="rating"]:checked');
-        const deskripsi = document.getElementById('testiDeskripsi').value.trim();
+    // Handle Submit via Fetch
+    document.getElementById('submitTesti')?.addEventListener('click', async () => {
+        const namaEl      = formTestimoni.querySelector('[name="nama"]');
+        const deskripsiEl = formTestimoni.querySelector('[name="deskripsi"]');
+        const ratingEl    = formTestimoni.querySelector('input[name="rating"]:checked');
 
-        document.getElementById('errNama').classList.toggle('hidden', !!nama);
-        document.getElementById('errRating').classList.toggle('hidden', !!rating);
-        document.getElementById('errDeskripsi').classList.toggle('hidden', !!deskripsi);
+        const nama      = namaEl?.value.trim() ?? '';
+        const deskripsi = deskripsiEl?.value.trim() ?? '';
 
-        if (!nama || !rating || !deskripsi) return;
+        // Validasi Error Messages
+        document.getElementById('errNama')?.classList.toggle('hidden', !!nama);
+        document.getElementById('errRating')?.classList.toggle('hidden', !!ratingEl);
+        document.getElementById('errDeskripsi')?.classList.toggle('hidden', !!deskripsi);
 
-        closeTestiModal();
+        if (!nama || !ratingEl || !deskripsi) return;
 
-        // Reset form
-        document.getElementById('testiNama').value = '';
-        document.getElementById('testiDeskripsi').value = '';
-        document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
+        const btn = document.getElementById('submitTesti');
+        const origText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Mengirim...';
 
-        showToast('Testimoni berhasil dikirim! Terima kasih 🎯');
+        try {
+            const res = await fetch(formTestimoni.action, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content ?? '',
+                    'Accept': 'application/json',
+                },
+                body: new FormData(formTestimoni),
+            });
+
+            if (!res.ok) throw new Error('Server error');
+
+            closeModal();
+            formTestimoni.reset();
+            showToast('Testimoni berhasil dikirim! Terima kasih 🎯');
+
+        } catch (err) {
+            showToast('Gagal mengirim. Silakan coba lagi.', true);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = origText;
+        }
     });
 }
 

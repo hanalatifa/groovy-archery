@@ -1,11 +1,9 @@
-{{-- ═══ LIGHTBOX ═══ --}}
 <div id="glryLightbox"
      class="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm
             opacity-0 pointer-events-none transition-opacity duration-300
             flex items-center justify-center"
      onclick="if(event.target===this) closeLightbox()">
 
-    {{-- Tombol close --}}
     <button onclick="closeLightbox()"
             class="absolute top-6 right-6 z-10 w-10 h-10 rounded-full bg-white/10 border border-white/15
                    flex items-center justify-center hover:bg-white/20 transition-colors group">
@@ -14,12 +12,10 @@
         </svg>
     </button>
 
-    {{-- Counter --}}
     <div class="absolute top-6 left-1/2 -translate-x-1/2 z-10">
         <span id="lbCounter" class="text-white/40 text-xs font-black uppercase tracking-widest"></span>
     </div>
 
-    {{-- Prev --}}
     <button onclick="lbNav(-1)"
             class="absolute left-4 md:left-8 z-10 w-12 h-12 rounded-full bg-white/8 border border-white/10
                    flex items-center justify-center hover:bg-white/20 transition-all duration-200 group">
@@ -29,7 +25,6 @@
         </svg>
     </button>
 
-    {{-- Next --}}
     <button onclick="lbNav(1)"
             class="absolute right-4 md:right-8 z-10 w-12 h-12 rounded-full bg-white/8 border border-white/10
                    flex items-center justify-center hover:bg-white/20 transition-all duration-200 group">
@@ -39,20 +34,16 @@
         </svg>
     </button>
 
-    {{-- Konten --}}
     <div class="relative max-w-5xl w-full mx-4 md:mx-20 flex flex-col items-center">
 
-        {{-- Gambar --}}
         <div class="relative w-full overflow-hidden rounded-2xl">
             <img id="lbImg" src="" alt=""
                  class="w-full max-h-[72vh] object-contain transition-all duration-400">
 
-            {{-- Shimmer loading --}}
             <div id="lbShimmer"
                  class="absolute inset-0 bg-white/5 animate-pulse rounded-2xl"></div>
         </div>
 
-        {{-- Info bawah --}}
         <div class="w-full mt-6 flex items-start justify-between gap-6">
             <div class="flex-1">
                 <div id="lbTag"
@@ -63,7 +54,6 @@
                    class="text-white/50 text-sm leading-relaxed max-w-xl font-light"></p>
             </div>
 
-            {{-- Keyboard hint --}}
             <div class="hidden md:flex items-center gap-2 shrink-0 opacity-30">
                 <kbd class="bg-white/10 border border-white/15 rounded px-2 py-1 text-[10px] font-black text-white">←</kbd>
                 <kbd class="bg-white/10 border border-white/15 rounded px-2 py-1 text-[10px] font-black text-white">→</kbd>
@@ -122,7 +112,6 @@ function renderLightbox() {
         (lbCurrent + 1) + ' / ' + lbData.length;
 }
 
-// Keyboard navigation
 document.addEventListener('keydown', e => {
     const lb = document.getElementById('glryLightbox');
     if (lb.classList.contains('opacity-0')) return;

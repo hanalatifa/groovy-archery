@@ -18,7 +18,6 @@
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    {{-- Input Judul --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Judul</label>
                         <input type="text" name="judul" value="{{ old('judul') }}"
@@ -26,7 +25,6 @@
                                placeholder="Masukkan judul kegiatan..." required>
                     </div>
 
-                    {{-- Input Kategori --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Kategori</label>
                         <select name="kategori" required
@@ -41,14 +39,12 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    {{-- Input Foto (Single) --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Masukkan Dokumentasi</label>
                         <div id="preview-container" class="relative group">
                             <input type="file" name="foto" id="foto" accept="image/*" class="sr-only" required>
                             <label for="foto" class="flex flex-col items-center justify-center w-full h-72 border-2 border-gray-300 border-dashed rounded-2xl cursor-pointer bg-gray-50 hover:bg-gray-100 hover:border-gray-400 transition overflow-hidden relative">
                                 
-                                {{-- Preview Image Tunggal --}}
                                 <img id="img-preview" class="hidden absolute inset-0 w-full h-full object-cover z-10">
                                 
                                 <div id="placeholder" class="flex flex-col items-center justify-center pt-5 pb-6 z-0">
@@ -62,7 +58,6 @@
                         </div>
                     </div>
 
-                    {{-- Input Deskripsi --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Kegiatan</label>
                         <textarea name="deskripsi" class="w-full h-72 px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition resize-none"

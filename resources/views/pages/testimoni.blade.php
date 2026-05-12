@@ -5,7 +5,6 @@
 
         <div class="relative group">
             <div class="overflow-hidden">
-                {{-- Tambahkan ID wrapper eksternal untuk hitungan presisi --}}
                 <div id="testiSlider" class="flex transition-transform duration-700 ease-in-out">
                     @foreach($approvedTestis as $testi)
                         <div class="testi-card flex-shrink-0 px-4 w-full md:w-1/3">
@@ -33,7 +32,6 @@
                 </div>
             </div>
 
-            {{-- Navigasi Panah --}}
             <button id="testiPrev" class="absolute top-1/2 -left-4 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl text-black hover:scale-110 transition z-30 hidden md:block">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
@@ -42,7 +40,6 @@
             </button>
         </div>
 
-        {{-- Dots Indikator --}}
         <div id="testiDots" class="flex justify-center gap-3 mt-12"></div>
 
         <button class="mt-20 bg-[#2b459a] text-white px-12 py-4 font-bold hover:bg-blue-900 transition shadow-lg tracking-widest uppercase text-sm">

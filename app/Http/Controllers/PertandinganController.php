@@ -9,10 +9,17 @@ use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class PertandinganController extends Controller
 {
+    public function welcome() {
+    $pertandingans = Pertandingan::latest()->take(6)->get();
+    
+    return view('welcome', compact('pertandingans'));
+    }
+
     // halaman utama
     public function index() {
-        $pertandingan = Pertandingan::latest()->get();
-        return view('pertandingan.index', compact('pertandingan'));
+    $pertandingans = Pertandingan::all();
+
+    return view('pertandingan.index', compact('pertandingans'));
     }
 
     // menampilkan form tambah data
@@ -27,7 +34,7 @@ class PertandinganController extends Controller
 
         if ($request->hasFile('dokumentasi')) {
             foreach ($request->file('dokumentasi') as $file) {
-                $path = $file->store('pertandingan', 'public');
+                $path = $file->store('pertandingans', 'public');
                 $files[] = $path;
             }
         }
@@ -41,49 +48,55 @@ class PertandinganController extends Controller
 
     // menampilkan form edit
     public function edit($id) {
-        $pertandingan = Pertandingan::findOrFail($id);
-        return view('profile.edit', compact('pertandingan'));
+        $pertandingans = Pertandingan::findOrFail($id);
+        return view('profile.edit', compact('pertandingans'));
     }
 
     // update data
     public function update(Request $request, $id) {
-        $pertandingan = Pertandingan::findOrFail($id);
+        $pertandingans = Pertandingan::findOrFail($id);
 
         $data = $request->all();
 
         if ($request->hasFile('dokumentasi')) {
-            if ($pertandingan->dokumentasi) {
-                foreach ($pertandingan->dokumentasi as $fotoLama) {
+            if ($pertandingans->dokumentasi) {
+                foreach ($pertandingans->dokumentasi as $fotoLama) {
                     FacadesStorage::disk('public')->delete($fotoLama);
                 }
             }
 
             $files = [];
             foreach ($request->file('dokumentasi') as $file) {
-                $path = $file->store('pertandingan', 'public');
+                $path = $file->store('pertandingans', 'public');
                 $files[] = $path;
             }
             $data['dokumentasi'] = $files;
         } else {
-            $data['dokumentasi'] = $pertandingan->dokumentasi;
+            $data['dokumentasi'] = $pertandingans->dokumentasi;
         }
 
-        $pertandingan->update($data);
+        $pertandingans->update($data);
 
         return redirect()->route('pertandingan.index')->with('success', 'Data pertandingan berhasil diupdate!');
     }
 
     // hapus data
     public function destroy($id) {
-        $pertandingan = Pertandingan::findOrFail($id);
+        $pertandingans = Pertandingan::findOrFail($id);
 
-        if ($pertandingan->dokumentasi) {
-            foreach ($pertandingan->dokumentasi as $foto) {
+        if ($pertandingans->dokumentasi) {
+            foreach ($pertandingans->dokumentasi as $foto) {
                 FacadesStorage::disk('public')->delete($foto);
             }
         }
 
-        $pertandingan->delete();
+        $pertandingans->delete();
         return redirect()->route('pertandingan.index')->with('success', 'Pertandingan dan dokumentasi berhasil dihapus!');
+    }
+
+    public function achievements() {
+    $pertandingans = Pertandingan::latest()->get();
+    
+    return view('achievements.achievements', compact('pertandingans'));
     }
 }
