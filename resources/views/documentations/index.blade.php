@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">Kelola Dokumentasi</h2>
             <a href="{{ url('/documentations/create') }}"
-                class="bg-purple-700 hover:bg-purple-800 text-white px-5 py-2 rounded-lg font-semibold text-sm transition shadow-sm">
+                class="bg-[#85488F] hover:bg-purple-700 text-white px-6 py-3 font-semibold text-sm transition shadow-sm">
                 + Tambah Dokumentasi
             </a>
         </div>

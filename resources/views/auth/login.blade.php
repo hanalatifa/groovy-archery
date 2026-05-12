@@ -638,7 +638,6 @@
     </div>
 
     <script>
-        // Toggle show/hide password
         const toggleBtn = document.getElementById('togglePassword');
         const passInput = document.getElementById('password');
         const eyeOpen   = document.getElementById('eyeOpen');
@@ -651,6 +650,5 @@
             eyeClosed.style.display = isPassword ? 'block'  : 'none';
         });
     </script>
-
 </body>
 </html>

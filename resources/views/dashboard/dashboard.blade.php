@@ -73,6 +73,7 @@
 
     </div>
 
+
     {{-- ══════════════════════════════════
          TABEL 2 KOLOM
          Permintaan Testimoni + Permintaan Tambah Atlet
@@ -236,6 +237,7 @@
 
     </div>
 
+
     {{-- ══════════════════════════════════
          AKTIVITAS TERKINI
          ══════════════════════════════════ --}}
@@ -293,5 +295,6 @@
         </div>
         <div class="h-6"></div>
     </div>
+
 
 </x-layouts.admin-layout>

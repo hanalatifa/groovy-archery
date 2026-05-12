@@ -14,7 +14,7 @@
             </div>
 
             <a href="{{ route('atlet.create') }}"
-               class="bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-2xl font-medium flex items-center gap-2 transition">
+               class="bg-[#85488F] hover:bg-purple-800 text-white px-6 py-3 font-medium flex items-center gap-2 transition">
                 <span class="text-xl">+</span> {{ __('dashboard.btn_tambah_atlet_baru') }}
             </a>
         </div>
@@ -73,7 +73,7 @@
             {{-- Lihat Semua --}}
             <div class="text-center mt-12">
                 <a href="#"
-                   class="bg-purple-600 text-white px-8 py-3 rounded-2xl font-medium hover:bg-purple-700 transition inline-block">
+                   class="bg-[#85488F] text-white px-8 py-3 font-medium hover:bg-purple-700 transition inline-block">
                     {{ __('dashboard.btn_lihat_semua_aktivitas') }}
                 </a>
             </div>
