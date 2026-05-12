@@ -10,8 +10,7 @@
 
             {{-- Search --}}
             <div class="relative w-80">
-                <input ... placeholder="{{ __('dashboard.search_placeholder') }}">
-                    class="w-full bg-gray-100 border border-gray-200 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-purple-500">
+                <input ... placeholder="{{ __('dashboard.search_placeholder') }}" class="w-full bg-gray-100 border border-gray-200 rounded-xl px-5 py-3 text-sm focus:outline-none focus:border-purple-500">
             </div>
 
             {{-- Language Switcher --}}
