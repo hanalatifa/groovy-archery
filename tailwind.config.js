@@ -9,6 +9,9 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
+    safelist: [
+        { pattern: /^fa-/ },
+    ],
 
     theme: {
         extend: {

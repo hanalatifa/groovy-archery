@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
 
 
-
-//Public Routes
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
@@ -22,17 +20,6 @@ Route::get('/achievements', [PertandinganController::class, 'achievements'])->na
 
 // User kirim testimoni
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
-Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
-
-Route::get('lang/{locale}', [LanguageController::class, 'switch'])
-    ->name('lang.switch')
-    ->where('locale', '[a-z]{2}');
-/*
-|--------------------------------------------------------------------------
-| 2. Protected Routes (Wajib Login)
-|--------------------------------------------------------------------------
-*/
-
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard-view', [AtletController::class, 'dashboardIndex'])->name('dashboard');
@@ -86,6 +73,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
+
+    // langsuage switcher
+    Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 });
 
 require __DIR__ . '/auth.php';

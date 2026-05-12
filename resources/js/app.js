@@ -1,4 +1,5 @@
 import './bootstrap';
+import '@fortawesome/fontawesome-free/css/all.min.css' 
 
 // ════════════════════════════════════════
 //  COUNTER ANGKA (section stats)
