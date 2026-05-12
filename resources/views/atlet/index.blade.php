@@ -20,7 +20,7 @@
         </div>
 
         {{-- ── Tabel Aktivitas ── --}}
-        <div class="bg-white rounded-3xl shadow-sm p-8">
+        <div class="bg-white shadow-sm p-8">
             <h2 class="text-xl font-semibold mb-6">{{ __('dashboard.atlet_aktivitas') }}</h2>
 
             <div class="overflow-x-auto">

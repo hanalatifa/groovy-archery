@@ -1,7 +1,7 @@
 <x-layouts.admin-layout title="Kelola Testimoni">
     <div class="max-w-7xl mx-auto space-y-10">
 
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-8 rounded-3xl shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800">Testimoni Aktif</h2>
                 <p class="text-gray-500 mt-1">Daftar testimoni yang sedang tampil di Landing Page.</p>
@@ -15,13 +15,13 @@
                         </span>
                     @endif
                 </a>
-                <button type="button" onclick="document.getElementById('testiModal').classList.remove('hidden')" class="px-6 py-3 bg-[#85488F] text-white text-sm font-bold hover:bg-[#7F4689] transition">
+                <button type="button" onclick="document.getElementById('testiModal').classList.remove('hidden')" class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
                     + Tambah Testimoni
                 </button>
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-8 shadow-sm border border-purple-50">
+        <div class="bg-white p-8 shadow-sm border border-purple-50">
             <table class="w-full text-left">
                 <thead>
                     <tr class="text-gray-400 text-xs uppercase tracking-wider border-b">

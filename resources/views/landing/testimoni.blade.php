@@ -78,7 +78,7 @@
     </div>
 
     {{-- Dots (Bulat Bulat) --}}
-    <div class="flex justify-center gap-3 mt-10" id="testiDots"></div>
+    <div class="rounded-full flex justify-center gap-3 mt-10" id="testiDots"></div>
 
     {{-- Tombol Pemicu Modal --}}
     <div class="text-center mt-12">
@@ -86,7 +86,7 @@
                 class="group inline-flex items-center gap-3 px-10 py-4
                        bg-[#2b459a] text-white text-xs font-bold uppercase tracking-[2px]
                        hover:bg-[#1e3278] transition-all shadow-[0_10px_20px_rgba(43,69,154,0.3)] 
-                       active:scale-95 rounded-full">
+                       active:scale-95">
             <span class="bg-white/20 p-1 rounded-full group-hover:rotate-90 transition-transform">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>

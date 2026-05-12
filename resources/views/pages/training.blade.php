@@ -57,7 +57,7 @@
         </div>
 
         <div>
-            <img src="{{ asset('assets/champion.jpeg') }}" alt="Coaching" class="w-full h-auto object-cover shadow-sm">
+            <img src="{{ asset('assets/piala_walikota_jakut.jpg') }}" alt="Coaching" class="w-full h-auto object-cover shadow-sm">
         </div>
     </div>
 </section>

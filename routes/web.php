@@ -18,7 +18,7 @@ Route::get('/achievements', [PertandinganController::class, 'achievements'])->na
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
 Route::get('/schedule', function () {
-    return view('schedule');
+    return view('schedule.schedule');
 })->name('schedule');
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
