@@ -31,9 +31,9 @@ class DocumentationController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'kategori' => 'required', // Tambah kategori
+            'kategori' => 'required', 
             'deskripsi' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:10240', // Validasi single image
+            'foto' => 'required|image|mimes:jpeg,png,jpg|max:10240', 
         ]);
 
         $fotoName = null;
@@ -44,9 +44,9 @@ class DocumentationController extends Controller
 
         Documentation::create([
             'judul' => $request->judul,
-            'kategori' => $request->kategori, // Simpan kategori
+            'kategori' => $request->kategori, 
             'deskripsi' => $request->deskripsi,
-            'foto' => $fotoName, // Simpan sebagai string biasa
+            'foto' => $fotoName, 
         ]);
 
         return redirect('/documentations')->with('success', 'Data berhasil ditambah!');
@@ -64,20 +64,18 @@ class DocumentationController extends Controller
 
         $request->validate([
             'judul' => 'required',
-            'kategori' => 'required', // Tambah kategori
+            'kategori' => 'required', 
             'deskripsi' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:10240', // Nullable jika tidak ingin ganti foto
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:10240', 
         ]);
 
-        $fotoName = $doc->foto; // Gunakan foto lama sebagai default
+        $fotoName = $doc->foto; 
 
         if ($request->hasFile('foto')) {
-            // Hapus fisik foto lama jika ada
             if ($doc->foto && Storage::disk('public')->exists('docs/' . $doc->foto)) {
                 Storage::disk('public')->delete('docs/' . $doc->foto);
             }
 
-            // Upload foto baru
             $path = $request->file('foto')->store('docs', 'public');
             $fotoName = basename($path);
         }
@@ -96,7 +94,6 @@ class DocumentationController extends Controller
     {
         $doc = Documentation::findOrFail($id);
 
-        // Hapus fisik foto tunggal
         if ($doc->foto && Storage::disk('public')->exists('docs/' . $doc->foto)) {
             Storage::disk('public')->delete('docs/' . $doc->foto);
         }

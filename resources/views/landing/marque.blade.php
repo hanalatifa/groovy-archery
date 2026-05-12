@@ -64,11 +64,9 @@
         .scroll-dot:nth-child(2) { animation-delay: 0.2s; }
         .scroll-dot:nth-child(3) { animation-delay: 0.4s; }
 
-        /* ── Testimoni slider ── */
         .testi-slider { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); }
         .testi-card { flex-shrink: 0; }
 
-        /* ── Popup modal ── */
         .modal-backdrop {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.5);
@@ -90,7 +88,6 @@
         }
         .modal-backdrop.open .modal-box { transform: translateY(0) scale(1); }
 
-        /* ── Star rating ── */
         .star-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 4px; }
         .star-input input { display: none; }
         .star-input label {
@@ -101,7 +98,6 @@
         .star-input label:hover ~ label,
         .star-input input:checked ~ label { color: #f59e0b; }
 
-        /* ── Toast notif ── */
         @keyframes toastIn {
             from { opacity: 0; transform: translateY(16px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -122,14 +118,12 @@
         .toast.hide { animation: toastOut 0.35s ease forwards; }
         .toast-icon { width: 20px; height: 20px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-        /* ── Dark Mode untuk Modal ── */
         [data-theme="dark"] .modal-box {
             background: #1e293b; /* slate-800 */
             color: #f1f5f9;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* ── Perbaikan Img Frame untuk Dark Mode ── */
         .img-frame::before {
             content: '';
             position: absolute;
@@ -139,22 +133,18 @@
             transition: transform 0.5s ease;
             z-index: 0;
         }
-        /* Di mode gelap, buat border frame lebih terang sedikit */
         [data-theme="dark"] .img-frame::before {
             border-color: rgba(96,165,250,0.3);
         }
 
-        /* ── Marquee Dark Mode ── */
         [data-theme="dark"] .marquee-container {
             background: #0f172a; /* slate-900 */
             border-color: rgba(255,255,255,0.05);
         }
     </style>
-        {{-- ═══════════════════════ MARQUEE ═══════════════════════ --}}
 <div class="marquee-container overflow-hidden border-y border-gray-100 dark:border-slate-800 bg-gray-50 dark:bg-slate-900/50 py-3.5 transition-colors duration-300">
     <div class="marquee-track">
         @php $words = ['Ketepatan','Disiplin','Keunggulan','Sunnah','Prestasi','Komunitas','Fokus','Dedikasi']; @endphp
-        {{-- Mengulang kata agar marquee tidak putus --}}
         @foreach(array_merge($words, $words, $words) as $word)
         <span class="flex items-center gap-5 mr-10 text-[10px] font-bold uppercase tracking-[4px] text-gray-400 dark:text-gray-500">
             {{ $word }}

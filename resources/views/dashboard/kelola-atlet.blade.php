@@ -14,13 +14,11 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100" id="tableBody">
-                    <!-- Data akan diisi oleh JavaScript -->
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- Modal Konfirmasi Hapus -->
     <div id="deleteModal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl p-8 max-w-sm w-full mx-4 text-center">
             <div class="mx-auto w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-5xl mb-6">!</div>
@@ -43,18 +41,8 @@
 </x-dashboard::admin-layout>
 
 <script>
-// // Data dummy awal
-// let atletData = [
-//     { id: 1, nama: "Zenia Karina", kategori: "Senior" },
-//     { id: 2, nama: "Althaf Kharuni", kategori: "Junior" },
-//     { id: 3, nama: "Raisa Amanda", kategori: "Senior" },
-//     { id: 4, nama: "Dimas Saputra", kategori: "Junior" },
-//     { id: 5, nama: "Sinta Dewi", kategori: "Senior" },
-// ];
-
 let currentEditId = null;
 
-// Render tabel
 function renderTable() {
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
@@ -83,7 +71,6 @@ function renderTable() {
     });
 }
 
-// === HAPUS ===
 let deleteCandidateId = null;
 
 function showDeleteModal(id) {
@@ -103,7 +90,6 @@ function confirmDelete() {
     }
 }
 
-// === EDIT ===
 function editAtlet(id) {
     const atlet = atletData.find(a => a.id === id);
     if (!atlet) return;
@@ -124,6 +110,5 @@ function editAtlet(id) {
     alert("Data berhasil diperbarui!");
 }
 
-// Render pertama kali
 renderTable();
 </script>

@@ -36,7 +36,6 @@
                     @forelse($approvedTestis as $t)
                     <tr>
                         <td class="py-5 text-gray-400 text-xs font-medium">
-                            {{-- Format: Jam.Menit AM/PM, Tanggal Bulan(Nama) Tahun --}}
                             {{ $t->created_at->format('H.i A, d F Y') }}
                             <br>
                             <span class="text-[10px] text-gray-300 italic">{{ $t->created_at->diffForHumans() }}</span>

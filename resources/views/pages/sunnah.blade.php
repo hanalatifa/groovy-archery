@@ -1,8 +1,4 @@
-    <main>
-
-
-
-        {{-- section sunnah --}}
+<main>
 <section class="max-w-7xl mx-auto px-6 py-24 font-sans bg-white overflow-hidden relative">
     <div class="relative flex justify-center items-center mb-16 mx-auto" style="max-width: fit-content;">
 
@@ -81,16 +77,8 @@
 
         <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Inisialisasi library Gradient.js
         const gradient = new Gradient();
-
-        // Panggil initGradient dengan ID canvas
-        // Library ini akan otomatis mencari variabel CSS --gradient-color-X
         gradient.initGradient('#gradient-canvas');
-
-        // Tips: Untuk mengatur kecepatan secara manual di library ini,
-        // kita bisa menggunakan interval kecil atau membiarkannya default (0.01)
-        // karena library ini sudah di-optimize untuk fluid motion.
     });
 </script>
 
@@ -99,7 +87,6 @@
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
-    /* Konfigurasi Warna untuk Gradient.js agar terbaca otomatis */
     #gradient-canvas {
         width: 100%;
         height: 100%;

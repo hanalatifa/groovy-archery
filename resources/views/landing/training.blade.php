@@ -1,4 +1,3 @@
-{{-- ═══════════════════════ TRAINING & COACHING ═══════════════════════ --}}
 <section class="max-w-7xl mx-auto px-6 py-28 space-y-28 transition-colors duration-300">
     @foreach([
         ['02','Training','Program','Pelatihan Bertahap','Program pelatihan kami dirancang untuk semua tingkatan, mulai dari pemula yang mempelajari dasar-dasar hingga atlet tingkat lanjut yang mengasah teknik bertanding. Setiap sesi dirancang untuk menghasilkan peningkatan yang terukur.','assets/training-1.jpeg',false],
@@ -15,14 +14,12 @@
             
             <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[4px] mb-3">{{ $tag }}</p>
             
-            {{-- PERBAIKAN: Ubah text-black menjadi text-gray-900 dark:text-white --}}
             <h2 class="text-4xl md:text-5xl font-bold mb-5 text-gray-900 dark:text-white leading-tight transition-colors">
                 {{ $title }}
             </h2>
             
             <div class="w-10 h-0.5 bg-[#2b459a] dark:bg-blue-500 mb-6 rounded-full"></div>
             
-            {{-- PERBAIKAN: dark:text-gray-400 --}}
             <p class="text-gray-500 dark:text-gray-400 text-base leading-relaxed mb-10 max-w-md">
                 {{ $desc }}
             </p>
@@ -41,7 +38,6 @@
                     </button>
                 </div>
                 
-                {{-- PERBAIKAN: dark:text-gray-300 dan dark:hover:text-blue-400 --}}
                 <a href="#" class="flex items-center gap-2 font-bold text-sm text-gray-900 dark:text-gray-300 hover:text-[#2b459a] dark:hover:text-blue-400 transition-colors group">
                     Details
                     <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,7 +53,6 @@
         </div>
     </div>
     
-    {{-- PERBAIKAN: Separator di Dark Mode --}}
     @if(!$reverse)<div class="border-t border-gray-100 dark:border-slate-800"></div>@endif
     @endforeach
 </section>

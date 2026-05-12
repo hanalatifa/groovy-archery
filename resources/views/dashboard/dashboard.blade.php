@@ -1,8 +1,4 @@
 <x-layouts.admin-layout title="Dashboard">
-
-    {{-- ══════════════════════════════════
-         WELCOME HEADING
-         ══════════════════════════════════ --}}
     <div class="mb-8">
         <h2 class="text-3xl font-bold text-gray-900">
             {{ __('dashboard.welcome') }},
@@ -12,12 +8,8 @@
         <p class="text-gray-400 text-sm mt-1">{{ __('dashboard.subtitle') }}</p>
     </div>
 
-    {{-- ══════════════════════════════════
-         STAT CARDS — 3 kolom
-         ══════════════════════════════════ --}}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
 
-        {{-- Total Atlet --}}
         <div class="bg-white border border-gray-100 p-6"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="flex items-center gap-2.5 mb-5">
@@ -35,7 +27,6 @@
             </p>
         </div>
 
-        {{-- Total Dokumentasi --}}
         <div class="bg-white border border-gray-100 p-6"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="flex items-center gap-2.5 mb-5">
@@ -53,7 +44,6 @@
             </p>
         </div>
 
-        {{-- Total Pertandingan --}}
         <div class="bg-white border border-gray-100 p-6"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="flex items-center gap-2.5 mb-5">
@@ -73,14 +63,8 @@
 
     </div>
 
-
-    {{-- ══════════════════════════════════
-         TABEL 2 KOLOM
-         Permintaan Testimoni + Permintaan Tambah Atlet
-         ══════════════════════════════════ --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-7">
 
-        {{-- ── Permintaan Tambah Testimoni ── --}}
         <div class="bg-white border border-gray-100 flex flex-col"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="px-7 pt-7 pb-4">
@@ -150,7 +134,6 @@
                 </table>
             </div>
 
-            {{-- Lihat Semua --}}
             <div class="px-7 py-5 mt-auto">
                 <a href="{{ route('testi.requests') }}"
                    class="flex items-center justify-center w-full py-2.5 text-sm font-semibold text-white transition-all duration-200"
@@ -160,7 +143,6 @@
             </div>
         </div>
 
-        {{-- ── Permintaan Tambah Atlet ── --}}
         <div class="bg-white border border-gray-100 flex flex-col"
              style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
             <div class="px-7 pt-7 pb-4">
@@ -237,12 +219,7 @@
 
     </div>
 
-
-    {{-- ══════════════════════════════════
-         AKTIVITAS TERKINI
-         ══════════════════════════════════ --}}
-    <div class="bg-white border border-gray-100 mb-8"
-         style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
+    <div class="bg-white border border-gray-100 mb-8" style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
         <div class="px-7 pt-7 pb-5 border-b border-gray-50">
             <h3 class="text-lg font-bold text-gray-900">{{ __('dashboard.activity_title') }}</h3>
         </div>
@@ -265,10 +242,8 @@
                         <td class="py-4 text-sm text-gray-500 whitespace-nowrap pr-6">
                             {{ $item['waktu'] ?? '-' }}
                         </td>
-                        <td class="py-4 text-sm text-gray-700 font-medium pr-6">
-                            {{ $item['aktivitas'] ?? '-' }}
-                        </td>
-                        <td class="py-4 text-right">
+                    </tr>
+                    <tr><td colspan="3" class="py-10 text-center text-sm text-gray-400 italic">Belum ada aktivitas.</td></tr>
                             @php
                                 $st = $item['status'] ?? 'pending';
                                 $stMap = [

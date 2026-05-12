@@ -1,6 +1,4 @@
 
-
-        {{-- card value --}}
         <section class="mx-auto px-6 py-20">
             <div class="text-center mb-12">
                 <p class="text-[10px] font-medium text-black uppercase mb-2">Values</p>

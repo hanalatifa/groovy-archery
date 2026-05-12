@@ -77,7 +77,6 @@
 
     @include('src.components.modal-testimoni')
 
-    {{-- Tambahkan script ini tepat di sini --}}
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('testiSlider');
@@ -94,10 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const perView = getItemsPerView();
         const maxIndex = Math.max(0, cards.length - perView);
         
-        // Mencegah index melampaui batas agar tidak ada area kosong
         if (currentIndex > maxIndex) currentIndex = maxIndex;
 
-        // Hitung geseran: 100% dibagi jumlah item yang tampil
         const offset = currentIndex * (100 / perView);
         slider.style.transform = `translateX(-${offset}%)`;
 
@@ -137,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateSlider();
     });
 
-    // Support Swipe di HP (Touch)
     let startX = 0;
     slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
     slider.addEventListener('touchend', e => {

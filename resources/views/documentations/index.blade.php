@@ -32,7 +32,6 @@
                         <tr class="hover:bg-gray-50 transition">
                             <td class="p-4 text-sm text-gray-800 font-medium">{{ $doc->judul }}</td>
                             
-                            {{-- Badge Kategori --}}
                             <td class="p-4">
                                 <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-400 border border-purple-200">
                                     {{ $doc->kategori }}
@@ -40,14 +39,12 @@
                             </td>
 
                             <td class="p-4 text-sm text-gray-600">
-                                {{-- Deskripsi dengan efek titik-titik (truncate) --}}
                                 <p class="line-clamp-2 leading-relaxed">
                                     {{ $doc->deskripsi }}
                                 </p>
                             </td>
 
                             <td class="p-4">
-                                {{-- Tampilan Single Foto --}}
                                 @if ($doc->foto)
                                     <img src="{{ asset('storage/docs/' . $doc->foto) }}"
                                         class="w-12 h-12 rounded-lg object-cover border border-gray-200 shadow-sm"
@@ -91,7 +88,6 @@
         </div>
     </div>
 
-    {{-- Modal Hapus Tetap Sama --}}
     <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full mx-4 overflow-hidden">
             <div class="p-8 text-center">

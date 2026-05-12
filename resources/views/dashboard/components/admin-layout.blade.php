@@ -20,15 +20,11 @@
 <body class="bg-gray-50">
 
     <div class="flex h-screen overflow-hidden">
-        {{-- Sidebar --}}
         <x-dashboard::admin-sidebar />
 
-        {{-- Main --}}
         <div class="flex-1 flex flex-col overflow-hidden">
-            {{-- Header --}}
             <x-dashboard::admin-header />
 
-            {{-- Content --}}
             <main class="flex-1 overflow-auto p-8">
                 {{ $slot }}
             </main>

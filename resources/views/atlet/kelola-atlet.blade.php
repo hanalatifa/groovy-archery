@@ -1,92 +1,10 @@
 <x-layouts.admin-layout title="Kelola Data Atlet">
 
-<div class="max-w-7xl mx-auto p-6">
-
-    {{-- Header --}}
-    <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">
-            Kelola Data Atlet
-        </h1>
-
-        <a href="{{ route('atlet.create') }}"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl">
-            + Tambah Atlet
-        </a>
-    </div>
-
-    {{-- Alert --}}
-    @if(session('success'))
-        <div class="mb-6 bg-green-100 text-green-700 p-4 rounded-xl">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    {{-- Table --}}
-    <div class="bg-white rounded-2xl shadow overflow-hidden">
-        <table class="w-full">
-            <thead class="bg-gray-100">
-                <tr>
-                    <th class="p-4 text-left">No</th>
-                    <th class="p-4 text-left">Nama</th>
-                    <th class="p-4 text-left">Kategori</th>
-                    <th class="p-4 text-center">Aksi</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @forelse($atlets as $index => $atlet)
-                    <tr class="border-b">
-                        <td class="p-4">
-                            {{ $index + 1 }}
-                        </td>
-
-                        <td class="p-4">
-                            {{ $atlet->nama }}
-                        </td>
-
-                        <td class="p-4">
-                            {{ $atlet->kategori }}
-                        </td>
-
-                        <td class="p-4 text-center">
-                            <a href="{{ route('atlet.edit', $atlet->id) }}"
-                               class="bg-yellow-500 text-white px-4 py-2 rounded-lg">
-                                Edit
-                            </a>
-
-                            <button
-                                onclick="openDeleteModal({{ $atlet->id }})"
-                                class="bg-red-500 text-white px-4 py-2 rounded-lg">
-                                Hapus
-                            </button>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" class="text-center p-6 text-gray-500">
-                            Belum ada data atlet.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-</div>
-
-{{-- Modal --}}
-<div id="deleteModal"
-     class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-
-    <div class="bg-white p-6 rounded-2xl w-full max-w-sm">
-        <h2 class="text-xl font-bold mb-4">
-            Hapus Atlet?
-        </h2>
-
-        <form id="deleteForm" method="POST">
-            @csrf
-            @method('DELETE')
-
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-8 rounded-3xl shadow-sm border border-gray-50">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">Atlet Aktif</h2>
+                <p class="text-gray-500 mt-1">Daftar atlet yang sudah disetujui dan tampil di website.</p>
+            </div>
             <div class="flex gap-3">
                 <button type="button"
                         onclick="closeDeleteModal()"
@@ -102,7 +20,6 @@
         </form>
     <div class="max-w-7xl mx-auto p-6 space-y-6">
 
-        {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800">
@@ -133,15 +50,12 @@
             </div>
         </div>
 
-        {{-- Alert Success --}}
         @if(session('success'))
-            <div class="p-4 rounded-2xl bg-emerald-100 text-emerald-700 border border-emerald-200">
-                {{ session('success') }}
+            <div class="p-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span class="font-medium">{{ session('success') }}</span>
             </div>
         @endif
-
-        {{-- Table --}}
-        <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
 
             <div class="overflow-x-auto">
 
@@ -200,78 +114,51 @@
                                             No Pic
                                         </div>
                                     @endif
-
-                                </td>
-
-                                {{-- Nama --}}
-                                <td class="px-6 py-4">
-
-                                    <div class="font-semibold text-gray-800">
-                                        {{ $atlet->nama }}
+                                    <div>
+                                        <div class="font-bold text-gray-900">{{ $atlet->nama }}</div>
+                                        <div class="text-[11px] text-gray-400 italic">Terdaftar {{ $atlet->created_at->diffForHumans() }}</div>
                                     </div>
+                                </div>
+                            </td>
+                            
+                            <td class="py-5">
+                                @if($atlet->kategori == 'Junior')
+                                    <span class="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-tight">
+                                        {{ $atlet->kategori }}
+                                    </span>
+                                @else
+                                    <span class="bg-purple-50 text-purple-600 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-tight">
+                                        {{ $atlet->kategori }}
+                                    </span>
+                                @endif
+                            </td>
 
-                                    <div class="text-xs text-gray-400">
-                                        Terdaftar {{ $atlet->created_at->diffForHumans() }}
-                                    </div>
-
-                                </td>
-
-                                {{-- Kategori --}}
-                                <td class="px-6 py-4">
-
-                                    @if($atlet->kategori == 'Junior')
-
-                                        <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-600 text-xs font-semibold">
-                                            {{ $atlet->kategori }}
-                                        </span>
-
-                                    @else
-
-                                        <span class="px-3 py-1 rounded-full bg-purple-100 text-purple-600 text-xs font-semibold">
-                                            {{ $atlet->kategori }}
-                                        </span>
-
-                                    @endif
-
-                                </td>
-
-                                {{-- Umur --}}
-                                <td class="px-6 py-4 text-gray-700">
+                            <td class="py-5">
+                                <span class="text-gray-600 text-[13px] font-semibold">
                                     {{ $atlet->umur }} Tahun
-                                </td>
+                                </span>
+                            </td>
 
-                                {{-- Aksi --}}
-                                <td class="px-6 py-4">
-
-                                    <div class="flex justify-center gap-2">
-
-                                        <a href="{{ route('atlet.edit', $atlet->id) }}"
-                                           class="px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-medium transition">
-                                            Edit
-                                        </a>
-
-                                        <button
-                                            type="button"
+                            <td class="py-5 text-right">
+                                <div class="flex justify-end gap-2">
+                                    <a href="{{ route('atlet.edit', $atlet->id) }}" 
+                                       class="px-4 py-2 border border-gray-200 text-gray-600 rounded-xl text-xs font-bold hover:bg-white hover:shadow-sm transition">
+                                        Edit
+                                    </a>
+                                    <button type="button" 
                                             onclick="openDeleteModal({{ $atlet->id }})"
-                                            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl text-sm font-medium transition">
-
-                                            Hapus
-                                        </button>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
+                                            class="px-4 py-2 bg-red-50 text-red-500 rounded-xl text-xs font-bold hover:bg-red-500 hover:text-white transition">
+                                        Hapus
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                         @empty
-
-                            <tr>
-                                <td colspan="6" class="px-6 py-16 text-center text-gray-400 italic">
-                                    Belum ada data atlet.
-                                </td>
-                            </tr>
-
+                        <tr>
+                            <td colspan="4" class="text-center py-24">
+                                <p class="text-gray-400 italic text-sm font-medium">Belum ada data atlet yang terdaftar.</p>
+                            </td>
+                        </tr>
                         @endforelse
 
                     </tbody>
@@ -285,30 +172,8 @@
     </div>
 </div>
 
-<script>
-    function openDeleteModal(id) {
-        const modal = document.getElementById('deleteModal');
-        const form = document.getElementById('deleteForm');
-
-        form.action = `/hapus/atlet/${id}`;
-
-        modal.classList.remove('hidden');
-    }
-
-    function closeDeleteModal() {
-        document.getElementById('deleteModal')
-            .classList.add('hidden');
-    }
-</script>
-
-</x-layouts.admin-layout>
-    {{-- Delete Modal --}}
-    <div
-        id="deleteModal"
-        class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 items-center justify-center p-4">
-
-        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden">
-
+    <div id="deleteModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
             <div class="p-8 text-center">
 
                 <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">
@@ -372,23 +237,13 @@
         }
 
         function closeDeleteModal() {
-
             const modal = document.getElementById('deleteModal');
-
+            modal.classList.add('hidden');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
 
             document.body.style.overflow = '';
         }
-
-        document.getElementById('deleteModal').addEventListener('click', function(e) {
-
-            if (e.target === this) {
-                closeDeleteModal();
-            }
-
-        });
-
     </script>
 
 </x-layouts.admin-layout>

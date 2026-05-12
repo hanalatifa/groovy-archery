@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login — Groovy Archery Admin</title>
 
-    {{-- ── Init tema sebelum render — hindari flash, key sama dengan welcome.blade.php ── --}}
     <script>
         (function() {
             const savedTheme = localStorage.getItem('ga-theme');
@@ -28,7 +27,6 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* ── CSS Variables — light & dark ── */
         :root {
             --login-body-bg:       #f8fafc;
             --login-panel-bg:      #ffffff;
@@ -59,7 +57,6 @@
             --login-session-bg:    rgba(34,197,94,0.08);
             --login-session-border:rgba(34,197,94,0.2);
             --login-session-text:  #16a34a;
-            /* Visual panel */
             --login-visual-ring-1: rgba(43,69,154,0.08);
             --login-visual-ring-2: rgba(43,69,154,0.12);
             --login-visual-ring-3: rgba(43,69,154,0.2);
@@ -107,7 +104,6 @@
             --login-session-bg:    rgba(34,197,94,0.1);
             --login-session-border:rgba(34,197,94,0.2);
             --login-session-text:  #4ade80;
-            /* Visual panel */
             --login-visual-ring-1: rgba(255,255,255,0.04);
             --login-visual-ring-2: rgba(255,255,255,0.06);
             --login-visual-ring-3: rgba(43,69,154,0.25);
@@ -134,9 +130,6 @@
             transition: background 0.3s ease;
         }
 
-        /* ════════════════════════════════
-           LEFT PANEL — Visual
-        ════════════════════════════════ */
         .login-visual {
             flex: 1;
             position: relative;
@@ -246,9 +239,6 @@
             100% { transform:translateY(-100px) translateX(30px); opacity:0; }
         }
 
-        /* ════════════════════════════════
-           RIGHT PANEL — Form
-        ════════════════════════════════ */
         .login-form-panel {
             width:100%; max-width:520px; min-height:100vh;
             display:flex; flex-direction:column; justify-content:center;
@@ -510,7 +500,6 @@
         </div>
     </div>
 
-    {{-- ═══════════════════ RIGHT — Form Panel ═══════════════════ --}}
     <div class="login-form-panel">
 
         <div class="form-logo anim-1">
@@ -541,8 +530,6 @@
 
         <form method="POST" action="{{ route('login') }}" style="position:relative; z-index:1;">
             @csrf
-
-            {{-- Email --}}
             <div class="input-group anim-3">
                 <label for="email" class="input-label">Email</label>
                 <div class="input-wrap">
@@ -566,7 +553,6 @@
                 @enderror
             </div>
 
-            {{-- Password --}}
             <div class="input-group anim-4">
                 <label for="password" class="input-label">Password</label>
                 <div class="input-wrap">
@@ -602,7 +588,6 @@
                 @enderror
             </div>
 
-            {{-- Remember + Forgot --}}
             <div class="form-footer-row anim-5">
                 <label class="remember-label">
                     <input type="checkbox" id="remember_me" name="remember" class="remember-checkbox">
@@ -613,7 +598,6 @@
                 @endif
             </div>
 
-            {{-- Submit --}}
             <button type="submit" class="login-btn anim-6">
                 <span>
                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -1,4 +1,3 @@
-        {{-- ═══════════════════════ STATS ═══════════════════════ --}}
         <section class="relative py-28 overflow-hidden gradient-animated">
             <div class="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none"
                  style="background: radial-gradient(circle, rgba(255,255,255,0.07), transparent); transform: translate(25%,-25%);"></div>

@@ -1,4 +1,3 @@
-{{-- ═══════════════════════ CONTACT + MAP ═══════════════════════ --}}
 <section class="max-w-7xl mx-auto px-6 py-24 transition-colors duration-300" id="contact">
     <div class="mb-10">
         <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Connect</p>
@@ -10,7 +9,6 @@
 
     <div class="grid md:grid-cols-2 gap-12 items-stretch">
 
-        {{-- Kontak Info --}}
         <div class="space-y-8">
 
             <div class="flex items-start gap-4 group">
@@ -60,14 +58,12 @@
             </div>
         </div>
 
-        {{-- MAP (PERBAIKAN URL) --}}
         <div class="rounded-sm overflow-hidden shadow-lg border border-gray-100 dark:border-slate-800 h-72 md:h-full min-h-[320px]">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.1123!2d106.8856!3d-6.1154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1fa415a77f97%3A0x6b4a3a60a0a5a5a5!2sJl.%20Kebon%20Bawang%20XI%20No.63!5e0!3m2!1sid!2sid!4v1700000000000"
                 width="100%" height="100%"
                 style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                {{-- Tambahkan filter grayscale jika di dark mode (opsional) --}}
                 class="dark:opacity-80 dark:contrast-125">
             </iframe>
         </div>

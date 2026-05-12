@@ -16,15 +16,11 @@
 <body class="bg-[#F4F5F9]">
 
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar -->
         <x-layouts.admin-sidebar />
 
-        <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Header / Topbar -->
             <x-layouts.admin-header />
 
-            <!-- Page Content -->
             <main class="flex-1 overflow-auto p-8">
                 {{ $slot }}
             </main>

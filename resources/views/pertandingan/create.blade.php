@@ -23,8 +23,6 @@
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-                    {{-- Nama Pertandingan --}}
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             {{ __('dashboard.pertandingan_nama') }}
@@ -35,7 +33,6 @@
                                required>
                     </div>
 
-                    {{-- Kategori --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             {{ __('dashboard.pertandingan_kategori') }}
@@ -49,7 +46,6 @@
                         </select>
                     </div>
 
-                    {{-- Tanggal Pertandingan --}}
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             {{ __('dashboard.pertandingan_tgl') }}
@@ -59,7 +55,6 @@
                                required>
                     </div>
 
-                    {{-- Upload Dokumentasi --}}
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             {{ __('dashboard.pertandingan_dokumentasi') }}
@@ -72,7 +67,6 @@
                         <p class="text-xs text-gray-500 mt-1">{{ __('dashboard.pertandingan_dokumentasi_hint') }}</p>
                     </div>
 
-                    {{-- Deskripsi --}}
                     <div class="md:col-span-2">
                         <label class="block text-sm font-semibold text-gray-700 mb-2">
                             {{ __('dashboard.pertandingan_deskripsi') }}

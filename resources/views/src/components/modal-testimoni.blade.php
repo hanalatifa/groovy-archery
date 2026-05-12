@@ -1,8 +1,6 @@
-{{-- ═══════════════════════ MODAL TESTIMONI ═══════════════════════ --}}
 <div class="modal-backdrop" id="testiModal">
     <div class="modal-box">
 
-        {{-- Header --}}
         <div class="flex items-center justify-between mb-6">
             <div>
                 <h3 class="text-lg font-bold text-gray-900">Beri Testimoni</h3>
@@ -17,10 +15,8 @@
             </button>
         </div>
 
-        {{-- Form --}}
         <div class="space-y-5">
 
-            {{-- Nama --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Nama</label>
                 <input type="text" id="testiNama" placeholder="Masukkan nama kamu"
@@ -29,7 +25,6 @@
                 <p class="text-red-500 text-xs mt-1 hidden" id="errNama">Nama wajib diisi</p>
             </div>
 
-            {{-- Bintang --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Rating</label>
                 <div class="star-input" id="starInput">
@@ -41,7 +36,6 @@
                 <p class="text-red-500 text-xs mt-1 hidden" id="errRating">Pilih rating terlebih dahulu</p>
             </div>
 
-            {{-- Deskripsi --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase tracking-wide">Deskripsi</label>
                 <textarea id="testiDeskripsi" rows="4" placeholder="Ceritakan pengalaman kamu..."
@@ -53,7 +47,6 @@
 
         </div>
 
-        {{-- Tombol --}}
         <div class="mt-6 flex gap-3">
             <button id="submitTesti"
                     class="flex-1 py-3 bg-[#2b459a] text-white font-bold text-sm uppercase tracking-wide
@@ -71,7 +64,6 @@
 </div>
 
 <style>
-     /* Toast */
     @keyframes toastIn {
         from { opacity: 0; transform: translateY(16px); }
         to   { opacity: 1; transform: translateY(0); }
@@ -98,7 +90,6 @@
     }
 </style>
 <script>
-     // Toast notifikasi
         const toast = document.createElement('div');
         toast.className = 'toast-notif';
         toast.innerHTML = `

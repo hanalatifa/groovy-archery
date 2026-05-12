@@ -16,7 +16,6 @@
 
             <div class="achievement-card group bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-sm overflow-hidden hover:shadow-2xl dark:hover:shadow-blue-900/20 transition-all duration-500 flex flex-col hover:-translate-y-2 {{ $index >= 6 ? 'hidden' : '' }}">
                 
-                {{-- Image container --}}
                 <div class="relative h-60 overflow-hidden">
                     <img src="{{ $fotoUrl }}" alt="{{ $pertandingan->nama_pertandingan }}" 
                          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -58,7 +57,6 @@
         @endforelse
     </div>
 
-    {{-- Button See All --}}
     <div class="text-center mt-16" id="see-all-wrapper">
         <button onclick="showAllAchievements()" 
                 class="inline-flex items-center gap-2 px-10 py-4 border-2 border-gray-200 dark:border-slate-700 text-gray-900 dark:text-white font-bold text-xs uppercase tracking-[2px] hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300">

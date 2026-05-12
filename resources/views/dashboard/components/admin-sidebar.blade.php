@@ -1,6 +1,5 @@
 <aside class="w-72 bg-white border-r border-gray-100 h-screen flex flex-col">
 
-    {{-- ── Logo ── --}}
     <div class="px-6 pt-7 pb-5 border-b border-gray-100">
         <div class="flex items-center gap-3">
             <img src="{{ asset('assets/Logo.jpeg') }}"
@@ -12,7 +11,6 @@
         </div>
     </div>
 
-    {{-- ── User Profile ── --}}
     <div class="px-6 py-5 border-b border-gray-100">
         <div class="flex items-center gap-3">
             @if(file_exists(public_path('assets/profile.jpg')))
@@ -33,14 +31,8 @@
         </div>
     </div>
 
-    <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
-    </svg>
-
-    {{-- ── Navigation ── --}}
     <nav class="flex-1 px-4 py-5 overflow-y-auto space-y-0.5">
 
-        {{-- Dashboard --}}
         @php $active = request()->routeIs('dashboard'); @endphp
         <a href="{{ route('dashboard') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
@@ -51,7 +43,6 @@
             Dashboard
         </a>
 
-        {{-- Tambah Atlet --}}
         @php $active = request()->routeIs('atlet.create'); @endphp
         <a href="{{ route('atlet.create') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
@@ -65,7 +56,6 @@
             {{ __('dashboard.nav_tambah_atlet') }}
         </a>
 
-        {{-- Kelola Atlet --}}
         @php $active = request()->routeIs('atlet.index', 'atlet.edit', 'atlet.kelola'); @endphp
         <a href="{{ route('atlet.index') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
@@ -79,7 +69,6 @@
             {{ __('dashboard.nav_kelola_atlet') }}
         </a>
 
-        {{-- Kelola Pertandingan --}}
         @php $active = request()->routeIs('pertandingan.*'); @endphp
         <a href="{{ route('pertandingan.index') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
@@ -93,7 +82,6 @@
             {{ __('dashboard.nav_kelola_pertandingan') }}
         </a>
 
-        {{-- Kelola Dokumentasi --}}
         @php $active = request()->routeIs('documentations.*'); @endphp
         <a href="{{ route('documentations.index') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
@@ -107,7 +95,6 @@
             {{ __('dashboard.nav_kelola_dokumentasi') }}
         </a>
 
-        {{-- Kelola Testimoni --}}
         @php $active = request()->routeIs('testi.*'); @endphp
         <a href="{{ route('testi.index') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
@@ -123,7 +110,6 @@
 
     </nav>
 
-    {{-- ── Logout ── --}}
     <div class="px-4 py-5 border-t border-gray-100">
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

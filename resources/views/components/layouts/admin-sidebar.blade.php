@@ -1,6 +1,5 @@
 <aside class="w-72 bg-white border-r border-gray-200 h-screen flex flex-col">
 
-    {{-- ── Logo ── --}}
     <div class="px-6 pt-8 pb-6 border-b border-gray-100">
         <div class="flex items-center gap-3">
             <img src="{{ asset('assets/Logo.jpeg') }}" class="h-12 w-12 object-contain" alt="Groovy Archery Logo">
@@ -11,7 +10,6 @@
         </div>
     </div>
 
-    {{-- ── User info ── --}}
     <div class="px-6 py-5 border-b border-gray-100">
         <div class="flex items-center gap-3">
             <img src="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=6B21A5&color=fff"
@@ -24,11 +22,9 @@
         </div>
     </div>
 
-    {{-- ── Navigation ── --}}
     <nav class="flex-1 px-3 py-6 overflow-y-auto">
         <ul class="space-y-1">
 
-            {{-- Dashboard --}}
             <li>
                 <a href="{{ route('dashboard') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
@@ -38,7 +34,6 @@
                 </a>
             </li>
 
-            {{-- Tambah Atlet --}}
             <li>
                 <a href="{{ route('atlet.index') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
@@ -48,7 +43,6 @@
                 </a>
             </li>
 
-            {{-- Kelola Atlet --}}
             <li>
                 <a href="{{ route('atlet.kelola') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
@@ -58,7 +52,6 @@
                 </a>
             </li>
 
-            {{-- Kelola Pertandingan --}}
             <li>
                 <a href="{{ route('pertandingan.index') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
@@ -68,7 +61,6 @@
                 </a>
             </li>
 
-            {{-- Kelola Dokumentasi --}}
             <li>
                 <a href="{{ route('documentations.index') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
@@ -78,7 +70,6 @@
                 </a>
             </li>
 
-            {{-- Kelola Testimoni --}}
             <li>
                 <a href="{{ route('testi.index') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
@@ -91,7 +82,6 @@
         </ul>
     </nav>
 
-    {{-- ── Logout ── --}}
     <div class="p-6 border-t border-gray-100 mt-auto">
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

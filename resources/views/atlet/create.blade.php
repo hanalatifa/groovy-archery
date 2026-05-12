@@ -2,7 +2,6 @@
 
     <div class="p-6 max-w-5xl mx-auto">
 
-        {{-- ── Kembali ── --}}
         <div class="mb-8">
             <a href="{{ route('atlet.kelola') }}"
                class="text-purple-600 hover:text-purple-700 flex items-center gap-2 font-medium">
@@ -16,7 +15,6 @@
 
         <div class="bg-white rounded-3xl shadow-sm p-10">
 
-            {{-- Validation Errors --}}
             @if ($errors->any())
                 <div class="bg-red-50 border border-red-200 text-red-700 p-4 rounded-2xl mb-6">
                     <ul class="list-disc list-inside text-sm">
@@ -32,7 +30,6 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
 
-                    {{-- Nama Atlet --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             {{ __('dashboard.atlet_nama') }}
@@ -43,7 +40,6 @@
                                required>
                     </div>
 
-                    {{-- Umur --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             {{ __('dashboard.atlet_umur') }}
@@ -54,7 +50,6 @@
                                min="10" max="60" required>
                     </div>
 
-                    {{-- Tanggal Bergabung --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             {{ __('dashboard.atlet_tgl_bergabung') }}
@@ -64,7 +59,6 @@
                                required>
                     </div>
 
-                    {{-- Kategori --}}
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             {{ __('dashboard.atlet_kategori') }}
@@ -78,7 +72,6 @@
                         </select>
                     </div>
 
-                    {{-- Upload Foto --}}
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-3">
                             {{ __('dashboard.atlet_foto') }}
@@ -103,7 +96,6 @@
                         </div>
                     </div>
 
-                    {{-- Deskripsi Atlet --}}
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             {{ __('dashboard.atlet_deskripsi') }}
@@ -115,7 +107,6 @@
 
                 </div>
 
-                {{-- Tombol --}}
                 <div class="flex justify-end gap-4 mt-12">
                     <a href="{{ route('atlet.index') }}"
                        class="px-10 py-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-2xl transition">

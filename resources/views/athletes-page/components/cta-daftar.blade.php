@@ -1,4 +1,3 @@
-{{-- ═══════════════════════ CTA REQUEST ATLET ═══════════════════════ --}}
 <section class="py-24 px-6 text-center border-t border-gray-100 dark:border-slate-800 transition-colors duration-300">
     <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Request</p>
     
@@ -13,7 +12,6 @@
         <p class="text-[10px] text-gray-400 dark:text-gray-500 tracking-wide">Hubungi coach kami</p>
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-            {{-- Tombol Request --}}
             <button onclick="openRequestModal()"
                     class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#2b459a] dark:bg-blue-600 
                            text-white font-bold text-sm hover:bg-[#1e3278] dark:hover:bg-blue-700 
@@ -34,7 +32,6 @@
     </div>
 </section>
 
-{{-- ═══════════════════════ MODAL REQUEST ═══════════════════════ --}}
 <div class="modal-backdrop" id="requestModal">
     <div class="modal-request mx-4">
         <div class="sticky top-0 bg-white z-10 px-8 pt-8 pb-5 border-b border-gray-100 rounded-t-2xl">
@@ -50,25 +47,20 @@
         </div>
 
         <div class="px-8 py-7 space-y-5">
-            {{-- Foto --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Foto Atlet *</label>
                 
                 <div class="relative group w-24 h-24">
-                    {{-- Input disembunyikan total --}}
                     <input type="file" id="reqFoto" accept="image/*" class="hidden">
                     
-                    {{-- Label ini yang bertindak sebagai tombol klik --}}
                     <label for="reqFoto" 
                            id="photoPreview" 
                            class="w-24 h-24 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl 
                                   flex items-center justify-center overflow-hidden cursor-pointer 
                                   hover:bg-gray-100 hover:border-[#2b459a] transition-all relative">
                         
-                        {{-- Image Preview (Muncul kalau sudah pilih foto) --}}
                         <img id="img-preview" class="hidden absolute inset-0 w-full h-full object-cover">
             
-                        {{-- Teks/Icon Placeholder --}}
                         <div id="placeholder-text" class="text-center p-2">
                             <svg class="w-6 h-6 mx-auto text-gray-300 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -81,7 +73,6 @@
                 <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqFoto">Foto wajib diunggah</p>
             </div>
 
-            {{-- Nama & Umur --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Nama Lengkap *</label>
@@ -95,7 +86,6 @@
                 </div>
             </div>
 
-            {{-- Kategori --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-3 uppercase">Kategori *</label>
                 <div class="grid grid-cols-2 gap-3">
@@ -114,7 +104,6 @@
                 <p class="text-red-500 text-[10px] mt-2 hidden" id="errReqKategori">Pilih kategori</p>
             </div>
 
-            {{-- Deskripsi --}}
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Deskripsi *</label>
                 <textarea id="reqDeskripsi" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm resize-none" placeholder="Prestasi atau info singkat..."></textarea>
@@ -151,19 +140,16 @@
 </style>
 
 <script>
-    // Fungsi Buka Modal
 function openRequestModal() {
     document.getElementById('requestModal').classList.add('open');
     document.body.style.overflow = 'hidden';
 }
 
-// Fungsi Tutup Modal
 function closeRequestModal() {
     const modal = document.getElementById('requestModal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
     
-    // RESET FORM SETIAP KALI TUTUP (Biar bisa input lagi tanpa limit)
     resetFormAtlet();
 }
 
@@ -172,22 +158,18 @@ function resetFormAtlet() {
     document.getElementById('reqUmur').value = '';
     document.getElementById('reqDeskripsi').value = '';
     
-    // Reset Input File
     const fileInput = document.getElementById('reqFoto');
     fileInput.value = ''; 
     
-    // Reset Preview Gambar & Munculkan Placeholder lagi
     const preview = document.getElementById('img-preview');
     const placeholder = document.getElementById('placeholder');
     preview.src = '';
     preview.classList.add('hidden');
     placeholder.classList.remove('hidden');
     
-    // Sembunyikan semua pesan error
     document.querySelectorAll('[id^="errReq"]').forEach(el => el.classList.add('hidden'));
 }
 
-// Preview Foto
 document.getElementById('reqFoto').addEventListener('change', function(e) {
     const file = e.target.files[0];
     const preview = document.getElementById('img-preview');
@@ -203,7 +185,6 @@ document.getElementById('reqFoto').addEventListener('change', function(e) {
     }
 });
 
-// Submit Logic
 document.getElementById('submitRequest').addEventListener('click', async function(e) {
         e.preventDefault();
         const btn = this;
@@ -214,7 +195,6 @@ document.getElementById('submitRequest').addEventListener('click', async functio
         const deskripsi = document.getElementById('reqDeskripsi').value.trim();
         const foto = fotoInput.files[0];
 
-        // Validasi Visual Frontend
         document.getElementById('errReqNama').classList.toggle('hidden', !!nama);
         document.getElementById('errReqUmur').classList.toggle('hidden', !!umur);
         document.getElementById('errReqDeskripsi').classList.toggle('hidden', !!deskripsi);
@@ -244,7 +224,6 @@ document.getElementById('submitRequest').addEventListener('click', async functio
             if (response.ok && result.success) {
                 alert('Request Berhasil Dikirim!');
                 
-                // Reset Form
                 document.getElementById('reqNama').value = '';
                 document.getElementById('reqUmur').value = '';
                 document.getElementById('reqDeskripsi').value = '';
@@ -256,10 +235,8 @@ document.getElementById('submitRequest').addEventListener('click', async functio
 
                 closeRequestModal();
             } else {
-                // Tampilkan pesan error detail dari Laravel
                 let errorMsg = '';
                 if (result.errors) {
-                    // Gabungin semua pesan error validasi
                     errorMsg = Object.values(result.errors).flat().join('\n');
                 } else {
                     errorMsg = result.error || 'Terjadi kesalahan tidak diketahui';

@@ -1,24 +1,18 @@
-{{-- ═══════════════════════ HERO ═══════════════════════ --}}
 <section class="relative min-h-screen overflow-hidden">
 
-    {{-- Background image dengan overlay --}}
     <div class="absolute inset-0 z-0">
         <img src="{{ asset('assets/athletesimage.png') }}" alt="Komunitas Pemanah"
              class="w-full h-full object-cover object-center hero-img">
-        {{-- Overlay gradient: gelap di kiri, transparan di kanan --}}
         <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
     </div>
 
-    {{-- Garis dekorasi vertikal --}}
     <div class="absolute top-0 left-[10%] w-px h-full bg-white/5 z-10"></div>
     <div class="absolute top-0 left-[33%] w-px h-full bg-white/5 z-10"></div>
 
-    {{-- Konten utama --}}
     <div class="relative z-20 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
         <div class="max-w-2xl py-32">
 
-            {{-- Badge --}}
             <div class="hero-fade flex items-center gap-3 mb-10">
                 <div class="flex -space-x-1">
                     <div class="w-2 h-2 rounded-full bg-[#DA4139]"></div>
@@ -30,7 +24,6 @@
                 </span>
             </div>
 
-            {{-- Heading --}}
             <h1 class="hero-fade hero-delay-1 font-extrabold leading-[1.05] text-white mb-8"
                 style="font-size: clamp(2.5rem, 6vw, 5rem);">
                 Gallery<br>
@@ -43,12 +36,10 @@
                 Archery
             </h1>
 
-            {{-- Deskripsi --}}
             <p class="hero-fade hero-delay-2 text-gray-300 text-base md:text-lg leading-relaxed font-light max-w-xl mb-12">
                 Jelajahi momen-momen berharga dari latihan, kompetisi, dan kegiatan komunitas kami. Setiap foto adalah cerita tentang semangat, persahabatan, dan kecintaan pada panahan.
             </p>
 
-            {{-- CTA Buttons --}}
             <div class="hero-fade hero-delay-3 flex flex-wrap items-center gap-4">
                 <button onclick="openDaftarModal()"
                         class="group relative inline-flex items-center gap-3 px-8 py-4
@@ -74,7 +65,6 @@
                 </a>
             </div>
 
-            {{-- Stats kecil di bawah --}}
             <div class="hero-fade hero-delay-4 flex flex-wrap gap-10 mt-16 pt-10 border-t border-white/10">
                 @foreach([['3', 'Lokasi Latihan'], ['9', 'Tahun Berdiri'], ['100+', 'Atlet Aktif']] as [$num, $label])
                 <div>
@@ -87,7 +77,6 @@
         </div>
     </div>
 
-    {{-- Scroll indicator --}}
     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 hero-fade hero-delay-4">
         <span class="text-[10px] text-gray-400 uppercase tracking-widest">Scroll</span>
         <div class="w-px h-12 bg-gradient-to-b from-gray-400 to-transparent scroll-line"></div>

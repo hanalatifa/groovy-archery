@@ -2,7 +2,6 @@
 
     <div class="p-6">
 
-        {{-- ── Header ── --}}
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-semibold text-gray-800">
                 {{ __('dashboard.pertandingan_title') }}
@@ -13,14 +12,12 @@
             </a>
         </div>
 
-        {{-- ── Flash Message ── --}}
         @if (session('success'))
             <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-6 border border-green-200">
                 {{ session('success') }}
             </div>
         @endif
 
-        {{-- ── Tabel ── --}}
         <div class="bg-white shadow-sm rounded-xl overflow-hidden border border-gray-100">
             <table class="w-full text-left border-collapse">
                 <thead class="bg-gray-50 border-b border-gray-200">
@@ -73,7 +70,6 @@
         </div>
     </div>
 
-    {{-- ── Modal Konfirmasi Hapus ── --}}
     <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full mx-4 overflow-hidden">
             <div class="p-8 text-center">
@@ -92,12 +88,10 @@
                 </p>
 
                 <div class="flex gap-3">
-                    {{-- Tombol Batal --}}
                     <button type="button" onclick="hideDeleteModal()"
                             class="flex-1 py-3.5 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-2xl transition">
                         {{ __('dashboard.btn_batal') }}
                     </button>
-                    {{-- Tombol Hapus --}}
                     <form id="deleteForm" method="POST" class="flex-1">
                         @csrf
                         @method('DELETE')
@@ -114,7 +108,8 @@
     <script>
         function showDeleteModal(id) {
             const form = document.getElementById('deleteForm');
-            form.action = '/hapus/pertandingan/' + id;
+            form.action = "/hapus/atlet/{id}" + id; 
+
             document.getElementById('deleteModal').classList.remove('hidden');
             document.getElementById('deleteModal').classList.add('flex');
         }
@@ -125,8 +120,7 @@
             modal.classList.remove('flex');
         }
 
-        // Close modal when clicking background
-        document.getElementById('deleteModal').addEventListener('click', function (e) {
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
             if (e.target === this) hideDeleteModal();
         });
     </script>
