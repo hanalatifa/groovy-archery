@@ -44,7 +44,7 @@
                                     <img src="{{ asset('storage/atlet/' . $atlet->foto) }}" class="w-full h-full object-cover" alt="Foto Saat Ini">
                                 </div>
                             @endif
-                            <input type="file" name="foto" 
+                            <input type="file" name="foto"
                                    class="flex-1 w-full px-5 py-4 border border-gray-200 rounded-2xl focus:outline-none focus:border-purple-500">
                         </div>
                     </div>
