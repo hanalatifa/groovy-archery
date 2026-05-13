@@ -1,5 +1,4 @@
-<style>
-/* ── Dashboard Header CSS Variables (ikut sistem navbar) ── */
+{{-- <style>
 :root {
     --header-bg:          #F4F5F9;
     --header-border:      rgba(0,0,0,0.07);
@@ -73,7 +72,6 @@
     filter: brightness(0.95);
 }
 
-/* Icon sun/moon ikut data-theme */
 #admin-theme-toggle .icon-sun  { display: none; }
 #admin-theme-toggle .icon-moon { display: block; }
 [data-theme="dark"] #admin-theme-toggle .icon-sun  { display: block; }
@@ -82,29 +80,8 @@
 
 <header id="admin-header" class="h-[90px] px-8 flex items-center justify-between">
 
-    <div class="relative">
-        <div class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35" />
-                <circle cx="11" cy="11" r="6" />
-            </svg>
-        </div>
-        <input
-            type="text"
-            placeholder="Search..."
-            class="
-                w-[700px] h-[56px]
-                border pl-14 pr-5
-                text-sm
-                shadow-[0_4px_14px_rgba(0,0,0,0.05)]
-                transition-all
-            ">
-    </div>
+    <div class="flex items-end gap-4">
 
-    <div class="flex items-center gap-4">
-
-        {{-- LANGUAGE SWITCHER --}}
         <div class="admin-lang-wrap flex items-center p-1 border rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
             @foreach (['id', 'en'] as $lang)
                 @php $isActive = app()->getLocale() === $lang; @endphp
@@ -123,18 +100,15 @@
             @endforeach
         </div>
 
-        {{-- DARKMODE --}}
         <button id="admin-theme-toggle"
             class="w-[44px] h-[44px] flex items-center justify-center border rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
 
-            {{-- SUN : muncul saat dark mode --}}
             <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4"></circle>
                 <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
             </svg>
 
-            {{-- MOON : muncul saat light mode --}}
             <svg class="icon-moon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
@@ -146,7 +120,6 @@
 
 <script>
 (function () {
-    // Pakai key yang sama dengan navbar: 'ga-theme'
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('ga-theme', theme);
@@ -159,4 +132,4 @@
 
     document.getElementById('admin-theme-toggle')?.addEventListener('click', toggleTheme);
 })();
-</script>
+</script> --}}

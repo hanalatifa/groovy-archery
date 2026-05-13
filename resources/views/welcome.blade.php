@@ -76,8 +76,6 @@
     @include('src.components.modal-daftar')
     @include('src.components.modal-testimoni')
 
-    @include('src.components.modal-testimoni')
-
     <script>
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('testiSlider');
@@ -120,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex < cards.length - perView) {
             currentIndex++;
         } else {
-            currentIndex = 0; // Balik ke awal
+            currentIndex = 0;
         }
         updateSlider();
     });
@@ -130,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex > 0) {
             currentIndex--;
         } else {
-            currentIndex = Math.max(0, cards.length - perView); // Lompat ke akhir
+            currentIndex = Math.max(0, cards.length - perView);
         }
         updateSlider();
     });

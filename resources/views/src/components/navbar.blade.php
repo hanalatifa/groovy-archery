@@ -197,9 +197,9 @@
 
     {{-- DESKTOP NAV --}}
     <div class="hidden md:flex items-center gap-1">
-        <a href="{{ route('welcome') }}" class="ga-link">Home</a>
-        <a href="{{ route('athletes') }}" class="ga-link">Athletes</a>
-        <a href="{{ route('achievements') }}" class="ga-link">Achievement</a>
+        <a href="{{ route('welcome') }}" class="ga-link">Beranda</a>
+        <a href="{{ route('athletes') }}" class="ga-link">Atlet</a>
+        <a href="{{ route('achievements') }}" class="ga-link">Pencapaian</a>
 
         <div class="relative group">
             <button class="ga-link flex items-center gap-1">
@@ -247,7 +247,7 @@
 
         <a href="{{ route('login') }}"
             class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold hover:bg-[#1e3278] transition-colors rounded-sm">Login
-            as Admin</a>
+            sebagai Admin</a>
     </div>
 
     {{-- MOBILE TOP BAR --}}
