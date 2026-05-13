@@ -42,4 +42,61 @@ return [
 
     'default_desc' => 'Belum ada deskripsi.',
     'default_athlete_desc' => 'Atlet berbakat club kami.',
+
+    /*
+|--------------------------------------------------------------------------
+| ATHLETE REQUEST
+|--------------------------------------------------------------------------
+*/
+
+'request_label' => 'Request',
+
+'request_title' => 'Namamu belum tercantum?',
+
+'request_desc' => 'Sudah bergabung dalam club tapi namamu belum tercantum? Request kepada admin untuk segera ditambahkan!',
+
+'request_contact' => 'Hubungi coach kami',
+
+'request_button' => 'Request Tambahkan',
+'request_contact_button' => 'Hubungi Kami',
+
+'request_modal_title' => 'Request Tambah Atlet',
+
+'request_modal_subtitle' => 'Isi data di bawah, admin akan segera memproses requestmu',
+
+'request_photo' => 'Foto Atlet *',
+'request_add_photo' => 'Add Photo',
+
+'request_name' => 'Nama Lengkap *',
+'request_name_placeholder' => 'Nama atlet',
+
+'request_age' => 'Umur *',
+'request_age_placeholder' => 'Contoh: 17',
+
+'request_category' => 'Kategori *',
+
+'request_junior' => 'Junior',
+'request_junior_desc' => 'Di bawah 18 thn',
+
+'request_senior' => 'Senior',
+'request_senior_desc' => '18 thn ke atas',
+
+'request_description' => 'Deskripsi *',
+'request_description_placeholder' => 'Prestasi atau info singkat...',
+
+'request_submit' => 'Kirim Request',
+'request_loading' => 'Mengirim...',
+
+'request_success' => 'Request Berhasil Dikirim!',
+
+'request_failed' => 'Gagal Mengirim:',
+'request_unknown_error' => 'Terjadi kesalahan tidak diketahui',
+
+'request_connection_error' => 'Kesalahan Koneksi: Pastikan server jalan atau file tidak terlalu besar.',
+
+'request_error_photo' => 'Foto wajib diunggah',
+'request_error_name' => 'Nama wajib diisi',
+'request_error_age' => 'Umur wajib diisi',
+'request_error_category' => 'Pilih kategori',
+'request_error_description' => 'Deskripsi wajib diisi',
 ];
