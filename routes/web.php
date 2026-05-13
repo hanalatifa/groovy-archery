@@ -21,11 +21,14 @@ Route::post('/testimoni/store', [TestimonialController::class, 'store'])->name('
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
 
 // Language Switcher (Public)
+// Language Switcher — di luar auth agar semua user bisa akses
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
     ->where('locale', '[a-z]{2}');
 
 // --- Authenticated Routes ---
+
+// Auth
 Route::middleware(['auth', 'verified'])->group(function () {
 
     // Main Dashboard (Pusat data: Aktivitas, Statistik, dll)

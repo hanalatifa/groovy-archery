@@ -7,6 +7,11 @@
                 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative z-[110]">
 
         <form action="{{ route('testi.store') }}" method="POST" id="formTestimoni">
+    {{-- Box Form: Tambahkan 'relative z-[110]' --}}
+    <div class="bg-white dark:bg-slate-900 border dark:border-slate-700
+                w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative z-[110]">
+
+        <form action="{{ route('testimoni.store') }}" method="POST" id="formTestimoni">
             @csrf
 
             {{-- Header --}}
@@ -52,6 +57,7 @@
                                   focus:ring-2 focus:ring-[#2b459a]/25 focus:border-[#2b459a]
                                   outline-none transition"
                            placeholder="Contoh: Atlet/Coach/Orang Tua Atlet">
+                    <p class="text-red-500 text-xs mt-1 hidden" id="errNama">Nama wajib diisi</p>
                 </div>
 
                 {{-- Rating --}}
@@ -68,6 +74,7 @@
                                       hover:text-amber-300 transition-colors">★</label>
                         @endfor
                     </div>
+                    <p class="text-red-500 text-xs mt-1 hidden" id="errRating">Pilih rating terlebih dahulu</p>
                 </div>
 
                 {{-- Deskripsi --}}
@@ -82,6 +89,7 @@
                                      focus:ring-2 focus:ring-[#2b459a]/25 focus:border-[#2b459a]
                                      outline-none transition resize-none"
                               placeholder="Ceritakan pengalaman kamu..."></textarea>
+                    <p class="text-red-500 text-xs mt-1 hidden" id="errDeskripsi">Deskripsi wajib diisi</p>
                 </div>
             </div>
 
@@ -134,3 +142,4 @@
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
     });
 </script>
+</div>

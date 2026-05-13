@@ -72,7 +72,6 @@ function showAllAchievements() {
     document.querySelectorAll('.achievement-card.hidden').forEach(card => {
         card.classList.remove('hidden');
     });
-
     document.getElementById('see-all-wrapper').classList.add('hidden');
 }
 
@@ -80,41 +79,57 @@ function showAchievementDetail(nama, kategori, tanggal, deskripsi, foto) {
     const isDark = document.documentElement.classList.contains('dark');
 
     Swal.fire({
-        width: '800px',
+        width: '600px',
         showConfirmButton: false,
         showCloseButton: true,
         padding: '0',
         background: isDark ? '#1e293b' : '#fff',
         color: isDark ? '#f8fafc' : '#1a202c',
         html: `
-            <div style="display: flex; flex-direction: row; text-align: left; overflow: hidden; border-radius: 15px; padding: 24px; gap: 24px;">
-                <div style="width: 45%; min-height: 400px; background: url('${foto}') center/cover no-repeat; border-radius: 12px; flex-shrink: 0;">
-                </div>
-                
-                <div style="width: 55%; padding: 16px 16px 16px 0; font-family: 'Plus Jakarta Sans', sans-serif;">
-                    <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 30px; color: ${isDark ? '#fff' : '#1a202c'};">Detail Prestasi</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
-                        <div style="grid-column: span 2;">
-                            <p style="font-size: 10px; font-weight: 700; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Nama Pertandingan</p>
-                            <p style="font-size: 16px; font-weight: 600; color: ${isDark ? '#e2e8f0' : '#2d3748'};">${nama}</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 10px; font-weight: 700; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Kategori</p>
-                            <p style="font-size: 16px; font-weight: 600; color: ${isDark ? '#e2e8f0' : '#2d3748'};">${kategori}</p>
-                        </div>
-                        <div>
-                            <p style="font-size: 10px; font-weight: 700; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Tanggal</p>
-                            <p style="font-size: 16px; font-weight: 600; color: ${isDark ? '#e2e8f0' : '#2d3748'};">${tanggal}</p>
-                        </div>
-                    </div>
+            <style>
+                .swal-close-btn {
+                    position: absolute !important;
+                    top: 16px !important;
+                    right: 20px !important;
+                    width: 42px !important;
+                    height: 42px !important;
+                    background: rgba(0,0,0,0.5) !important;
+                    border-radius: 50% !important;
+                    color: white !important;
+                    font-size: 18px !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                }
+            </style>
 
-                    <div>
-                        <p style="font-size: 10px; font-weight: 700; color: #a0aec0; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">Deskripsi Kegiatan</p>
-                        <div style="background: ${isDark ? '#0f172a' : '#f7fafc'}; border: 1px solid ${isDark ? '#334155' : '#edf2f7'}; padding: 15px; border-radius: 10px; font-size: 14px; color: ${isDark ? '#cbd5e1' : '#4a5568'}; line-height: 1.6; max-height: 150px; overflow-y: auto;">
-                            ${deskripsi || 'Belum ada deskripsi kegiatan.'}
-                        </div>
+            <div style="text-align: left; overflow: hidden; border-radius: 15px;">
+
+                <div style="padding: 26px 16px 0 16px;">
+                    <div style="width: 100%; height: 280px; background: url('${foto}') center/cover no-repeat; border-radius: 2px;">
                     </div>
+                </div>
+
+                <div style="padding: 32px; font-family: 'Plus Jakarta Sans', sans-serif;">
+
+                    <p style="font-size: 11px; font-weight: 700; color: #2b459a; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">
+                        ${kategori}
+                    </p>
+
+                    <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px; color: ${isDark ? '#fff' : '#1a202c'}; line-height: 1.3;">
+                        ${nama}
+                    </h2>
+
+                    <p style="font-size: 13px; color: #a0aec0; margin-bottom: 24px;">
+                        ${tanggal}
+                    </p>
+
+                    <hr style="border: none; border-top: 1px solid ${isDark ? '#334155' : '#edf2f7'}; margin-bottom: 24px;">
+
+                    <p style="font-size: 14px; color: ${isDark ? '#cbd5e1' : '#4a5568'}; line-height: 1.8;">
+                        ${deskripsi || 'Belum ada deskripsi kegiatan.'}
+                    </p>
+
                 </div>
             </div>
         `

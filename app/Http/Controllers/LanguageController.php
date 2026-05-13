@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
     protected array $supported = ['id', 'en'];
 
-    public function switch(string $locale): RedirectResponse
+    public function switch(Request $request, string $locale): RedirectResponse
     {
         if (!in_array($locale, $this->supported, true)) {
             abort(400);
@@ -16,6 +17,13 @@ class LanguageController extends Controller
 
         session(['locale' => $locale]);
 
-        return redirect()->back();
+        $referer = $request->headers->get('referer', '');
+        $host    = $request->getHost();
+
+        if ($referer && str_contains($referer, $host)) {
+            return redirect($referer);
+        }
+
+        return redirect(route('welcome'));
     }
 }
