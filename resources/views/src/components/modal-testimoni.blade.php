@@ -7,11 +7,7 @@
                 w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative z-[110]">
 
         <form action="{{ route('testi.store') }}" method="POST" id="formTestimoni">
-    {{-- Box Form: Tambahkan 'relative z-[110]' --}}
-    <div class="bg-white dark:bg-slate-900 border dark:border-slate-700
-                w-full max-w-md rounded-3xl p-6 md:p-8 shadow-2xl relative z-[110]">
 
-        <form action="{{ route('testimoni.store') }}" method="POST" id="formTestimoni">
             @csrf
 
             {{-- Header --}}
@@ -45,7 +41,7 @@
                            placeholder="Masukkan nama kamu">
                 </div>
 
-                {{-- Peran - PERBAIKAN: name="peran" --}}
+                {{-- Peran--}}
                 <div>
                     <label class="block text-[10px] font-bold mb-1.5 text-gray-600 dark:text-gray-400 uppercase tracking-widest">
                         Peran / Jabatan
@@ -94,22 +90,15 @@
             </div>
 
             {{-- Tombol --}}
-            <div class="mt-6 flex gap-3">
+            <div class="mt-6 flex">
                 <button type="submit" id="submitTesti"
                         class="flex-1 py-3 bg-[#2b459a] text-white font-bold text-sm
                                uppercase tracking-wide rounded-xl
                                hover:bg-[#1e3278] transition-colors">
                     Kirim Testimoni
                 </button>
-                <button type="button" id="cancelTesti"
-                        class="px-5 py-3 border border-gray-200 dark:border-slate-700
-                               text-gray-600 dark:text-gray-300 font-semibold text-sm
-                               rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
-                    Batal
-                </button>
             </div>
         </form>
-    </div>
 </div>
 
 <script>

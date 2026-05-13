@@ -1,7 +1,5 @@
-<section class="py-12 md:py-24 px-4 md:px-6 transition-colors duration-300 font-roboto" id="testimoni">
-    {{-- Bagian Header & Slider Tetap Sama --}}
 {{-- ═══════════════════════ TESTIMONI ═══════════════════════ --}}
-<section class="py-12 md:py-24 px-4 md:px-6 transition-colors duration-300" id="testimoni">
+<section class="py-12 md:py-24 px-4 md:px-6 transition-colors duration-300 font-roboto" id="testimoni">
 
     <div class="text-center mb-10 md:mb-14">
         <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Testimoni</p>
@@ -10,19 +8,11 @@
     </div>
 
     <div class="relative max-w-6xl mx-auto px-2 md:px-12">
-
         {{-- Wrapper Utama Slider --}}
         <div class="overflow-hidden">
             <div id="testiSlider" 
-                 class="flex flex-nowrap overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar">
-                
-                @foreach($testimonis as $testi)
-                <div class="testi-card w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 snap-center px-3 py-4">
-                    <div class="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-6 md:p-8 shadow-sm h-full flex flex-col">
-                        {{-- Rating --}}
-            <div id="testiSlider"
                  class="flex transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-transform">
-
+                
                 @foreach($testimonis as $testi)
                 <div class="testi-card flex-shrink-0 w-full md:w-1/3 px-3 py-4">
                     <div class="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700
@@ -51,21 +41,15 @@
                             </div>
                             <div>
                                 <p class="font-bold text-sm text-gray-800 dark:text-white">{{ $testi->nama }}</p>
-                                <p class="text-[10px] uppercase text-gray-400 tracking-wider">{{ $testi->peran ?? 'Member' }}</p>
-                                <p class="text-[10px] uppercase text-[#2b459a] dark:text-blue-400 font-semibold tracking-wider">Verified Member</p>
+                                <p class="text-[10px] uppercase text-[#2b459a] dark:text-blue-400 font-semibold tracking-wider">{{ $testi->peran ?? 'Member' }}</p>
                             </div>
                         </div>
 
                     </div>
                 </div>
                 @endforeach
-
             </div>
         </div>
-    </div>
-
-    <div class="text-center mt-10">
-        {{-- Button ID: openTestiModal --}}
 
         {{-- Navigasi Panah --}}
         <button id="testiPrev"
@@ -88,7 +72,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
             </svg>
         </button>
-
     </div>
 
     {{-- Dots (Bulat Bulat) --}}
@@ -109,5 +92,4 @@
             Beri Testimoni
         </button>
     </div>
-
 </section>
