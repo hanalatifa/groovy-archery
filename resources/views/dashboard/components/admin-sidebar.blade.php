@@ -86,7 +86,7 @@
         <a href="{{ route('documentations.index') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
                   {{ $active ? 'text-white' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}"
-           style="{{ $active ? 'background: linear-gradient(135deg, #85488F, #7c3aed);' : '' }}">
+           style="{{ $active ? 'background:  #85488F, #7c3aed);' : '' }}">
             <svg class="w-5 h-5 shrink-0 {{ $active ? '' : 'text-gray-400' }}"
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

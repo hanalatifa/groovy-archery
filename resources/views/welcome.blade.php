@@ -66,6 +66,7 @@
         @include('landing.stats')
         @include('landing.training')
         @include('landing.testimoni')
+        @include('landing.faq')
         @include('landing.cta-champions')
         @include('landing.contacts')
     </main>

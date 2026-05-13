@@ -20,6 +20,9 @@ Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.sto
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
     ->where('locale', '[a-z]{2}');
+Route::get('/schedule', function () {
+    return view('schedule.schedule');
+})->name('schedule');
 
 // Auth
 

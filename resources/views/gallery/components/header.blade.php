@@ -1,127 +1,133 @@
-<section class="relative min-h-screen overflow-hidden">
+<header class="h-[90px] px-8 flex items-center justify-between">
 
-    <div class="absolute inset-0 z-0">
-        <img src="{{ asset('assets/athletesimage.png') }}" alt="Komunitas Pemanah"
-             class="w-full h-full object-cover object-center hero-img">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+    {{-- LEFT : SEARCH --}}
+    <div class="relative">
+
+        {{-- SEARCH ICON --}}
+        <div class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-5 h-5"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 stroke-width="2">
+
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M21 21l-4.35-4.35" />
+
+                <circle cx="11" cy="11" r="6" />
+            </svg>
+        </div>
+
+        {{-- INPUT --}}
+        <input
+            type="text"
+            placeholder="Search..."
+            class="
+                w-[700px]
+                h-[56px]
+                bg-white
+                border
+                border-gray-200
+                pl-14
+                pr-5
+                text-sm
+                text-gray-700
+                placeholder:text-gray-300
+                shadow-[0_4px_14px_rgba(0,0,0,0.05)]
+                focus:outline-none
+                focus:ring-0
+                focus:border-[#85488F]
+                transition-all
+            ">
     </div>
+    <div class="flex items-center gap-4">
 
-    <div class="absolute top-0 left-[10%] w-px h-full bg-white/5 z-10"></div>
-    <div class="absolute top-0 left-[33%] w-px h-full bg-white/5 z-10"></div>
-
-    <div class="relative z-20 max-w-7xl mx-auto px-6 min-h-screen flex items-center">
-        <div class="max-w-2xl py-32">
-
-            <div class="hero-fade flex items-center gap-3 mb-10">
-                <div class="flex -space-x-1">
-                    <div class="w-2 h-2 rounded-full bg-[#DA4139]"></div>
-                    <div class="w-2 h-2 rounded-full bg-[#DA4139]/60"></div>
-                    <div class="w-2 h-2 rounded-full bg-[#DA4139]/30"></div>
-                </div>
-                <span class="text-[10px] font-bold uppercase tracking-[5px] text-gray-300">
-                    Dokumentasi Kegiatan Groovy Archery
-                </span>
-            </div>
-
-            <h1 class="hero-fade hero-delay-1 font-extrabold leading-[1.05] text-white mb-8"
-                style="font-size: clamp(2.5rem, 6vw, 5rem);">
-                Gallery<br>
-                <span class="relative inline-block">
-                    Groovy 
-                    <svg class="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 2">
-                        <line x1="0" y1="4" x2="200" y2="4" stroke="#DA4139" stroke-width="6" stroke-linecap="round"/>
-                    </svg>
-                </span><br>
-                Archery
-            </h1>
-
-            <p class="hero-fade hero-delay-2 text-gray-300 text-base md:text-lg leading-relaxed font-light max-w-xl mb-12">
-                Jelajahi momen-momen berharga dari latihan, kompetisi, dan kegiatan komunitas kami. Setiap foto adalah cerita tentang semangat, persahabatan, dan kecintaan pada panahan.
-            </p>
-
-            <div class="hero-fade hero-delay-3 flex flex-wrap items-center gap-4">
-                <button onclick="openDaftarModal()"
-                        class="group relative inline-flex items-center gap-3 px-8 py-4
-                               bg-[#DA4139] text-white font-bold text-sm
-                               hover:bg-[#c13530] transition-all duration-300 overflow-hidden">
-                    <span class="relative z-10">Daftar Sekarang</span>
-                    <svg class="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-                    </svg>
-                    <div class="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
-                </button>
-
-                <a href="#gallery"
-                   class="group inline-flex items-center gap-3 px-8 py-4 border border-white/30
-                          text-white font-bold text-sm hover:border-white hover:bg-white/10
-                          transition-all duration-300">
-                    <span>Lihat Dokumentasi</span>
-                    <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-                    </svg>
+        {{-- LANGUAGE SWITCHER --}}
+        <div class="
+            flex
+            items-center
+            p-1
+            bg-white
+            border
+            border-gray-200
+            rounded-2xl
+            shadow-[0_4px_14px_rgba(0,0,0,0.05)]
+        ">
+            @foreach (['id', 'en'] as $lang)
+                @php
+                    $isActive = app()->getLocale() === $lang;
+                @endphp
+                <a href="{{ route('lang.switch', $lang) }}"
+                   class="
+                        px-4
+                        py-2
+                        rounded-xl
+                        text-[11px]
+                        font-bold
+                        tracking-[2px]
+                        uppercase
+                        transition-all
+                        duration-200
+                        {{ $isActive
+                            ? 'bg-[#85488F] text-white shadow-sm'
+                            : 'text-gray-400 hover:text-gray-700'
+                        }}
+                   ">
+                    {{ strtoupper($lang) }}
                 </a>
-            </div>
 
-            <div class="hero-fade hero-delay-4 flex flex-wrap gap-10 mt-16 pt-10 border-t border-white/10">
-                @foreach([['3', 'Lokasi Latihan'], ['9', 'Tahun Berdiri'], ['100+', 'Atlet Aktif']] as [$num, $label])
-                <div>
-                    <p class="text-2xl font-extrabold text-white">{{ $num }}</p>
-                    <p class="text-xs text-gray-400 font-medium mt-0.5 uppercase tracking-wider">{{ $label }}</p>
-                </div>
-                @endforeach
-            </div>
+            @endforeach
 
         </div>
+
+        {{-- DARKMODE --}}
+        <button id="theme-toggle"
+            class="
+                w-[44px]
+                h-[44px]
+                flex
+                items-center
+                justify-center
+                bg-white
+                dark:bg-slate-800
+                border
+                border-gray-200
+                dark:border-slate-700
+                rounded-2xl
+                text-gray-500
+                dark:text-yellow-400
+                shadow-[0_4px_14px_rgba(0,0,0,0.05)]
+                hover:bg-gray-50
+                dark:hover:bg-slate-700
+                transition-all
+                duration-200
+            ">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="w-5 h-5"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <circle cx="12" cy="12" r="4"></circle>
+
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="M4.93 4.93l1.41 1.41"></path>
+                <path d="M17.66 17.66l1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="M6.34 17.66l-1.41 1.41"></path>
+                <path d="M19.07 4.93l-1.41 1.41"></path>
+
+            </svg>
+        </button>
+
     </div>
 
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 hero-fade hero-delay-4">
-        <span class="text-[10px] text-gray-400 uppercase tracking-widest">Scroll</span>
-        <div class="w-px h-12 bg-gradient-to-b from-gray-400 to-transparent scroll-line"></div>
-    </div>
-
-</section>
-
-<style>
-.hero-img {
-    transform: scale(1.05);
-    transition: transform 8s ease;
-}
-.hero-img.loaded {
-    transform: scale(1);
-}
-
-.hero-fade {
-    opacity: 0;
-    transform: translateY(24px);
-    animation: heroIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-.hero-delay-1 { animation-delay: 0.15s; }
-.hero-delay-2 { animation-delay: 0.3s; }
-.hero-delay-3 { animation-delay: 0.45s; }
-.hero-delay-4 { animation-delay: 0.6s; }
-
-@keyframes heroIn {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.scroll-line {
-    animation: scrollPulse 2s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.8); transform-origin: top; }
-    50% { opacity: 1; transform: scaleY(1); }
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const img = document.querySelector('.hero-img');
-    if (img) {
-        img.onload = () => img.classList.add('loaded');
-        if (img.complete) img.classList.add('loaded');
-    }
-});
-</script>
+</header>
