@@ -1,8 +1,8 @@
 <section class="py-24 px-6 text-center border-t border-gray-100 dark:border-slate-800 transition-colors duration-300">
     <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Request</p>
-    
+
     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Namamu belum tercantum?</h2>
-    
+
     <p class="text-gray-500 dark:text-gray-400 text-sm max-w-md mx-auto mb-10 leading-relaxed">
         Sudah bergabung dalam club tapi namamu belum tercantum?<br class="hidden md:block">
         Request kepada admin untuk segera ditambahkan!
@@ -10,11 +10,11 @@
 
     <div class="flex flex-col items-center gap-2">
         <p class="text-[10px] text-gray-400 dark:text-gray-500 tracking-wide">Hubungi coach kami</p>
-        
+
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             <button onclick="openRequestModal()"
-                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#2b459a] dark:bg-blue-600 
-                           text-white font-bold text-sm hover:bg-[#1e3278] dark:hover:bg-blue-700 
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#2b459a] dark:bg-blue-600
+                           text-white font-bold text-sm hover:bg-[#1e3278] dark:hover:bg-blue-700
                            transition-all duration-200 shadow-lg shadow-blue-900/10 active:scale-95">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -23,8 +23,8 @@
             </button>
 
             <a href="#contact"
-               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 border border-gray-300 dark:border-slate-700 
-                      text-gray-700 dark:text-gray-300 font-bold text-sm hover:border-[#2b459a] dark:hover:border-blue-400 
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 border border-gray-300 dark:border-slate-700
+                      text-gray-700 dark:text-gray-300 font-bold text-sm hover:border-[#2b459a] dark:hover:border-blue-400
                       hover:text-[#2b459a] dark:hover:text-blue-400 transition-all duration-200 active:scale-95">
                 Hubungi Kami
             </a>
@@ -49,18 +49,18 @@
         <div class="px-8 py-7 space-y-5">
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Foto Atlet *</label>
-                
+
                 <div class="relative group w-24 h-24">
                     <input type="file" id="reqFoto" accept="image/*" class="hidden">
-                    
-                    <label for="reqFoto" 
-                           id="photoPreview" 
-                           class="w-24 h-24 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl 
-                                  flex items-center justify-center overflow-hidden cursor-pointer 
+
+                    <label for="reqFoto"
+                           id="photoPreview"
+                           class="w-24 h-24 bg-gray-50 border-2 border-dashed border-gray-200 rounded-2xl
+                                  flex items-center justify-center overflow-hidden cursor-pointer
                                   hover:bg-gray-100 hover:border-[#2b459a] transition-all relative">
-                        
+
                         <img id="img-preview" class="hidden absolute inset-0 w-full h-full object-cover">
-            
+
                         <div id="placeholder-text" class="text-center p-2">
                             <svg class="w-6 h-6 mx-auto text-gray-300 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -69,7 +69,7 @@
                         </div>
                     </label>
                 </div>
-                
+
                 <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqFoto">Foto wajib diunggah</p>
             </div>
 
@@ -149,7 +149,7 @@ function closeRequestModal() {
     const modal = document.getElementById('requestModal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
-    
+
     resetFormAtlet();
 }
 
@@ -157,16 +157,16 @@ function resetFormAtlet() {
     document.getElementById('reqNama').value = '';
     document.getElementById('reqUmur').value = '';
     document.getElementById('reqDeskripsi').value = '';
-    
+
     const fileInput = document.getElementById('reqFoto');
-    fileInput.value = ''; 
-    
+    fileInput.value = '';
+
     const preview = document.getElementById('img-preview');
     const placeholder = document.getElementById('placeholder');
     preview.src = '';
     preview.classList.add('hidden');
     placeholder.classList.remove('hidden');
-    
+
     document.querySelectorAll('[id^="errReq"]').forEach(el => el.classList.add('hidden'));
 }
 
@@ -189,7 +189,7 @@ document.getElementById('submitRequest').addEventListener('click', async functio
         e.preventDefault();
         const btn = this;
         const fotoInput = document.getElementById('reqFoto');
-        
+
         const nama = document.getElementById('reqNama').value.trim();
         const umur = document.getElementById('reqUmur').value.trim();
         const deskripsi = document.getElementById('reqDeskripsi').value.trim();
@@ -223,11 +223,11 @@ document.getElementById('submitRequest').addEventListener('click', async functio
 
             if (response.ok && result.success) {
                 alert('Request Berhasil Dikirim!');
-                
+
                 document.getElementById('reqNama').value = '';
                 document.getElementById('reqUmur').value = '';
                 document.getElementById('reqDeskripsi').value = '';
-                fotoInput.value = ""; 
+                fotoInput.value = "";
                 const preview = document.getElementById('img-preview');
                 preview.src = '';
                 preview.classList.add('hidden');

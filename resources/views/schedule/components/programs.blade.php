@@ -1,50 +1,54 @@
 {{-- ═══ PROGRAM ═══ --}}
-<section class="py-26 px-6 mb-35" style="background: #fff;">
+<section class="py-20 sm:py-28 px-5 sm:px-6 bg-white">
     <div class="max-w-6xl mx-auto">
 
-        {{-- Label header --}}
-       <div class="py-16 text-center transition-colors duration-300">
-            <p class="text-[#2b459a] dark:text-blue-400 font-bold uppercase tracking-[5px] text-[10px]">Program</p>
-            <h2 class="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">Program Latihan</h2>
-            <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm max-w-md mx-auto">Pilih program latihan yang paling sesuai dengan kebutuhan dan tujuanmu</p>
+        {{-- Header --}}
+        <div class="text-center mb-12 sm:mb-16">
+            <p class="text-[10px] font-bold text-[#2b459a] uppercase tracking-[5px] mb-3">Program</p>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-4">
+                Program Latihan
+            </h2>
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="h-1 w-8 rounded-full bg-[#2b459a]"></div>
+                <div class="h-1 w-3 rounded-full bg-[#DA4139]"></div>
+            </div>
+            <p class="text-gray-400 text-sm max-w-sm mx-auto leading-relaxed">
+                Pilih program latihan yang paling sesuai dengan kebutuhan dan tujuanmu
+            </p>
         </div>
 
-        {{-- Card utama bergaya flyer --}}
-        <div class="overflow-hidden shadow-2xl"
-             style="background: linear-gradient(135deg, #1a1060 0%, #2b1d8a 40%, #4f3fd4 100%);">
+        {{-- Card utama bergradient ungu --}}
+        <div class="overflow-hidden shadow-2xl rounded-2xl"
+             style="background: linear-gradient(135deg, #1a1060 0%, #2b1d8a 45%, #4f3fd4 100%);">
 
-            {{-- Baris atas: program + biaya daftar --}}
-            <div class="grid lg:grid-cols-3 gap-0">
+            {{-- Baris atas --}}
+            <div class="grid grid-cols-1 lg:grid-cols-3">
 
-                {{-- Kiri: Program Regular & Intensif --}}
-                <div class="lg:col-span-2 p-8 md:p-10">
+                {{-- Kiri: dua program card --}}
+                <div class="lg:col-span-2 p-6 sm:p-8 md:p-10">
 
-                    {{-- Label kuning seperti flyer --}}
-                    <div class="inline-flex items-center gap-2 px-5 py-2.5 mb-8"
-                         style="background: #ffff;">
-                        <span class="text-gray-900 font-black text-sm md:text-base">
-                            Pilih Program Sesuai Kebutuhanmu
-                        </span>
+                    {{-- Label --}}
+                    <div class="inline-flex items-center px-5 py-2.5 mb-6 sm:mb-8 bg-white/95">
+                        <span class="text-gray-900 font-black text-sm">Pilih Program Sesuai Kebutuhanmu</span>
                     </div>
 
-                    <div class="grid md:grid-cols-2 gap-5">
+                    {{-- Cards --}}
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
 
                         {{-- Regular --}}
-                        <div class="program-card group p-7 border-2 border-white/15
+                        <div class="program-card group p-5 sm:p-7 border-2 border-white/20
                                     cursor-pointer transition-all duration-300 hover:-translate-y-1"
                              style="background: rgba(255,255,255,0.95);"
                              onclick="selectProgram(this, 'Regular')">
-                            <div class="flex items-center justify-between mb-4">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                                 <span class="text-[10px] font-black uppercase tracking-[3px]"
                                       style="color: #3d2db5;">Program Regular</span>
-                                <span class="text-[10px] font-black uppercase tracking-[2px] px-2.5 py-1 rounded-full"
+                                <span class="text-[10px] font-black px-2.5 py-1 rounded-full"
                                       style="background: rgba(61,45,181,0.1); color: #3d2db5;">2× / minggu</span>
                             </div>
-                            <p class="text-gray-700 text-sm mb-3 font-medium">Regular (2× Seminggu)</p>
+                            <p class="text-gray-500 text-sm mb-3 font-medium">Regular (2× Seminggu)</p>
                             <p class="text-2xl font-black" style="color: #1a1060;">Rp 300.000</p>
-                            <p class="text-gray-400 text-xs mt-2 font-medium">per bulan</p>
-
-                            {{-- Check indicator --}}
+                            <p class="text-gray-400 text-xs mt-1.5 font-medium">per bulan</p>
                             <div class="program-check mt-4 w-6 h-6 rounded-full border-2 border-gray-200
                                         flex items-center justify-center transition-all duration-200">
                                 <svg class="w-3.5 h-3.5 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
@@ -54,24 +58,23 @@
                         </div>
 
                         {{-- Intensif --}}
-                        <div class="program-card group p-7 border-2 border-yellow-400
+                        <div class="program-card group p-5 sm:p-7 border-2 border-yellow-400
                                     cursor-pointer transition-all duration-300 hover:-translate-y-1 relative"
                              style="background: rgba(255,255,255,0.95);"
                              onclick="selectProgram(this, 'Intensif')">
-                            <div class="absolute -top-3 left-5 bg-yellow-400 text-gray-900 text-[9px]
-                                        font-black uppercase tracking-widest px-4 py-1">
-                                Paling Populer
+                            <div class="absolute -top-3 left-4 bg-yellow-400 text-gray-900 text-[9px]
+                                        font-black uppercase tracking-widest px-3 py-1 rounded-sm">
+                                ⚡ Paling Populer
                             </div>
-                            <div class="flex items-center justify-between mb-4 mt-2">
+                            <div class="flex flex-wrap items-center justify-between gap-2 mb-4 mt-2">
                                 <span class="text-[10px] font-black uppercase tracking-[3px]"
                                       style="color: #3d2db5;">Program Intensif</span>
-                                <span class="text-[10px] font-black uppercase tracking-[2px] px-2.5 py-1 rounded-full"
+                                <span class="text-[10px] font-black px-2.5 py-1 rounded-full"
                                       style="background: rgba(251,191,36,0.15); color: #92400e;">4× / minggu</span>
                             </div>
-                            <p class="text-gray-700 text-sm mb-3 font-medium">Intensif (4× Seminggu)</p>
+                            <p class="text-gray-500 text-sm mb-3 font-medium">Intensif (4× Seminggu)</p>
                             <p class="text-2xl font-black" style="color: #1a1060;">Rp 550.000</p>
-                            <p class="text-gray-400 text-xs mt-2 font-medium">per bulan</p>
-
+                            <p class="text-gray-400 text-xs mt-1.5 font-medium">per bulan</p>
                             <div class="program-check mt-4 w-6 h-6 rounded-full border-2 border-yellow-400
                                         flex items-center justify-center transition-all duration-200">
                                 <svg class="w-3.5 h-3.5 text-white hidden" fill="currentColor" viewBox="0 0 20 20">
@@ -83,40 +86,38 @@
                     </div>
                 </div>
 
-                {{-- Kanan: Biaya pendaftaran --}}
-                <div class="relative flex flex-col items-center justify-center p-8 text-center
-                            border-t lg:border-t-0 lg:border-l border-white/10">
-
-                    {{-- Kartu putih biaya --}}
-                    <div class="px-8 py-6 w-full max-w-xs mt-6" style="background: rgba(255,255,255,0.95);">
+                {{-- Kanan: biaya daftar --}}
+                <div class="flex flex-col items-center justify-center p-6 sm:p-8 text-center
+                            border-t lg:border-t-0 lg:border-l border-white/10 gap-5">
+                    <p class="text-white/60 text-[11px] font-bold uppercase tracking-widest">Biaya Pendaftaran</p>
+                    <div class="w-full max-w-xs px-6 py-5 bg-white/95 ">
                         <p class="text-gray-500 text-sm font-medium mb-1">Hanya</p>
                         <div class="flex items-baseline gap-1 justify-center">
-                            <span class="text-xl font-bold text-gray-700">Rp</span>
-                            <span class="font-black leading-none" style="font-size: 3.5rem; color: #1a1060;">200.000</span>
+                            <span class="text-lg font-bold text-gray-600">Rp</span>
+                            <span class="font-black leading-none" style="font-size: clamp(2.5rem, 6vw, 3.5rem); color: #1a1060;">200.000</span>
                         </div>
-                        <p class="text-gray-400 text-xs mt-2 font-medium">biaya pendaftaran</p>
+                        <p class="text-gray-400 text-xs mt-2 font-medium">sekali bayar</p>
                     </div>
-
                     <button onclick="openDaftarModal()"
-                            class="mt-6 w-full max-w-xs py-3.5 font-black text-sm text-gray-900
-                                   transition-all duration-200 hover:brightness-110 active:scale-[.98]"
-                            style="background: #fff;">
-                        Daftar Sekarang 
+                            class="w-full max-w-xs py-3.5 font-black text-sm text-white
+                                    transition-all duration-200 hover:brightness-105 active:scale-[.98]"
+                            style="background: #E0443D;">
+                        Daftar Sekarang
                     </button>
                 </div>
 
             </div>
 
-            {{-- Baris bawah: fitur program --}}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-white/10">
+            {{-- Fitur --}}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-0 border-t border-white/10">
                 @foreach([
-                    ['🎯', 'Instruktur Berpengalaman', 'Dibimbing coach dengan track record kompetisi nasional'],
-                    ['📍', '3 Lokasi Tersedia', 'Pilih lokasi yang paling mudah dijangkau dari rumahmu'],
-                    ['📅', 'Jadwal Fleksibel', 'Tersedia pagi dan sore hari, weekday maupun weekend'],
+                    ['🎯', 'Instruktur Berpengalaman', 'Coach berpengalaman di kompetisi nasional'],
+                    ['📍', '3 Lokasi Tersedia', 'Pilih lokasi yang paling dekat dari rumahmu'],
+                    ['📅', 'Jadwal Fleksibel', 'Pagi & sore, weekday & weekend'],
                 ] as [$ic, $title, $desc])
-                <div class="px-8 py-7 border-b md:border-b-0 md:border-r border-white/10 last:border-0">
-                    <div class="text-2xl mb-3">{{ $ic }}</div>
-                    <h4 class="text-white font-bold text-sm mb-1.5">{{ $title }}</h4>
+                <div class="px-6 sm:px-8 py-5 sm:py-7 border-b sm:border-b-0 sm:border-r border-white/10 last:border-0">
+                    <div class="text-xl sm:text-2xl mb-2 sm:mb-3">{{ $ic }}</div>
+                    <h4 class="text-white font-bold text-sm mb-1">{{ $title }}</h4>
                     <p class="text-white/40 text-xs leading-relaxed font-light">{{ $desc }}</p>
                 </div>
                 @endforeach
@@ -127,20 +128,12 @@
 </section>
 
 <style>
-.program-card.selected {
-    border-color: #fbbf24 !important;
-    box-shadow: 0 0 0 4px rgba(251,191,36,0.2);
-    transform: translateY(-4px);
-}
-.program-card.selected .program-check {
-    background: #fbbf24;
-    border-color: #fbbf24;
-}
-.program-card.selected .program-check svg { display: block; }
+.program-card.selected { border-color:#fbbf24 !important; box-shadow:0 0 0 4px rgba(251,191,36,0.2); transform:translateY(-4px); }
+.program-card.selected .program-check { background:#fbbf24; border-color:#fbbf24; }
+.program-card.selected .program-check svg { display:block; }
 </style>
-
 <script>
-function selectProgram(el, name) {
+function selectProgram(el) {
     document.querySelectorAll('.program-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
 }
