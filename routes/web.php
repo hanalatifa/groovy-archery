@@ -13,19 +13,17 @@ use App\Http\Controllers\LanguageController;
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
-Route::get('/achievements', function () {return view('achievements.achievements');})->name('achievements');
 Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
 Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
+
+// Language Switcher — di luar auth agar semua user bisa akses
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
     ->where('locale', '[a-z]{2}');
-Route::get('/schedule', function () {
-    return view('schedule.schedule');
-})->name('schedule');
+
 
 // Auth
-
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard-view', [AtletController::class, 'dashboardIndex'])->name('dashboard');
@@ -79,9 +77,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
-
-    // langsuage switcher
-    Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 });
 
 require __DIR__ . '/auth.php';
