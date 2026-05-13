@@ -3,32 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePertandinganRequest;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Activity;
 use App\Models\Pertandingan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 class PertandinganController extends Controller
 {
-    public function welcome() {
-    $pertandingans = Pertandingan::latest()->take(6)->get();
-    
-    return view('welcome', compact('pertandingans'));
+    public function welcome()
+    {
+        $pertandingans = Pertandingan::latest()->take(6)->get();
+        return view('welcome', compact('pertandingans'));
     }
 
-    // halaman utama
-    public function index() {
-    $pertandingans = Pertandingan::all();
-
-    return view('pertandingan.index', compact('pertandingans'));
+    public function index()
+    {
+        $pertandingans = Pertandingan::all();
+        return view('pertandingan.index', compact('pertandingans'));
     }
 
-    // menampilkan form tambah data
-    public function create() {
+    public function create()
+    {
         return view('pertandingan.create');
     }
 
-    // looping untuk menyimpan foto satu persatu (menyimpan data)
-    public function store(StorePertandinganRequest $request) {
+    public function store(StorePertandinganRequest $request)
+    {
         $data = $request->validated();
         $files = [];
 
@@ -41,21 +42,26 @@ class PertandinganController extends Controller
 
         $data['dokumentasi'] = $files;
 
-        Pertandingan::create($data);
+        $pertandingan = Pertandingan::create($data);
+
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Menambah data pertandingan: ' . $pertandingan->nama_pertandingan,
+            'status' => 'success'
+        ]);
 
         return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil ditambah!');
     }
 
-    // menampilkan form edit
-    public function edit($id) {
+    public function edit($id)
+    {
         $pertandingans = Pertandingan::findOrFail($id);
         return view('profile.edit', compact('pertandingans'));
     }
 
-    // update data
-    public function update(Request $request, $id) {
+    public function update(Request $request, $id)
+    {
         $pertandingans = Pertandingan::findOrFail($id);
-
         $data = $request->all();
 
         if ($request->hasFile('dokumentasi')) {
@@ -77,12 +83,19 @@ class PertandinganController extends Controller
 
         $pertandingans->update($data);
 
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Memperbarui data pertandingan: ' . $pertandingans->nama_pertandingan,
+            'status' => 'success'
+        ]);
+
         return redirect()->route('pertandingan.index')->with('success', 'Data pertandingan berhasil diupdate!');
     }
 
-    // hapus data
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $pertandingans = Pertandingan::findOrFail($id);
+        $namaLama = $pertandingans->nama_pertandingan;
 
         if ($pertandingans->dokumentasi) {
             foreach ($pertandingans->dokumentasi as $foto) {
@@ -91,12 +104,19 @@ class PertandinganController extends Controller
         }
 
         $pertandingans->delete();
-        return redirect()->route('pertandingan.index')->with('success', 'Pertandingan dan dokumentasi berhasil dihapus!');
+
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Menghapus data pertandingan: ' . $namaLama,
+            'status' => 'deleted'
+        ]);
+
+        return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil dihapus!');
     }
 
-    public function achievements() {
-    $pertandingans = Pertandingan::latest()->get();
-    
-    return view('achievements.achievements', compact('pertandingans'));
+    public function achievements()
+    {
+        $pertandingans = Pertandingan::latest()->get();
+        return view('achievements.achievements', compact('pertandingans'));
     }
 }

@@ -94,7 +94,7 @@
                             </td>
                             <td class="py-3.5 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    {{-- Tombol Terima --}}
+
                                     <form action="{{ route('testi.approve', $t->id) }}" method="POST">
                                         @csrf
                                         <button title="{{ __('dashboard.btn_approve') }}"
@@ -107,7 +107,7 @@
                                             {{ __('dashboard.btn_approve') }}
                                         </button>
                                     </form>
-                                    {{-- Tombol Tolak --}}
+
                                     <form action="{{ route('testi.reject', $t->id) }}" method="POST">
                                         @csrf
                                         <button title="{{ __('dashboard.btn_reject') }}"
@@ -172,14 +172,13 @@
                             </td>
                             <td class="py-3.5 text-right">
                                 <div class="flex items-center justify-end gap-2">
-                                    {{-- Tombol Terima --}}
                                     <form action="{{ route('atlet.approve', $req->id) }}" method="POST">
                                         @csrf
                                         <button class="px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold hover:bg-emerald-100">
                                             {{ __('dashboard.btn_approve') }}
                                         </button>
                                     </form>
-                                    {{-- Tombol Tolak --}}
+
                                     <form action="{{ route('atlet.reject', $req->id) }}" method="POST"
                                           onsubmit="return confirm('{{ __('dashboard.btn_reject') }} atlet ini?')">
                                         @csrf
@@ -223,45 +222,51 @@
         <div class="px-7 pt-7 pb-5 border-b border-gray-50">
             <h3 class="text-lg font-bold text-gray-900">{{ __('dashboard.activity_title') }}</h3>
         </div>
-
+    
         <div class="px-7 py-2 overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
                     <tr class="border-b border-gray-100">
-                        <th class="pb-3 pt-4 text-xs font-bold uppercase tracking-wider"
-                            style="color: #274494;">{{ __('dashboard.col_waktu') }}</th>
-                        <th class="pb-3 pt-4 text-xs font-bold uppercase tracking-wider"
-                            style="color: #274494;">{{ __('dashboard.col_aktivitas') }}</th>
-                        <th class="pb-3 pt-4 text-xs font-bold uppercase tracking-wider text-right"
-                            style="color: #274494;">{{ __('dashboard.col_status') }}</th>
+                        <th class="pb-3 pt-4 text-xs font-bold uppercase tracking-wider" style="color: #274494;">{{ __('dashboard.col_waktu') }}</th>
+                        <th class="pb-3 pt-4 text-xs font-bold uppercase tracking-wider" style="color: #274494;">{{ __('dashboard.col_aktivitas') }}</th>
+                        <th class="pb-3 pt-4 text-xs font-bold uppercase tracking-wider text-right" style="color: #274494;">{{ __('dashboard.col_status') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
-                    @forelse($aktivitas ?? [] as $item)
+                    @forelse(($aktivitas ?? collect()) as $item)
                     <tr>
                         <td class="py-4 text-sm text-gray-500 whitespace-nowrap pr-6">
-                            {{ $item['waktu'] ?? '-' }}
+                            {{ $item->created_at->format('H.i A, d M Y') }}
                         </td>
-                    </tr>
-                    <tr><td colspan="3" class="py-10 text-center text-sm text-gray-400 italic">Belum ada aktivitas.</td></tr>
+    
+                        <td class="py-4 text-sm font-semibold text-gray-800 pr-6">
+                            {{ $item->description }}
+                        </td>
+    
+                        <td class="py-4 text-right">
                             @php
-                                $st = $item['status'] ?? 'pending';
-                                $stMap = [
-                                    'success' => ['label' => __('dashboard.status_success'), 'class' => 'bg-emerald-100 text-emerald-700'],
-                                    'pending' => ['label' => __('dashboard.status_pending'), 'class' => 'bg-amber-100 text-amber-700'],
-                                    'failed'  => ['label' => __('dashboard.status_failed'),  'class' => 'bg-red-100 text-red-600'],
+                                $colorMap = [
+                                    'success' => 'bg-emerald-50 text-emerald-600',
+                                    'pending' => 'bg-amber-50 text-amber-600',
+                                    'failed'  => 'bg-red-50 text-red-500',
+                                    'deleted' => 'bg-gray-100 text-gray-600',
                                 ];
-                                $badge = $stMap[$st] ?? ['label' => ucfirst($st), 'class' => 'bg-gray-100 text-gray-600'];
+                                $badgeStyle = $colorMap[$item->status] ?? 'bg-gray-50 text-gray-600';
                             @endphp
-                            <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold {{ $badge['class'] }}">
-                                {{ $badge['label'] }}
+                            <span class="inline-flex px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-tight {{ $badgeStyle }}">
+                                {{ $item->status }}
                             </span>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="3" class="py-10 text-center text-sm text-gray-400 italic">
-                            {{ __('dashboard.activity_empty') }}
+                        <td colspan="3" class="py-10 text-center">
+                            <div class="flex flex-col items-center gap-2 text-gray-300">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-sm italic text-gray-400">Belum ada aktivitas terkini.</p>
+                            </div>
                         </td>
                     </tr>
                     @endforelse

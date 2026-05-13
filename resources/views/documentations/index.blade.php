@@ -1,117 +1,124 @@
 <x-layouts.admin-layout title="Kelola Dokumentasi">
+    <div class="max-w-7xl mx-auto space-y-10">
 
-    <div class="p-6">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-semibold text-gray-800">Kelola Dokumentasi</h2>
-            <a href="{{ url('/documentations/create') }}"
-                class="bg-[#85488F] hover:bg-purple-700 text-white px-6 py-3 text-medium transition shadow-sm">
-                + Tambah Dokumentasi
-            </a>
+        {{-- Header --}}
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
+            <div>
+                <h2 class="text-3xl font-semibold text-gray-800">Kelola Dokumentasi</h2>
+                <p class="text-gray-500 mt-1">Daftar foto kegiatan dan galeri yang tampil di website.</p>
+            </div>
+            <div class="flex gap-3">
+                <a href="{{ url('/documentations/create') }}" 
+                   class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
+                    + Tambah Dokumentasi
+                </a>
+            </div>
         </div>
 
-        @if (session('success'))
-            <div class="bg-green-100 text-green-700 p-4 rounded-lg mb-6 border border-green-200">
-                {{ session('success') }}
+        {{-- Alert Success --}}
+        @if(session('success'))
+            <div class="p-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span class="font-medium">{{ session('success') }}</span>
             </div>
         @endif
 
-        <div class="bg-white shadow-sm overflow-hidden border border-gray-100">
-            <table class="w-full text-left border-collapse">
-                <thead class="bg-gray-50 border-b border-gray-200">
-                    <tr>
-                        <th class="p-4 text-sm font-semibold text-gray-600">Judul</th>
-                        <th class="p-4 text-sm font-semibold text-gray-600">Kategori</th> {{-- Kolom Baru --}}
-                        <th class="p-4 text-sm font-semibold text-gray-600">Deskripsi</th>
-                        <th class="p-4 text-sm font-semibold text-gray-600">Foto</th>
-                        <th class="p-4 text-sm font-semibold text-gray-600">Waktu</th>
-                        <th class="p-4 text-sm font-semibold text-gray-600 text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-100">
-                    @foreach ($docs as $doc)
+        {{-- Table --}}
+        <div class="bg-white shadow-sm border border-gray-100 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-50 border-b border-gray-100">
+                        <tr>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Tanggal</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Foto & Judul</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Kategori</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Deskripsi</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        @forelse($docs as $doc)
                         <tr class="hover:bg-gray-50 transition">
-                            <td class="p-4 text-sm text-gray-800 font-medium">{{ $doc->judul }}</td>
-                            
-                            <td class="p-4">
-                                <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-400 border border-purple-200">
+
+                            {{-- Waktu --}}
+                            <td class="px-6 py-5">
+                                <div class="text-sm text-gray-800 font-medium">{{ $doc->created_at->format('d M Y') }}</div>
+                                <div class="text-[11px] text-gray-400 italic">{{ $doc->created_at->diffForHumans() }}</div>
+                            </td>
+                            {{-- Foto & Judul --}}
+                            <td class="px-6 py-5">
+                                <div class="flex items-center gap-4">
+                                    @if ($doc->foto)
+                                        <img src="{{ asset('storage/docs/' . $doc->foto) }}"
+                                             class="w-14 h-14 object-cover rounded-2xl border border-gray-100 shadow-sm">
+                                    @else
+                                        <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400 text-[10px] border border-dashed border-gray-300">
+                                            No Pic
+                                        </div>
+                                    @endif
+                                    <div>
+                                        <div class="font-medium text-gray-900">{{ $doc->judul }}</div>
+                                    </div>
+                                </div>
+                            </td>
+
+                            {{-- Kategori --}}
+                            <td class="px-6 py-5">
+                                <span class="bg-purple-50 text-[#85488F] px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight border border-purple-100">
                                     {{ $doc->kategori }}
                                 </span>
                             </td>
 
-                            <td class="p-4 text-sm text-gray-600">
-                                <p class="line-clamp-2 leading-relaxed">
+                            {{-- Deskripsi --}}
+                            <td class="px-6 py-5">
+                                <p class="text-gray-500 text-sm leading-relaxed max-w-xs line-clamp-2">
                                     {{ $doc->deskripsi }}
                                 </p>
                             </td>
 
-                            <td class="p-4">
-                                @if ($doc->foto)
-                                    <img src="{{ asset('storage/docs/' . $doc->foto) }}"
-                                        class="w-12 h-12 rounded-lg object-cover border border-gray-200 shadow-sm"
-                                        alt="Foto {{ $doc->judul }}">
-                                @else
-                                    <div class="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-[10px] text-gray-400">
-                                        No Image
-                                    </div>
-                                @endif
-                            </td>
 
-                            <td class="p-4 text-sm text-gray-500">
-                                <span class="font-medium text-gray-700">{{ $doc->created_at->format('d M Y') }}</span><br>
-                                <span class="text-xs text-gray-400">{{ $doc->created_at->format('H:i') }} WIB</span>
-                            </td>
-
-                            <td class="p-4 text-center">
-                                <div class="flex gap-2 justify-center">
-                                    <a href="{{ url('/documentations/' . $doc->id . '/edit') }}"
-                                        class="bg-yellow-400 hover:bg-yellow-500 text-black px-4 py-2 rounded-xl text-xs font-semibold transition">
+                            {{-- Aksi --}}
+                            <td class="px-6 py-5">
+                                <div class="flex justify-end gap-2">
+                                    <a href="{{ route('documentations.edit', $doc->id) }}"
+                                       class="border px-4 py-2 bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
                                         Edit
                                     </a>
-
-                                    <button type="button"
-                                            onclick="showDeleteModal({{ $doc->id }})"
-                                            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl text-xs font-semibold transition">
+                                    <button type="button" onclick="openDeleteModal({{ $doc->id }})"
+                                            class="border px-4 py-2 bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
                                         Hapus
                                     </button>
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            
-            @if($docs->isEmpty())
-                <div class="p-12 text-center">
-                    <p class="text-gray-400">Belum ada data dokumentasi.</p>
-                </div>
-            @endif
+                        @empty
+                        <tr>
+                            <td colspan="5" class="text-center py-24">
+                                <p class="text-gray-400 italic text-sm font-medium">Belum ada data dokumentasi.</p>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div id="deleteModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div class="bg-white rounded-3xl shadow-xl max-w-sm w-full mx-4 overflow-hidden">
+    {{-- Delete Modal --}}
+    <div id="deleteModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
             <div class="p-8 text-center">
-                <div class="mx-auto w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mb-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.595 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.595-1.858L5 7m5-4v6m4-6v6m1-10V9a1 1 0 00-1 1v1M12 4v6m2-3v6" />
-                    </svg>
-                </div>
-
-                <h3 class="text-2xl font-semibold text-gray-900 mb-2">Anda yakin?</h3>
-                <p class="text-gray-500 mb-8">Data dokumentasi ini akan dihapus permanen.</p>
-
+                <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Hapus Dokumentasi?</h2>
+                <p class="text-gray-500 mb-8">Data dokumentasi ini akan dihapus secara permanen dari sistem.</p>
                 <div class="flex gap-3">
-                    <button onclick="hideDeleteModal()"
-                            class="flex-1 py-3.5 text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-2xl transition">
-                        Batal
-                    </button>
+                    <button type="button" onclick="closeDeleteModal()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">Batal</button>
                     <form id="deleteForm" method="POST" class="flex-1">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"
-                                class="w-full py-3.5 text-sm font-semibold text-white bg-red-600 hover:bg-red-700 rounded-2xl transition">
-                            Ya, Hapus
-                        </button>
+                        <button type="submit" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">Ya, Hapus</button>
                     </form>
                 </div>
             </div>
@@ -119,19 +126,24 @@
     </div>
 
     <script>
-        function showDeleteModal(id) {
+        function openDeleteModal(id) {
+            const modal = document.getElementById('deleteModal');
             const form = document.getElementById('deleteForm');
             form.action = `/documentations/${id}`;
-            const modal = document.getElementById('deleteModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
         }
 
-        function hideDeleteModal() {
+        function closeDeleteModal() {
             const modal = document.getElementById('deleteModal');
-            modal.classList.add('hidden');
             modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
         }
-    </script>
 
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDeleteModal();
+        });
+    </script>
 </x-layouts.admin-layout>

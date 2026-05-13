@@ -1,12 +1,12 @@
 <x-layouts.admin-layout title="Kelola Data Atlet">
 
-    <div class="max-w-7xl mx-auto p-6 space-y-6">
+    <div class="max-w-7xl mx-auto space-y-10">
 
         {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
             
             <div>
-                <h2 class="text-3xl font-bold text-gray-900">
+                <h2 class="text-3xl font-semibold text-gray-800">
                     Atlet Aktif
                 </h2>
 
@@ -18,32 +18,26 @@
             <div class="flex gap-3">
 
                 <a href="{{ route('atlet.requests') }}"
-                   class="relative inline-flex items-center px-5 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold transition">
-
+                   class="relative inline-flex items-center px-5 py-2.5 bg-gray-200 text-gray-700 text-sm font-bold hover:bg-gray-300 transition">
                     Permintaan Atlet
-
                     @if($pendingCount > 0)
-                        <span class="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white text-[10px]">
+                        <span class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
                             {{ $pendingCount }}
                         </span>
                     @endif
-
                 </a>
 
                 <a href="{{ route('atlet.create') }}"
-                   class="px-6 py-3 bg-[#85488F] hover:bg-purple-700 text-white font-medium transition">
-
+                   class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
                     + Tambah Atlet
-
                 </a>
-
             </div>
-
         </div>
+
 
         {{-- Alert Success --}}
         @if(session('success'))
-            <div class="p-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
+            <div class="p-4 bg-emerald-50 text-emerald-500 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
 
                 <svg class="w-5 h-5"
                      fill="none"
@@ -75,10 +69,6 @@
                         <tr>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                No
-                            </th>
-
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">
                                 Foto & Nama
                             </th>
 
@@ -88,6 +78,10 @@
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
                                 Umur
+                            </th>
+
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">
+                                Deskripsi
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">
@@ -103,11 +97,6 @@
                         @forelse($atlets as $index => $atlet)
 
                             <tr class="hover:bg-gray-50 transition">
-
-                                {{-- No --}}
-                                <td class="px-6 py-5 text-gray-500">
-                                    {{ $index + 1 }}
-                                </td>
 
                                 {{-- Foto & Nama --}}
                                 <td class="px-6 py-5">
@@ -151,13 +140,13 @@
 
                                     @if($atlet->kategori == 'Junior')
 
-                                        <span class="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-tight">
+                                        <span class="border bg-indigo-50 text-indigo-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                             {{ $atlet->kategori }}
                                         </span>
 
                                     @else
 
-                                        <span class="bg-purple-50 text-purple-600 px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-tight">
+                                        <span class="border bg-purple-50 text-purple-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                             {{ $atlet->kategori }}
                                         </span>
 
@@ -174,13 +163,22 @@
 
                                 </td>
 
+                                {{-- Deskripsi --}}
+                                <td class="px-6 py-5">
+
+                                    <span class="text-gray-500 text-sm leading-relaxed max-w-xs line-clamp-2">
+                                        {{ $atlet->deskripsi }}
+                                    </span>
+
+                                </td>
+
                                 {{-- Aksi --}}
                                 <td class="px-6 py-5">
 
                                     <div class="flex justify-end gap-2">
 
                                         <a href="{{ route('atlet.edit', $atlet->id) }}"
-                                           class="px-4 py-2 border border-gray-200 text-gray-600 rounded-xl text-xs font-bold hover:bg-white hover:shadow-sm transition">
+                                           class="px-4 py-2 border bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
 
                                             Edit
 
@@ -189,7 +187,7 @@
                                         <button
                                             type="button"
                                             onclick="openDeleteModal({{ $atlet->id }})"
-                                            class="px-4 py-2 bg-red-50 text-red-500 rounded-xl text-xs font-bold hover:bg-red-500 hover:text-white transition">
+                                            class="px-4 py-2 border bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
 
                                             Hapus
 

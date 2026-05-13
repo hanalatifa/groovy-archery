@@ -1,8 +1,8 @@
 <x-layouts.admin-layout title="Permintaan Atlet Baru">
     <div class="max-w-7xl mx-auto space-y-10">
         
-        <div class="mb-8 flex items-center gap-4 bg-white p-8 rounded-3xl shadow-sm">
-            <a href="{{ route('atlet.kelola') }}" class="p-2 bg-gray-100 rounded-full shadow-sm hover:bg-gray-200 transition">
+        <div class="mb-8 flex items-center gap-4 p-8 shadow-sm">
+            <a href="{{ route('atlet.kelola') }}" class="p-2 bg-gray-200 rounded-full shadow-sm hover:bg-gray-300 transition">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </a>
             <div>
@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-8 shadow-sm border border-amber-50">
+        <div class="bg-white p-8 shadow-sm border border-amber-50">
             <table class="w-full text-left">
                 <thead>
                     <tr class="text-gray-400 text-xs uppercase tracking-wider border-b">
@@ -42,12 +42,22 @@
                             </div>
                         </td>
 
-                        <td class="py-5">
-                            <div class="space-y-1">
-                                <span class="block w-fit bg-amber-50 text-amber-600 px-3 py-1 rounded-full text-xs font-medium">
+                        <td class="px-6 py-5">
+
+                            @if($atlet->kategori == 'Junior')
+
+                                <span class="border bg-indigo-50 text-indigo-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                     {{ $atlet->kategori }}
                                 </span>
-                            </div>
+
+                            @else
+
+                                <span class="border bg-purple-50 text-purple-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
+                                    {{ $atlet->kategori }}
+                                </span>
+
+                            @endif
+
                         </td>
                         
                         <td class="py-5">
@@ -66,13 +76,13 @@
                             <div class="flex justify-end gap-2">
                                 <form action="{{ route('atlet.approve', $atlet->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="px-5 py-2 bg-green-600 text-white rounded-xl text-xs font-bold hover:bg-green-700 transition shadow-sm">
+                                    <button type="submit" class="px-5 py-2 border bg-green-100 text-green-500 rounded-none text-xs font-bold hover:bg-green-200 transition shadow-sm">
                                         Terima
                                     </button>
                                 </form>
                                 <form action="{{ route('atlet.reject', $atlet->id) }}" method="POST" onsubmit="return confirm('Tolak permintaan ini?')">
                                     @csrf
-                                    <button type="submit" class="px-5 py-2 bg-white border border-red-200 text-red-600 rounded-xl text-xs font-bold hover:bg-red-50 transition">
+                                    <button type="submit" class="px-5 py-2 bg-red-100 text-red-500 rounded-none text-xs font-bold hover:bg-red-200 transition shadow-sm">
                                         Tolak
                                     </button>
                                 </form>

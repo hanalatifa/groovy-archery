@@ -1,11 +1,26 @@
 <x-layouts.admin-layout title="Tambah Dokumentasi">
 
-    <div class="p-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Tambah Dokumentasi</h1>
+    <div class="p-6 max-w-5xl mx-auto">
 
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+        <div class="mb-8">
+            <a href="{{ route('documentations.index') }}"
+               class="flex items-center gap-2 font-medium hover:opacity-80"
+               style="color: #85488F;">
+               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+             Kembali ke Daftar Dokumentasi
+            </a>
+        </div>
+
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8">
+            Tambah Dokumentasi
+        </h1>
+
+        <div class="bg-white shadow-sm p-10">
+
             @if ($errors->any())
-                <div class="bg-red-50 text-red-600 p-4 rounded-xl mb-6 border border-red-100">
+                <div class="bg-red-50 border border-red-200 text-red-700 p-4 mb-6">
                     <ul class="list-disc list-inside text-sm">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -14,21 +29,34 @@
                 </div>
             @endif
 
-            <form action="{{ route('documentations.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('documentations.store') }}" method="POST" enctype="multipart/form-data" id="docForm">
                 @csrf
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Judul</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Judul Dokumentasi
+                        </label>
                         <input type="text" name="judul" value="{{ old('judul') }}"
-                               class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition"
-                               placeholder="Masukkan judul kegiatan..." required>
+                               placeholder="Masukkan judul kegiatan..."
+                               class="w-full px-5 py-4 border border-gray-200 focus:ring-2"
+                               style="outline: none;"
+                               onfocus="this.style.borderColor='#85488F'; this.style.boxShadow='0 0 0 4px rgba(133, 72, 143, 0.1)'"
+                               onblur="this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'"
+                               required>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Kategori</label>
-                        <select name="kategori" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition bg-white">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Kategori
+                        </label>
+                        <select name="kategori"
+                                class="w-full px-5 py-4 border border-gray-200 bg-white"
+                                style="outline: none;"
+                                onfocus="this.style.borderColor='#85488F';"
+                                onblur="this.style.borderColor='#E5E7EB';"
+                                required>
                             <option value="" disabled selected>Pilih Kategori</option>
                             <option value="Latihan" {{ old('kategori') == 'Latihan' ? 'selected' : '' }}>Latihan</option>
                             <option value="Kompetisi" {{ old('kategori') == 'Kompetisi' ? 'selected' : '' }}>Kompetisi</option>
@@ -36,42 +64,57 @@
                             <option value="Team" {{ old('kategori') == 'Team' ? 'selected' : '' }}>Team</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Masukkan Dokumentasi</label>
-                        <div id="preview-container" class="relative group">
-                            <input type="file" name="foto" id="foto" accept="image/*" class="sr-only" required>
-                            <label for="foto" class="flex flex-col items-center justify-center w-full h-72 border-2 border-gray-300 border-dashed rounded-2xl cursor-pointer bg-gray-50 hover:bg-gray-100 hover:border-gray-400 transition overflow-hidden relative">
-                                
-                                <img id="img-preview" class="hidden absolute inset-0 w-full h-full object-cover z-10">
-                                
-                                <div id="placeholder" class="flex flex-col items-center justify-center pt-5 pb-6 z-0">
-                                    <svg class="w-16 h-16 mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 20 16">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">
+                            Foto Dokumentasi
+                        </label>
+                        <div id="upload-area"
+                             class="border-2 border-dashed border-gray-300 p-12 text-center transition cursor-pointer"
+                             onmouseover="this.style.borderColor='#85488F'"
+                             onmouseout="this.style.borderColor='#D1D5DB'">
+                            <input type="file" name="foto" id="foto-input" accept="image/*" class="hidden" required>
+                            
+                            <div id="preview-container" class="hidden mb-4">
+                                <img id="image-preview" class="mx-auto max-h-60 shadow" alt="Preview">
+                            </div>
+
+                            <div id="placeholder">
+                                <div class="w-16 h-16 mx-auto bg-gray-100 flex items-center justify-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M4 16v-4m0 0l4 4m-4-4l4-4m12 0v4m0 0l-4-4m4 4l-4 4"/>
                                     </svg>
-                                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Klik untuk upload</span></p>
-                                    <p class="text-xs text-gray-400">PNG, JPG atau JPEG (Maks. 10MB)</p>
                                 </div>
-                            </label>
+                                <p class="text-gray-600 font-medium">Klik untuk upload dokumentasi</p>
+                                <p class="text-xs text-gray-400 mt-1">PNG, JPG atau JPEG (Maks. 10MB)</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-2">Deskripsi Kegiatan</label>
-                        <textarea name="deskripsi" class="w-full h-72 px-4 py-3 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition resize-none"
-                                  placeholder="Tuliskan deskripsi kegiatan di sini..." required>{{ old('deskripsi') }}</textarea>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Deskripsi Kegiatan
+                        </label>
+                        <textarea name="deskripsi" rows="5"
+                                  placeholder="Tuliskan deskripsi kegiatan di sini..."
+                                  class="w-full px-5 py-4 border border-gray-200 resize-y"
+                                  style="outline: none;"
+                                  onfocus="this.style.borderColor='#85488F';"
+                                  onblur="this.style.borderColor='#E5E7EB';"
+                                  required>{{ old('deskripsi') }}</textarea>
                     </div>
+
                 </div>
 
-                <div class="flex justify-end gap-3 mt-10">
-                    <a href="{{ url('/documentations') }}"
-                       class="px-6 py-2.5 rounded-lg text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 transition">
+                <div class="flex justify-end gap-4 mt-12">
+                    <a href="{{ route('documentations.index') }}"
+                       class="px-10 py-4 bg-red-500 hover:bg-red-600 text-white font-medium transition">
                         Cancel
                     </a>
                     <button type="submit"
-                            class="px-6 py-2.5 rounded-lg text-sm font-semibold text-white bg-purple-700 hover:bg-purple-800 transition shadow-sm">
+                            class="px-10 py-4 text-white font-medium transition hover:opacity-90 bg-blue-900 hover:bg-blue-950">
                         Simpan
                     </button>
                 </div>
@@ -79,31 +122,30 @@
         </div>
     </div>
 
-</x-layouts.admin-layout>
+    <script>
+        const uploadArea       = document.getElementById('upload-area');
+        const fileInput        = document.getElementById('foto-input');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview     = document.getElementById('image-preview');
+        const placeholder      = document.getElementById('placeholder');
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const input = document.getElementById('foto');
-        const imgPreview = document.getElementById('img-preview');
-        const placeholder = document.getElementById('placeholder');
+        uploadArea.addEventListener('click', () => fileInput.click());
 
-        if (!input || !imgPreview || !placeholder) return;
-
-        input.addEventListener('change', function (event) {
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imgPreview.src = e.target.result;
-                    imgPreview.classList.remove('hidden');
-                    placeholder.classList.add('hidden');
-                }
-                reader.readAsDataURL(file);
-            } else {
-                imgPreview.classList.add('hidden');
-                placeholder.classList.remove('hidden');
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('Hanya file gambar yang diperbolehkan!');
+                return;
             }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                previewContainer.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
         });
-    });
-</script>
+    </script>
+
+</x-layouts.admin-layout>

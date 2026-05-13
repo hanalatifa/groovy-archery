@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documentation;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentationController extends Controller
 {
@@ -20,7 +22,6 @@ class DocumentationController extends Controller
         $totalDocs = Documentation::count();
         return view('documentations.index', compact('docs', 'totalDocs'));
     }
-
 
     public function create()
     {
@@ -42,11 +43,17 @@ class DocumentationController extends Controller
             $fotoName = basename($path);
         }
 
-        Documentation::create([
+        $doc = Documentation::create([
             'judul' => $request->judul,
             'kategori' => $request->kategori, 
             'deskripsi' => $request->deskripsi,
             'foto' => $fotoName, 
+        ]);
+
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Menambah dokumentasi baru: ' . $doc->judul,
+            'status' => 'success'
         ]);
 
         return redirect('/documentations')->with('success', 'Data berhasil ditambah!');
@@ -87,18 +94,32 @@ class DocumentationController extends Controller
             'foto' => $fotoName,
         ]);
 
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Memperbarui dokumentasi: ' . $doc->judul,
+            'status' => 'success'
+        ]);
+
         return redirect('/documentations')->with('success', 'Data berhasil diupdate!');
     }
 
     public function destroy($id)
     {
         $doc = Documentation::findOrFail($id);
+        $judulDoc = $doc->judul;
 
         if ($doc->foto && Storage::disk('public')->exists('docs/' . $doc->foto)) {
             Storage::disk('public')->delete('docs/' . $doc->foto);
         }
 
         $doc->delete();
+
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Menghapus dokumentasi: ' . $judulDoc,
+            'status' => 'deleted'
+        ]);
+
         return redirect('/documentations')->with('success', 'Dokumentasi dan foto berhasil dihapus!');
     }
 }

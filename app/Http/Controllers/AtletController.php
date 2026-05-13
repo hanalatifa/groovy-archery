@@ -3,23 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Activity;
 use App\Models\Atlet;
-use App\Models\Testimonial;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 
 class AtletController extends Controller
 {
-
-    public function dashboardIndex()
-    {
-        $pendingTestis = Testimonial::where('status', 'pending')->latest()->get();
-        $pendingAtlets = Atlet::where('status', 'pending')->latest()->get();
-
-        return view('dashboard.dashboard', compact('pendingTestis', 'pendingAtlets'));
-    }
-
     public function index()
     {
         $atlets = Atlet::where('status', 'approved')->latest()->get();
@@ -30,7 +21,6 @@ class AtletController extends Controller
     {
         $atlets = Atlet::where('status', 'approved')->latest()->get();
         $pendingCount = Atlet::where('status', 'pending')->count();
-
         return view('atlet.kelola-atlet', compact('atlets', 'pendingCount'));
     }
 
@@ -44,10 +34,12 @@ class AtletController extends Controller
     {
         try {
             $validated = $request->validate([
-                'nama'      => 'required|string|max:255',
-                'umur'      => 'required|numeric',
-                'deskripsi' => 'required|string',
-                'foto'      => 'required|image|mimes:jpeg,png,jpg|max:10240',
+                'nama'          => 'required|string|max:255',
+                'umur'          => 'required|numeric',
+                'deskripsi'     => 'required|string',
+                'kategori'      => 'nullable|string',
+                'tgl_bergabung' => 'nullable|date',
+                'foto'          => 'required|image|mimes:jpeg,png,jpg|max:10240',
             ]);
 
             $isDuplicate = Atlet::where('nama', $request->nama)
@@ -56,32 +48,43 @@ class AtletController extends Controller
                 ->exists();
 
             if ($isDuplicate) {
-                return response()->json([
-                    'success' => false,
-                    'error'   => 'Mohon Bersabar, data sedang diproses.'
-                ], 422);
+                return redirect()->back()->with('error', 'Mohon bersabar, data sedang diproses.');
             }
 
             $data = $validated;
-            $data['status'] = Auth::check() ? 'approved' : 'pending';
-            $data['tgl_bergabung'] = now()->format('Y-m-d');
+
+            $isAdmin = Auth::check();
+            $data['status'] = $isAdmin ? 'approved' : 'pending';
+
+            $data['tgl_bergabung'] = $request->tgl_bergabung ?? now()->format('Y-m-d');
 
             if ($request->hasFile('foto')) {
                 $path = $request->file('foto')->store('atlet', 'public');
                 $data['foto'] = basename($path);
             }
 
-            Atlet::create($data);
+            $atlet = Atlet::create($data);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Berhasil dikirim!'
+            $logDescription = $isAdmin
+                ? 'Admin mendaftarkan atlet baru: ' . $atlet->nama
+                : 'Pendaftaran atlet baru (Pending): ' . $atlet->nama;
+
+            Activity::create([
+                'user_id'     => Auth::id() ?? 1,
+                'description' => $logDescription,
+                'status'      => $isAdmin ? 'success' : 'pending'
             ]);
+
+            if ($isAdmin) {
+                // Admin
+                return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil disimpan!');
+            } else {
+                // Guest
+                return redirect()->back()->with('success', 'Pendaftaran Anda berhasil dikirim dan menunggu persetujuan.');
+            }
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'error'   => 'Gagal simpan data.'
-            ], 500);
+            Log::error('Gagal simpan atlet: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal simpan data.');
         }
     }
 
@@ -89,23 +92,35 @@ class AtletController extends Controller
     {
         $atlet = Atlet::findOrFail($id);
         $atlet->update(['status' => 'approved']);
+
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Menyetujui pendaftaran atlet: ' . $atlet->nama,
+            'status' => 'success'
+        ]);
+
         return redirect()->back()->with('success', 'Atlet berhasil disetujui!');
     }
 
     public function reject(int $id)
     {
         $atlet = Atlet::findOrFail($id);
+        $namaAtlet = $atlet->nama;
+
         if ($atlet->foto && Storage::disk('public')->exists('atlet/' . $atlet->foto)) {
             Storage::disk('public')->delete('atlet/' . $atlet->foto);
         }
         $atlet->delete();
-        return redirect()->back()->with('success', 'Berhasil dihapus.');
+
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Menolak pendaftaran atlet: ' . $namaAtlet,
+            'status' => 'failed'
+        ]);
+
+        return redirect()->back()->with('success', 'Permintaan pendaftaran dihapus.');
     }
 
-    public function create()
-    {
-        return view('atlet.create');
-    }
     public function edit($id)
     {
         return view('atlet.edit', ['atlet' => Atlet::findOrFail($id)]);
@@ -126,32 +141,50 @@ class AtletController extends Controller
         $data = $validated;
 
         if ($request->hasFile('foto')) {
-
             if ($atlet->foto && Storage::disk('public')->exists('atlet/' . $atlet->foto)) {
                 Storage::disk('public')->delete('atlet/' . $atlet->foto);
             }
-
             $path = $request->file('foto')->store('atlet', 'public');
             $data['foto'] = basename($path);
         }
+
         $atlet->update($data);
 
-        return redirect()->route('atlet.kelola')->with('success', 'Profil ' . $atlet->nama . ' berhasil diperbarui!');
+        Activity::create([
+            'user_id' => Auth::id(),
+            'description' => 'Memperbarui profil atlet: ' . $atlet->nama,
+            'status' => 'success'
+        ]);
+
+        return redirect()->route('atlet.kelola')->with('success', 'Profil berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
         try {
             $atlet = Atlet::findOrFail($id);
+            $namaAtlet = $atlet->nama;
 
             if ($atlet->foto && Storage::disk('public')->exists('atlet/' . $atlet->foto)) {
                 Storage::disk('public')->delete('atlet/' . $atlet->foto);
             }
             $atlet->delete();
-            return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil dihapus selamanya.');
+
+            Activity::create([
+                'user_id' => Auth::id(),
+                'description' => 'Menghapus data atlet: ' . $namaAtlet,
+                'status' => 'deleted'
+            ]);
+
+            return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil dihapus.');
         } catch (\Exception $e) {
             Log::error('Gagal hapus atlet: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Gagal menghapus data.');
         }
+    }
+
+    public function create()
+    {
+        return view('atlet.create');
     }
 }

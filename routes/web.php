@@ -6,29 +6,34 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DocumentationController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\LandingPageController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 
-
+// --- Public Routes ---
 Route::get('/', [LandingPageController::class, 'index'])->name('welcome');
 Route::get('/gallery', [DocumentationController::class, 'gallery'])->name('gallery');
 Route::get('/athletes', [LandingPageController::class, 'athletes'])->name('athletes');
-Route::get('/achievements', function () {return view('achievements.achievements');})->name('achievements');
 Route::get('/achievements', [PertandinganController::class, 'achievements'])->name('achievements');
-Route::post('/testimoni', [TestimonialController::class, 'store'])->name('testimoni.store');
+
+// Public Store (Guest can submit)
+Route::post('/testimoni/store', [TestimonialController::class, 'store'])->name('testi.store');
 Route::post('/simpan/atlet', [AtletController::class, 'store'])->name('atlet.store');
+
+// Language Switcher (Public)
 Route::get('lang/{locale}', [LanguageController::class, 'switch'])
     ->name('lang.switch')
     ->where('locale', '[a-z]{2}');
 
-// Auth
-
+// --- Authenticated Routes ---
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/dashboard-view', [AtletController::class, 'dashboardIndex'])->name('dashboard');
+    // Main Dashboard (Pusat data: Aktivitas, Statistik, dll)
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Manajemen Atlet
     Route::controller(AtletController::class)->group(function () {
+        // dashboard-view dihapus/diarahkan ke dashboard utama agar tidak membingungkan
         Route::get('/atlet', 'index')->name('atlet.index');
         Route::get('/tambah/atlet', 'create')->name('atlet.create');
         Route::get('/kelola/atlet', 'kelola')->name('atlet.kelola');
@@ -45,6 +50,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(TestimonialController::class)->group(function () {
         Route::get('/dashboard/testimonials', 'adminIndex')->name('testi.index');
         Route::get('/dashboard/testimonials/requests', 'adminRequests')->name('testi.requests');
+        Route::get('/dashboard/testimonials/create', 'create')->name('testi.create');
+        
         Route::post('/admin/testimoni/{id}/approve', 'approve')->name('testi.approve');
         Route::post('/admin/testimoni/{id}/reject', 'reject')->name('testi.reject');
         Route::post('/admin/testimoni/{id}/pending', 'makePending')->name('testi.pending');
@@ -76,9 +83,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
-
-    // langsuage switcher
-    Route::get('/lang/{locale}', [LanguageController::class, 'switch'])->name('lang.switch');
 });
 
 require __DIR__ . '/auth.php';
