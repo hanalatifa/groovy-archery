@@ -41,7 +41,7 @@
                             </div>
                             <div>
                                 <p class="font-bold text-sm text-gray-800 dark:text-white">{{ $testi->nama }}</p>
-                                <p class="text-[10px] uppercase text-[#2b459a] dark:text-blue-400 font-semibold tracking-wider">{{ $testi->peran ?? 'Member' }}</p>
+                                <p class="text-[10px] uppercase text-[#2b459a] dark:text-blue-400 font-semibold tracking-wider">{{ $testi->peran ?? 'Member' }}</p>:
                             </div>
                         </div>
 
