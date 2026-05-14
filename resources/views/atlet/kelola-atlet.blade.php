@@ -4,14 +4,14 @@
 
         {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
-            
+
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800">
-                    Atlet Aktif
+                    {{ __('dashboard.atlet_aktif_title') }}
                 </h2>
 
                 <p class="text-gray-500 mt-1">
-                    Daftar atlet yang sudah disetujui dan tampil di website.
+                    {{ __('dashboard.atlet_aktif_sub') }}
                 </p>
             </div>
 
@@ -19,7 +19,7 @@
 
                 <a href="{{ route('atlet.requests') }}"
                    class="relative inline-flex items-center px-5 py-2.5 bg-gray-200 text-gray-700 text-sm font-bold hover:bg-gray-300 transition">
-                    Permintaan Atlet
+                    {{ __('dashboard.atlet_permintaan_btn') }}
                     @if($pendingCount > 0)
                         <span class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
                             {{ $pendingCount }}
@@ -29,7 +29,7 @@
 
                 <a href="{{ route('atlet.create') }}"
                    class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
-                    + Tambah Atlet
+                    {{ __('dashboard.btn_tambah_atlet') }}
                 </a>
             </div>
         </div>
@@ -69,21 +69,21 @@
                         <tr>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Foto & Nama
+                                {{ __('dashboard.atlet_col_foto_nama') }}
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Kategori
+                                {{ __('dashboard.atlet_kategori') }}
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Umur
+                                {{ __('dashboard.atlet_col_umur') }}
                             </th>
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Deskripsi
+                                {{ __('dashboard.atlet_deskripsi') }}
                             </th>
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">
-                                Aksi
+                                {{ __('dashboard.col_aksi') }}
                             </th>
                         </tr>
                     </thead>
@@ -117,7 +117,7 @@
                                             </div>
 
                                             <div class="text-[11px] text-gray-400 italic">
-                                                Terdaftar {{ $atlet->created_at->diffForHumans() }}
+                                                {{ __('dashboard.atlet_terdaftar') }} {{ $atlet->created_at->diffForHumans() }}
                                             </div>
                                         </div>
                                     </div>
@@ -162,7 +162,7 @@
                             <tr>
                                 <td colspan="5" class="text-center py-24">
                                     <p class="text-gray-400 italic text-sm font-medium">
-                                        Belum ada data atlet yang terdaftar.
+                                        {{ __('dashboard.atlet_empty') }}
                                     </p>
                                 </td>
                             </tr>
@@ -181,26 +181,38 @@
 
                 <div class="p-8 text-center">
 
-                    <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">
-                        !
-                    </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">
+                    {{ __('dashboard.modal_atlet_hapus_judul') }}
+                </h2>
 
-                    <h2 class="text-2xl font-bold text-gray-800 mb-2">
-                        Hapus Atlet?
-                    </h2>
+                <p class="text-gray-500 mb-8">
+                    {{ __('dashboard.modal_atlet_hapus_pesan') }}
+                </p>
 
                     <p class="text-gray-500 mb-8">
                         Data atlet akan dihapus secara permanen.
                     </p>
 
-                    <div class="flex gap-3">
+                    <button
+                        type="button"
+                        onclick="closeDeleteModal()"
+                        class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
+
+                        {{ __('dashboard.btn_batal') }}
+
+                    </button>
+
+                    <form id="deleteForm" method="POST" class="flex-1">
+
+                        @csrf
+                        @method('DELETE')
 
                         <button
                             type="button"
                             onclick="closeDeleteModal()"
                             class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
 
-                            Batal
+                            {{ __('dashboard.btn_ya_hapus') }}
 
                         </button>
 

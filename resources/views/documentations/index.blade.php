@@ -1,16 +1,16 @@
-<x-layouts.admin-layout title="Kelola Dokumentasi">
+<x-layouts.admin-layout title="{{ __('dashboard.documentation_title') }}">
     <div class="max-w-7xl mx-auto space-y-10">
 
         {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
             <div>
-                <h2 class="text-3xl font-semibold text-gray-800">Kelola Dokumentasi</h2>
-                <p class="text-gray-500 mt-1">Daftar foto kegiatan dan galeri yang tampil di website.</p>
+                <h2 class="text-3xl font-semibold text-gray-800">{{ __('dashboard.documentation_title') }}</h2>
+                <p class="text-gray-500 mt-1">{{ __('dashboard.documentation_subtitle') }}</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ url('/documentations/create') }}" 
+                <a href="{{ url('/documentations/create') }}"
                    class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
-                    + Tambah Dokumentasi
+                    {{ __('dashboard.documentation_add_btn') }}
                 </a>
             </div>
         </div>
@@ -31,11 +31,11 @@
                 <table class="w-full text-left">
                     <thead class="bg-gray-50 border-b border-gray-100">
                         <tr>
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Tanggal</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Foto & Judul</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Kategori</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Deskripsi</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">Aksi</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.documentation_date') }}</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.documentation_photo_title') }}</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.documentation_category') }}</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.documentation_description') }}</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">{{ __('dashboard.documentation_action') }}</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
@@ -84,11 +84,11 @@
                                 <div class="flex justify-end gap-2">
                                     <a href="{{ route('documentations.edit', $doc->id) }}"
                                        class="border px-4 py-2 bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
-                                        Edit
+                                        {{ __('dashboard.btn_edit') }}
                                     </a>
                                     <button type="button" onclick="openDeleteModal({{ $doc->id }})"
                                             class="border px-4 py-2 bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
-                                        Hapus
+                                        {{ __('dashboard.btn_hapus') }}
                                     </button>
                                 </div>
                             </td>
@@ -96,7 +96,7 @@
                         @empty
                         <tr>
                             <td colspan="5" class="text-center py-24">
-                                <p class="text-gray-400 italic text-sm font-medium">Belum ada data dokumentasi.</p>
+                                <p class="text-gray-400 italic text-sm font-medium">{{ __('dashboard.documentation_empty') }}</p>
                             </td>
                         </tr>
                         @endforelse
@@ -111,14 +111,14 @@
         <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
             <div class="p-8 text-center">
                 <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">Hapus Dokumentasi?</h2>
-                <p class="text-gray-500 mb-8">Data dokumentasi ini akan dihapus secara permanen dari sistem.</p>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ __('dashboard.documentation_delete_title') }}</h2>
+                <p class="text-gray-500 mb-8">{{ __('dashboard.documentation_delete_msg') }}</p>
                 <div class="flex gap-3">
-                    <button type="button" onclick="closeDeleteModal()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">Batal</button>
+                    <button type="button" onclick="closeDeleteModal()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">{{ __('dashboard.documentation_cancel') }}</button>
                     <form id="deleteForm" method="POST" class="flex-1">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">Ya, Hapus</button>
+                        <button type="submit" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">{{ __('dashboard.documentation_confirm') }}</button>
                     </form>
                 </div>
             </div>
