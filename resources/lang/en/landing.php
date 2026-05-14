@@ -10,6 +10,7 @@ return [
 
     // NAV
     'nav_home'        => 'Home',
+    'nav_loc'         => 'North Jakarta',
     'nav_athletes'    => 'Athletes',
     'nav_achievement' => 'Achievements',
     'nav_more'        => 'More',
@@ -121,4 +122,29 @@ return [
     'cta_contact_coach' => 'Contact our coach',
     'cta_register' => 'Register Now',
     'cta_contact' => 'Contact Us',
+
+    'faq_label' => 'FAQ',
+    'faq_title' => 'Frequently Asked Questions',
+    'faq_sub' => 'Find answers to common questions about programs, schedules, and how to join Groovy Archery.',
+
+    'faq_q1' => 'Do I need prior archery experience to join?',
+    'faq_a1' => 'Not at all! Our program is designed for all levels, from complete beginners to advanced athletes. Coaches will guide you step by step.',
+
+    'faq_q2' => 'How much are the registration and monthly fees?',
+    'faq_a2' => 'Registration fee is IDR 200,000 (one-time). Monthly fees: Regular program IDR 300,000, Intensive program IDR 550,000. Basic equipment is provided.',
+
+    'faq_q3' => 'Where are the training locations?',
+    'faq_a3' => 'We have 3 locations in North Jakarta: Sunter Mall, BMW JIS field, and Yon Arhanud field with different schedules.',
+
+    'faq_q4' => 'Is there an age limit to join?',
+    'faq_a4' => 'No age limit. We offer programs for children, teens, and adults.',
+
+    'faq_q5' => 'Do I need to buy my own equipment?',
+    'faq_a5' => 'No need at the beginning. Basic equipment is provided by the club.',
+
+    'faq_q6' => 'How do I register?',
+    'faq_a6' => 'Click the register button, fill out the form, then confirm via WhatsApp for schedule and payment.',
+
+    'faq_q7' => 'Are there competitions I can join?',
+    'faq_a7' => 'Yes, we actively participate in regional and national competitions and train athletes for official tournaments.',
 ];
