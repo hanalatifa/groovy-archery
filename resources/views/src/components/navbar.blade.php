@@ -215,8 +215,6 @@
                     class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">{{ __('landing.nav_gallery') }}</a>
                 <a href="{{ route('schedule') }}"
                     class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">{{ __('landing.nav_schedule') }}</a>
-                <a href="#contact"
-                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">{{ __('landing.nav_contact') }}</a>
             </div>
         </div>
 
