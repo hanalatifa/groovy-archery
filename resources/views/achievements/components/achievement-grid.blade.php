@@ -1,66 +1,75 @@
 @props(['pertandingans'])
 <section class="py-16 text-center transition-colors duration-300">
-    <p class="text-[#2b459a] dark:text-blue-400 font-bold uppercase tracking-[5px] text-[10px]">Victories</p>
-    <h2 class="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">See our Achievement</h2>
-    <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm max-w-md mx-auto">Our athletes continue to earn recognition at every level</p>
+    <p class="text-[#2b459a] dark:text-blue-400 font-bold uppercase tracking-[5px] text-[10px]">
+        {{ __('achievements.section_label') }}</p>
+    <h2 class="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">{{ __('achievements.section_title') }}
+    </h2>
+    <p class="text-gray-500 dark:text-gray-400 mt-4 text-sm max-w-md mx-auto">{{ __('achievements.section_sub') }}</p>
 </section>
 
 <section class="max-w-7xl mx-auto px-6 pb-20">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($pertandingans as $index => $pertandingan)
             @php
-                $fotoUrl = (isset($pertandingan->dokumentasi) && is_array($pertandingan->dokumentasi) && count($pertandingan->dokumentasi) > 0) 
-                           ? asset('storage/' . $pertandingan->dokumentasi[0]) 
-                           : asset('assets/placeholder-event.jpg');
+                $fotoUrl =
+                    isset($pertandingan->dokumentasi) &&
+                    is_array($pertandingan->dokumentasi) &&
+                    count($pertandingan->dokumentasi) > 0
+                        ? asset('storage/' . $pertandingan->dokumentasi[0])
+                        : asset('assets/placeholder-event.jpg');
             @endphp
 
-            <div class="achievement-card group bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-sm overflow-hidden hover:shadow-2xl dark:hover:shadow-blue-900/20 transition-all duration-500 flex flex-col hover:-translate-y-2 {{ $index >= 6 ? 'hidden' : '' }}">
-                
+            <div
+                class="achievement-card group bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-sm overflow-hidden hover:shadow-2xl dark:hover:shadow-blue-900/20 transition-all duration-500 flex flex-col hover:-translate-y-2 {{ $index >= 6 ? 'hidden' : '' }}">
+
                 <div class="relative h-60 overflow-hidden">
-                    <img src="{{ $fotoUrl }}" alt="{{ $pertandingan->nama_pertandingan }}" 
-                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <img src="{{ $fotoUrl }}" alt="{{ $pertandingan->nama_pertandingan }}"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
                 </div>
 
                 <div class="p-8 flex flex-col flex-grow">
                     <p class="text-[#2b459a] dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-2">
                         {{ $pertandingan->kategori }}
                     </p>
-                    
+
                     <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white leading-tight">
                         {{ $pertandingan->nama_pertandingan }}
                     </h3>
-                    
+
                     <p class="text-gray-500 dark:text-gray-400 text-sm mb-6 leading-relaxed flex-grow line-clamp-3">
-                        {{ $pertandingan->deskripsi_kegiatan ?? 'Detail prestasi yang diraih oleh atlet dalam kejuaraan ini.' }}
+                        {{ $pertandingan->deskripsi_kegiatan ?? __('achievements.card_placeholder') }}
                     </p>
-                    
+
                     <div class="pt-4 border-t border-gray-50 dark:border-slate-700">
-                        <button type="button" 
-                                onclick="showAchievementDetail(
+                        <button type="button"
+                            onclick="showAchievementDetail(
                                     '{{ addslashes($pertandingan->nama_pertandingan) }}',
                                     '{{ addslashes($pertandingan->kategori) }}',
                                     '{{ $pertandingan->tgl_pertandingan ? $pertandingan->tgl_pertandingan->format('d/m/Y') : '-' }}',
                                     '{{ addslashes($pertandingan->deskripsi_kegiatan ?? '') }}',
                                     '{{ $fotoUrl }}'
                                 )"
-                                class="inline-flex items-center gap-2 text-[#2b459a] dark:text-blue-400 font-bold text-xs uppercase tracking-widest hover:gap-3 transition-all cursor-pointer">
-                            Lihat Detail <span>→</span>
+                            class="inline-flex items-center gap-2 text-[#2b459a] dark:text-blue-400 font-bold text-xs uppercase tracking-widest hover:gap-3 transition-all cursor-pointer">
+                            {{ __('achievements.card_detail_btn') }} <span>→</span>
                         </button>
                     </div>
                 </div>
             </div>
         @empty
-            <div class="col-span-full text-center py-20 bg-gray-50 dark:bg-slate-800/50 rounded-3xl border-2 border-dashed border-gray-100 dark:border-slate-700">
-                <p class="text-gray-400 dark:text-slate-500 italic">Belum ada data prestasi yang ditambahkan.</p>
+            <div
+                class="col-span-full text-center py-20 bg-gray-50 dark:bg-slate-800/50 rounded-3xl border-2 border-dashed border-gray-100 dark:border-slate-700">
+                <p class="text-gray-400 dark:text-slate-500 italic">{{ __('achievements.card_empty') }}</p>
             </div>
         @endforelse
     </div>
 
     <div class="text-center mt-16" id="see-all-wrapper">
-        <button onclick="showAllAchievements()" 
-                class="inline-flex items-center gap-2 px-10 py-4 border-2 border-gray-200 dark:border-slate-700 text-gray-900 dark:text-white font-bold text-xs uppercase tracking-[2px] hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300">
-            See All Achievements
+        <button onclick="showAllAchievements()"
+            class="inline-flex items-center gap-2 px-10 py-4 border-2 border-gray-200 dark:border-slate-700 text-gray-900 dark:text-white font-bold text-xs uppercase tracking-[2px] hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300">
+            {{ __('achievements.btn_see_all') }}
         </button>
     </div>
 </section>
@@ -68,24 +77,24 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-function showAllAchievements() {
-    document.querySelectorAll('.achievement-card.hidden').forEach(card => {
-        card.classList.remove('hidden');
-    });
-    document.getElementById('see-all-wrapper').classList.add('hidden');
-}
+    function showAllAchievements() {
+        document.querySelectorAll('.achievement-card.hidden').forEach(card => {
+            card.classList.remove('hidden');
+        });
+        document.getElementById('see-all-wrapper').classList.add('hidden');
+    }
 
-function showAchievementDetail(nama, kategori, tanggal, deskripsi, foto) {
-    const isDark = document.documentElement.classList.contains('dark');
+    function showAchievementDetail(nama, kategori, tanggal, deskripsi, foto) {
+        const isDark = document.documentElement.classList.contains('dark');
 
-    Swal.fire({
-        width: '600px',
-        showConfirmButton: false,
-        showCloseButton: true,
-        padding: '0',
-        background: isDark ? '#1e293b' : '#fff',
-        color: isDark ? '#f8fafc' : '#1a202c',
-        html: `
+        Swal.fire({
+            width: '600px',
+            showConfirmButton: false,
+            showCloseButton: true,
+            padding: '0',
+            background: isDark ? '#1e293b' : '#fff',
+            color: isDark ? '#f8fafc' : '#1a202c',
+            html: `
             <style>
                 .swal-close-btn {
                     position: absolute !important;
@@ -133,6 +142,6 @@ function showAchievementDetail(nama, kategori, tanggal, deskripsi, foto) {
                 </div>
             </div>
         `
-    });
-}
+        });
+    }
 </script>
