@@ -1,5 +1,5 @@
 {{-- ═══ JADWAL INTERAKTIF ═══ --}}
-<section id="jadwal" class="py-24 px-6 bg-white dark:bg-slate-900 transition-colors duration-300">
+<section id="jadwal" class="py-24 px-6 dark:bg-slate-900 transition-colors duration-300">
     <div class="max-w-6xl mx-auto">
 
         <div class="py-16 text-center transition-colors duration-300">

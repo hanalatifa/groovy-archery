@@ -1,5 +1,5 @@
 {{-- ═══ PROGRAM ═══ --}}
-<section class="py-20 sm:py-28 px-5 sm:px-6 bg-white dark:bg-slate-900 transition-colors duration-300">
+<section class="py-20 sm:py-28 px-5 sm:px-6 dark:bg-slate-900 transition-colors duration-300">
     <div class="max-w-6xl mx-auto">
 
         {{-- Header --}}

@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Latihan — Groovy Archery</title>
+    <title>Groovy Archery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo_groovy_round.png')}}">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('ga-theme');
+            const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = savedTheme || (systemDark ? 'dark' : 'light');
+
+            document.documentElement.setAttribute('data-theme', theme);
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
 
-        <style>
+    <style>
         :root {
             --body-bg: #ffffff;
             --body-text: #1f2937;
@@ -22,17 +38,15 @@
             color: var(--body-text);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         .dark body {
             color: #f1f5f9 !important;
         }
-
         .dark h1, .dark h2, .dark h3, .dark h4, .dark p, .dark span:not([class*="text-"]) {
             color: #f8fafc;
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden" style="font-family:'Montserrat',sans-serif; background:#ffff;">
+<body class="antialiased overflow-x-hidden" style="font-family:'Montserrat',sans-serif;">
 
     @include('src.components.navbar')
 
