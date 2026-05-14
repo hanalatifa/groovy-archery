@@ -10,6 +10,7 @@ return [
 
     // NAV
     'nav_home'        => 'Beranda',
+    'nav_loc'         => 'Jakarta Utara',
     'nav_athletes'    => 'Atlet',
     'nav_achievement' => 'Prestasi',
     'nav_more'        => 'Lainnya',

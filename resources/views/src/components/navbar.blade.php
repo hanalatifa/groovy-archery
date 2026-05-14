@@ -191,19 +191,19 @@
         <img src="{{ asset('assets/logo_groovy.png') }}" alt="Groovy Archery" class="ga-logo-img">
         <div>
             <span class="ga-logo-name">Groovy Archery</span>
-            <span class="ga-logo-sub">Jakarta Utara</span>
+            <span class="ga-logo-sub">{{ __('landing.nav_loc') }}</span>
         </div>
     </a>
 
     {{-- DESKTOP NAV --}}
     <div class="hidden md:flex items-center gap-1">
-        <a href="{{ route('welcome') }}" class="ga-link">Beranda</a>
-        <a href="{{ route('athletes') }}" class="ga-link">Atlet</a>
-        <a href="{{ route('achievements') }}" class="ga-link">Pencapaian</a>
+        <a href="{{ route('welcome') }}" class="ga-link">{{ __('landing.nav_home') }}</a>
+        <a href="{{ route('athletes') }}" class="ga-link">{{ __('landing.nav_athletes') }}</a>
+        <a href="{{ route('achievements') }}" class="ga-link">{{ __('landing.nav_achievement') }}</a>
 
         <div class="relative group">
             <button class="ga-link flex items-center gap-1">
-                More
+                {{ __('landing.nav_more') }}
                 <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24">
                     <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -246,8 +246,7 @@
         </button>
 
         <a href="{{ route('login') }}"
-            class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold hover:bg-[#1e3278] transition-colors rounded-sm">Login
-            sebagai Admin</a>
+            class="ml-1 px-6 py-2.5 bg-[#2b459a] text-white text-sm font-bold hover:bg-[#1e3278] transition-colors rounded-sm">{{ __('landing.nav_login') }}</a>
     </div>
 
     {{-- MOBILE TOP BAR --}}
@@ -299,7 +298,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
-                Home
+                {{ __('landing.nav_home') }}
             </a>
             <a href="{{ route('athletes') }}"
                 class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
@@ -307,7 +306,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                Athletes
+                {{ __('landing.nav_athletes') }}
             </a>
             <a href="{{ route('achievements') }}"
                 class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">
@@ -315,18 +314,18 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
-                Achievement
+                {{ __('landing.nav_achievement') }}
             </a>
 
             {{-- MORE SECTION --}}
             <div class="pt-3">
-                <p class="drawer-section-label px-4 text-[10px] font-bold uppercase tracking-widest mb-2">More</p>
+                <p class="drawer-section-label px-4 text-[10px] font-bold uppercase tracking-widest mb-2">{{ __('landing.nav_more') }}</p>
                 <a href="{{ route('gallery') }}"
-                    class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Gallery</a>
+                    class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">{{ __('landing.nav_gallery') }}</a>
                 <a href="{{ route('schedule') }}"
-                    class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Schedule</a>
+                    class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">{{ __('landing.nav_schedule') }}</a>
                 <a href="#contact"
-                    class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">Contact Us</a>
+                    class="drawer-link flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl">{{ __('landing.nav_contact') }}</a>
             </div>
 
             {{-- LANGUAGE SWITCHER MOBILE --}}
@@ -353,7 +352,7 @@
                 class="flex items-center justify-center w-full px-6 py-3.5
                       bg-[#2b459a] text-white text-sm font-bold
                       hover:bg-[#1e3278] transition-colors duration-200 rounded-xl">
-                Login as Admin
+                {{ __('landing.nav_login') }}
             </a>
         </div>
     </div>
