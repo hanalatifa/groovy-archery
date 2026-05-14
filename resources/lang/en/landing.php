@@ -106,6 +106,31 @@ return [
     'testimoni_desc_placeholder' => 'Share your experience...',
     'testimoni_submit' => 'Submit Testimonial',
     'testimoni_cancel' => 'Cancel',
+    'testimonial_title' => 'Give a Testimonial',
+
+    'testimonial_subtitle' => 'Share your experience with Groovy Archery',
+
+    // Labels
+    'full_name' => 'Full Name',
+    'role_position' => 'Role / Position',
+    'rating' => 'Rating',
+    'description' => 'Description',
+
+    // Placeholders
+    'full_name_placeholder' => 'Enter your name',
+
+    'role_placeholder' => 'Example: Athlete/Coach/Parent',
+
+    'description_placeholder' => 'Tell us about your experience...',
+
+    // Validation
+    'name_required' => 'Name is required',
+    'rating_required' => 'Please select a rating first',
+    'description_required' => 'Description is required',
+
+    // Button
+    'submit_testimonial' => 'Submit Testimonial',
+
 
     'contact_label' => 'Connect',
     'contact_title' => 'Get to know us better',
