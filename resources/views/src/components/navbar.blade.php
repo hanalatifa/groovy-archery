@@ -212,11 +212,11 @@
             <div
                 class="absolute top-full left-0 mt-2 w-44 bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-xl shadow-lg py-1.5 px-1.5 z-50 opacity-0 pointer-events-none -translate-y-1 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 transition-all duration-200">
                 <a href="{{ route('gallery') }}"
-                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">Gallery</a>
+                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">{{ __('landing.nav_gallery') }}</a>
                 <a href="{{ route('schedule') }}"
-                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">Schedule</a>
+                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">{{ __('landing.nav_schedule') }}</a>
                 <a href="#contact"
-                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">Contact Us</a>
+                    class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-200 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-[#2b459a] dark:hover:text-blue-300">{{ __('landing.nav_contact') }}</a>
             </div>
         </div>
 
