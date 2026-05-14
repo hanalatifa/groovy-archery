@@ -1,15 +1,14 @@
 <section class="py-24 px-6 text-center border-t border-gray-100 dark:border-slate-800 transition-colors duration-300">
-    <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">Request</p>
+    <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">{{ __('athlets.request_label') }}</p>
 
-    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Namamu belum tercantum?</h2>
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ __('athlets.request_title') }}</h2>
 
     <p class="text-gray-500 dark:text-gray-400 text-sm max-w-md mx-auto mb-10 leading-relaxed">
-        Sudah bergabung dalam club tapi namamu belum tercantum?<br class="hidden md:block">
-        Request kepada admin untuk segera ditambahkan!
+        {{ __('athlets.request_desc') }}<br class="hidden md:block">
     </p>
 
     <div class="flex flex-col items-center gap-2">
-        <p class="text-[10px] text-gray-400 dark:text-gray-500 tracking-wide">Hubungi coach kami</p>
+        <p class="text-[10px] text-gray-400 dark:text-gray-500 tracking-wide">{{ __('athlets.request_contact') }}</p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
             <button onclick="openRequestModal()"
@@ -19,14 +18,14 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                 </svg>
-                Request Tambahkan
+                {{ __('athlets.request_button') }}
             </button>
 
             <a href="#contact"
                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 border border-gray-300 dark:border-slate-700
                       text-gray-700 dark:text-gray-300 font-bold text-sm hover:border-[#2b459a] dark:hover:border-blue-400
                       hover:text-[#2b459a] dark:hover:text-blue-400 transition-all duration-200 active:scale-95">
-                Hubungi Kami
+                {{ __('athlets.request_contact_button') }}
             </a>
         </div>
     </div>
@@ -37,8 +36,8 @@
         <div class="sticky top-0 bg-white z-10 px-8 pt-8 pb-5 border-b border-gray-100 rounded-t-2xl">
             <div class="flex items-start justify-between">
                 <div>
-                    <h3 class="text-xl font-bold text-gray-900">Request Tambah Atlet</h3>
-                    <p class="text-xs text-gray-400 mt-1">Isi data di bawah, admin akan segera memproses requestmu</p>
+                    <h3 class="text-xl font-bold text-gray-900">{{ __('athlets.request_modal_title') }}</h3>
+                    <p class="text-xs text-gray-400 mt-1">{{ __('athlets.request_modal_subtitle') }}</p>
                 </div>
                 <button onclick="closeRequestModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
@@ -48,7 +47,7 @@
 
         <div class="px-8 py-7 space-y-5">
             <div>
-                <label class="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">Foto Atlet *</label>
+                <label class="block text-xs font-bold text-gray-700 mb-2 uppercase tracking-wide">{{ __('athlets.request_photo') }}</label>
 
                 <div class="relative group w-24 h-24">
                     <input type="file" id="reqFoto" accept="image/*" class="hidden">
@@ -65,55 +64,55 @@
                             <svg class="w-6 h-6 mx-auto text-gray-300 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                             </svg>
-                            <span class="text-gray-300 text-[10px]">Add Photo</span>
+                            <span class="text-gray-300 text-[10px]">{{ __('athlets.request_add_photo') }}</span>
                         </div>
                     </label>
                 </div>
 
-                <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqFoto">Foto wajib diunggah</p>
+                <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqFoto">{{ __('athlets.request_error_photo') }}</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Nama Lengkap *</label>
-                    <input type="text" id="reqNama" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="Nama atlet">
-                    <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqNama">Nama wajib diisi</p>
+                    <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_name') }}</label>
+                    <input type="text" id="reqNama" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="{{ __('athlets.request_name_placeholder') }}">
+                    <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqNama">{{ __('athlets.request_error_name') }}</p>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Umur *</label>
-                    <input type="number" id="reqUmur" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="Contoh: 17">
-                    <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqUmur">Umur wajib diisi</p>
+                    <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_age') }}</label>
+                    <input type="number" id="reqUmur" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="{{ __('athlets.request_age_placeholder') }}">
+                    <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqUmur">{{ __('athlets.request_error_age') }}</p>
                 </div>
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-gray-700 mb-3 uppercase">Kategori *</label>
+                <label class="block text-xs font-bold text-gray-700 mb-3 uppercase">{{ __('athlets.request_category') }}</label>
                 <div class="grid grid-cols-2 gap-3">
                     <input type="radio" name="reqKategori" id="katJunior" value="Junior" class="req-kategori-option hidden">
                     <label for="katJunior" class="req-kategori-label flex flex-col items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer text-center hover:bg-gray-50 transition-all">
-                        <p class="font-bold text-sm text-gray-900">Junior</p>
-                        <p class="text-[10px] text-gray-400">Di bawah 18 thn</p>
+                        <p class="font-bold text-sm text-gray-900">{{ __('athlets.request_junior') }}</p>
+                        <p class="text-[10px] text-gray-400">{{ __('athlets.request_junior_desc') }}</p>
                     </label>
 
                     <input type="radio" name="reqKategori" id="katSenior" value="Senior" class="req-kategori-option hidden">
                     <label for="katSenior" class="req-kategori-label flex flex-col items-center p-4 border-2 border-gray-200 rounded-xl cursor-pointer text-center hover:bg-gray-50 transition-all">
-                        <p class="font-bold text-sm text-gray-900">Senior</p>
-                        <p class="text-[10px] text-gray-400">18 thn ke atas</p>
+                        <p class="font-bold text-sm text-gray-900">{{ __('athlets.request_senior') }}</p>
+                        <p class="text-[10px] text-gray-400">{{ __('athlets.request_senior_desc') }}</p>
                     </label>
                 </div>
-                <p class="text-red-500 text-[10px] mt-2 hidden" id="errReqKategori">Pilih kategori</p>
+                <p class="text-red-500 text-[10px] mt-2 hidden" id="errReqKategori">{{ __('athlets.request_error_category') }}</p>
             </div>
 
             <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">Deskripsi *</label>
-                <textarea id="reqDeskripsi" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm resize-none" placeholder="Prestasi atau info singkat..."></textarea>
-                <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqDeskripsi">Deskripsi wajib diisi</p>
+                <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_description') }}</label>
+                <textarea id="reqDeskripsi" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm resize-none" placeholder="{{ __('athlets.request_description_placeholder') }}"></textarea>
+                <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqDeskripsi">{{ __('athlets.request_error_description') }}</p>
             </div>
         </div>
 
         <div class="sticky bottom-0 bg-white border-t border-gray-100 px-8 py-5 rounded-b-2xl flex gap-3">
             <button id="submitRequest" class="flex-1 py-3 bg-[#2b459a] text-white font-bold rounded-xl text-sm hover:bg-[#1e3278] transition-all active:scale-95 shadow-lg shadow-blue-900/20">
-                Kirim Request
+                {{ __('athlets.request_submit') }}
             </button>
         </div>
     </div>
@@ -203,7 +202,7 @@ document.getElementById('submitRequest').addEventListener('click', async functio
         if (!nama || !umur || !deskripsi || !foto) return;
 
         btn.disabled = true;
-        btn.innerText = 'Mengirim...';
+        btn.innerText = '{{ __('athlets.request_loading') }}';
 
         const formData = new FormData();
         formData.append('nama', nama);
