@@ -3,12 +3,12 @@
         <div class="flex items-center gap-3 overflow-x-auto pb-1 scrollbar-hide">
 
             @foreach([
-                ['all',       'Semua',      ''],
-                ['latihan',   'Latihan',    '🏹'],
-                ['kompetisi', 'Kompetisi',  '🏆'],
-                ['event',     'Event',      '🎯'],
-                ['team',      'Team',       '👥'],
-            ] as [$val, $label, $icon])
+    ['all',       __('gallery.filter_all'),       ''],
+    ['latihan',   __('gallery.filter_latihan'),   '🏹'],
+    ['kompetisi', __('gallery.filter_kompetisi'), '🏆'],
+    ['event',     __('gallery.filter_event'),     '🎯'],
+    ['team',      __('gallery.filter_team'),      '👥'],
+] as [$val, $label, $icon])
             <button data-glry-filter="{{ $val }}"
                     class="glry-filter shrink-0 flex items-center gap-2 px-5 py-2.5 text-xs font-black
                            uppercase tracking-widest border-2 transition-all duration-200
@@ -21,7 +21,7 @@
             @endforeach
 
             <div class="ml-auto shrink-0">
-                <span class="text-xs font-bold text-gray-300 uppercase tracking-widest" id="glryCount">12 Foto</span>
+                <span class="text-xs font-bold text-gray-300 uppercase tracking-widest" id="glryCount">12 {{ __('gallery.foto_count') }}</span>
             </div>
         </div>
     </div>
