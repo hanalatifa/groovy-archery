@@ -189,4 +189,21 @@ return [
 
     'testimoni_delete_title' => 'Delete Testimonial?',
     'testimoni_delete_msg' => 'This testimonial will be permanently deleted from the system.',
+
+    'testimoni_add_title' => 'Add Testimonial',
+
+    'testimoni_form_name' => 'Full Name',
+    'testimoni_form_role' => 'Role / Position',
+
+    'testimoni_rating_label' => 'Star Rating',
+    'testimoni_rating_placeholder' => 'Select Rating',
+    'testimoni_rating_star' => 'Stars',
+
+    'testimoni_message_label' => 'Testimonial Message',
+
+    'testimoni_name_ph' => 'Example: John Doe',
+    'testimoni_role_ph' => 'Example: Parent / Athlete / Alumni',
+    'testimoni_message_ph' => 'Write your experience or feedback here...',
+
+    'testimoni_btn_save' => 'Save Testimonial',
 ];

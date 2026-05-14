@@ -189,4 +189,21 @@ return [
 
     'testimoni_delete_title' => 'Hapus Testimoni?',
     'testimoni_delete_msg' => 'Data testimoni ini akan dihapus secara permanen dari sistem.',
+
+    'testimoni_add_title' => 'Tambah Testimoni Baru',
+
+    'testimoni_form_name' => 'Nama Lengkap',
+    'testimoni_form_role' => 'Peran / Jabatan',
+
+    'testimoni_rating_label' => 'Rating Bintang',
+    'testimoni_rating_placeholder' => 'Pilih Rating',
+    'testimoni_rating_star' => 'Bintang',
+
+    'testimoni_message_label' => 'Pesan Testimoni',
+
+    'testimoni_name_ph' => 'Contoh: Budi Santoso',
+    'testimoni_role_ph' => 'Contoh: Wali Murid / Atlet / Alumni',
+    'testimoni_message_ph' => 'Tuliskan pengalaman atau pesan testimoni di sini...',
+
+    'testimoni_btn_save' => 'Simpan Testimoni',
 ];
