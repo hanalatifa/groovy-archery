@@ -1,5 +1,4 @@
 <style>
-/* ── Sidebar Dark Mode Variables ── */
 :root {
     --sidebar-bg:           #ffffff;
     --sidebar-border:       #e5e7eb;
@@ -66,7 +65,7 @@
 
     <div class="px-6 pt-8 pb-6 border-b border-gray-100">
         <div class="flex items-center gap-3">
-            <img src="{{ asset('assets/Logo.jpeg') }}"
+            <img src="{{ asset('assets/logo_groovy.png') }}"
                  class="h-12 w-12 object-contain" alt="Groovy Archery Logo">
             <div>
                 <p class="text-2xl font-bold tracking-tight sidebar-logo-title">Groovy Archery</p>

@@ -16,7 +16,7 @@
     <div class="text-center max-w-3xl mx-auto px-4">
 
         <div class="flex justify-center mb-6">
-            <img src="{{ asset('assets/Logo.jpeg') }}"
+            <img src="{{ asset('assets/logo_groovy.png') }}"
                  alt="Logo"
                  class="w-14 h-14 object-cover dark:brightness-125 dark:contrast-125">
         </div>

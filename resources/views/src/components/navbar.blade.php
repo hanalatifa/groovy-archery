@@ -188,7 +188,7 @@
 
 <nav id="gaNav" class="flex items-center justify-between px-6 md:px-10 py-4 sticky top-0 z-50 transition-colors">
     <a href="{{ url('/') }}" class="ga-logo">
-        <img src="{{ asset('assets/Logo.jpeg') }}" alt="Groovy Archery" class="ga-logo-img">
+        <img src="{{ asset('assets/logo_groovy.png') }}" alt="Groovy Archery" class="ga-logo-img">
         <div>
             <span class="ga-logo-name">Groovy Archery</span>
             <span class="ga-logo-sub">Jakarta Utara</span>
