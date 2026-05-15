@@ -6,7 +6,7 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </a>
             <div>
-                <h2 class="text-3xl font-semibold text-gray-800">Permintaan Pending</h2>
+                <h2 class="text-3xl font-semibold text-gray-800">Permintaan Atlet</h2>
                 <p class="text-gray-500 mt-1">Tinjau detail profil atlet sebelum memberikan persetujuan.</p>
             </div>
         </div>
@@ -42,7 +42,7 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-5">
+                        <td class="py-5">
 
                             @if($atlet->kategori == 'Junior')
 

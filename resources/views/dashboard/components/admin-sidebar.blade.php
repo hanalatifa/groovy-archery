@@ -43,20 +43,7 @@
             Dashboard
         </a>
 
-        @php $active = request()->routeIs('atlet.create'); @endphp
-        <a href="{{ route('atlet.create') }}"
-           class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
-                  {{ $active ? 'text-white' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}"
-           style="{{ $active ? 'background: linear-gradient(135deg, #85488F, #7c3aed);' : '' }}">
-            <svg class="w-5 h-5 shrink-0 {{ $active ? '' : 'text-gray-400' }}"
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
-            </svg>
-            {{ __('dashboard.nav_tambah_atlet') }}
-        </a>
-
-        @php $active = request()->routeIs('atlet.index', 'atlet.edit', 'atlet.kelola'); @endphp
+        @php $active = request()->routeIs('atlet.edit', 'atlet.kelola'); @endphp
         <a href="{{ route('atlet.index') }}"
            class="flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all duration-150
                   {{ $active ? 'text-white' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900' }}"

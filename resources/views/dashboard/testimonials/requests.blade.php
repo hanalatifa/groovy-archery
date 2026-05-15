@@ -9,7 +9,7 @@
                 </svg>
             </a>
             <div>
-                <h2 class="text-3xl font-semibold text-gray-800">Permintaan Baru</h2>
+                <h2 class="text-3xl font-semibold text-gray-800">Permintaan Testimoni</h2>
                 <p class="text-gray-500 mt-1">Tinjau testimoni dari pengguna sebelum ditampilkan di website.</p>
             </div>
         </div>
