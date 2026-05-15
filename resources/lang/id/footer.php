@@ -1,35 +1,24 @@
 <?php
 
 return [
-    'description' => 'Dapatkan update kompetisi, tips latihan, dan berita terbaru klub.',
-    'email_placeholder' => 'Email lo',
-    'subscribe' => 'Langganan',
-    'policy_text' => 'Dengan berlangganan, lo menyetujui Kebijakan Privasi kami dan menerima update dari Groovy Archery.',
+    'description' => 'Membangun generasi pemanah tangguh melalui latihan disiplin, teknik yang tepat, dan semangat kompetisi yang sehat.',
 
+    'information' => 'Informasi',
     'about_us' => 'Tentang Kami',
-    'our_story' => 'Cerita Kami',
-    'athletes' => 'Atlet',
-    'training' => 'Latihan',
-    'coaches' => 'Pelatih',
-    'contact' => 'Kontak',
-
-    'resources' => 'Sumber',
-    'membership' => 'Keanggotaan',
-    'partners' => 'Partner',
-    'coaching' => 'Coaching',
-    'schedule' => 'Jadwal',
+    'vision_mission' => 'Visi & Misi',
+    'values' => 'Nilai Kami',
     'faq' => 'FAQ',
+    'contact' => 'Hubungi Kami',
 
-    'follow_us' => 'Ikuti Kami',
+    'program' => 'Program',
+    'schedule' => 'Jadwal Latihan',
+    'gallery' => 'Galeri',
+    'achievements' => 'Pencapaian',
+    'athletes' => 'Daftar Atlet',
+
+    'follow_us' => 'Sosial Media',
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
-    'twitter' => 'X / Twitter',
-    'linkedin' => 'LinkedIn',
-    'youtube' => 'YouTube',
 
-    'privacy_policy' => 'Kebijakan Privasi',
-    'terms' => 'Syarat Layanan',
-    'cookie_settings' => 'Pengaturan Cookie',
-
-    'copyright' => '© 2024 Organisasi Klub Groovy. Hak cipta dilindungi.',
+    'copyright' => '© :year Groovy Archery. All rights reserved.',
 ];

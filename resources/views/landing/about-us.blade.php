@@ -1,4 +1,4 @@
-<section class="max-w-5xl mx-auto px-6 py-24 text-center transition-colors duration-300">
+<section class="max-w-5xl mx-auto px-6 py-24 text-center transition-colors duration-300" id="about-us">
 
     <p class="mb-2 text-[10px] font-bold uppercase tracking-[5px] text-[#2b459a] dark:text-blue-400">
         {{ __('landing.about_label') }}

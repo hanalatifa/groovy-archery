@@ -1,4 +1,4 @@
-<section class="max-w-7xl mx-auto px-6 py-24 transition-colors duration-300" id="contact">
+<section class="max-w-7xl mx-auto px-6 py-24 transition-colors duration-300" id="contacts">
 
     <div class="mb-10">
 

@@ -28,6 +28,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
     
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
         :root {
             --body-bg: #ffffff;
             --body-text: #1f2937;
@@ -50,13 +54,13 @@
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+<body class="antialiased overflow-x-hidden bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-300" id="achievements">
 
     @include('src.components.navbar')
 
     <main>
     @include('achievements.components.header')
-    @include('achievements.components.achievement-grid', ['pertandingans' => $pertandingans])
+    @include('achievements.components.achievement-grid', ['pertandingans' => $pertandingan])
     @include('landing.contacts')
     </main>
 

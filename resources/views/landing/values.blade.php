@@ -1,4 +1,4 @@
-<section class="mx-auto px-6 py-20">
+<section class="mx-auto px-6 py-20" id="values">
 
     <div class="text-center mb-14 transition-colors duration-300">
 

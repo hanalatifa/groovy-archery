@@ -1,4 +1,4 @@
-<section class="text-center pb-10 px-6 transition-colors duration-300">
+<section class="text-center pb-10 px-6 transition-colors duration-300" id="visi-misi">
     <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">
         {{ __('landing.vision_label') }}
     </p>

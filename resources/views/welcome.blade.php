@@ -30,6 +30,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
     
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
         :root {
             --body-bg: #ffffff;
             --body-text: #1f2937;
