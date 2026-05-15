@@ -102,17 +102,6 @@
             </li>
 
             <li>
-                <a href="{{ route('atlet.index') }}"
-                   class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
-                          {{ request()->routeIs('atlet.index')
-                              ? 'bg-[#85488F] text-white'
-                              : 'sidebar-nav-link' }}">
-                    <i class="fa-solid fa-address-book w-5 text-center text-base"></i>
-                    <span>{{ __('dashboard.nav_tambah_atlet') }}</span>
-                </a>
-            </li>
-
-            <li>
                 <a href="{{ route('atlet.kelola') }}"
                    class="flex items-center gap-3 px-5 py-3.5 font-medium transition-colors
                           {{ request()->routeIs('atlet.kelola')

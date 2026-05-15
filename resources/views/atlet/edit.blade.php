@@ -94,7 +94,7 @@
                     </a>
                     <button type="submit"
                             class="bg-blue-900 hover:bg-blue-950 px-12 py-4 text-white font-bold transition shadow-lg active:scale-95">
-                        Update Data
+                        Simpan Perubahan
                     </button>
                 </div>
             </form>

@@ -6,10 +6,7 @@
             <a href="{{ route('documentations.index') }}"
                class="flex items-center gap-2 font-medium hover:opacity-80"
                style="color: #85488F;">
-               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-            </svg>
-             Kembali ke Daftar Dokumentasi
+            ← Kembali ke Daftar Dokumentasi
             </a>
         </div>
 

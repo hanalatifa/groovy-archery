@@ -3,27 +3,23 @@
     <div class="p-6 max-w-5xl mx-auto">
 
         {{-- Tombol Kembali --}}
-        <div class="mb-8">
+        <div class="mb-6">
             <a href="{{ route('testi.index') }}"
-                class="flex items-center gap-2 font-medium hover:opacity-80"
+                class="flex items-center gap-2 font-medium"
                 style="color: #85488F;">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-                Kembali ke Testimoni
+                ← Kembali ke Daftar Testimoni
             </a>
         </div>
 
-        <h1 class="text-3xl font-semibold text-gray-800 mb-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8">
             Tambah Testimoni Baru
         </h1>
 
-        <div class="bg-white shadow-sm p-10">
+        <div class="bg-white shadow-xl p-10 border border-gray-100">
 
-            {{-- Validation Errors --}}
             @if ($errors->any())
             <div class="bg-red-50 border border-red-200 text-red-700 p-4 mb-6">
-                <ul class="list-disc list-inside text-sm">
+                <ul class="list-disc list-inside text-sm font-medium">
                     @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                     @endforeach
@@ -34,76 +30,108 @@
             <form action="{{ route('testi.store') }}" method="POST">
                 @csrf
 
-                {{-- Baris Nama & Peran --}}
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                     {{-- Nama --}}
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Nama Lengkap</label>
                         <input type="text" name="nama" value="{{ old('nama') }}"
                             placeholder="Contoh: Budi Santoso"
-                            class="w-full px-5 py-4 border border-gray-200 focus:ring-2"
-                            style="outline: none;"
-                            onfocus="this.style.borderColor='#85488F'; this.style.boxShadow='0 0 0 4px rgba(133, 72, 143, 0.1)'"
-                            onblur="this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'"
+                            class="w-full px-5 py-4 border border-gray-200 focus:ring-4 focus:ring-purple-100 focus:border-purple-500 outline-none transition shadow-sm"
                             required>
                     </div>
 
                     {{-- Peran --}}
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Peran / Jabatan</label>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Peran / Jabatan</label>
                         <input type="text" name="peran" value="{{ old('peran') }}"
-                            placeholder="Contoh: Wali Murid / Atlet / Alumni"
-                            class="w-full px-5 py-4 border border-gray-200 focus:ring-2"
-                            style="outline: none;"
-                            onfocus="this.style.borderColor='#85488F'; this.style.boxShadow='0 0 0 4px rgba(133, 72, 143, 0.1)'"
-                            onblur="this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'"
+                            placeholder="Contoh: Atlet / Coach / Wali Murid"
+                            class="w-full px-5 py-4 border border-gray-200 focus:ring-4 focus:ring-purple-100 focus:border-purple-500 outline-none transition shadow-sm"
                             required>
                     </div>
 
-                    {{-- Rating Bintang --}}
+                    {{-- Rating --}}
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Rating Bintang</label>
-                        <select name="rating" class="w-full px-5 py-4 border border-gray-200 bg-white"
-                            style="outline: none;"
-                            onfocus="this.style.borderColor='#85488F'; this.style.boxShadow='0 0 0 4px rgba(133, 72, 143, 0.1)'"
-                            onblur="this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'"
-                            required>
-                            <option value="" disabled selected>Pilih Rating</option>
-                            @for ($i = 5; $i >= 1; $i--)
-                            <option value="{{ $i }}" {{ old('rating') == $i ? 'selected' : '' }}>
-                                {{ $i }} Bintang {{ str_repeat('★', $i) }}
-                            </option>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Rating Bintang</label>
+                        
+                        <input type="hidden" name="rating" id="rating-value" value="{{ old('rating', '') }}" required>
+                        
+                        <div class="flex items-center gap-2 py-2">
+                            @for ($i = 1; $i <= 5; $i++)
+                                <button type="button" data-value="{{ $i }}" class="star-btn text-4xl text-gray-300 hover:scale-110 transition-transform focus:outline-none">
+                                    ★
+                                </button>
                             @endfor
-                        </select>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1 italic">*Klik pada salah satu bintang untuk memberikan penilaian.</p>
                     </div>
 
-                    {{-- Deskripsi Kegiatan / Pesan Testimoni --}}
+                    {{-- Pesan Testimoni --}}
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Pesan Testimoni</label>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Pesan Testimoni</label>
                         <textarea name="deskripsi" rows="6"
                             placeholder="Tuliskan pengalaman atau pesan testimoni di sini..."
-                            class="w-full px-5 py-4 border border-gray-200 resize-y"
-                            style="outline: none;"
-                            onfocus="this.style.borderColor='#85488F'; this.style.boxShadow='0 0 0 4px rgba(133, 72, 143, 0.1)'"
-                            onblur="this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'"
+                            class="w-full px-5 py-4 border border-gray-200 focus:ring-4 focus:ring-purple-100 focus:border-purple-500 outline-none transition shadow-sm resize-none"
                             required>{{ old('deskripsi') }}</textarea>
                     </div>
                 </div>
 
                 {{-- Action Buttons --}}
-                <div class="flex justify-end gap-4 mt-12">
+                <div class="flex justify-end gap-4 mt-12 pt-8 border-t border-gray-50">
                     <a href="{{ route('testi.index') }}"
-                        class="px-10 py-4 bg-red-500 hover:bg-red-600 text-white font-medium transition">
+                        class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-bold transition">
                         Batal
                     </a>
                     <button type="submit"
-                        class="px-10 py-4 text-white font-medium transition hover:opacity-90 bg-blue-900 hover:bg-blue-950">
-                        Simpan Testimoni
+                        class="bg-blue-900 hover:bg-blue-950 px-12 py-4 text-white font-bold transition shadow-lg active:scale-95">
+                        Simpan
                     </button>
                 </div>
             </form>
         </div>
     </div>
+
+    {{-- Script Handler Bintang --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.star-btn');
+            const ratingInput = document.getElementById('rating-value');
+
+            function highlightStars(rating) {
+                stars.forEach(star => {
+                    const value = parseInt(star.getAttribute('data-value'));
+                    if (value <= rating) {
+                        star.classList.remove('text-gray-300');
+                        star.classList.add('text-yellow-400');
+                    } else {
+                        star.classList.remove('text-yellow-400');
+                        star.classList.add('text-gray-300');
+                    }
+                });
+            }
+
+            if (ratingInput.value) {
+                highlightStars(parseInt(ratingInput.value));
+            }
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function () {
+                    const hoverValue = parseInt(this.getAttribute('data-value'));
+                    highlightStars(hoverValue);
+                });
+
+                star.addEventListener('mouseout', function () {
+                    const currentRating = parseInt(ratingInput.value) || 0;
+                    highlightStars(currentRating);
+                });
+
+                star.addEventListener('click', function () {
+                    const clickedValue = this.getAttribute('data-value');
+                    ratingInput.value = clickedValue;
+                    highlightStars(parseInt(clickedValue));
+                });
+            });
+        });
+    </script>
 
 </x-layouts.admin-layout>

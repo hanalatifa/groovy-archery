@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        @forelse($pertandingans as $pertandingan)
+                        @forelse($pertandingan as $pertandingan)
                         <tr class="hover:bg-gray-50 transition">
                             {{-- Waktu --}}
                             <td class="px-6 py-5">

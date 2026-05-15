@@ -13,14 +13,14 @@ class PertandinganController extends Controller
 {
     public function welcome()
     {
-        $pertandingans = Pertandingan::latest()->take(6)->get();
-        return view('welcome', compact('pertandingans'));
+        $pertandingan = Pertandingan::latest()->take(6)->get();
+        return view('welcome', compact('pertandingan'));
     }
 
     public function index()
     {
-        $pertandingans = Pertandingan::all();
-        return view('pertandingan.index', compact('pertandingans'));
+        $pertandingan = Pertandingan::all();
+        return view('pertandingan.index', compact('pertandingan'));
     }
 
     public function create()
@@ -35,7 +35,7 @@ class PertandinganController extends Controller
 
         if ($request->hasFile('dokumentasi')) {
             foreach ($request->file('dokumentasi') as $file) {
-                $path = $file->store('pertandingans', 'public');
+                $path = $file->store('pertandingan', 'public');
                 $files[] = $path;
             }
         }
@@ -55,37 +55,37 @@ class PertandinganController extends Controller
 
     public function edit($id)
     {
-        $pertandingans = Pertandingan::findOrFail($id);
-        return view('profile.edit', compact('pertandingans'));
+        $pertandingan = Pertandingan::findOrFail($id);
+        return view('pertandingan.edit', compact('pertandingan'));
     }
 
     public function update(Request $request, $id)
     {
-        $pertandingans = Pertandingan::findOrFail($id);
+        $pertandingan = Pertandingan::findOrFail($id);
         $data = $request->all();
 
         if ($request->hasFile('dokumentasi')) {
-            if ($pertandingans->dokumentasi) {
-                foreach ($pertandingans->dokumentasi as $fotoLama) {
+            if ($pertandingan->dokumentasi) {
+                foreach ($pertandingan->dokumentasi as $fotoLama) {
                     FacadesStorage::disk('public')->delete($fotoLama);
                 }
             }
 
             $files = [];
             foreach ($request->file('dokumentasi') as $file) {
-                $path = $file->store('pertandingans', 'public');
+                $path = $file->store('pertandingan', 'public');
                 $files[] = $path;
             }
             $data['dokumentasi'] = $files;
         } else {
-            $data['dokumentasi'] = $pertandingans->dokumentasi;
+            $data['dokumentasi'] = $pertandingan->dokumentasi;
         }
 
-        $pertandingans->update($data);
+        $pertandingan->update($data);
 
         Activity::create([
             'user_id' => Auth::id(),
-            'description' => 'Memperbarui data pertandingan: ' . $pertandingans->nama_pertandingan,
+            'description' => 'Memperbarui data pertandingan: ' . $pertandingan->nama_pertandingan,
             'status' => 'success'
         ]);
 
@@ -94,16 +94,16 @@ class PertandinganController extends Controller
 
     public function destroy($id)
     {
-        $pertandingans = Pertandingan::findOrFail($id);
-        $namaLama = $pertandingans->nama_pertandingan;
+        $pertandingan = Pertandingan::findOrFail($id);
+        $namaLama = $pertandingan->nama_pertandingan;
 
-        if ($pertandingans->dokumentasi) {
-            foreach ($pertandingans->dokumentasi as $foto) {
+        if ($pertandingan->dokumentasi) {
+            foreach ($pertandingan->dokumentasi as $foto) {
                 FacadesStorage::disk('public')->delete($foto);
             }
         }
 
-        $pertandingans->delete();
+        $pertandingan->delete();
 
         Activity::create([
             'user_id' => Auth::id(),
@@ -116,7 +116,7 @@ class PertandinganController extends Controller
 
     public function achievements()
     {
-        $pertandingans = Pertandingan::latest()->get();
-        return view('achievements.achievements', compact('pertandingans'));
+        $pertandingan = Pertandingan::latest()->get();
+        return view('achievements.achievements', compact('pertandingan'));
     }
 }

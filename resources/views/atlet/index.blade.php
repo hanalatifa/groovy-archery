@@ -2,7 +2,6 @@
 
     <div class="p-6">
 
-        {{-- ── Header ── --}}
         <div class="flex justify-between items-center mb-8">
             <div>
                 <h1 class="text-3xl font-semibold text-gray-800">
@@ -19,7 +18,6 @@
             </a>
         </div>
 
-        {{-- ── Tabel Aktivitas ── --}}
         <div class="bg-white shadow-sm p-8">
             <h2 class="text-xl font-semibold mb-6">{{ __('dashboard.atlet_aktivitas') }}</h2>
 
@@ -70,7 +68,6 @@
                 </table>
             </div>
 
-            {{-- Lihat Semua --}}
             <div class="text-center mt-12">
                 <a href="#"
                    class="bg-[#85488F] text-white px-8 py-3 font-medium hover:bg-purple-700 transition inline-block">
