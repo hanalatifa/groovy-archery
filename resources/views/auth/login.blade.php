@@ -503,21 +503,13 @@
 
     <div class="login-form-panel">
 
-        <div class="form-logo anim-1">
-            <div class="logo-mark">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5"/>
-                    <circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.5" stroke-dasharray="2 1.5"/>
-                    <circle cx="12" cy="12" r="2" fill="white"/>
-                    <line x1="12" y1="2" x2="12" y2="22" stroke="white" stroke-width="1"/>
-                    <line x1="2" y1="12" x2="22" y2="12" stroke="white" stroke-width="1"/>
-                </svg>
-            </div>
-            <div class="logo-text-wrap">
-                <p class="logo-name">Groovy Archery</p>
-                <p class="logo-sub">Admin Panel</p>
-            </div>
-        </div>
+<div class="form-logo anim-1">
+    <img src="{{ asset('assets/logo_groovy_round.png') }}" alt="Groovy Archery" class="h-10 w-10 object-contain">
+    <div class="logo-text-wrap">
+        <p class="logo-name">Groovy Archery</p>
+        <p class="logo-sub">Admin Panel</p>
+    </div>
+</div>
 
         @if(session('status'))
         <div class="session-status anim-1">{{ session('status') }}</div>
