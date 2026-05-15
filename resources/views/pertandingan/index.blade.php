@@ -10,7 +10,7 @@
                 <p class="text-gray-500 mt-1">Daftar riwayat pertandingan dan prestasi yang telah diunggah.</p>
             </div>
             <div class="flex gap-3">
-                <a href="{{ route('pertandingan.create') }}" 
+                <a href="{{ route('pertandingan.create') }}"
                    class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
                     {{ __('dashboard.pertandingan_tambah_btn') }}
                 </a>
@@ -36,7 +36,7 @@
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.col_waktu') }}</th>
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.col_foto') }}</th>
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.pertandingan_col_nama') }}</th>
-                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">Deskripsi</th>
+                            <th class="px-6 py-4 text-sm font-semibold text-gray-600">{{ __('dashboard.pertandingan_deskripsi') }}</th>
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">{{ __('dashboard.col_aksi') }}</th>
                         </tr>
                     </thead>
@@ -112,16 +112,16 @@
                 <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">Hapus Pertandingan?</h2>
                 <p class="text-gray-500 mb-8">Data pertandingan dan dokumentasi terkait akan dihapus secara permanen.</p>
-                
+
                 <div class="flex gap-3">
-                    <button type="button" onclick="closeDeleteModal()" 
+                    <button type="button" onclick="closeDeleteModal()"
                             class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
                         Batal
                     </button>
                     <form id="deleteForm" method="POST" class="flex-1">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" 
+                        <button type="submit"
                                 class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
                             Ya, Hapus
                         </button>
@@ -135,9 +135,9 @@
         function openDeleteModal(id) {
             const modal = document.getElementById('deleteModal');
             const form = document.getElementById('deleteForm');
-            
+
             // Sesuaikan route hapus pertandingan kamu
-            form.action = `/hapus/pertandingan/${id}`; 
+            form.action = `/hapus/pertandingan/${id}`;
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');

@@ -1,4 +1,3 @@
-```blade
 <section class="relative min-h-screen overflow-hidden bg-white">
 
     {{-- BACKGROUND --}}
@@ -232,4 +231,3 @@
 
     });
 </script>
-```

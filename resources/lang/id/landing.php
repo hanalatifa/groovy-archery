@@ -10,6 +10,7 @@ return [
 
     // NAV
     'nav_home'        => 'Beranda',
+    'nav_loc'         => 'Jakarta Utara',
     'nav_athletes'    => 'Atlet',
     'nav_achievement' => 'Prestasi',
     'nav_more'        => 'Lainnya',
@@ -106,6 +107,19 @@ return [
     'testimoni_desc_placeholder' => 'Ceritakan pengalaman Anda...',
     'testimoni_submit' => 'Kirim Testimoni',
     'testimoni_cancel' => 'Batal',
+    'testimonial_title' => 'Beri Testimoni',
+    'testimonial_subtitle' => 'Bagikan pengalaman kamu bersama Groovy Archery',
+    'full_name' => 'Nama Lengkap',
+    'role_position' => 'Peran / Jabatan',
+    'rating' => 'Rating',
+    'description' => 'Deskripsi',
+    'full_name_placeholder' => 'Masukkan nama kamu',
+    'role_placeholder' => 'Contoh: Atlet/Coach/Orang Tua Atlet',
+    'description_placeholder' => 'Ceritakan pengalaman kamu...',
+    'name_required' => 'Nama wajib diisi',
+    'rating_required' => 'Pilih rating terlebih dahulu',
+    'description_required' => 'Deskripsi wajib diisi',
+    'submit_testimonial' => 'Kirim Testimoni',
 
     'contact_label' => 'Connect',
     'contact_title' => 'Kenali kami lebih jauh',
@@ -122,4 +136,29 @@ return [
     'cta_contact_coach' => 'Hubungi coach kami',
     'cta_register' => 'Daftar Sekarang',
     'cta_contact' => 'Hubungi Kami',
+
+    'faq_label' => 'FAQ',
+    'faq_title' => 'Pertanyaan yang Sering Diajukan',
+    'faq_sub' => 'Temukan jawaban atas pertanyaan umum tentang program, jadwal, dan cara bergabung di Groovy Archery.',
+
+    'faq_q1' => 'Apakah saya perlu pengalaman memanah sebelumnya untuk bergabung?',
+    'faq_a1' => 'Tidak sama sekali! Program kami dirancang untuk semua tingkatan, mulai dari pemula yang belum pernah memegang busur hingga atlet yang ingin meningkatkan teknik. Coach kami akan membimbing kamu dari awal dengan sabar dan terstruktur.',
+
+    'faq_q2' => 'Berapa biaya pendaftaran dan iuran bulanannya?',
+    'faq_a2' => 'Biaya pendaftaran awal adalah Rp 200.000 (satu kali). Untuk iuran bulanan, tersedia dua program: Regular Rp 300.000/bulan, Intensif Rp 550.000/bulan. Peralatan dasar disediakan oleh club.',
+
+    'faq_q3' => 'Di mana saja lokasi latihannya?',
+    'faq_a3' => 'Kami memiliki 3 lokasi latihan di Jakarta Utara: GRTP Sunter Mall, BMW JIS, dan Yon Arhanud. Jadwal disesuaikan lokasi.',
+
+    'faq_q4' => 'Apakah ada batasan usia untuk bergabung?',
+    'faq_a4' => 'Tidak ada batasan khusus. Kami menerima anak-anak, remaja, dan dewasa dengan program yang disesuaikan.',
+
+    'faq_q5' => 'Apakah saya harus membeli peralatan sendiri?',
+    'faq_a5' => 'Tidak perlu di awal. Peralatan dasar disediakan oleh klub untuk latihan.',
+
+    'faq_q6' => 'Bagaimana cara mendaftar?',
+    'faq_a6' => 'Klik tombol daftar, isi formulir, lalu lanjut konfirmasi via WhatsApp untuk jadwal dan pembayaran.',
+
+    'faq_q7' => 'Apakah ada kompetisi yang bisa diikuti?',
+    'faq_a7' => 'Ya, kami aktif di kompetisi regional dan nasional, dan membimbing atlet ke turnamen resmi.',
 ];

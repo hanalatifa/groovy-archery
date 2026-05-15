@@ -10,7 +10,7 @@ return [
     // ── Stat Cards ───────────────────────────────────────
     'total_atlet'       => 'Total Atlet',
     'total_dokumentasi' => 'Total Dokumentasi',
-    'total_pertandingan'=> 'Total Pertandingan',
+    'total_pertandingan' => 'Total Pertandingan',
 
     // ── Testimony ────────────────────────────────────────
     'testi_title'       => 'Permintaan Tambah Testimoni',
@@ -122,4 +122,88 @@ return [
     // ── Modal Hapus ──────────────────────────────────────
     'modal_hapus_judul'         => 'Anda yakin?',
     'modal_hapus_pesan'         => 'Data pertandingan ini akan dihapus permanen beserta fotonya.',
+
+    // ── Dokumentasi ─────────────────────────────────────
+    'documentation_title'        => 'Kelola Dokumentasi',
+    'documentation_subtitle'     => 'Daftar foto kegiatan dan galeri yang tampil di website.',
+    'documentation_add_btn'      => '+ Tambah Dokumentasi',
+    'documentation_date'         => 'Tanggal',
+    'documentation_photo_title'  => 'Foto & Judul',
+    'documentation_category'     => 'Kategori',
+    'documentation_description'  => 'Deskripsi',
+    'documentation_action'       => 'Aksi',
+    'documentation_empty'        => 'Belum ada data dokumentasi.',
+
+    // ── Delete Modal ────────────────────────────────────
+    'documentation_delete_title' => 'Hapus Dokumentasi?',
+    'documentation_delete_msg'    => 'Data dokumentasi ini akan dihapus secara permanen dari sistem.',
+    'documentation_cancel'       => 'Batal',
+    'documentation_confirm'      => 'Ya, Hapus',
+
+    'documentation_category_training' => 'Latihan',
+    'documentation_category_competition' => 'Kompetisi',
+    'documentation_category_event' => 'Event',
+    'documentation_category_team' => 'Team',
+
+    // ── Dokumentasi Form (Add/Edit) ─────────────────────
+    'documentation_add_title'        => 'Tambah Dokumentasi',
+    'documentation_edit_title'       => 'Edit Dokumentasi',
+    'documentation_back_list'        => 'Kembali ke Daftar Dokumentasi',
+
+    'documentation_form_title'       => 'Judul Dokumentasi',
+    'documentation_form_title_ph'    => 'Masukkan judul kegiatan...',
+
+    'documentation_form_category'    => 'Kategori',
+    'documentation_form_category_ph' => 'Pilih Kategori',
+
+    'documentation_form_photo'       => 'Foto Dokumentasi',
+    'documentation_form_photo_hint'  => 'Klik untuk upload dokumentasi',
+    'documentation_form_photo_note'  => 'PNG, JPG atau JPEG (Maks. 10MB)',
+
+    'documentation_form_desc'        => 'Deskripsi Kegiatan',
+    'documentation_form_desc_ph'     => 'Tuliskan deskripsi kegiatan di sini...',
+
+    'documentation_btn_save'         => 'Simpan',
+    'documentation_btn_update'       => 'Simpan Perubahan',
+    'documentation_btn_cancel'       => 'Cancel',
+
+    // TESTIMONI
+    'testimoni_title' => 'Kelola Testimoni',
+    'testimoni_active_title' => 'Testimoni Aktif',
+    'testimoni_active_subtitle' => 'Daftar testimoni yang sedang tampil di Landing Page.',
+
+    'testimoni_request_btn' => 'Permintaan Testimoni',
+    'testimoni_add_btn' => '+ Tambah Testimoni',
+
+    'testimoni_date' => 'Tanggal',
+    'testimoni_name_role' => 'Nama & Peran',
+    'testimoni_rating' => 'Rating',
+    'testimoni_message' => 'Pesan',
+    'testimoni_action' => 'Aksi',
+
+    'testimoni_empty' => 'Belum ada testimoni yang disetujui.',
+    'testimoni_role_default' => 'Umum',
+
+    'testimoni_hide_btn' => 'Sembunyikan',
+    'testimoni_delete_btn' => 'Hapus',
+
+    'testimoni_delete_title' => 'Hapus Testimoni?',
+    'testimoni_delete_msg' => 'Data testimoni ini akan dihapus secara permanen dari sistem.',
+
+    'testimoni_add_title' => 'Tambah Testimoni Baru',
+
+    'testimoni_form_name' => 'Nama Lengkap',
+    'testimoni_form_role' => 'Peran / Jabatan',
+
+    'testimoni_rating_label' => 'Rating Bintang',
+    'testimoni_rating_placeholder' => 'Pilih Rating',
+    'testimoni_rating_star' => 'Bintang',
+
+    'testimoni_message_label' => 'Pesan Testimoni',
+
+    'testimoni_name_ph' => 'Contoh: Budi Santoso',
+    'testimoni_role_ph' => 'Contoh: Wali Murid / Atlet / Alumni',
+    'testimoni_message_ph' => 'Tuliskan pengalaman atau pesan testimoni di sini...',
+
+    'testimoni_btn_save' => 'Simpan Testimoni',
 ];

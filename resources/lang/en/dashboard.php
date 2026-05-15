@@ -10,7 +10,7 @@ return [
     // ── Stat Cards ───────────────────────────────────────
     'total_atlet'       => 'Total Athletes',
     'total_dokumentasi' => 'Total Documentation',
-    'total_pertandingan'=> 'Total Competitions',
+    'total_pertandingan' => 'Total Competitions',
 
     // ── Testimony ────────────────────────────────────────
     'testi_title'       => 'Pending Testimonial Requests',
@@ -122,4 +122,88 @@ return [
     // ── Modal Hapus ──────────────────────────────────────
     'modal_hapus_judul'         => 'Are you sure?',
     'modal_hapus_pesan'         => 'This competition data will be permanently deleted along with its photos.',
+
+    // ── Dokumentasi ─────────────────────────────────────
+    'documentation_title'        => 'Manage Documentation',
+    'documentation_subtitle'     => 'List of activity photos and gallery displayed on the website.',
+    'documentation_add_btn'      => '+ Add Documentation',
+    'documentation_date'         => 'Date',
+    'documentation_photo_title'  => 'Photo & Title',
+    'documentation_category'     => 'Category',
+    'documentation_description'  => 'Description',
+    'documentation_action'       => 'Action',
+    'documentation_empty'        => 'No documentation data available.',
+
+    // ── Delete Modal ────────────────────────────────────
+    'documentation_delete_title' => 'Delete Documentation?',
+    'documentation_delete_msg'    => 'This documentation will be permanently removed from the system.',
+    'documentation_cancel'       => 'Cancel',
+    'documentation_confirm'      => 'Yes, Delete',
+
+    'documentation_category_training' => 'Training',
+    'documentation_category_competition' => 'Competition',
+    'documentation_category_event' => 'Event',
+    'documentation_category_team' => 'Team',
+
+    // ── Documentation Form (Add/Edit) ───────────────────
+    'documentation_add_title'        => 'Add Documentation',
+    'documentation_edit_title'       => 'Edit Documentation',
+    'documentation_back_list'        => 'Back to Documentation List',
+
+    'documentation_form_title'       => 'Documentation Title',
+    'documentation_form_title_ph'    => 'Enter activity title...',
+
+    'documentation_form_category'    => 'Category',
+    'documentation_form_category_ph' => 'Select Category',
+
+    'documentation_form_photo'       => 'Documentation Photo',
+    'documentation_form_photo_hint'  => 'Click to upload documentation',
+    'documentation_form_photo_note'  => 'PNG, JPG or JPEG (Max 10MB)',
+
+    'documentation_form_desc'        => 'Activity Description',
+    'documentation_form_desc_ph'     => 'Write activity description here...',
+
+    'documentation_btn_save'         => 'Save',
+    'documentation_btn_update'       => 'Save Changes',
+    'documentation_btn_cancel'       => 'Cancel',
+
+    // TESTIMONI
+    'testimoni_title' => 'Manage Testimonials',
+    'testimoni_active_title' => 'Active Testimonials',
+    'testimoni_active_subtitle' => 'List of testimonials currently displayed on the Landing Page.',
+
+    'testimoni_request_btn' => 'Testimonial Requests',
+    'testimoni_add_btn' => '+ Add Testimonial',
+
+    'testimoni_date' => 'Date',
+    'testimoni_name_role' => 'Name & Role',
+    'testimoni_rating' => 'Rating',
+    'testimoni_message' => 'Message',
+    'testimoni_action' => 'Action',
+
+    'testimoni_empty' => 'No approved testimonials yet.',
+    'testimoni_role_default' => 'General',
+
+    'testimoni_hide_btn' => 'Hide',
+    'testimoni_delete_btn' => 'Delete',
+
+    'testimoni_delete_title' => 'Delete Testimonial?',
+    'testimoni_delete_msg' => 'This testimonial will be permanently deleted from the system.',
+
+    'testimoni_add_title' => 'Add Testimonial',
+
+    'testimoni_form_name' => 'Full Name',
+    'testimoni_form_role' => 'Role / Position',
+
+    'testimoni_rating_label' => 'Star Rating',
+    'testimoni_rating_placeholder' => 'Select Rating',
+    'testimoni_rating_star' => 'Stars',
+
+    'testimoni_message_label' => 'Testimonial Message',
+
+    'testimoni_name_ph' => 'Example: John Doe',
+    'testimoni_role_ph' => 'Example: Parent / Athlete / Alumni',
+    'testimoni_message_ph' => 'Write your experience or feedback here...',
+
+    'testimoni_btn_save' => 'Save Testimonial',
 ];

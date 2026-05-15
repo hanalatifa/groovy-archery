@@ -4,14 +4,14 @@
 
         {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
-            
+
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800">
-                    Atlet Aktif
+                    {{ __('dashboard.atlet_aktif_title') }}
                 </h2>
 
                 <p class="text-gray-500 mt-1">
-                    Daftar atlet yang sudah disetujui dan tampil di website.
+                    {{ __('dashboard.atlet_aktif_sub') }}
                 </p>
             </div>
 
@@ -19,7 +19,7 @@
 
                 <a href="{{ route('atlet.requests') }}"
                    class="relative inline-flex items-center px-5 py-2.5 bg-gray-200 text-gray-700 text-sm font-bold hover:bg-gray-300 transition">
-                    Permintaan Atlet
+                    {{ __('dashboard.atlet_permintaan_btn') }}
                     @if($pendingCount > 0)
                         <span class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
                             {{ $pendingCount }}
@@ -29,7 +29,7 @@
 
                 <a href="{{ route('atlet.create') }}"
                    class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
-                    + Tambah Atlet
+                    {{ __('dashboard.btn_tambah_atlet') }}
                 </a>
             </div>
         </div>
@@ -69,36 +69,27 @@
                         <tr>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Foto & Nama
+                                {{ __('dashboard.atlet_col_foto_nama') }}
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Kategori
+                                {{ __('dashboard.atlet_kategori') }}
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Umur
+                                {{ __('dashboard.atlet_col_umur') }}
                             </th>
-
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                Deskripsi
+                                {{ __('dashboard.atlet_deskripsi') }}
                             </th>
-
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600 text-right">
-                                Aksi
+                                {{ __('dashboard.col_aksi') }}
                             </th>
-
                         </tr>
-
                     </thead>
-
                     <tbody class="divide-y divide-gray-100">
-
                         @forelse($atlets as $index => $atlet)
-
                             <tr class="hover:bg-gray-50 transition">
-
-                                {{-- Foto & Nama --}}
                                 <td class="px-6 py-5">
 
                                     <div class="flex items-center gap-4">
@@ -126,133 +117,88 @@
                                             </div>
 
                                             <div class="text-[11px] text-gray-400 italic">
-                                                Terdaftar {{ $atlet->created_at->diffForHumans() }}
+                                                {{ __('dashboard.atlet_terdaftar') }} {{ $atlet->created_at->diffForHumans() }}
                                             </div>
-
                                         </div>
-
                                     </div>
-
                                 </td>
-
-                                {{-- Kategori --}}
                                 <td class="px-6 py-5">
-
                                     @if($atlet->kategori == 'Junior')
-
                                         <span class="border bg-indigo-50 text-indigo-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                             {{ $atlet->kategori }}
                                         </span>
-
                                     @else
-
                                         <span class="border bg-purple-50 text-purple-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                             {{ $atlet->kategori }}
                                         </span>
-
                                     @endif
-
                                 </td>
-
-                                {{-- Umur --}}
                                 <td class="px-6 py-5">
-
                                     <span class="text-gray-600 text-[13px] font-semibold">
                                         {{ $atlet->umur }} Tahun
                                     </span>
-
                                 </td>
-
-                                {{-- Deskripsi --}}
                                 <td class="px-6 py-5">
-
                                     <span class="text-gray-500 text-sm leading-relaxed max-w-xs line-clamp-2">
                                         {{ $atlet->deskripsi }}
                                     </span>
-
                                 </td>
-
-                                {{-- Aksi --}}
                                 <td class="px-6 py-5">
-
                                     <div class="flex justify-end gap-2">
-
                                         <a href="{{ route('atlet.edit', $atlet->id) }}"
                                            class="px-4 py-2 border bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
-
                                             Edit
-
                                         </a>
-
                                         <button
                                             type="button"
                                             onclick="openDeleteModal({{ $atlet->id }})"
                                             class="px-4 py-2 border bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
-
                                             Hapus
-
                                         </button>
-
                                     </div>
-
                                 </td>
-
                             </tr>
-
                         @empty
-
                             <tr>
-
                                 <td colspan="5" class="text-center py-24">
-
                                     <p class="text-gray-400 italic text-sm font-medium">
-                                        Belum ada data atlet yang terdaftar.
+                                        {{ __('dashboard.atlet_empty') }}
                                     </p>
-
                                 </td>
-
                             </tr>
-
                         @endforelse
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
     </div>
-
-    {{-- Delete Modal --}}
     <div id="deleteModal"
-         class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm items-center justify-center z-50 p-4">
+         class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 p-4">
 
-        <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
+        <div class="flex items-center justify-center min-h-full">
 
-            <div class="p-8 text-center">
+            <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
 
-                <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">
-                    !
-                </div>
+                <div class="p-8 text-center">
 
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">
-                    Hapus Atlet?
+                    {{ __('dashboard.modal_atlet_hapus_judul') }}
                 </h2>
 
                 <p class="text-gray-500 mb-8">
-                    Data atlet akan dihapus secara permanen.
+                    {{ __('dashboard.modal_atlet_hapus_pesan') }}
                 </p>
 
-                <div class="flex gap-3">
+                    <p class="text-gray-500 mb-8">
+                        Data atlet akan dihapus secara permanen.
+                    </p>
 
                     <button
                         type="button"
                         onclick="closeDeleteModal()"
                         class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
 
-                        Batal
+                        {{ __('dashboard.btn_batal') }}
 
                     </button>
 
@@ -262,14 +208,30 @@
                         @method('DELETE')
 
                         <button
-                            type="submit"
-                            class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
+                            type="button"
+                            onclick="closeDeleteModal()"
+                            class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
 
-                            Ya, Hapus
+                            {{ __('dashboard.btn_ya_hapus') }}
 
                         </button>
 
-                    </form>
+                        <form id="deleteForm" method="POST" class="flex-1">
+
+                            @csrf
+                            @method('DELETE')
+
+                            <button
+                                type="submit"
+                                class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
+
+                                Ya, Hapus
+
+                            </button>
+
+                        </form>
+
+                    </div>
 
                 </div>
 
@@ -285,12 +247,10 @@
         function openDeleteModal(id) {
 
             const modal = document.getElementById('deleteModal');
-            const form = document.getElementById('deleteForm');
+            const form  = document.getElementById('deleteForm');
 
             form.action = `/hapus/atlet/${id}`;
-
             modal.classList.remove('hidden');
-            modal.classList.add('flex');
 
             document.body.style.overflow = 'hidden';
         }
@@ -298,10 +258,7 @@
         function closeDeleteModal() {
 
             const modal = document.getElementById('deleteModal');
-
-            modal.classList.remove('flex');
             modal.classList.add('hidden');
-
             document.body.style.overflow = '';
         }
 
