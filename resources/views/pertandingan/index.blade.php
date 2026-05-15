@@ -7,7 +7,7 @@
                 <h2 class="text-3xl font-semibold text-gray-800">
                     {{ __('dashboard.pertandingan_title') }}
                 </h2>
-                <p class="text-gray-500 mt-1">Daftar riwayat pertandingan dan prestasi yang telah diunggah.</p>
+                <p class="text-gray-500 mt-1">{{ __('dashboard.pertandingan_sub') }}</p>
             </div>
             <div class="flex gap-3">
                 <a href="{{ route('pertandingan.create') }}"

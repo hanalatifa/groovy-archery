@@ -10,7 +10,7 @@
                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                </svg>
-               Kembali ke Pertandingan
+               {{ __('dashboard.pertandingan_back') }}
             </a>
         </div>
 
@@ -35,7 +35,7 @@
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-                    
+
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             {{ __('dashboard.pertandingan_nama') }}
@@ -86,9 +86,9 @@
                              onmouseover="this.style.borderColor='#85488F'"
                              onmouseout="this.style.borderColor='#D1D5DB'"
                              onclick="document.getElementById('file-input').click()">
-                            
+
                             <input type="file" name="dokumentasi[]" id="file-input" multiple accept="image/*" class="hidden">
-                            
+
                             <div class="w-16 h-16 mx-auto bg-gray-100 flex items-center justify-center mb-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
@@ -96,7 +96,7 @@
                                           d="M4 16v-4m0 0l4 4m-4-4l4-4m12 0v4m0 0l-4-4m4 4l-4 4"/>
                                 </svg>
                             </div>
-                            <p class="text-gray-600 font-medium">Klik untuk upload dokumentasi pertandingan</p>
+                            <p class="text-gray-600 font-medium">{{ __('dashboard.pertandingan_dokumentasi_upload') }}</p>
                             <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.pertandingan_dokumentasi_hint') }}</p>
                         </div>
                     </div>

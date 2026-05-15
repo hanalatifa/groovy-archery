@@ -102,8 +102,34 @@ return [
     'atlet_kategori_col'        => 'Athlete Category',
     'atlet_empty'               => 'No athlete data yet.',
 
+
+    'atlet_manage_title'          => 'Manage Athlete Data',
+    'atlet_manage_heading'        => 'Active Athletes',
+    'atlet_manage_subtitle'       => 'List of approved athletes displayed on the website.',
+    'atlet_request_btn'           => 'Athlete Requests',
+    'atlet_pending_empty'         => 'No athlete data available yet.',
+    'atlet_registered'            => 'Registered',
+    'atlet_no_pic'                => 'No Pic',
+    'atlet_category_junior'       => 'Junior',
+    'atlet_category_senior'       => 'Senior',
+    'atlet_age'                   => 'Years Old',
+    'atlet_delete_title'          => 'Delete Athlete?',
+    'atlet_delete_message'        => 'Athlete data will be permanently deleted.',
+    'atlet_tambah_data'           => 'Add Athlete',
+    // ── Kelola Atlet ─────────────────────────────────────────
+    'atlet_permintaan_btn'        => 'Requests',
+    'atlet_terdaftar'             => 'Registered',
+    'atlet_col_umur'              => 'Age',
+
+    // ── Modal Hapus Atlet ─────────────────────────────────────
+    'modal_atlet_hapus_judul'     => 'Delete Athlete?',
+    'modal_atlet_hapus_pesan'     => 'Are you sure you want to delete this athlete?',
+
     // ── Pertandingan ─────────────────────────────────────
     'pertandingan_title'        => 'Manage Competitions',
+    'pertandingan_sub'          => 'List of uploaded match history and achievements.',
+    'pertandingan_dokumentasi_upload'   => 'Click to upload match documentation',
+    'pertandingan_back'         => 'Back to the Competition',
     'pertandingan_tambah_title' => 'Add Competition Data',
     'pertandingan_edit_title'   => 'Edit Competition Data',
     'pertandingan_tambah_btn'   => '+ Add New Competition',
@@ -118,8 +144,6 @@ return [
     'pertandingan_deskripsi_placeholder' => 'Competition description...',
     'pertandingan_empty'        => 'No competition data yet.',
     'pertandingan_col_nama'     => 'Competition Name',
-
-    // ── Modal Hapus ──────────────────────────────────────
     'modal_hapus_judul'         => 'Are you sure?',
     'modal_hapus_pesan'         => 'This competition data will be permanently deleted along with its photos.',
 
@@ -133,36 +157,26 @@ return [
     'documentation_description'  => 'Description',
     'documentation_action'       => 'Action',
     'documentation_empty'        => 'No documentation data available.',
-
-    // ── Delete Modal ────────────────────────────────────
     'documentation_delete_title' => 'Delete Documentation?',
     'documentation_delete_msg'    => 'This documentation will be permanently removed from the system.',
     'documentation_cancel'       => 'Cancel',
     'documentation_confirm'      => 'Yes, Delete',
-
     'documentation_category_training' => 'Training',
     'documentation_category_competition' => 'Competition',
     'documentation_category_event' => 'Event',
     'documentation_category_team' => 'Team',
-
-    // ── Documentation Form (Add/Edit) ───────────────────
     'documentation_add_title'        => 'Add Documentation',
     'documentation_edit_title'       => 'Edit Documentation',
     'documentation_back_list'        => 'Back to Documentation List',
-
     'documentation_form_title'       => 'Documentation Title',
     'documentation_form_title_ph'    => 'Enter activity title...',
-
     'documentation_form_category'    => 'Category',
     'documentation_form_category_ph' => 'Select Category',
-
     'documentation_form_photo'       => 'Documentation Photo',
     'documentation_form_photo_hint'  => 'Click to upload documentation',
     'documentation_form_photo_note'  => 'PNG, JPG or JPEG (Max 10MB)',
-
     'documentation_form_desc'        => 'Activity Description',
     'documentation_form_desc_ph'     => 'Write activity description here...',
-
     'documentation_btn_save'         => 'Save',
     'documentation_btn_update'       => 'Save Changes',
     'documentation_btn_cancel'       => 'Cancel',

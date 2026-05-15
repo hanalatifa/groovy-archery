@@ -7,11 +7,11 @@
 
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800">
-                    {{ __('dashboard.atlet_aktif_title') }}
+                    {{ __('dashboard.atlet_manage_heading') }}
                 </h2>
 
                 <p class="text-gray-500 mt-1">
-                    {{ __('dashboard.atlet_aktif_sub') }}
+                    {{ __('dashboard.atlet_manage_subtitle') }}
                 </p>
             </div>
 
@@ -29,7 +29,7 @@
 
                 <a href="{{ route('atlet.create') }}"
                    class="px-6 py-3 bg-[#85488F] text-white text-medium hover:bg-[#7F4689] transition">
-                    {{ __('dashboard.btn_tambah_atlet') }}
+                    {{ __('dashboard.atlet_tambah_data') }}
                 </a>
             </div>
         </div>
@@ -69,7 +69,7 @@
                         <tr>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                {{ __('dashboard.atlet_col_foto_nama') }}
+                                {{ __('dashboard.atlet_no_pic') }}
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">

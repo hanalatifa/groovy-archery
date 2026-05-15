@@ -102,9 +102,32 @@ return [
     'atlet_kategori_col'        => 'Kategori Atlet',
     'atlet_empty'               => 'Belum ada data atlet.',
 
+    // ── Kelola Atlet Dashboard ─────────────────────────────
+    'atlet_manage_title'          => 'Kelola Data Atlet',
+    'atlet_manage_heading'        => 'Atlet Aktif',
+    'atlet_manage_subtitle'       => 'Daftar atlet yang sudah disetujui dan tampil di website.',
+    'atlet_request_btn'           => 'Permintaan Atlet',
+    'atlet_pending_empty'         => 'Belum ada data atlet yang terdaftar.',
+    'atlet_registered'            => 'Terdaftar',
+    'atlet_no_pic'                => 'No Pic',
+    'atlet_category_junior'       => 'Junior',
+    'atlet_category_senior'       => 'Senior',
+    'atlet_age'                   => 'Tahun',
+    'atlet_delete_title'          => 'Hapus Atlet?',
+    'atlet_delete_message'        => 'Data atlet akan dihapus secara permanen.',
+    'atlet_tambah_data'           => 'Tambah Atlet',
+    'atlet_permintaan_btn'        => 'Permintaan',
+    'atlet_terdaftar'             => 'Terdaftar',
+    'atlet_col_umur'              => 'Umur',
+    'modal_atlet_hapus_judul'     => 'Hapus Atlet?',
+    'modal_atlet_hapus_pesan'     => 'Apakah Anda yakin ingin menghapus atlet ini?',
+
+
     // ── Pertandingan ─────────────────────────────────────
     'pertandingan_title'        => 'Kelola Pertandingan',
+    'pertandingan_sub'        => 'Daftar riwayat pertandingan dan prestasi yang telah diunggah.',
     'pertandingan_tambah_title' => 'Tambah Data Pertandingan',
+    'pertandingan_back'         => 'Kembali ke Pertandingan',
     'pertandingan_edit_title'   => 'Edit Data Pertandingan',
     'pertandingan_tambah_btn'   => '+ Tambah Pertandingan Baru',
     'pertandingan_nama'         => 'Nama Pertandingan',
@@ -113,13 +136,12 @@ return [
     'pertandingan_kategori_pilih' => 'Pilih Kategori',
     'pertandingan_tgl'          => 'Tanggal Pertandingan',
     'pertandingan_dokumentasi'  => 'Upload Dokumentasi',
+    'pertandingan_dokumentasi_upload'   => 'Klik untuk upload dokumentasi pertandingan',
     'pertandingan_dokumentasi_hint' => 'Bisa upload banyak foto sekaligus (PNG, JPG, JPEG)',
     'pertandingan_deskripsi'    => 'Deskripsi Pertandingan',
     'pertandingan_deskripsi_placeholder' => 'Deskripsi pertandingan...',
     'pertandingan_empty'        => 'Belum ada data pertandingan.',
     'pertandingan_col_nama'     => 'Nama Pertandingan',
-
-    // ── Modal Hapus ──────────────────────────────────────
     'modal_hapus_judul'         => 'Anda yakin?',
     'modal_hapus_pesan'         => 'Data pertandingan ini akan dihapus permanen beserta fotonya.',
 
@@ -133,36 +155,26 @@ return [
     'documentation_description'  => 'Deskripsi',
     'documentation_action'       => 'Aksi',
     'documentation_empty'        => 'Belum ada data dokumentasi.',
-
-    // ── Delete Modal ────────────────────────────────────
     'documentation_delete_title' => 'Hapus Dokumentasi?',
     'documentation_delete_msg'    => 'Data dokumentasi ini akan dihapus secara permanen dari sistem.',
     'documentation_cancel'       => 'Batal',
     'documentation_confirm'      => 'Ya, Hapus',
-
     'documentation_category_training' => 'Latihan',
     'documentation_category_competition' => 'Kompetisi',
     'documentation_category_event' => 'Event',
     'documentation_category_team' => 'Team',
-
-    // ── Dokumentasi Form (Add/Edit) ─────────────────────
     'documentation_add_title'        => 'Tambah Dokumentasi',
     'documentation_edit_title'       => 'Edit Dokumentasi',
     'documentation_back_list'        => 'Kembali ke Daftar Dokumentasi',
-
     'documentation_form_title'       => 'Judul Dokumentasi',
     'documentation_form_title_ph'    => 'Masukkan judul kegiatan...',
-
     'documentation_form_category'    => 'Kategori',
     'documentation_form_category_ph' => 'Pilih Kategori',
-
     'documentation_form_photo'       => 'Foto Dokumentasi',
     'documentation_form_photo_hint'  => 'Klik untuk upload dokumentasi',
     'documentation_form_photo_note'  => 'PNG, JPG atau JPEG (Maks. 10MB)',
-
     'documentation_form_desc'        => 'Deskripsi Kegiatan',
     'documentation_form_desc_ph'     => 'Tuliskan deskripsi kegiatan di sini...',
-
     'documentation_btn_save'         => 'Simpan',
     'documentation_btn_update'       => 'Simpan Perubahan',
     'documentation_btn_cancel'       => 'Cancel',
