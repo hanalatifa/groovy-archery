@@ -32,4 +32,10 @@ return [
     'cookie_settings' => 'Cookie Settings',
 
     'copyright' => '© 2024 Groovy Club Organization. All rights reserved.',
+
+    'information' => 'Information',
+    'vision_mission' => 'Vision Mission',
+    'values' => 'Value',
+    'gallery' => 'Gallery',
+    'achievements' => 'Achievements'
 ];
