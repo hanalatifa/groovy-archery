@@ -1,8 +1,8 @@
 <footer class="gradient-animated text-white pt-16 pb-8 px-6">
     <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-20 mb-14">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-x-32 mb-14">
 
-            <div class="col-span-2 md:col-span-1">
+            <div class="col-span-2 md:col-span-1 md:pr-8">
                 <img src="{{ asset('assets/logo_groovy.png') }}" alt="Logo" class="h-16 mb-4">
 
                 <p class="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
