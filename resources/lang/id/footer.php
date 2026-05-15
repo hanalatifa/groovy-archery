@@ -34,7 +34,7 @@ return [
     'copyright' => '© 2024 Groovy Club Organization. Seluruh hak cipta dilindungi.',
 
     'information' => 'Informasi',
-    'vision_mision' => 'Visi Misi',
+    'vision_mission' => 'Visi Misi',
     'value' => 'Nilai',
     'gallery' => 'Galeri',
     'achievements' => 'Pendapatan'
