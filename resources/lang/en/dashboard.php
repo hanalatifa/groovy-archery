@@ -220,4 +220,16 @@ return [
     'testimoni_message_ph' => 'Write your experience or feedback here...',
 
     'testimoni_btn_save' => 'Save Testimonial',
+
+    // ── Permintaan Testimoni ──────────────────────────────────
+    'testimoni_request_title'    => 'Testimonial Requests',
+    'testimoni_request_subtitle' => 'Review testimonials from users before displaying them on the website.',
+    'testimoni_col_nama'         => 'Sender Name',
+    'testimoni_col_rating'       => 'Rating',
+    'testimoni_col_pesan'        => 'Testimonial Message',
+    'testimoni_col_tanggal'      => 'Date Received',
+    'testimoni_approve_btn'      => 'Approve',
+    'testimoni_reject_btn'       => 'Reject',
+    'testimoni_reject_confirm'   => 'Reject this testimonial?',
+    'testimoni_queue_empty'      => 'Queue is clear! All testimonials have been processed.',
 ];

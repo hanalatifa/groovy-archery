@@ -218,4 +218,16 @@ return [
     'testimoni_message_ph' => 'Tuliskan pengalaman atau pesan testimoni di sini...',
 
     'testimoni_btn_save' => 'Simpan Testimoni',
+
+    // ── Permintaan Testimoni ──────────────────────────────────
+'testimoni_request_title'    => 'Permintaan Testimoni',
+'testimoni_request_subtitle' => 'Tinjau testimoni dari pengguna sebelum ditampilkan di website.',
+'testimoni_col_nama'         => 'Nama Pengirim',
+'testimoni_col_rating'       => 'Rating',
+'testimoni_col_pesan'        => 'Pesan Testimoni',
+'testimoni_col_tanggal'      => 'Tanggal Masuk',
+'testimoni_approve_btn'      => 'Terima',
+'testimoni_reject_btn'       => 'Tolak',
+'testimoni_reject_confirm'   => 'Tolak testimoni ini?',
+'testimoni_queue_empty'      => 'Antrean bersih! Semua testimoni sudah diproses.',
 ];
