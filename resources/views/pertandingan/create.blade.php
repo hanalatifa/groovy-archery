@@ -3,14 +3,10 @@
     <div class="p-6 max-w-5xl mx-auto">
 
         {{-- Tombol Kembali --}}
-        <div class="mb-8">
-            <a href="{{ route('pertandingan.index') }}"
-               class="flex items-center gap-2 font-medium hover:opacity-80"
-               style="color: #85488F;">
-               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-               </svg>
-               {{ __('dashboard.pertandingan_back') }}
+
+        <div class="mb-6">
+            <a href="{{ route('pertandingan.index') }}" class="flex items-center gap-2 font-medium" style="color: #85488F;">
+                {{ __('dashboard.pertandingan_back') }}
             </a>
         </div>
 

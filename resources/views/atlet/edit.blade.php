@@ -1,99 +1,147 @@
 <x-layouts.admin-layout title="Edit Data Atlet">
-    <style>
-        .photo-preview-container {
-            position: relative;
-            width: 100%;
-            height: 320px;
-            border: 2px dashed #d1d5db;
-            background-color: #f9fafb;
-            cursor: pointer;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .photo-preview-container:hover {
-            border-color: #85488F;
-            background-color: #f3f4f6;
-        }
-        .image-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-            color: white;
-            font-weight: 600;
-        }
-        .photo-preview-container:hover .image-overlay {
-            opacity: 1;
-        }
-    </style>
 
-    <div class="max-w-4xl mx-auto p-6">
+    <div class="p-6 max-w-5xl mx-auto">
+
         <div class="mb-6">
             <a href="{{ route('atlet.kelola') }}" class="flex items-center gap-2 font-medium" style="color: #85488F;">
-                ← Kembali ke Daftar Atlet
+                {{ __('dashboard.atlet_kembali') }}
             </a>
         </div>
 
-        <h1 class="text-3xl font-bold text-gray-800 mb-8">Edit Profil Atlet</h1>
+        <h1 class="text-3xl font-semibold text-gray-800 mb-8">
+            Edit Profil Atlet
+        </h1>
 
-        <div class="bg-white shadow-xl p-10 border border-gray-100">
-            <form action="{{ route('atlet.update', $atlet->id) }}" method="POST" enctype="multipart/form-data">
+        <div class="bg-white shadow-sm p-10">
+
+            @if ($errors->any())
+                <div class="bg-red-50 border border-red-200 text-red-700 p-4 mb-6">
+                    <ul class="list-disc list-inside text-sm">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('atlet.update', $atlet->id) }}" method="POST" enctype="multipart/form-data" id="atletForm">
                 @csrf
                 @method('PUT')
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="col-span-1">
-                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Nama Lengkap</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+
+                    {{-- Nama Lengkap --}}
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ __('dashboard.atlet_nama') }}
+                        </label>
                         <input type="text" name="nama" value="{{ old('nama', $atlet->nama) }}"
-                               class="w-full px-5 py-4 border border-gray-200 focus:ring-4 focus:ring-purple-100 focus:border-purple-500 outline-none transition shadow-sm">
+                               placeholder="{{ __('dashboard.atlet_nama_placeholder') }}"
+                               class="w-full px-5 py-4 border border-gray-200 focus:ring-2"
+                               style="outline: none;"
+                               onfocus="this.style.borderColor='#85488F'; this.style.boxShadow='0 0 0 4px rgba(133, 72, 143, 0.1)'"
+                               onblur="this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'"
+                               required>
                     </div>
 
-                    <div class="col-span-1">
-                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Kategori</label>
-                        <select name="kategori" class="w-full px-5 py-4 border border-gray-200 focus:ring-4 focus:ring-purple-100 focus:border-purple-500 outline-none bg-white transition shadow-sm">
-                            <option value="Junior" {{ $atlet->kategori == 'Junior' ? 'selected' : '' }}>Junior</option>
-                            <option value="Senior" {{ $atlet->kategori == 'Senior' ? 'selected' : '' }}>Senior</option>
+                    {{-- Umur --}}
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ __('dashboard.atlet_umur') }}
+                        </label>
+                        <input type="number" name="umur" value="{{ old('umur', $atlet->umur) }}"
+                               placeholder="{{ __('dashboard.atlet_umur_placeholder') }}"
+                               class="w-full px-5 py-4 border border-gray-200"
+                               style="outline: none;"
+                               onfocus="this.style.borderColor='#85488F';"
+                               onblur="this.style.borderColor='#E5E7EB';"
+                               min="10" max="60" required>
+                    </div>
+
+                    {{-- Tanggal Bergabung --}}
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ __('dashboard.atlet_tgl_bergabung') }}
+                        </label>
+                        <input type="date" name="tgl_bergabung" value="{{ old('tgl_bergabung', $atlet->tgl_bergabung ? $atlet->tgl_bergabung->format('Y-m-d') : '') }}"
+                               class="w-full px-5 py-4 border border-gray-200"
+                               style="outline: none;"
+                               onfocus="this.style.borderColor='#85488F';"
+                               onblur="this.style.borderColor='#E5E7EB';"
+                               required>
+                    </div>
+
+                    {{-- Kategori --}}
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ __('dashboard.atlet_kategori') }}
+                        </label>
+                        <select name="kategori"
+                                class="w-full px-5 py-4 border border-gray-200 bg-white"
+                                style="outline: none;"
+                                onfocus="this.style.borderColor='#85488F';"
+                                onblur="this.style.borderColor='#E5E7EB';"
+                                required>
+                            <option value="">{{ __('dashboard.atlet_kategori_pilih') }}</option>
+                            <option value="Junior" {{ old('kategori', $atlet->kategori) == 'Junior' ? 'selected' : '' }}>Junior</option>
+                            <option value="Senior" {{ old('kategori', $atlet->kategori) == 'Senior' ? 'selected' : '' }}>Senior</option>
                         </select>
                     </div>
 
+                    {{-- Upload / Preview Foto --}}
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">Foto Profil (Klik untuk ganti)</label>
-                        
-                        <div class="photo-preview-container shadow-inner" id="photo-area">
+                        <label class="block text-sm font-medium text-gray-700 mb-3">
+                            {{ __('dashboard.atlet_foto') }}
+                        </label>
+                        <div id="upload-area"
+                             class="border-2 border-dashed border-gray-300 p-12 text-center transition cursor-pointer"
+                             onmouseover="this.style.borderColor='#85488F'"
+                             onmouseout="this.style.borderColor='#D1D5DB'">
                             <input type="file" name="foto" id="foto-input" accept="image/*" class="hidden">
-
-                            <img id="image-display" 
-                                 src="{{ $atlet->foto ? asset('storage/atlet/' . $atlet->foto) : 'https://via.placeholder.com/400x300?text=No+Image' }}" 
-                                 class="w-full h-full object-cover" alt="Foto Atlet">
-
-                            <div class="image-overlay">
-                                <div class="text-center">
-                                    <svg class="w-10 h-10 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                    <span class="text-white">Ganti Foto Baru</span>
+                            
+                            {{-- Jika ada foto lama, langsung tampilkan preview-nya --}}
+                            <div id="preview-container" class="{{ $atlet->foto ? '' : 'hidden' }} mb-4">
+                                <img id="image-preview" 
+                                     src="{{ $atlet->foto ? asset('storage/atlet/' . $atlet->foto) : '' }}" 
+                                     class="mx-auto max-h-60 shadow" alt="Preview">
+                            </div>
+                            
+                            <div id="placeholder" class="{{ $atlet->foto ? 'hidden' : '' }}">
+                                <div class="w-16 h-16 mx-auto bg-gray-100 flex items-center justify-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M4 16v-4m0 0l4 4m-4-4l4-4m12 0v4m0 0l-4-4m4 4l-4 4"/>
+                                    </svg>
                                 </div>
+                                <p class="text-gray-600 font-medium">{{ __('dashboard.atlet_foto_click') }}</p>
+                                <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.atlet_foto_hint') }}</p>
                             </div>
                         </div>
-                        <p class="text-xs text-gray-400 mt-2 italic">*Klik pada gambar di atas untuk memilih file baru dari perangkat anda.</p>
                     </div>
 
+                    {{-- Deskripsi --}}
                     <div class="md:col-span-2">
-                        <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wider">Deskripsi / Prestasi</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            {{ __('dashboard.atlet_deskripsi') }}
+                        </label>
                         <textarea name="deskripsi" rows="5"
-                                  class="w-full px-5 py-4 border border-gray-200 focus:ring-4 focus:ring-purple-100 focus:border-purple-500 outline-none transition shadow-sm resize-none">{{ old('deskripsi', $atlet->deskripsi) }}</textarea>
+                                  placeholder="{{ __('dashboard.atlet_deskripsi_placeholder') }}"
+                                  class="w-full px-5 py-4 border border-gray-200 resize-y"
+                                  style="outline: none;"
+                                  onfocus="this.style.borderColor='#85488F';"
+                                  onblur="this.style.borderColor='#E5E7EB';">{{ old('deskripsi', $atlet->deskripsi) }}</textarea>
                     </div>
+
                 </div>
 
-                <div class="flex justify-end gap-4 mt-12 pt-8 border-t border-gray-50">
+                <div class="flex justify-end gap-4 mt-12">
                     <a href="{{ route('atlet.kelola') }}"
-                       class="px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-bold transition">
-                        Batal
+                       class="px-10 py-4 bg-red-500 hover:bg-red-600 text-white font-medium transition">
+                        {{ __('dashboard.btn_cancel') }}
                     </a>
                     <button type="submit"
-                            class="bg-blue-900 hover:bg-blue-950 px-12 py-4 text-white font-bold transition shadow-lg active:scale-95">
+                            class="px-10 py-4 text-white font-medium transition hover:opacity-90 bg-blue-900 hover:bg-blue-950">
                         Simpan Perubahan
                     </button>
                 </div>
@@ -102,21 +150,29 @@
     </div>
 
     <script>
-        const photoArea = document.getElementById('photo-area');
-        const fotoInput = document.getElementById('foto-input');
-        const imageDisplay = document.getElementById('image-display');
+        const uploadArea       = document.getElementById('upload-area');
+        const fileInput        = document.getElementById('foto-input');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview     = document.getElementById('image-preview');
+        const placeholder      = document.getElementById('placeholder');
 
-        photoArea.addEventListener('click', () => fotoInput.click());
+        uploadArea.addEventListener('click', () => fileInput.click());
 
-        fotoInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imageDisplay.src = e.target.result;
-                }
-                reader.readAsDataURL(file);
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                alert('Hanya file gambar yang diperbolehkan!');
+                return;
             }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                previewContainer.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
         });
     </script>
+
 </x-layouts.admin-layout>

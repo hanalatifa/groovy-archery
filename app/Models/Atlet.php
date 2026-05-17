@@ -15,4 +15,8 @@ class Atlet extends Model
         'deskripsi',
         'status', 
     ];
+
+    protected $casts = [
+        'tgl_bergabung' => 'date',
+    ];
 }

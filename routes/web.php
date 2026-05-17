@@ -37,7 +37,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Manajemen Atlet
     Route::controller(AtletController::class)->group(function () {
         // dashboard-view dihapus/diarahkan ke dashboard utama agar tidak membingungkan
-        Route::get('/atlet', 'index')->name('atlet.index');
         Route::get('/tambah/atlet', 'create')->name('atlet.create');
         Route::get('/kelola/atlet', 'kelola')->name('atlet.kelola');
         Route::get('/edit/atlet/{id}', 'edit')->name('atlet.edit');

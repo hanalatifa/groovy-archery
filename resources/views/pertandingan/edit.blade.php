@@ -34,7 +34,7 @@
     <div class="max-w-4xl mx-auto p-6">
         <div class="mb-6">
             <a href="/kelola-pertandingan" class="flex items-center gap-2 font-medium" style="color: #85488F;">
-                ← {{ __('dashboard.pertandingan_back') }}
+                {{ __('dashboard.pertandingan_back') }}
             </a>
         </div>
 

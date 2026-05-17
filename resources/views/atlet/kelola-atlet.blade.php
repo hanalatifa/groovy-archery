@@ -69,7 +69,7 @@
                         <tr>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">
-                                {{ __('dashboard.atlet_no_pic') }}
+                                {{ __('dashboard.atlet_nama_foto') }}
                             </th>
 
                             <th class="px-6 py-4 text-sm font-semibold text-gray-600">

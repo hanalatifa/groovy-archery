@@ -119,6 +119,7 @@ return [
     'atlet_permintaan_btn'        => 'Permintaan',
     'atlet_terdaftar'             => 'Terdaftar',
     'atlet_col_umur'              => 'Umur',
+    'atlet_nama_foto'              => 'Nama & Foto',
     'modal_atlet_hapus_judul'     => 'Hapus Atlet?',
     'modal_atlet_hapus_pesan'     => 'Apakah Anda yakin ingin menghapus atlet ini?',
 
