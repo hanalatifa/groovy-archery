@@ -1,10 +1,12 @@
-<x-layouts.admin-layout title="Tambah Dokumentasi">
+<x-layouts.admin-layout title="{{ __('dashboard.documentation_add_title') }}">
 
     <div class="p-6 max-w-5xl mx-auto">
 
         <div class="mb-6">
-            <a href="{{ route('documentations.index') }}" class="flex items-center gap-2 font-medium" style="color: #85488F;">
-                {{ __('dashboard.documentation_back_list') }}
+            <a href="{{ route('documentations.index') }}"
+               class="flex items-center gap-2 font-medium hover:opacity-80"
+               style="color: #85488F;">
+                ← {{ __('dashboard.documentation_back_list') }}
             </a>
         </div>
 
@@ -44,7 +46,7 @@
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">
-                            {{ __('dashboard.documentation_form_category_ph') }}
+                            {{ __('dashboard.documentation_form_category') }}
                         </label>
                         <select name="kategori"
                                 class="w-full px-5 py-4 border border-gray-200 bg-white"
@@ -53,10 +55,10 @@
                                 onblur="this.style.borderColor='#E5E7EB';"
                                 required>
                             <option value="" disabled selected>{{ __('dashboard.documentation_form_category_ph') }}</option>
-                            <option value="Latihan" {{ old('kategori') == 'Latihan' ? 'selected' : '' }}>{{ __('dashboard.documentation_category_training') }}</option>
+                            <option value="Latihan"   {{ old('kategori') == 'Latihan'   ? 'selected' : '' }}>{{ __('dashboard.documentation_category_training') }}</option>
                             <option value="Kompetisi" {{ old('kategori') == 'Kompetisi' ? 'selected' : '' }}>{{ __('dashboard.documentation_category_competition') }}</option>
-                            <option value="Event" {{ old('kategori') == 'Event' ? 'selected' : '' }}>{{ __('dashboard.documentation_category_event') }}</option>
-                            <option value="Team" {{ old('kategori') == 'Team' ? 'selected' : '' }}>{{ __('dashboard.documentation_category_team') }}</option>
+                            <option value="Event"     {{ old('kategori') == 'Event'     ? 'selected' : '' }}>{{ __('dashboard.documentation_category_event') }}</option>
+                            <option value="Team"      {{ old('kategori') == 'Team'      ? 'selected' : '' }}>{{ __('dashboard.documentation_category_team') }}</option>
                         </select>
                     </div>
 
@@ -79,7 +81,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none"
                                          viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M4 16v-4m0 0l4 4m-4-4l4-4m12 0v4m0 0l-4-4m4 4l-4 4"/>
+                                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                     </svg>
                                 </div>
                                 <p class="text-gray-600 font-medium">{{ __('dashboard.documentation_form_photo_hint') }}</p>

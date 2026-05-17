@@ -1,6 +1,6 @@
-<x-layouts.admin-layout title="Permintaan Testimoni">
+<x-layouts.admin-layout title="{{ __('dashboard.testimoni_request_title') }}">
     <div class="max-w-7xl mx-auto space-y-10">
-        
+
         {{-- Header --}}
         <div class="mb-8 flex items-center gap-4 p-8 shadow-sm">
             <a href="{{ route('testi.index') }}" class="p-2 bg-gray-200 rounded-full shadow-sm hover:bg-gray-300 transition">
@@ -9,8 +9,8 @@
                 </svg>
             </a>
             <div>
-                <h2 class="text-3xl font-semibold text-gray-800">Permintaan Testimoni</h2>
-                <p class="text-gray-500 mt-1">Tinjau testimoni dari pengguna sebelum ditampilkan di website.</p>
+                <h2 class="text-3xl font-semibold text-gray-800">{{ __('dashboard.testimoni_request_title') }}</h2>
+                <p class="text-gray-500 mt-1">{{ __('dashboard.testimoni_request_subtitle') }}</p>
             </div>
         </div>
 
@@ -19,10 +19,10 @@
             <table class="w-full text-left">
                 <thead>
                     <tr class="text-gray-400 text-xs uppercase tracking-wider border-b">
-                        <th class="pb-4">Nama Pengirim</th>
-                        <th class="pb-4">Rating</th>
-                        <th class="pb-4">Pesan Testimoni</th>
-                        <th class="pb-4">Tanggal Masuk</th>
+                        <th class="pb-4">{{ __('dashboard.testimoni_col_nama') }}</th>
+                        <th class="pb-4">{{ __('dashboard.testimoni_col_rating') }}</th>
+                        <th class="pb-4">{{ __('dashboard.testimoni_col_pesan') }}</th>
+                        <th class="pb-4">{{ __('dashboard.testimoni_col_tanggal') }}</th>
                         <th class="pb-4 text-right">Aksi</th>
                     </tr>
                 </thead>
