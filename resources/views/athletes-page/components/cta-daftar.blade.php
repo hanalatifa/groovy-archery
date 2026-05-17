@@ -60,7 +60,7 @@
 
                         <img id="img-preview" class="hidden absolute inset-0 w-full h-full object-cover">
 
-                        {{-- ID DISAMAKAN JADI id="placeholder" --}}
+                        {{-- TETAPKAN ID DI SINI SEBAGAI id="placeholder" --}}
                         <div id="placeholder" class="text-center p-2">
                             <svg class="w-6 h-6 mx-auto text-gray-300 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -76,12 +76,16 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_name') }}</label>
-                    <input type="text" id="reqNama" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="{{ __('athlets.request_name_placeholder') }}">
+                    <input type="text" id="reqNama"
+                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white placeholder-gray-400"
+                           placeholder="{{ __('athlets.request_name_placeholder') }}">
                     <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqNama">{{ __('athlets.request_error_name') }}</p>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_age') }}</label>
-                    <input type="number" id="reqUmur" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="{{ __('athlets.request_age_placeholder') }}">
+                    <input type="number" id="reqUmur"
+                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white placeholder-gray-400"
+                           placeholder="{{ __('athlets.request_age_placeholder') }}">
                     <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqUmur">{{ __('athlets.request_error_age') }}</p>
                 </div>
             </div>
@@ -106,7 +110,9 @@
 
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_description') }}</label>
-                <textarea id="reqDeskripsi" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm resize-none" placeholder="{{ __('athlets.request_description_placeholder') }}"></textarea>
+                <textarea id="reqDeskripsi" rows="3"
+                          class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white placeholder-gray-400 resize-none"
+                          placeholder="{{ __('athlets.request_description_placeholder') }}"></textarea>
                 <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqDeskripsi">{{ __('athlets.request_error_description') }}</p>
             </div>
         </div>
@@ -169,9 +175,7 @@ function resetFormAtlet() {
     preview.classList.add('hidden');
     placeholder.classList.remove('hidden');
 
-    // Reset pilihan radio button
     document.querySelectorAll('.req-kategori-option').forEach(radio => radio.checked = false);
-
     document.querySelectorAll('[id^="errReq"]').forEach(el => el.classList.add('hidden'));
 }
 
@@ -202,8 +206,7 @@ document.getElementById('submitRequest').addEventListener('click', async functio
         const umur = document.getElementById('reqUmur').value.trim();
         const deskripsi = document.getElementById('reqDeskripsi').value.trim();
         const foto = fotoInput.files[0];
-        
-        // Mengambil nilai radio button kategori yang dipilih
+
         const katOption = document.querySelector('input[name="reqKategori"]:checked');
         const kategori = katOption ? katOption.value : '';
 
@@ -234,7 +237,6 @@ document.getElementById('submitRequest').addEventListener('click', async functio
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             });
 
-            // Ganti penanganan json() menjadi deteksi redirect sukses dari controller back()
             if (response.ok || response.redirected) {
                 alert('Request Berhasil Dikirim!');
                 closeRequestModal();

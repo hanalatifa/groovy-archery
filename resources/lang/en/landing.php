@@ -160,4 +160,7 @@ return [
 
     'faq_q7' => 'Are there competitions I can join?',
     'faq_a7' => 'Yes, we actively participate in regional and national competitions and train athletes for official tournaments.',
+
+    'marquee_words' => ['Precision', 'Discipline', 'Excellence', 'Sunnah', 'Achievement', 'Community', 'Focus', 'Dedication'],
+
 ];

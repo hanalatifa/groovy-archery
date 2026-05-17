@@ -37,7 +37,8 @@
                                 @endif
                                 <div>
                                     <div class="font-bold text-gray-800">{{ $atlet->nama }}</div>
-                                    <div class="text-[10px] text-gray-400 italic">Request: {{ $atlet->created_at->format('d M Y') }}</div>
+                                    {{-- FORMAT DITAMBAHKAN JAM DAN MENIT (H:i) --}}
+                                    <div class="text-[10px] text-gray-400 italic">Request: {{ $atlet->created_at->format('H:i, d M Y') }}</div>
                                 </div>
                             </div>
                         </td>
@@ -91,7 +92,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="text-center py-20 text-gray-400 italic">Antrean bersih! Semua permintaan sudah diproses.</td>
+                        <td colspan="5" class="text-center py-20 text-gray-400 italic">Antrean bersih! Semua permintaan sudah diproses.</td>
                     </tr>
                     @endforelse
                 </tbody>
