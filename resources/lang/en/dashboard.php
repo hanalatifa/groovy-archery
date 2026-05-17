@@ -187,43 +187,32 @@ return [
     'testimoni_active_title' => 'Active Testimonials',
     'testimoni_active_subtitle' => 'List of testimonials currently displayed on the Landing Page.',
     'testimoni_back_list'        => '← Back to Testimonial List',
-
     'testimoni_request_btn' => 'Testimonial Requests',
     'testimoni_add_btn' => '+ Add Testimonial',
-
     'testimoni_date' => 'Date',
     'testimoni_name_role' => 'Name & Role',
     'testimoni_rating' => 'Rating',
     'testimoni_message' => 'Message',
     'testimoni_action' => 'Action',
-
     'testimoni_empty' => 'No approved testimonials yet.',
     'testimoni_role_default' => 'General',
-
     'testimoni_hide_btn' => 'Hide',
     'testimoni_delete_btn' => 'Delete',
-
     'testimoni_delete_title' => 'Delete Testimonial?',
     'testimoni_delete_msg' => 'This testimonial will be permanently deleted from the system.',
-
     'testimoni_add_title' => 'Add Testimonial',
-
     'testimoni_form_name' => 'Full Name',
     'testimoni_form_role' => 'Role / Position',
-
     'testimoni_rating_label' => 'Star Rating',
     'testimoni_rating_placeholder' => 'Select Rating',
     'testimoni_rating_star' => 'Stars',
-
     'testimoni_message_label' => 'Testimonial Message',
-
     'testimoni_name_ph' => 'Example: John Doe',
     'testimoni_role_ph' => 'Example: Parent / Athlete / Alumni',
     'testimoni_message_ph' => 'Write your experience or feedback here...',
-
     'testimoni_btn_save' => 'Save Testimonial',
 
-    // ── Permintaan Testimoni ──────────────────────────────────
+    // permintaan testimoni
     'testimoni_request_title'    => 'Testimonial Requests',
     'testimoni_request_subtitle' => 'Review testimonials from users before displaying them on the website.',
     'testimoni_col_nama'         => 'Sender Name',
@@ -236,16 +225,16 @@ return [
     'testimoni_queue_empty'      => 'Queue is clear! All testimonials have been processed.',
 
     'activity_doc_added'      => 'Added new documentation: :name',
-'activity_doc_updated'    => 'Updated documentation: :name',
-'activity_doc_deleted'    => 'Deleted documentation: :name',
-'activity_atlet_pending'  => 'New athlete registration (Pending): :name',
-'activity_atlet_added'    => 'Admin registered new athlete: :name',
-'activity_atlet_approved' => 'Approved athlete registration: :name',
-'activity_atlet_rejected' => 'Rejected athlete registration: :name',
-'activity_atlet_updated'  => 'Updated athlete profile: :name',
-'activity_atlet_deleted'  => 'Deleted athlete data: :name',
-'activity_match_added'    => 'Added new competition: :name',
-'activity_match_updated'  => 'Updated competition data: :name',
-'activity_match_deleted'  => 'Deleted competition data: :name',
-'status_deleted' => 'Deleted',
+    'activity_doc_updated'    => 'Updated documentation: :name',
+    'activity_doc_deleted'    => 'Deleted documentation: :name',
+    'activity_atlet_pending'  => 'New athlete registration (Pending): :name',
+    'activity_atlet_added'    => 'Admin registered new athlete: :name',
+    'activity_atlet_approved' => 'Approved athlete registration: :name',
+    'activity_atlet_rejected' => 'Rejected athlete registration: :name',
+    'activity_atlet_updated'  => 'Updated athlete profile: :name',
+    'activity_atlet_deleted'  => 'Deleted athlete data: :name',
+    'activity_match_added'    => 'Added new competition: :name',
+    'activity_match_updated'  => 'Updated competition data: :name',
+    'activity_match_deleted'  => 'Deleted competition data: :name',
+    'status_deleted' => 'Deleted',
 ];

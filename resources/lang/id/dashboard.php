@@ -123,7 +123,6 @@ return [
     'modal_atlet_hapus_judul'     => 'Hapus Atlet?',
     'modal_atlet_hapus_pesan'     => 'Apakah Anda yakin ingin menghapus atlet ini?',
 
-
     // ── Pertandingan ─────────────────────────────────────
     'pertandingan_title'        => 'Kelola Pertandingan',
     'pertandingan_sub'        => 'Daftar riwayat pertandingan dan prestasi yang telah diunggah.',
@@ -185,43 +184,32 @@ return [
     'testimoni_back_list'        => '← Kembali ke Daftar Dokumentasi',
     'testimoni_active_title' => 'Testimoni Aktif',
     'testimoni_active_subtitle' => 'Daftar testimoni yang sedang tampil di Landing Page.',
-
     'testimoni_request_btn' => 'Permintaan Testimoni',
     'testimoni_add_btn' => '+ Tambah Testimoni',
-
     'testimoni_date' => 'Tanggal',
     'testimoni_name_role' => 'Nama & Peran',
     'testimoni_rating' => 'Rating',
     'testimoni_message' => 'Pesan',
     'testimoni_action' => 'Aksi',
-
     'testimoni_empty' => 'Belum ada testimoni yang disetujui.',
     'testimoni_role_default' => 'Umum',
-
     'testimoni_hide_btn' => 'Sembunyikan',
     'testimoni_delete_btn' => 'Hapus',
-
     'testimoni_delete_title' => 'Hapus Testimoni?',
     'testimoni_delete_msg' => 'Data testimoni ini akan dihapus secara permanen dari sistem.',
-
     'testimoni_add_title' => 'Tambah Testimoni Baru',
-
     'testimoni_form_name' => 'Nama Lengkap',
     'testimoni_form_role' => 'Peran / Jabatan',
-
     'testimoni_rating_label' => 'Rating Bintang',
     'testimoni_rating_placeholder' => 'Pilih Rating',
     'testimoni_rating_star' => 'Bintang',
-
     'testimoni_message_label' => 'Pesan Testimoni',
-
     'testimoni_name_ph' => 'Contoh: Budi Santoso',
     'testimoni_role_ph' => 'Contoh: Wali Murid / Atlet / Alumni',
     'testimoni_message_ph' => 'Tuliskan pengalaman atau pesan testimoni di sini...',
-
     'testimoni_btn_save' => 'Simpan Testimoni',
 
-    // ── Permintaan Testimoni ──────────────────────────────────
+    // permintaan testimoni
     'testimoni_request_title'    => 'Permintaan Testimoni',
     'testimoni_request_subtitle' => 'Tinjau testimoni dari pengguna sebelum ditampilkan di website.',
     'testimoni_col_nama'         => 'Nama Pengirim',
@@ -234,16 +222,16 @@ return [
     'testimoni_queue_empty'      => 'Antrean bersih! Semua testimoni sudah diproses.',
 
     'activity_doc_added'      => 'Menambah dokumentasi baru: :name',
-'activity_doc_updated'    => 'Memperbarui dokumentasi: :name',
-'activity_doc_deleted'    => 'Menghapus dokumentasi: :name',
-'activity_atlet_pending'  => 'Pendaftaran atlet baru (Pending): :name',
-'activity_atlet_added'    => 'Admin mendaftarkan atlet baru: :name',
-'activity_atlet_approved' => 'Menyetujui pendaftaran atlet: :name',
-'activity_atlet_rejected' => 'Menolak pendaftaran atlet: :name',
-'activity_atlet_updated'  => 'Memperbarui profil atlet: :name',
-'activity_atlet_deleted'  => 'Menghapus data atlet: :name',
-'activity_match_added'    => 'Menambah data pertandingan: :name',
-'activity_match_updated'  => 'Memperbarui data pertandingan: :name',
-'activity_match_deleted'  => 'Menghapus data pertandingan: :name',
-'status_deleted' => 'Dihapus',
+    'activity_doc_updated'    => 'Memperbarui dokumentasi: :name',
+    'activity_doc_deleted'    => 'Menghapus dokumentasi: :name',
+    'activity_atlet_pending'  => 'Pendaftaran atlet baru (Pending): :name',
+    'activity_atlet_added'    => 'Admin mendaftarkan atlet baru: :name',
+    'activity_atlet_approved' => 'Menyetujui pendaftaran atlet: :name',
+    'activity_atlet_rejected' => 'Menolak pendaftaran atlet: :name',
+    'activity_atlet_updated'  => 'Memperbarui profil atlet: :name',
+    'activity_atlet_deleted'  => 'Menghapus data atlet: :name',
+    'activity_match_added'    => 'Menambah data pertandingan: :name',
+    'activity_match_updated'  => 'Memperbarui data pertandingan: :name',
+    'activity_match_deleted'  => 'Menghapus data pertandingan: :name',
+    'status_deleted' => 'Dihapus',
 ];
