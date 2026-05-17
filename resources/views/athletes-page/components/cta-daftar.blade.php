@@ -75,12 +75,16 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_name') }}</label>
-                    <input type="text" id="reqNama" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="{{ __('athlets.request_name_placeholder') }}">
+                    <input type="text" id="reqNama"
+                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white placeholder-gray-400"
+                           placeholder="{{ __('athlets.request_name_placeholder') }}">
                     <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqNama">{{ __('athlets.request_error_name') }}</p>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_age') }}</label>
-                    <input type="number" id="reqUmur" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm" placeholder="{{ __('athlets.request_age_placeholder') }}">
+                    <input type="number" id="reqUmur"
+                           class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white placeholder-gray-400"
+                           placeholder="{{ __('athlets.request_age_placeholder') }}">
                     <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqUmur">{{ __('athlets.request_error_age') }}</p>
                 </div>
             </div>
@@ -105,7 +109,9 @@
 
             <div>
                 <label class="block text-xs font-bold text-gray-700 mb-1.5 uppercase">{{ __('athlets.request_description') }}</label>
-                <textarea id="reqDeskripsi" rows="3" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm resize-none" placeholder="{{ __('athlets.request_description_placeholder') }}"></textarea>
+                <textarea id="reqDeskripsi" rows="3"
+                          class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 bg-white placeholder-gray-400 resize-none"
+                          placeholder="{{ __('athlets.request_description_placeholder') }}"></textarea>
                 <p class="text-red-500 text-[10px] mt-1 hidden" id="errReqDeskripsi">{{ __('athlets.request_error_description') }}</p>
             </div>
         </div>
@@ -148,7 +154,6 @@ function closeRequestModal() {
     const modal = document.getElementById('requestModal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
-
     resetFormAtlet();
 }
 
@@ -161,7 +166,7 @@ function resetFormAtlet() {
     fileInput.value = '';
 
     const preview = document.getElementById('img-preview');
-    const placeholder = document.getElementById('placeholder');
+    const placeholder = document.getElementById('placeholder-text');
     preview.src = '';
     preview.classList.add('hidden');
     placeholder.classList.remove('hidden');
@@ -172,7 +177,7 @@ function resetFormAtlet() {
 document.getElementById('reqFoto').addEventListener('change', function(e) {
     const file = e.target.files[0];
     const preview = document.getElementById('img-preview');
-    const placeholder = document.getElementById('placeholder');
+    const placeholder = document.getElementById('placeholder-text');
     if (file) {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -185,69 +190,70 @@ document.getElementById('reqFoto').addEventListener('change', function(e) {
 });
 
 document.getElementById('submitRequest').addEventListener('click', async function(e) {
-        e.preventDefault();
-        const btn = this;
-        const fotoInput = document.getElementById('reqFoto');
+    e.preventDefault();
+    const btn = this;
+    const fotoInput = document.getElementById('reqFoto');
 
-        const nama = document.getElementById('reqNama').value.trim();
-        const umur = document.getElementById('reqUmur').value.trim();
-        const deskripsi = document.getElementById('reqDeskripsi').value.trim();
-        const foto = fotoInput.files[0];
+    const nama      = document.getElementById('reqNama').value.trim();
+    const umur      = document.getElementById('reqUmur').value.trim();
+    const deskripsi = document.getElementById('reqDeskripsi').value.trim();
+    const foto      = fotoInput.files[0];
 
-        document.getElementById('errReqNama').classList.toggle('hidden', !!nama);
-        document.getElementById('errReqUmur').classList.toggle('hidden', !!umur);
-        document.getElementById('errReqDeskripsi').classList.toggle('hidden', !!deskripsi);
-        document.getElementById('errReqFoto').classList.toggle('hidden', !!foto);
+    document.getElementById('errReqNama').classList.toggle('hidden', !!nama);
+    document.getElementById('errReqUmur').classList.toggle('hidden', !!umur);
+    document.getElementById('errReqDeskripsi').classList.toggle('hidden', !!deskripsi);
+    document.getElementById('errReqFoto').classList.toggle('hidden', !!foto);
 
-        if (!nama || !umur || !deskripsi || !foto) return;
+    if (!nama || !umur || !deskripsi || !foto) return;
 
-        btn.disabled = true;
-        btn.innerText = '{{ __('athlets.request_loading') }}';
+    btn.disabled = true;
+    btn.innerText = '{{ __('athlets.request_loading') }}';
 
-        const formData = new FormData();
-        formData.append('nama', nama);
-        formData.append('umur', umur);
-        formData.append('deskripsi', deskripsi);
-        formData.append('foto', foto);
-        formData.append('_token', '{{ csrf_token() }}');
+    const formData = new FormData();
+    formData.append('nama', nama);
+    formData.append('umur', umur);
+    formData.append('deskripsi', deskripsi);
+    formData.append('foto', foto);
+    formData.append('_token', '{{ csrf_token() }}');
 
-        try {
-            const response = await fetch("{{ route('atlet.store') }}", {
-                method: 'POST',
-                body: formData,
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
-            });
+    try {
+        const response = await fetch("{{ route('atlet.store') }}", {
+            method: 'POST',
+            body: formData,
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        });
 
-            const result = await response.json();
+        const result = await response.json();
 
-            if (response.ok && result.success) {
-                alert('Request Berhasil Dikirim!');
+        if (response.ok && result.success) {
+            alert('{{ __('athlets.request_success') }}');
 
-                document.getElementById('reqNama').value = '';
-                document.getElementById('reqUmur').value = '';
-                document.getElementById('reqDeskripsi').value = '';
-                fotoInput.value = "";
-                const preview = document.getElementById('img-preview');
-                preview.src = '';
-                preview.classList.add('hidden');
-                document.getElementById('placeholder').classList.remove('hidden');
+            document.getElementById('reqNama').value = '';
+            document.getElementById('reqUmur').value = '';
+            document.getElementById('reqDeskripsi').value = '';
+            fotoInput.value = '';
 
-                closeRequestModal();
+            const preview = document.getElementById('img-preview');
+            preview.src = '';
+            preview.classList.add('hidden');
+            document.getElementById('placeholder-text').classList.remove('hidden');
+
+            closeRequestModal();
+        } else {
+            let errorMsg = '';
+            if (result.errors) {
+                errorMsg = Object.values(result.errors).flat().join('\n');
             } else {
-                let errorMsg = '';
-                if (result.errors) {
-                    errorMsg = Object.values(result.errors).flat().join('\n');
-                } else {
-                    errorMsg = result.error || 'Terjadi kesalahan tidak diketahui';
-                }
-                alert('Gagal Mengirim:\n' + errorMsg);
+                errorMsg = result.error || '{{ __('athlets.request_error_unknown') }}';
             }
-        } catch (error) {
-            alert('Kesalahan Koneksi: Pastikan server jalan atau file tidak terlalu besar.');
-            console.error(error);
-        } finally {
-            btn.disabled = false;
-            btn.innerText = 'Kirim Request';
+            alert('{{ __('athlets.request_error_failed') }}\n' + errorMsg);
         }
-    });
+    } catch (error) {
+        alert('{{ __('athlets.request_error_connection') }}');
+        console.error(error);
+    } finally {
+        btn.disabled = false;
+        btn.innerText = '{{ __('athlets.request_submit') }}';
+    }
+});
 </script>

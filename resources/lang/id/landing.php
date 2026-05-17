@@ -160,4 +160,7 @@ return [
 
     'faq_q7' => 'Apakah ada kompetisi yang bisa diikuti?',
     'faq_a7' => 'Ya, kami aktif di kompetisi regional dan nasional, dan membimbing atlet ke turnamen resmi.',
+
+    'marquee_words' => ['Ketepatan', 'Disiplin', 'Keunggulan', 'Sunnah', 'Prestasi', 'Komunitas', 'Fokus', 'Dedikasi'],
+
 ];
