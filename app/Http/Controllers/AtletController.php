@@ -65,21 +65,15 @@ class AtletController extends Controller
 
             $atlet = Atlet::create($data);
 
-            $logDescription = $isAdmin
-                ? 'Admin mendaftarkan atlet baru: ' . $atlet->nama
-                : 'Pendaftaran atlet baru : ' . $atlet->nama;
-
             Activity::create([
                 'user_id'     => Auth::id() ?? 1,
-                'description' => $logDescription,
+                'description' => ($isAdmin ? 'activity_atlet_added' : 'activity_atlet_pending') . '|' . $atlet->nama,
                 'status'      => $isAdmin ? 'success' : 'pending'
             ]);
 
             if ($isAdmin) {
-                // Admin
                 return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil disimpan!');
             } else {
-                // Guest
                 return redirect()->back()->with('success', 'Pendaftaran Anda berhasil dikirim dan menunggu persetujuan.');
             }
         } catch (\Exception $e) {
@@ -94,9 +88,9 @@ class AtletController extends Controller
         $atlet->update(['status' => 'approved']);
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Menyetujui pendaftaran atlet: ' . $atlet->nama,
-            'status' => 'success'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_atlet_approved|' . $atlet->nama,
+            'status'      => 'success'
         ]);
 
         return redirect()->back()->with('success', 'Atlet berhasil disetujui!');
@@ -113,9 +107,9 @@ class AtletController extends Controller
         $atlet->delete();
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Menolak pendaftaran atlet: ' . $namaAtlet,
-            'status' => 'failed'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_atlet_rejected|' . $namaAtlet,
+            'status'      => 'failed'
         ]);
 
         return redirect()->back()->with('success', 'Permintaan pendaftaran dihapus.');
@@ -151,9 +145,9 @@ class AtletController extends Controller
         $atlet->update($data);
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Memperbarui profil atlet: ' . $atlet->nama,
-            'status' => 'success'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_atlet_updated|' . $atlet->nama,
+            'status'      => 'success'
         ]);
 
         return redirect()->route('atlet.kelola')->with('success', 'Profil berhasil diperbarui!');
@@ -171,9 +165,9 @@ class AtletController extends Controller
             $atlet->delete();
 
             Activity::create([
-                'user_id' => Auth::id(),
-                'description' => 'Menghapus data atlet: ' . $namaAtlet,
-                'status' => 'deleted'
+                'user_id'     => Auth::id(),
+                'description' => 'activity_atlet_deleted|' . $namaAtlet,
+                'status'      => 'deleted'
             ]);
 
             return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil dihapus.');

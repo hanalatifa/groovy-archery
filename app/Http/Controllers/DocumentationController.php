@@ -13,7 +13,7 @@ class DocumentationController extends Controller
     public function gallery()
     {
         $docs = Documentation::all();
-        return view('gallery.gallery', compact('docs')); 
+        return view('gallery.gallery', compact('docs'));
     }
 
     public function index()
@@ -31,10 +31,10 @@ class DocumentationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
-            'kategori' => 'required', 
-            'deskripsi' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg|max:10240', 
+            'judul'    => 'required',
+            'kategori' => 'required',
+            'deskripsi'=> 'required',
+            'foto'     => 'required|image|mimes:jpeg,png,jpg|max:10240',
         ]);
 
         $fotoName = null;
@@ -44,16 +44,16 @@ class DocumentationController extends Controller
         }
 
         $doc = Documentation::create([
-            'judul' => $request->judul,
-            'kategori' => $request->kategori, 
-            'deskripsi' => $request->deskripsi,
-            'foto' => $fotoName, 
+            'judul'    => $request->judul,
+            'kategori' => $request->kategori,
+            'deskripsi'=> $request->deskripsi,
+            'foto'     => $fotoName,
         ]);
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Menambah dokumentasi baru: ' . $doc->judul,
-            'status' => 'success'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_doc_added|' . $doc->judul,
+            'status'      => 'success'
         ]);
 
         return redirect('/documentations')->with('success', 'Data berhasil ditambah!');
@@ -70,34 +70,33 @@ class DocumentationController extends Controller
         $doc = Documentation::findOrFail($id);
 
         $request->validate([
-            'judul' => 'required',
-            'kategori' => 'required', 
-            'deskripsi' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:10240', 
+            'judul'    => 'required',
+            'kategori' => 'required',
+            'deskripsi'=> 'required',
+            'foto'     => 'nullable|image|mimes:jpeg,png,jpg|max:10240',
         ]);
 
-        $fotoName = $doc->foto; 
+        $fotoName = $doc->foto;
 
         if ($request->hasFile('foto')) {
             if ($doc->foto && Storage::disk('public')->exists('docs/' . $doc->foto)) {
                 Storage::disk('public')->delete('docs/' . $doc->foto);
             }
-
             $path = $request->file('foto')->store('docs', 'public');
             $fotoName = basename($path);
         }
 
         $doc->update([
-            'judul' => $request->judul,
+            'judul'    => $request->judul,
             'kategori' => $request->kategori,
-            'deskripsi' => $request->deskripsi,
-            'foto' => $fotoName,
+            'deskripsi'=> $request->deskripsi,
+            'foto'     => $fotoName,
         ]);
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Memperbarui dokumentasi: ' . $doc->judul,
-            'status' => 'success'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_doc_updated|' . $doc->judul,
+            'status'      => 'success'
         ]);
 
         return redirect('/documentations')->with('success', 'Data berhasil diupdate!');
@@ -115,9 +114,9 @@ class DocumentationController extends Controller
         $doc->delete();
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Menghapus dokumentasi: ' . $judulDoc,
-            'status' => 'deleted'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_doc_deleted|' . $judulDoc,
+            'status'      => 'deleted'
         ]);
 
         return redirect('/documentations')->with('success', 'Dokumentasi dan foto berhasil dihapus!');

@@ -234,4 +234,18 @@ return [
     'testimoni_reject_btn'       => 'Reject',
     'testimoni_reject_confirm'   => 'Reject this testimonial?',
     'testimoni_queue_empty'      => 'Queue is clear! All testimonials have been processed.',
+
+    'activity_doc_added'      => 'Added new documentation: :name',
+'activity_doc_updated'    => 'Updated documentation: :name',
+'activity_doc_deleted'    => 'Deleted documentation: :name',
+'activity_atlet_pending'  => 'New athlete registration (Pending): :name',
+'activity_atlet_added'    => 'Admin registered new athlete: :name',
+'activity_atlet_approved' => 'Approved athlete registration: :name',
+'activity_atlet_rejected' => 'Rejected athlete registration: :name',
+'activity_atlet_updated'  => 'Updated athlete profile: :name',
+'activity_atlet_deleted'  => 'Deleted athlete data: :name',
+'activity_match_added'    => 'Added new competition: :name',
+'activity_match_updated'  => 'Updated competition data: :name',
+'activity_match_deleted'  => 'Deleted competition data: :name',
+'status_deleted' => 'Deleted',
 ];

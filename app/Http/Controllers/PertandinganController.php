@@ -40,9 +40,9 @@ class PertandinganController extends Controller
         $pertandingan = Pertandingan::create($data);
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Menambah data pertandingan: ' . $pertandingan->nama_pertandingan,
-            'status' => 'success'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_match_added|' . $pertandingan->nama_pertandingan,
+            'status'      => 'success'
         ]);
 
         return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil ditambah!');
@@ -64,7 +64,6 @@ class PertandinganController extends Controller
             if ($pertandingan->dokumentasi && Storage::disk('public')->exists('pertandingan/' . $pertandingan->dokumentasi)) {
                 Storage::disk('public')->delete('pertandingan/' . $pertandingan->dokumentasi);
             }
-
             $path = $request->file('dokumentasi')->store('pertandingan', 'public');
             $data['dokumentasi'] = basename($path);
         } else {
@@ -74,9 +73,9 @@ class PertandinganController extends Controller
         $pertandingan->update($data);
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Memperbarui data pertandingan: ' . $pertandingan->nama_pertandingan,
-            'status' => 'success'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_match_updated|' . $pertandingan->nama_pertandingan,
+            'status'      => 'success'
         ]);
 
         return redirect()->route('pertandingan.index')->with('success', 'Data pertandingan berhasil diupdate!');
@@ -94,9 +93,9 @@ class PertandinganController extends Controller
         $pertandingan->delete();
 
         Activity::create([
-            'user_id' => Auth::id(),
-            'description' => 'Menghapus data pertandingan: ' . $namaLama,
-            'status' => 'deleted'
+            'user_id'     => Auth::id(),
+            'description' => 'activity_match_deleted|' . $namaLama,
+            'status'      => 'deleted'
         ]);
 
         return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil dihapus!');
