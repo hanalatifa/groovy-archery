@@ -36,7 +36,7 @@
 
             <div>
                 <p class="font-bold text-xs uppercase tracking-[3px] text-white/50 mb-5">
-                    Sosial Media
+                    {{ __('footer.follow_us') }}
                 </p>
                 <ul class="space-y-3">
                     @foreach([
@@ -77,7 +77,7 @@
         {{-- Bottom Footer (Copyright) --}}
         <div class="border-t border-white/15 pt-7 flex flex-col md:flex-row items-center justify-center gap-4">
             <p class="text-white/40 text-xs text-center">
-                © {{ date('Y') }} Groovy Archery. All rights reserved.
+                © {{ date('Y') }} {{ __('footer.copyright') }}
             </p>
         </div>
     </div>

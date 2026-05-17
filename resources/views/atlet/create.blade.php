@@ -2,16 +2,11 @@
 
     <div class="p-6 max-w-5xl mx-auto">
 
-        <div class="mb-8">
-            <a href="{{ route('documentations.index') }}"
-               class="flex items-center gap-2 font-medium hover:opacity-80"
-               style="color: #85488F;">
-               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-            </svg>
-             {{ __('dashboard.atlet_kembali') }}
-            </a>
-        </div>
+            <div class="mb-6">
+                <a href="{{ route('atlet.kelola') }}" class="flex items-center gap-2 font-medium" style="color: #85488F;">
+                    {{ __('dashboard.atlet_kembali') }}
+                </a>
+            </div>
 
         <h1 class="text-3xl font-semibold text-gray-800 mb-8">
             {{ __('dashboard.atlet_tambah_title') }}

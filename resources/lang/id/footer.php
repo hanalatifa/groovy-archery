@@ -2,40 +2,26 @@
 
 return [
     'description' => 'Dapatkan update tentang kompetisi, tips latihan, dan berita klub.',
-    'email_placeholder' => 'Email Anda',
-    'subscribe' => 'Berlangganan',
-    'policy_text' => 'Dengan berlangganan, Anda menyetujui Kebijakan Privasi kami dan bersedia menerima update dari Groovy Archery.',
 
+    'information' => 'Informasi',
     'about_us' => 'Tentang kami',
-    'our_story' => 'Cerita kami',
+    'vision_mission' => 'Visi Misi',
+    'values' => 'Nilai',
     'athletes' => 'Atlet',
-    'training' => 'Pelatihan',
-    'coaches' => 'Pelatih',
+    'faq' => 'FAQ',
     'contact' => 'Kontak',
 
-    'resources' => 'Sumber daya',
+    'schedule' => 'Jadwal',
+    'gallery' => 'Galeri',
+    'achievements' => 'Pencapaian',
     'membership' => 'Keanggotaan',
     'partners' => 'Mitra',
     'coaching' => 'Pembinaan',
-    'schedule' => 'Jadwal',
-    'faq' => 'FAQ',
 
     'follow_us' => 'Ikuti kami',
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
-    'twitter' => 'X / Twitter',
-    'linkedin' => 'LinkedIn',
-    'youtube' => 'YouTube',
 
-    'privacy_policy' => 'Kebijakan Privasi',
-    'terms' => 'Syarat Layanan',
-    'cookie_settings' => 'Pengaturan Cookie',
+    'copyright' => 'Groovy Archery. Seluruh hak cipta dilindungi.',
 
-    'copyright' => '© 2024 Groovy Club Organization. Seluruh hak cipta dilindungi.',
-
-    'information' => 'Informasi',
-    'vision_mission' => 'Visi Misi',
-    'value' => 'Nilai',
-    'gallery' => 'Galeri',
-    'achievements' => 'Pendapatan'
 ];

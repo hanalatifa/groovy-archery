@@ -80,19 +80,18 @@ return [
     'stats_competitions' => 'Perlombaan',
     'stats_founded' => 'Tahun berdiri',
 
-    'training_section_1_type' => 'Training',
+    'training_section_1_type' => 'Pembinaan',
     'training_section_1_tag' => 'Program',
     'training_section_1_title' => 'Pelatihan Bertahap',
     'training_section_1_desc' => 'Program pelatihan kami dirancang untuk semua tingkatan, mulai dari pemula yang mempelajari dasar-dasar hingga atlet tingkat lanjut yang mengasah teknik bertanding. Setiap sesi dirancang untuk menghasilkan peningkatan yang terukur.',
 
-    'training_section_2_type' => 'Coaching',
+    'training_section_2_type' => 'Pelatihan',
     'training_section_2_tag' => 'Pelatihan',
     'training_section_2_title' => 'Pelatihan Expert',
     'training_section_2_desc' => 'Para pelatih kami memiliki pengalaman bertahun-tahun di bidang kompetisi serta pengetahuan teknis yang mendalam. Mereka akan mendampingi Anda secara pribadi untuk mengidentifikasi kelemahan, menyempurnakan teknik, dan mempersiapkan diri untuk kompetisi.',
 
     'training_contact' => 'Hubungi coach kami',
     'training_register' => 'Daftar',
-    'training_details' => 'Details',
 
     'testimoni_label' => 'Testimoni',
     'testimoni_title' => 'Testimoni Member',

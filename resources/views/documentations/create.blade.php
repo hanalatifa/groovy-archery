@@ -2,7 +2,7 @@
 
     <div class="p-6 max-w-5xl mx-auto">
 
-        <div class="mb-8">
+        <div class="mb-6">
             <a href="{{ route('documentations.index') }}"
                class="flex items-center gap-2 font-medium hover:opacity-80"
                style="color: #85488F;">

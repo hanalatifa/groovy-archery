@@ -91,7 +91,6 @@ return [
 
     'training_contact' => 'Contact our coach',
     'training_register' => 'Register',
-    'training_details' => 'Details',
 
     'testimoni_label' => 'Testimonials',
     'testimoni_title' => 'Member Testimonials',
