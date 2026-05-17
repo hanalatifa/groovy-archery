@@ -7,7 +7,7 @@ return [
     'hero_title_3'      => 'Prestasi.',
     'hero_sub'          => 'Pencapaian ini menjadi bukti nyata dari komitmen kami dalam membina atlet secara berkelanjutan. Dengan pendekatan latihan yang terstruktur, kami terus menghasilkan performa terbaik di setiap kompetisi.',
     'hero_btn_daftar'   => 'Daftar Sekarang',
-    'hero_btn_lihat'    => 'Lihat Achievement',
+    'hero_btn_lihat'    => 'Lihat Pencapian',
     'stat_lokasi'       => 'Lokasi Latihan',
     'stat_tahun'        => 'Tahun Berdiri',
     'stat_atlet'        => 'Atlet Aktif',

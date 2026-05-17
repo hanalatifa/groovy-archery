@@ -186,6 +186,7 @@ return [
     'testimoni_title' => 'Manage Testimonials',
     'testimoni_active_title' => 'Active Testimonials',
     'testimoni_active_subtitle' => 'List of testimonials currently displayed on the Landing Page.',
+    'testimoni_back_list'        => '← Back to Testimonial List',
 
     'testimoni_request_btn' => 'Testimonial Requests',
     'testimoni_add_btn' => '+ Add Testimonial',

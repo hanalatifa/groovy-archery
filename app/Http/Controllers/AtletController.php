@@ -67,7 +67,7 @@ class AtletController extends Controller
 
             $logDescription = $isAdmin
                 ? 'Admin mendaftarkan atlet baru: ' . $atlet->nama
-                : 'Pendaftaran atlet baru (Pending): ' . $atlet->nama;
+                : 'Pendaftaran atlet baru : ' . $atlet->nama;
 
             Activity::create([
                 'user_id'     => Auth::id() ?? 1,

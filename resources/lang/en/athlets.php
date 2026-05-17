@@ -21,6 +21,7 @@ return [
     'section_subtitle' => 'Every shot matters. Every moment counts.',
     'more' => 'Read More',
     'empty' => 'No approved athlete data yet.',
+    'btn_see_all' => 'See All Athletes',
 
     // modal
     'modal_title' => 'Athlete Profile',

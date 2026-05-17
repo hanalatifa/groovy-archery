@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Activity;
 use App\Models\Pertandingan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage as FacadesStorage;
+use Illuminate\Support\Facades\Storage;
 
 class PertandinganController extends Controller
 {
@@ -31,16 +31,11 @@ class PertandinganController extends Controller
     public function store(StorePertandinganRequest $request)
     {
         $data = $request->validated();
-        $files = [];
 
         if ($request->hasFile('dokumentasi')) {
-            foreach ($request->file('dokumentasi') as $file) {
-                $path = $file->store('pertandingan', 'public');
-                $files[] = $path;
-            }
+            $path = $request->file('dokumentasi')->store('pertandingan', 'public');
+            $data['dokumentasi'] = basename($path);
         }
-
-        $data['dokumentasi'] = $files;
 
         $pertandingan = Pertandingan::create($data);
 
@@ -62,21 +57,16 @@ class PertandinganController extends Controller
     public function update(Request $request, $id)
     {
         $pertandingan = Pertandingan::findOrFail($id);
+
         $data = $request->all();
 
         if ($request->hasFile('dokumentasi')) {
-            if ($pertandingan->dokumentasi) {
-                foreach ($pertandingan->dokumentasi as $fotoLama) {
-                    FacadesStorage::disk('public')->delete($fotoLama);
-                }
+            if ($pertandingan->dokumentasi && Storage::disk('public')->exists('pertandingan/' . $pertandingan->dokumentasi)) {
+                Storage::disk('public')->delete('pertandingan/' . $pertandingan->dokumentasi);
             }
 
-            $files = [];
-            foreach ($request->file('dokumentasi') as $file) {
-                $path = $file->store('pertandingan', 'public');
-                $files[] = $path;
-            }
-            $data['dokumentasi'] = $files;
+            $path = $request->file('dokumentasi')->store('pertandingan', 'public');
+            $data['dokumentasi'] = basename($path);
         } else {
             $data['dokumentasi'] = $pertandingan->dokumentasi;
         }
@@ -97,10 +87,8 @@ class PertandinganController extends Controller
         $pertandingan = Pertandingan::findOrFail($id);
         $namaLama = $pertandingan->nama_pertandingan;
 
-        if ($pertandingan->dokumentasi) {
-            foreach ($pertandingan->dokumentasi as $foto) {
-                FacadesStorage::disk('public')->delete($foto);
-            }
+        if ($pertandingan->dokumentasi && Storage::disk('public')->exists('pertandingan/' . $pertandingan->dokumentasi)) {
+            Storage::disk('public')->delete('pertandingan/' . $pertandingan->dokumentasi);
         }
 
         $pertandingan->delete();

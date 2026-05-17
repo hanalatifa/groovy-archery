@@ -3,7 +3,6 @@
     <div class="p-6 max-w-5xl mx-auto">
 
         {{-- Tombol Kembali --}}
-
         <div class="mb-6">
             <a href="{{ route('pertandingan.index') }}" class="flex items-center gap-2 font-medium" style="color: #85488F;">
                 {{ __('dashboard.pertandingan_back') }}
@@ -73,6 +72,7 @@
                                required>
                     </div>
 
+                    {{-- Upload Area & Preview --}}
                     <div class="md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-3">
                             {{ __('dashboard.pertandingan_dokumentasi') }}
@@ -83,17 +83,26 @@
                              onmouseout="this.style.borderColor='#D1D5DB'"
                              onclick="document.getElementById('file-input').click()">
 
-                            <input type="file" name="dokumentasi[]" id="file-input" multiple accept="image/*" class="hidden">
+                            {{-- Name diubah jadi tunggal tanpa [] dan tanpa multiple --}}
+                            <input type="file" name="dokumentasi" id="file-input" accept="image/*" class="hidden">
 
-                            <div class="w-16 h-16 mx-auto bg-gray-100 flex items-center justify-center mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M4 16v-4m0 0l4 4m-4-4l4-4m12 0v4m0 0l-4-4m4 4l-4 4"/>
-                                </svg>
+                            {{-- Tempat Gambar Muncul --}}
+                            <div id="preview-container" class="hidden mb-4">
+                                <img id="image-preview" class="mx-auto max-h-60 shadow-md" alt="Preview">
                             </div>
-                            <p class="text-gray-600 font-medium">{{ __('dashboard.pertandingan_dokumentasi_upload') }}</p>
-                            <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.pertandingan_dokumentasi_hint') }}</p>
+
+                            {{-- Placeholder Awal --}}
+                            <div id="placeholder-content">
+                                <div class="w-16 h-16 mx-auto bg-gray-100 flex items-center justify-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none"
+                                         viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M4 16v-4m0 0l4 4m-4-4l4-4m12 0v4m0 0l-4-4m4 4l-4 4"/>
+                                    </svg>
+                                </div>
+                                <p class="text-gray-600 font-medium">{{ __('dashboard.pertandingan_dokumentasi_upload') }}</p>
+                                <p class="text-xs text-gray-400 mt-1">{{ __('dashboard.pertandingan_dokumentasi_hint') }}</p>
+                            </div>
                         </div>
                     </div>
 
@@ -124,5 +133,31 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const fileInput        = document.getElementById('file-input');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview     = document.getElementById('image-preview');
+        const placeholderCont  = document.getElementById('placeholder-content');
+
+        fileInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                alert('File yang dipilih harus berupa gambar!');
+                this.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreview.src = e.target.result;
+                previewContainer.classList.remove('hidden');
+                placeholderCont.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
 
 </x-layouts.admin-layout>

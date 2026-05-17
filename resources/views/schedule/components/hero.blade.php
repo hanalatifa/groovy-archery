@@ -66,7 +66,7 @@
                     </div>
                 </button>
 
-                <a href="#athletes"
+                <a href="#schedule"
                     class="group inline-flex items-center gap-3 px-8 py-4 border border-white/30
                           text-white font-bold text-sm hover:border-white hover:bg-white/10
                           transition-all duration-300">

@@ -6,7 +6,7 @@
             <a href="{{ route('documentations.index') }}"
                class="flex items-center gap-2 font-medium hover:opacity-80"
                style="color: #85488F;">
-                ← {{ __('dashboard.documentation_back_list') }}
+                {{ __('dashboard.documentation_back_list') }}
             </a>
         </div>
 

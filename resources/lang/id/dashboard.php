@@ -128,7 +128,7 @@ return [
     'pertandingan_title'        => 'Kelola Pertandingan',
     'pertandingan_sub'        => 'Daftar riwayat pertandingan dan prestasi yang telah diunggah.',
     'pertandingan_tambah_title' => 'Tambah Data Pertandingan',
-    'pertandingan_back'         => 'Kembali ke Pertandingan',
+    'pertandingan_back'         => '← Kembali ke Pertandingan',
     'pertandingan_edit_title'   => 'Edit Data Pertandingan',
     'pertandingan_tambah_btn'   => '+ Tambah Pertandingan Baru',
     'pertandingan_nama'         => 'Nama Pertandingan',
@@ -166,7 +166,7 @@ return [
     'documentation_category_team' => 'Team',
     'documentation_add_title'        => 'Tambah Dokumentasi',
     'documentation_edit_title'       => 'Edit Dokumentasi',
-    'documentation_back_list'        => 'Kembali ke Daftar Dokumentasi',
+    'documentation_back_list'        => '← Kembali ke Daftar Dokumentasi',
     'documentation_form_title'       => 'Judul Dokumentasi',
     'documentation_form_title_ph'    => 'Masukkan judul kegiatan...',
     'documentation_form_category'    => 'Kategori',
@@ -182,6 +182,7 @@ return [
 
     // TESTIMONI
     'testimoni_title' => 'Kelola Testimoni',
+    'testimoni_back_list'        => '← Kembali ke Daftar Dokumentasi',
     'testimoni_active_title' => 'Testimoni Aktif',
     'testimoni_active_subtitle' => 'Daftar testimoni yang sedang tampil di Landing Page.',
 

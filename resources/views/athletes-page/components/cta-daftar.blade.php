@@ -60,7 +60,8 @@
 
                         <img id="img-preview" class="hidden absolute inset-0 w-full h-full object-cover">
 
-                        <div id="placeholder-text" class="text-center p-2">
+                        {{-- ID DISAMAKAN JADI id="placeholder" --}}
+                        <div id="placeholder" class="text-center p-2">
                             <svg class="w-6 h-6 mx-auto text-gray-300 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                             </svg>
@@ -139,6 +140,8 @@
 </style>
 
 <script>
+let isSubmitting = false;
+
 function openRequestModal() {
     document.getElementById('requestModal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -148,8 +151,8 @@ function closeRequestModal() {
     const modal = document.getElementById('requestModal');
     modal.classList.remove('open');
     document.body.style.overflow = '';
-
     resetFormAtlet();
+    setTimeout(() => { isSubmitting = false; }, 500);
 }
 
 function resetFormAtlet() {
@@ -165,6 +168,9 @@ function resetFormAtlet() {
     preview.src = '';
     preview.classList.add('hidden');
     placeholder.classList.remove('hidden');
+
+    // Reset pilihan radio button
+    document.querySelectorAll('.req-kategori-option').forEach(radio => radio.checked = false);
 
     document.querySelectorAll('[id^="errReq"]').forEach(el => el.classList.add('hidden'));
 }
@@ -186,6 +192,9 @@ document.getElementById('reqFoto').addEventListener('change', function(e) {
 
 document.getElementById('submitRequest').addEventListener('click', async function(e) {
         e.preventDefault();
+        
+        if (isSubmitting) return;
+
         const btn = this;
         const fotoInput = document.getElementById('reqFoto');
 
@@ -193,14 +202,20 @@ document.getElementById('submitRequest').addEventListener('click', async functio
         const umur = document.getElementById('reqUmur').value.trim();
         const deskripsi = document.getElementById('reqDeskripsi').value.trim();
         const foto = fotoInput.files[0];
+        
+        // Mengambil nilai radio button kategori yang dipilih
+        const katOption = document.querySelector('input[name="reqKategori"]:checked');
+        const kategori = katOption ? katOption.value : '';
 
         document.getElementById('errReqNama').classList.toggle('hidden', !!nama);
         document.getElementById('errReqUmur').classList.toggle('hidden', !!umur);
         document.getElementById('errReqDeskripsi').classList.toggle('hidden', !!deskripsi);
         document.getElementById('errReqFoto').classList.toggle('hidden', !!foto);
+        document.getElementById('errReqKategori').classList.toggle('hidden', !!kategori);
 
-        if (!nama || !umur || !deskripsi || !foto) return;
+        if (!nama || !umur || !deskripsi || !foto || !kategori) return;
 
+        isSubmitting = true;
         btn.disabled = true;
         btn.innerText = '{{ __('athlets.request_loading') }}';
 
@@ -208,6 +223,7 @@ document.getElementById('submitRequest').addEventListener('click', async functio
         formData.append('nama', nama);
         formData.append('umur', umur);
         formData.append('deskripsi', deskripsi);
+        formData.append('kategori', kategori);
         formData.append('foto', foto);
         formData.append('_token', '{{ csrf_token() }}');
 
@@ -218,36 +234,21 @@ document.getElementById('submitRequest').addEventListener('click', async functio
                 headers: { 'X-Requested-With': 'XMLHttpRequest' }
             });
 
-            const result = await response.json();
-
-            if (response.ok && result.success) {
+            // Ganti penanganan json() menjadi deteksi redirect sukses dari controller back()
+            if (response.ok || response.redirected) {
                 alert('Request Berhasil Dikirim!');
-
-                document.getElementById('reqNama').value = '';
-                document.getElementById('reqUmur').value = '';
-                document.getElementById('reqDeskripsi').value = '';
-                fotoInput.value = "";
-                const preview = document.getElementById('img-preview');
-                preview.src = '';
-                preview.classList.add('hidden');
-                document.getElementById('placeholder').classList.remove('hidden');
-
                 closeRequestModal();
+                window.location.href = response.url || window.location.href;
             } else {
-                let errorMsg = '';
-                if (result.errors) {
-                    errorMsg = Object.values(result.errors).flat().join('\n');
-                } else {
-                    errorMsg = result.error || 'Terjadi kesalahan tidak diketahui';
-                }
-                alert('Gagal Mengirim:\n' + errorMsg);
+                alert('Gagal Mengirim: Terjadi kesalahan internal pada server.');
             }
         } catch (error) {
             alert('Kesalahan Koneksi: Pastikan server jalan atau file tidak terlalu besar.');
             console.error(error);
         } finally {
             btn.disabled = false;
-            btn.innerText = 'Kirim Request';
+            btn.innerText = '{{ __('athlets.request_submit') }}';
+            isSubmitting = false;
         }
     });
 </script>

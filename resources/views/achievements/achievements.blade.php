@@ -54,7 +54,7 @@
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-300" id="achievements">
+<body class="antialiased overflow-x-hidden bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
 
     @include('src.components.navbar')
 

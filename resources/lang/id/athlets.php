@@ -21,6 +21,7 @@ return [
     'section_subtitle' => 'Setiap tembakan itu penting. Setiap momen itu berarti.',
     'more' => 'Lebih Lengkap',
     'empty' => 'Belum ada data atlet yang disetujui.',
+    'btn_see_all' => 'Lihat Semua Atlet',
 
     // modal
     'modal_title' => 'Profil Atlet',

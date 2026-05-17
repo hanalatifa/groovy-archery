@@ -179,7 +179,7 @@
         <div
             class="sticky bottom-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-t border-gray-100 dark:border-slate-800 px-8 py-5">
            <button id="submitDaftar" onclick="submitDaftarWhatsApp()"
-    class="group w-full py-4 bg-[#274494] text-white font-bold text-xs uppercase tracking-[2px] rounded-xl flex items-center justify-center gap-3 hover:shadow-xl hover:shadow-green-500/20 active:scale-[0.98] transition-all">
+    class="group w-full py-4 bg-[#274494] text-white font-bold text-xs uppercase tracking-[2px] rounded-xl flex items-center justify-center gap-3 hover:shadow-xl hover:shadow-blue-500/20 active:scale-[0.98] transition-all">
     <svg class="w-5 h-5 transition-transform group-hover:rotate-12" fill="currentColor"
         viewBox="0 0 24 24">
         <path
@@ -215,7 +215,7 @@
         valid = false;
     }
     if (!program) {
-        valid = false; // opsional: tambahkan error program jika diperlukan
+        valid = false;
     }
 
     if (!valid) return;
@@ -224,11 +224,13 @@
     const programText = program ? program.value : '-';
 
     const pesan = 
-        `Halo, saya ingin mendaftar!\n\n` +
-        `*Nama:* ${nama}\n` +
-        `*Umur:* ${umur} tahun\n` +
-        `*Program:* ${programText}\n` +
-        `*Lokasi:* ${lokasiText}`;
+        `Halo Coach Groovy Archery! \n\n` +
+        `Saya ingin mendaftar dengan detail berikut:\n` +
+        `Nama: ${nama}\n` +
+        `Umur: ${umur} tahun\n` +
+        `Program: ${programText}\n` +
+        `Lokasi: ${lokasiText}\n\n` +
+        `Bisa bantu saya untuk menentukan jadwal?\nTerima kasih!`;
 
     const url = `https://wa.me/6281214711219?text=${encodeURIComponent(pesan)}`;
     window.open(url, '_blank');

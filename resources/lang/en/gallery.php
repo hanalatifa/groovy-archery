@@ -7,7 +7,7 @@ return [
     'hero_title_3'      => 'Dedication.',
     'hero_sub'          => 'A documentation of athletes\' journeys in training, growing, and creating achievements through passion, discipline, and hard work every day.',
     'hero_btn_daftar'   => 'Register Now',
-    'hero_btn_lihat'    => 'View Schedule',
+    'hero_btn_lihat'    => 'View Gallery',
     'stat_lokasi'       => 'Training Locations',
     'stat_tahun'        => 'Years Established',
     'stat_atlet'        => 'Active Athletes',

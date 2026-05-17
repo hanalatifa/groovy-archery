@@ -1,5 +1,5 @@
 @props(['pertandingans'])
-<section class="py-16 text-center transition-colors duration-300">
+<section class="py-16 text-center transition-colors duration-300" id="achievements">
     <p class="text-[#2b459a] dark:text-blue-400 font-bold uppercase tracking-[5px] text-[10px]">
         {{ __('achievements.section_label') }}</p>
     <h2 class="text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-white">{{ __('achievements.section_title') }}
@@ -11,12 +11,15 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @forelse ($pertandingans as $index => $pertandingan)
             @php
-                $fotoUrl =
-                    isset($pertandingan->dokumentasi) &&
-                    is_array($pertandingan->dokumentasi) &&
-                    count($pertandingan->dokumentasi) > 0
-                        ? asset('storage/' . $pertandingan->dokumentasi[0])
-                        : asset('assets/placeholder-event.jpg');
+                $fotoUrl = asset('assets/placeholder-event.jpg');
+
+                if (isset($pertandingan->dokumentasi) && !empty($pertandingan->dokumentasi)) {
+                    if (is_array($pertandingan->dokumentasi)) {
+                        $fotoUrl = isset($pertandingan->dokumentasi[0]) ? asset('storage/' . $pertandingan->dokumentasi[0]) : asset('assets/placeholder-event.jpg');
+                    } else {
+                        $fotoUrl = asset('storage/pertandingan/' . $pertandingan->dokumentasi);
+                    }
+                }
             @endphp
 
             <div
@@ -48,7 +51,7 @@
                             onclick="showAchievementDetail(
                                     '{{ addslashes($pertandingan->nama_pertandingan) }}',
                                     '{{ addslashes($pertandingan->kategori) }}',
-                                    '{{ $pertandingan->tgl_pertandingan ? $pertandingan->tgl_pertandingan->format('d/m/Y') : '-' }}',
+                                    '{{ $pertandingan->tgl_pertandingan ? ($pertandingan->tgl_pertandingan instanceof \Carbon\Carbon ? $pertandingan->tgl_pertandingan->format('d/m/Y') : date('d/m/Y', strtotime($pertandingan->tgl_pertandingan))) : '-' }}',
                                     '{{ addslashes($pertandingan->deskripsi_kegiatan ?? '') }}',
                                     '{{ $fotoUrl }}'
                                 )"

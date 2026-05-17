@@ -7,7 +7,7 @@ return [
     'hero_title_3'      => 'Dedikasi.',
     'hero_sub'          => 'Dokumentasi perjalanan para atlet dalam berlatih, berkembang, dan menciptakan prestasi melalui semangat, disiplin, dan kerja keras setiap harinya.',
     'hero_btn_daftar'   => 'Daftar Sekarang',
-    'hero_btn_lihat'    => 'Lihat Jadwal',
+    'hero_btn_lihat'    => 'Lihat Galeri',
     'stat_lokasi'       => 'Lokasi Latihan',
     'stat_tahun'        => 'Tahun Berdiri',
     'stat_atlet'        => 'Atlet Aktif',

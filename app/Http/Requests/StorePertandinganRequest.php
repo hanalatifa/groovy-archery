@@ -25,8 +25,7 @@ class StorePertandinganRequest extends FormRequest
             'nama_pertandingan'         => 'required|string|max:225',
             'kategori'                  => 'required|in:Nasional,Internasional',
             'tgl_pertandingan'          => 'required|date',
-            'dokumentasi'               => 'required|array|min:1|max:9',
-            'dokumentasi.*'             => 'image|mimes:jpeg,png,jpg|max:2048',
+            'dokumentasi'               => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'deskripsi_kegiatan'        => 'required|string',
         ];
     }
@@ -48,8 +47,8 @@ class StorePertandinganRequest extends FormRequest
             'dokumentasi.*.image'           => 'File yang diunggah harus berupa gambar.',
             'dokumentasi.*.mimes'           => 'Format gambar yang diizinkan hanya jpeg, png, dan jpg.',
             'dokumentasi.*.max'             => 'Ukuran setiap gambar tidak boleh lebih dari 2MB.',
-            'deskripsi_kegiatan.required'   => 'Deskripsi kegiatan harus diisi agar informasinya lengkap.',
-            'deskripsi_kegiatan.string'     => 'Deskripsi harus berupa teks.',
+            'deskripsi.required'   => 'Deskripsi kegiatan harus diisi agar informasinya lengkap.',
+            'deskripsi.string'     => 'Deskripsi harus berupa teks.',
         ];
     }
 }

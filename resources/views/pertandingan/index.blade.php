@@ -41,20 +41,28 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        @forelse($pertandingan as $pertandingan)
+                        @forelse($pertandingan as $item) {{-- Diubah ke $item agar tidak bentrok dengan nama collection --}}
                         <tr class="hover:bg-gray-50 transition">
                             {{-- Waktu --}}
                             <td class="px-6 py-5">
-                                <div class="text-sm text-gray-800 font-medium">{{ $pertandingan->created_at->format('d M Y') }}</div>
-                                <div class="text-[11px] text-gray-400 italic">{{ $pertandingan->created_at->diffForHumans() }}</div>
+                                <div class="text-sm text-gray-800 font-medium">{{ $item->created_at->format('d M Y') }}</div>
+                                <div class="text-[11px] text-gray-400 italic">{{ $item->created_at->diffForHumans() }}</div>
                             </td>
 
-                            {{-- Foto --}}
+                            {{-- Foto (Diubah agar membaca string path berkas tunggal secara aman) --}}
                             <td class="px-6 py-5">
-                                @if($pertandingan->dokumentasi && count($pertandingan->dokumentasi) > 0)
-                                    <img src="{{ asset('storage/' . $pertandingan->dokumentasi[0]) }}"
-                                         alt="Pertandingan"
-                                         class="w-14 h-14 object-cover rounded-2xl border border-gray-100 shadow-sm">
+                                @if($item->dokumentasi)
+                                    @if(is_array($item->dokumentasi))
+                                        {{-- Jika data lama berbentuk array, ambil indeks pertama --}}
+                                        <img src="{{ asset('storage/' . ($item->dokumentasi[0] ?? '')) }}"
+                                             alt="Pertandingan"
+                                             class="w-14 h-14 object-cover rounded-2xl border border-gray-100 shadow-sm">
+                                    @else
+                                        {{-- Jika data baru berbentuk string tunggal --}}
+                                        <img src="{{ asset('storage/pertandingan/' . $item->dokumentasi) }}"
+                                             alt="Pertandingan"
+                                             class="w-14 h-14 object-cover rounded-2xl border border-gray-100 shadow-sm">
+                                    @endif
                                 @else
                                     <div class="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400 text-[10px] border border-dashed border-gray-300">
                                         No Pic
@@ -65,25 +73,25 @@
                             {{-- Nama Pertandingan --}}
                             <td class="px-6 py-5">
                                 <div class="font-semibold text-gray-700 text-medium">
-                                    {{ $pertandingan->nama_pertandingan ?? 'N/A' }}
+                                    {{ $item->nama_pertandingan ?? 'N/A' }}
                                 </div>
                             </td>
 
                             {{-- Deskripsi Pertandingan --}}
                             <td class="px-6 py-5">
                                 <div class="text-gray-500 text-sm leading-relaxed max-w-xs line-clamp-2">
-                                    {{ $pertandingan->deskripsi_kegiatan ?? 'N/A' }}
+                                    {{ $item->deskripsi_kegiatan ?? 'N/A' }}
                                 </div>
                             </td>
 
                             {{-- Aksi --}}
                             <td class="px-6 py-5">
                                 <div class="flex justify-end gap-2">
-                                    <a href="{{ route('pertandingan.edit', $pertandingan->id) }}"
+                                    <a href="{{ route('pertandingan.edit', $item->id) }}"
                                        class="px-4 py-2 border bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
                                         {{ __('dashboard.btn_edit') }}
                                     </a>
-                                    <button type="button" onclick="openDeleteModal({{ $pertandingan->id }})"
+                                    <button type="button" onclick="openDeleteModal({{ $item->id }})"
                                             class="px-4 py-2 border bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
                                         {{ __('dashboard.btn_hapus') }}
                                     </button>
@@ -92,7 +100,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="4" class="text-center py-24">
+                            <td colspan="5" class="text-center py-24"> {{-- Colspan diubah ke 5 sesuai jumlah kolom head --}}
                                 <p class="text-gray-400 italic text-sm font-medium">
                                     {{ __('dashboard.pertandingan_empty') }}
                                 </p>
@@ -151,7 +159,6 @@
             document.body.style.overflow = '';
         }
 
-        // Tutup modal jika klik di luar area modal
         document.getElementById('deleteModal').addEventListener('click', function(e) {
             if (e.target === this) closeDeleteModal();
         });
