@@ -67,4 +67,5 @@ return [
     'request_error_age' => 'Age is required',
     'request_error_category' => 'Select a category',
     'request_error_description' => 'Description is required',
+    'request_success' => 'Request Sent Successfully! Admin will process it shortly. 🎯',
 ];

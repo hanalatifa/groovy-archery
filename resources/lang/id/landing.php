@@ -119,6 +119,8 @@ return [
     'rating_required' => 'Pilih rating terlebih dahulu',
     'description_required' => 'Deskripsi wajib diisi',
     'submit_testimonial' => 'Kirim Testimoni',
+    'testimonial_success' => 'Testimoni berhasil dikirim! Terima kasih 🎯',
+    'testimonial_failed' => 'Gagal mengirim testimoni. Silakan coba lagi.',
 
     'contact_label' => 'Connect',
     'contact_title' => 'Kenali kami lebih jauh',

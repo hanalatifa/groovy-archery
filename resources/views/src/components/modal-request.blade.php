@@ -224,21 +224,15 @@
                 document.getElementById('img-preview').classList.add('hidden');
                 document.getElementById('placeholder').classList.remove('hidden');
 
-                closeRequestModal();
-                location.reload();
-            }
-        } catch (error) {
-            if (error.name !== 'AbortError') {
-                console.error('Submission failed');
-            }
+            closeModal();
+            formTestimoni.reset();
+            showToast('Request berhasil dikirim! Admin akan segera memprosesnya...');
+
+        } catch (err) {
+            showToast('Gagal mengirim. Silakan coba lagi.', true);
         } finally {
-            setTimeout(() => {
-                isSubmitting = false;
-                btn.disabled = false;
-                btn.style.opacity = '1';
-                btn.style.cursor = 'pointer';
-                btn.innerText = 'Kirim Request';
-            }, 1000);
+            btn.disabled = false;
+            btn.textContent = origText;
         }
     });
 </script>

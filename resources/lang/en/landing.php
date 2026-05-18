@@ -118,6 +118,8 @@ return [
     'rating_required' => 'Please select a rating first',
     'description_required' => 'Description is required',
     'submit_testimonial' => 'Submit Testimonial',
+    'testimonial_success' => 'Testimonial submitted successfully! Thank you 🎯',
+    'testimonial_failed' => 'Failed to submit testimonial. Please try again.',
 
 
     'contact_label' => 'Connect',
