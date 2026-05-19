@@ -27,7 +27,7 @@ The application was developed using the following technologies:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/username/groovy-archery.git
+git clone https://github.com/hanalatifa/groovy-archery.git
 ```
 
 ### 2. Move to Project Directory
