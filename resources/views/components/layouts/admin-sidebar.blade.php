@@ -147,7 +147,7 @@
         </ul>
     </nav>
 
-    <div class="p-6 border-t border-gray-100 mt-auto">
+    <div class="p-6 border-gray-100 mt-auto">
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
            class="sidebar-logout flex items-center gap-3 px-5 py-3.5 text-red-500 font-medium transition-colors">

@@ -3,7 +3,7 @@
         
         <div class="mb-8 flex items-center gap-4 p-8 shadow-sm">
             <a href="{{ route('atlet.kelola') }}" class="p-2 bg-gray-200 rounded-full shadow-sm hover:bg-gray-300 transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                <svg class="w-5 h-5 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </a>
             <div>
                 <h2 class="text-3xl font-semibold text-gray-800">{{ __('dashboard.atlet_request_btn') }}</h2>

@@ -7,9 +7,17 @@
         (function () {
             var theme = localStorage.getItem('ga-theme') || 'light';
             document.documentElement.setAttribute('data-theme', theme);
+            
+            // Tambahan sinkronisasi agar Tailwind 'class' mode membaca data-theme
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
         })();
     </script>
     <script>
+        // Diubah menjadi 'class' agar sinkron dengan deteksi tema berbasis atribut/class
         tailwind.config = { darkMode: 'class' }
     </script>
     <script src="https://cdn.tailwindcss.com"></script>

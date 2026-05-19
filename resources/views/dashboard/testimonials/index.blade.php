@@ -10,7 +10,7 @@
             </div>
             <div class="flex gap-3">
                 <a href="{{ route('testi.requests') }}"
-                    class="relative inline-flex items-center px-5 py-2.5 bg-gray-200 text-gray-700 text-sm font-bold hover:bg-gray-300 transition">
+                    class="relative inline-flex items-center px-5 py-2.5 bg-gray-200 text-gray-700 text-sm font-bold transition hover:bg-gray-300 [[data-theme='dark']_&]:bg-slate-700 [[data-theme='dark']_&]:text-white [[data-theme='dark']_&]:hover:bg-slate-600">
                     {{ __('dashboard.testimoni_request_btn') }}
                     @if ($pendingCount > 0)
                         <span
@@ -27,13 +27,19 @@
         </div>
 
         {{-- Alert Success --}}
-        @if (session('success'))
-            <div
-                class="p-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        @if(session('success'))
+            <div class="p-4 shadow-sm flex items-center gap-3 transition-colors duration-200
+                [html:not([data-theme='dark'])_&]:bg-emerald-50 [html:not([data-theme='dark'])_&]:text-emerald-600 [html:not([data-theme='dark'])_&]:border [html:not([data-theme='dark'])_&]:border-emerald-100
+                [[data-theme='dark']_&]:bg-emerald-950/20 [[data-theme='dark']_&]:text-emerald-400 [[data-theme='dark']_&]:border [[data-theme='dark']_&]:border-emerald-500/20">
+        
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="font-medium">{{ session('success') }}</span>
+
+                <span class="font-medium text-sm">
+                    {{ session('success') }}
+                </span>
+        
             </div>
         @endif
 
@@ -87,18 +93,20 @@
                                 </td>
 
                                 {{-- Aksi --}}
-                                <td class="px-6 py-5">
+                                 <td class="px-6 py-5">
                                     <div class="flex justify-end gap-2">
-                                        <form action="{{ route('testi.pending', $t->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit"
-                                                class="px-4 py-2 border bg-gray-100 text-gray-500 text-xs font-bold hover:bg-gray-200 transition">
-                                                    {{ __('dashboard.testimoni_hide_btn') }}
-                                            </button>
-                                        </form>
-                                        <button type="button" onclick="openDeleteModal({{ $t->id }})"
-                                            class="px-4 py-2 border bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
-                                                {{ __('dashboard.testimoni_delete_btn') }}
+                                        <a href="{{ route('testi.pending', $t->id) }}"
+                                           class="px-4 py-2 border text-xs font-bold transition
+                                                  [html:not([data-theme='dark'])_&]:bg-yellow-100 [html:not([data-theme='dark'])_&]:text-yellow-500 [html:not([data-theme='dark'])_&]:hover:bg-yellow-200
+                                                  [[data-theme='dark']_&]:bg-transparent [[data-theme='dark']_&]:border-white/10 [[data-theme='dark']_&]:text-yellow-500 [[data-theme='dark']_&]:hover:bg-white/5">
+                                            {{ __('dashboard.btn_edit') }}
+                                        </a>
+                                        <button type="button"
+                                                onclick="openDeleteModal({{ $t->id }})"
+                                                class="px-4 py-2 border text-xs font-bold transition
+                                                       [html:not([data-theme='dark'])_&]:bg-red-200 [html:not([data-theme='dark'])_&]:text-red-500 [html:not([data-theme='dark'])_&]:hover:bg-red-300
+                                                       [[data-theme='dark']_&]:bg-transparent [[data-theme='dark']_&]:border-white/10 [[data-theme='dark']_&]:text-red-500 [[data-theme='dark']_&]:hover:bg-white/5">
+                                            {{ __('dashboard.btn_hapus') }}
                                         </button>
                                     </div>
                                 </td>

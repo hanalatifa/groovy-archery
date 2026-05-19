@@ -17,11 +17,18 @@
 
         {{-- Alert Success --}}
         @if(session('success'))
-            <div class="p-4 bg-emerald-50 text-emerald-700 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="p-4 shadow-sm flex items-center gap-3 transition-colors duration-200
+                [html:not([data-theme='dark'])_&]:bg-emerald-50 [html:not([data-theme='dark'])_&]:text-emerald-600 [html:not([data-theme='dark'])_&]:border [html:not([data-theme='dark'])_&]:border-emerald-100
+                [[data-theme='dark']_&]:bg-emerald-950/20 [[data-theme='dark']_&]:text-emerald-400 [[data-theme='dark']_&]:border [[data-theme='dark']_&]:border-emerald-500/20">
+        
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                 </svg>
-                <span class="font-medium">{{ session('success') }}</span>
+
+                <span class="font-medium text-sm">
+                    {{ session('success') }}
+                </span>
+        
             </div>
         @endif
 
@@ -81,17 +88,22 @@
 
                             {{-- Aksi --}}
                             <td class="px-6 py-5">
-                                <div class="flex justify-end gap-2">
-                                    <a href="{{ route('documentations.edit', $doc->id) }}"
-                                       class="border px-4 py-2 bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
-                                        {{ __('dashboard.btn_edit') }}
-                                    </a>
-                                    <button type="button" onclick="openDeleteModal({{ $doc->id }})"
-                                            class="border px-4 py-2 bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
-                                        {{ __('dashboard.btn_hapus') }}
-                                    </button>
-                                </div>
-                            </td>
+                                    <div class="flex justify-end gap-2">
+                                        <a href="{{ route('documentations.edit', $doc->id) }}"
+                                           class="px-4 py-2 border text-xs font-bold transition
+                                                  [html:not([data-theme='dark'])_&]:bg-yellow-100 [html:not([data-theme='dark'])_&]:text-yellow-500 [html:not([data-theme='dark'])_&]:hover:bg-yellow-200
+                                                  [[data-theme='dark']_&]:bg-transparent [[data-theme='dark']_&]:border-white/10 [[data-theme='dark']_&]:text-yellow-500 [[data-theme='dark']_&]:hover:bg-white/5">
+                                            {{ __('dashboard.btn_edit') }}
+                                        </a>
+                                        <button type="button"
+                                                onclick="openDeleteModal({{ $doc->id }})"
+                                                class="px-4 py-2 border text-xs font-bold transition
+                                                       [html:not([data-theme='dark'])_&]:bg-red-200 [html:not([data-theme='dark'])_&]:text-red-500 [html:not([data-theme='dark'])_&]:hover:bg-red-300
+                                                       [[data-theme='dark']_&]:bg-transparent [[data-theme='dark']_&]:border-white/10 [[data-theme='dark']_&]:text-red-500 [[data-theme='dark']_&]:hover:bg-white/5">
+                                            {{ __('dashboard.btn_hapus') }}
+                                        </button>
+                                    </div>
+                                </td>
                         </tr>
                         @empty
                         <tr>
