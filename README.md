@@ -11,8 +11,6 @@ The project was developed as part of the Uji Kompetensi Keahlian (Ujikom) in the
 - Member Management
 - Booking Management
 - Schedule Management
-- Payment Management
-- Search and Filter Data
 - Responsive User Interface
 - Dark Mode Support
 
