@@ -62,7 +62,6 @@
         </div>
     </div>
 </section>
-
 {{-- ═══ REQUEST MODAL ═══ --}}
 <div class="modal-backdrop" id="requestModal">
     <div class="modal-request mx-4">
@@ -224,8 +223,7 @@
                 </p>
             </div>
         </div>
-
-        {{-- Footer --}}
+{{-- Footer --}}
         <div class="sticky bottom-0 bg-white dark:bg-slate-800 border-t
                     border-gray-100 dark:border-slate-700 px-8 py-5 rounded-b-2xl">
             <button id="submitRequest"
