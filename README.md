@@ -75,6 +75,8 @@ npm run dev
 ```
 
 ## User Roles
-Role	Access
-Admin	Full system management
-User	Booking and profile management
+
+| Role | Access |
+|------|--------|
+| Admin | Full system management |
+| User | Booking and profile management |
