@@ -2,7 +2,6 @@
 
     <div class="max-w-7xl mx-auto space-y-10">
 
-        {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 shadow-sm">
 
             <div>
@@ -34,8 +33,6 @@
             </div>
         </div>
 
-
-        {{-- Alert Success --}}
         @if(session('success'))
             <div class="p-4 bg-emerald-50 text-emerald-500 rounded-2xl border border-emerald-100 shadow-sm flex items-center gap-3">
 
@@ -57,7 +54,6 @@
             </div>
         @endif
 
-        {{-- Table --}}
         <div class="bg-white shadow-sm border border-gray-100 overflow-hidden">
 
             <div class="overflow-x-auto">
@@ -135,7 +131,7 @@
                                 </td>
                                 <td class="px-6 py-5">
                                     <span class="text-gray-600 text-[13px] font-semibold">
-                                        {{ $atlet->umur }} Tahun
+                                        {{ $atlet->umur }}  {{ __('dashboard.atlet_tahun') }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-5">
@@ -147,13 +143,13 @@
                                     <div class="flex justify-end gap-2">
                                         <a href="{{ route('atlet.edit', $atlet->id) }}"
                                            class="px-4 py-2 border bg-yellow-100 text-yellow-500 text-xs font-bold hover:bg-yellow-200 transition">
-                                            Edit
+                                           {{ __('dashboard.btn_edit') }}
                                         </a>
                                         <button
                                             type="button"
                                             onclick="openDeleteModal({{ $atlet->id }})"
                                             class="px-4 py-2 border bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
-                                            Hapus
+                                            {{ __('dashboard.btn_hapus') }}
                                         </button>
                                     </div>
                                 </td>
@@ -172,96 +168,52 @@
             </div>
         </div>
     </div>
-    <div id="deleteModal"
-         class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 p-4">
 
-        <div class="flex items-center justify-center min-h-full">
-
-            <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
-
-                <div class="p-8 text-center">
-
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">
-                    {{ __('dashboard.modal_atlet_hapus_judul') }}
-                </h2>
-
-                <p class="text-gray-500 mb-8">
-                    {{ __('dashboard.modal_atlet_hapus_pesan') }}
-                </p>
-
-                    <p class="text-gray-500 mb-8">
-                        Data atlet akan dihapus secara permanen.
-                    </p>
-
-                    <button
-                        type="button"
-                        onclick="closeDeleteModal()"
-                        class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
-
-                        {{ __('dashboard.btn_batal') }}
-
-                    </button>
-
+    {{-- Delete Modal --}}
+    <div id="deleteModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
+            <div class="p-8 text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ __('dashboard.atlet_delete_title') }}</h2>
+                <p class="text-gray-500 mb-8">{{ __('dashboard.atlet_delete_message') }}</p>
+                <div class="flex gap-3">
+                    <button type="button" onclick="closeDeleteModal()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">{{ __('dashboard.documentation_cancel') }}</button>
                     <form id="deleteForm" method="POST" class="flex-1">
-
                         @csrf
                         @method('DELETE')
-
-                        <button
-                            type="button"
-                            onclick="closeDeleteModal()"
-                            class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
-
-                            {{ __('dashboard.btn_ya_hapus') }}
-
-                        </button>
-
-                        <form id="deleteForm" method="POST" class="flex-1">
-
-                            @csrf
-                            @method('DELETE')
-
-                            <button
-                                type="submit"
-                                class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
-
-                                Ya, Hapus
-
-                            </button>
-
-                        </form>
-
-                    </div>
-
+                        <button type="submit" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">{{ __('dashboard.documentation_confirm') }}</button>
+                    </form>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
-    {{-- Script --}}
+
     <script>
-
         function openDeleteModal(id) {
-
             const modal = document.getElementById('deleteModal');
             const form  = document.getElementById('deleteForm');
 
             form.action = `/hapus/atlet/${id}`;
+
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
 
             document.body.style.overflow = 'hidden';
         }
 
         function closeDeleteModal() {
-
             const modal = document.getElementById('deleteModal');
+
+            modal.classList.remove('flex');
             modal.classList.add('hidden');
+            
             document.body.style.overflow = '';
         }
 
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) closeDeleteModal();
+        });
     </script>
 
 </x-layouts.admin-layout>

@@ -9,7 +9,7 @@
         </div>
 
         <h1 class="text-3xl font-semibold text-gray-800 mb-8">
-            Edit Profil Atlet
+            {{ __('dashboard.atlet_edit_profil') }}
         </h1>
 
         <div class="bg-white shadow-sm p-10">
@@ -142,7 +142,7 @@
                     </a>
                     <button type="submit"
                             class="px-10 py-4 text-white font-medium transition hover:opacity-90 bg-blue-900 hover:bg-blue-950">
-                        Simpan Perubahan
+                            {{ __('dashboard.btn_simpan_perubahan') }}
                     </button>
                 </div>
             </form>

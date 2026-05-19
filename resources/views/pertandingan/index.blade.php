@@ -41,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-100">
-                        @forelse($pertandingan as $item) {{-- Diubah ke $item agar tidak bentrok dengan nama collection --}}
+                        @forelse($pertandingan as $item)
                         <tr class="hover:bg-gray-50 transition">
                             {{-- Waktu --}}
                             <td class="px-6 py-5">
@@ -49,16 +49,14 @@
                                 <div class="text-[11px] text-gray-400 italic">{{ $item->created_at->diffForHumans() }}</div>
                             </td>
 
-                            {{-- Foto (Diubah agar membaca string path berkas tunggal secara aman) --}}
+                            {{-- Foto --}}
                             <td class="px-6 py-5">
                                 @if($item->dokumentasi)
                                     @if(is_array($item->dokumentasi))
-                                        {{-- Jika data lama berbentuk array, ambil indeks pertama --}}
                                         <img src="{{ asset('storage/' . ($item->dokumentasi[0] ?? '')) }}"
                                              alt="Pertandingan"
                                              class="w-14 h-14 object-cover rounded-2xl border border-gray-100 shadow-sm">
                                     @else
-                                        {{-- Jika data baru berbentuk string tunggal --}}
                                         <img src="{{ asset('storage/pertandingan/' . $item->dokumentasi) }}"
                                              alt="Pertandingan"
                                              class="w-14 h-14 object-cover rounded-2xl border border-gray-100 shadow-sm">
@@ -118,21 +116,14 @@
         <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
             <div class="p-8 text-center">
                 <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">Hapus Pertandingan?</h2>
-                <p class="text-gray-500 mb-8">Data pertandingan dan dokumentasi terkait akan dihapus secara permanen.</p>
-
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ __('dashboard.pertandingan_delete_title') }}</h2>
+                <p class="text-gray-500 mb-8">{{ __('dashboard.pertandingan_delete_message') }}</p>
                 <div class="flex gap-3">
-                    <button type="button" onclick="closeDeleteModal()"
-                            class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">
-                        Batal
-                    </button>
+                    <button type="button" onclick="closeDeleteModal()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">{{ __('dashboard.documentation_cancel') }}</button>
                     <form id="deleteForm" method="POST" class="flex-1">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"
-                                class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
-                            Ya, Hapus
-                        </button>
+                        <button type="submit" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">{{ __('dashboard.documentation_confirm') }}</button>
                     </form>
                 </div>
             </div>
@@ -144,7 +135,6 @@
             const modal = document.getElementById('deleteModal');
             const form = document.getElementById('deleteForm');
 
-            // Sesuaikan route hapus pertandingan kamu
             form.action = `/hapus/pertandingan/${id}`;
 
             modal.classList.remove('hidden');

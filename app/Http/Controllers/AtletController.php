@@ -72,7 +72,7 @@ class AtletController extends Controller
             ]);
 
             if ($isAdmin) {
-                return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil disimpan!');
+                return redirect()->route('atlet.kelola')->with('success', __('dashboard.atlet_success'));
             } else {
                 return redirect()->back()->with('success', 'Pendaftaran Anda berhasil dikirim dan menunggu persetujuan.');
             }
@@ -109,7 +109,7 @@ class AtletController extends Controller
         Activity::create([
             'user_id'     => Auth::id(),
             'description' => 'activity_atlet_rejected|' . $namaAtlet,
-            'status'      => 'failed'
+            'status'      => 'deleted'
         ]);
 
         return redirect()->back()->with('success', 'Permintaan pendaftaran dihapus.');
@@ -150,7 +150,7 @@ class AtletController extends Controller
             'status'      => 'success'
         ]);
 
-        return redirect()->route('atlet.kelola')->with('success', 'Profil berhasil diperbarui!');
+        return redirect()->route('atlet.kelola')->with('success', __('dashboard.atlet_updated'));
     }
 
     public function destroy($id)
@@ -170,7 +170,7 @@ class AtletController extends Controller
                 'status'      => 'deleted'
             ]);
 
-            return redirect()->route('atlet.kelola')->with('success', 'Data atlet berhasil dihapus.');
+            return redirect()->route('atlet.kelola')->with('success', __('dashboard.atlet_deleted'));
         } catch (\Exception $e) {
             Log::error('Gagal hapus atlet: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Gagal menghapus data.');

@@ -213,9 +213,16 @@
                                 </td>
                             </tr>
                         @empty
-                            <tr>
-                                <td colspan="3" class="py-10 text-center text-sm text-gray-400 italic">{{ __('dashboard.testi_empty') }}</td>
-                            </tr>
+                        <tr>
+                            <td colspan="3" class="py-10 text-center">
+                                <div class="flex flex-col items-center gap-2 text-gray-300">
+                                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <p class="text-sm italic text-gray-400">{{ __('dashboard.testi_empty') }}</p>
+                                </div>
+                            </td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
@@ -250,14 +257,15 @@
                                     <div class="flex items-center justify-end gap-2">
                                         <form action="{{ route('atlet.approve', $req->id) }}" method="POST">
                                             @csrf
-                                            <button class="px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-full text-xs font-bold hover:bg-emerald-100">
+                                            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                                 {{ __('dashboard.btn_approve') }}
                                             </button>
                                         </form>
-                                        <form action="{{ route('atlet.reject', $req->id) }}" method="POST"
-                                              onsubmit="return confirm('{{ __('dashboard.btn_reject') }} atlet ini?')">
+                                        <form action="{{ route('atlet.reject', $req->id) }}" method="POST">
                                             @csrf
-                                            <button class="px-3 py-1.5 bg-red-50 text-red-500 rounded-full text-xs font-bold hover:bg-red-100">
+                                            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
                                                 {{ __('dashboard.btn_reject') }}
                                             </button>
                                         </form>
@@ -271,7 +279,7 @@
                                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                                         </svg>
-                                        <p class="text-sm italic text-gray-400">{{ __('dashboard.atlet_req_coming') }}</p>
+                                        <p class="text-sm italic text-gray-400">{{ __('dashboard.atlet_empty') }}</p>
                                     </div>
                                 </td>
                             </tr>

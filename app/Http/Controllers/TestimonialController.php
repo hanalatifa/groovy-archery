@@ -37,13 +37,13 @@ class TestimonialController extends Controller
     Activity::create([
         'user_id'     => $isAdmin ? Auth::id() : 1,
         'description' => $isAdmin 
-            ? 'Admin menambahkan testimoni baru: ' . $testi->nama 
-            : 'Ada testimoni baru masuk dari ' . $testi->nama,
+            ? 'activity_testi_added|' . $testi->nama 
+            : 'activity_testi_pending|' . $testi->nama,
         'status'      => $isAdmin ? 'success' : 'pending'
     ]);
 
     if ($isAdmin) {
-        return redirect()->route('testi.index')->with('success', 'Testimoni berhasil ditambahkan!');
+        return redirect()->route('testi.index')->with('success', __('dashboard.testi_success'));
     }
 
     return redirect()->back()->with('success', 'Terima kasih! Testimoni Anda sedang menunggu persetujuan admin.');
@@ -79,11 +79,11 @@ class TestimonialController extends Controller
 
         Activity::create([
             'user_id' => Auth::id(),
-            'description' => 'Mengubah status testimoni ' . $testi->nama . ' kembali ke Pending',
-            'status' => 'pending'
+            'description' => __('dashboard.activity_testi_reset_pending', ['name' => $testi->nama]),
+            'status' => 'success'
         ]);
 
-        return redirect()->back()->with('success', 'Testimoni disembunyikan.');
+        return redirect()->back()->with('success', __('dashboard.testi_hidden'));
     }
 
     public function approve($id)
@@ -93,11 +93,11 @@ class TestimonialController extends Controller
 
         Activity::create([
             'user_id' => Auth::id(),
-            'description' => 'Menyetujui testimoni dari ' . $testi->nama,
+            'description' => 'activity_testi_approved|' . $testi->nama,
             'status' => 'success'
         ]);
 
-        return redirect()->back()->with('success', 'Testimoni disetujui!');
+        return redirect()->back()->with('success', __('dashboard.testi_approved'));
     }
 
     public function reject($id)
@@ -109,10 +109,10 @@ class TestimonialController extends Controller
 
         Activity::create([
             'user_id' => Auth::id(),
-            'description' => 'Menghapus testimoni dari ' . $namaTesti,
+            'description' => 'activity_testi_deleted|' . $namaTesti,
             'status' => 'deleted'
         ]);
 
-        return redirect()->back()->with('error', 'Testimoni berhasil dihapus.');
+        return redirect()->back()->with('error', __('dashboard.testi_deleted'));
     }
 }

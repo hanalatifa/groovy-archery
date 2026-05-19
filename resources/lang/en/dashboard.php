@@ -19,8 +19,18 @@ return [
     'btn_reject'        => 'Reject',
 
     // ── Athlete Request ──────────────────────────────────
-    'atlet_req_title'   => 'Athlete Registration Requests',
-    'atlet_req_coming'  => 'Athlete verification feature coming soon.',
+    'atlet_req_title'           => 'Athlete Registration Requests',
+    'atlet_empty'               => 'No athlete requests found.',
+    'atlet_request_subtitle'    => 'Review Athlete from users before displaying them on the website.',
+    'atlet_col_nama'            => 'Athlet Profile',
+    'atlet_col_kategori'        => 'Category',
+    'atlet_col_umur'            => 'Age',
+    'atlet_col_deskripsi'       => 'Description',
+    'atlet_col_aksi'            => 'Action',
+    'atlet_accept_btn'          => 'Approve',
+    'atlet_reject_btn'          => 'Reject',
+    'atlet_reject_confirm'      => 'Reject this athlete?',
+    'atlet_queue_empty'         => 'Queue is clear! All athletes have been processed.',
 
     // ── Recent Activity ──────────────────────────────────
     'activity_title'    => 'Recent Activity',
@@ -100,7 +110,7 @@ return [
     'atlet_tgl'                 => 'Date',
     'atlet_nama_col'            => 'Athlete Name',
     'atlet_kategori_col'        => 'Athlete Category',
-    'atlet_empty'               => 'No athlete data yet.',
+    'atlet_tahun'               => 'Years Old',
 
 
     'atlet_manage_title'          => 'Manage Athlete Data',
@@ -120,7 +130,6 @@ return [
     // ── Kelola Atlet ─────────────────────────────────────────
     'atlet_permintaan_btn'        => 'Requests',
     'atlet_terdaftar'             => 'Registered',
-    'atlet_col_umur'              => 'Age',
 
     // ── Modal Hapus Atlet ─────────────────────────────────────
     'modal_atlet_hapus_judul'     => 'Delete Athlete?',
@@ -140,13 +149,13 @@ return [
     'pertandingan_kategori_pilih' => 'Select Category',
     'pertandingan_tgl'          => 'Competition Date',
     'pertandingan_dokumentasi'  => 'Upload Documentation',
-    'pertandingan_dokumentasi_hint' => 'You can upload multiple photos at once (PNG, JPG, JPEG)',
+    'pertandingan_dokumentasi_hint' => 'PNG, JPG, JPEG • Maximum 10MB',
     'pertandingan_deskripsi'    => 'Competition Description',
     'pertandingan_deskripsi_placeholder' => 'Competition description...',
     'pertandingan_empty'        => 'No competition data yet.',
     'pertandingan_col_nama'     => 'Competition Name',
-    'modal_hapus_judul'         => 'Are you sure?',
-    'modal_hapus_pesan'         => 'This competition data will be permanently deleted along with its photos.',
+    'pertandingan_delete_title'          => 'Delete Competition?',
+    'pertandingan_delete_message'        => 'Competition data will be permanently deleted.',
 
     // ── Dokumentasi ─────────────────────────────────────
     'documentation_title'        => 'Manage Documentation',
@@ -227,7 +236,7 @@ return [
     'activity_doc_added'      => 'Added new documentation: :name',
     'activity_doc_updated'    => 'Updated documentation: :name',
     'activity_doc_deleted'    => 'Deleted documentation: :name',
-    'activity_atlet_pending'  => 'New athlete registration (Pending): :name',
+    'activity_atlet_pending'  => 'New athlete registration: :name',
     'activity_atlet_added'    => 'Admin registered new athlete: :name',
     'activity_atlet_approved' => 'Approved athlete registration: :name',
     'activity_atlet_rejected' => 'Rejected athlete registration: :name',
@@ -236,5 +245,27 @@ return [
     'activity_match_added'    => 'Added new competition: :name',
     'activity_match_updated'  => 'Updated competition data: :name',
     'activity_match_deleted'  => 'Deleted competition data: :name',
+    'activity_testi_added'    => 'Admin registered new testimonial: :name',
+    'activity_testi_pending'  => 'New athlete registration: :name',
+    'activity_testi_approved' => 'Approved testimonial: :name',
+    'activity_testi_rejected'  => 'Rejected testimonial: :name',
+    'activity_testi_deleted'  => 'Deleted testimonial data: :name',
+    'activity_testi_reset_pending' => 'Changed testimonial status of :name back to Pending',
     'status_deleted' => 'Deleted',
+
+
+    // Notifikasi
+    'testi_success'             => 'Testimonial successfully added!',
+    'testi_hidden'              => 'Testimonial is hidden',
+    'testi_deleted'             => 'Deleted testimonial',
+    'documentation_success'     => 'Documentation successfully added!',
+    'documentation_updated'     => 'Documentation updated',
+    'documentation_deleted'     => 'Deleted Documentation',
+    'pertandingan_success'      => 'Competition successfully added!',
+    'pertandingan_updated'      => 'Competition updated',
+    'pertandingan_deleted'      => 'Deleted competition',
+    'atlet_success'             => 'Athlete successfully added!',
+    'atlet_updated'             => 'Athlete updated',
+    'atlet_deleted'             => 'Deleted athlete',
+
 ];

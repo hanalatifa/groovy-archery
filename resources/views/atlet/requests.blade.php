@@ -6,8 +6,8 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </a>
             <div>
-                <h2 class="text-3xl font-semibold text-gray-800">Permintaan Atlet</h2>
-                <p class="text-gray-500 mt-1">Tinjau detail profil atlet sebelum memberikan persetujuan.</p>
+                <h2 class="text-3xl font-semibold text-gray-800">{{ __('dashboard.atlet_request_btn') }}</h2>
+                <p class="text-gray-500 mt-1">{{ __('dashboard.atlet_request_subtitle') }}</p>
             </div>
         </div>
 
@@ -15,11 +15,11 @@
             <table class="w-full text-left">
                 <thead>
                     <tr class="text-gray-400 text-xs uppercase tracking-wider border-b">
-                        <th class="pb-4">Profil Atlet</th>
-                        <th class="pb-4">Kategori</th>
-                        <th class="pb-4">Umur</th>
-                        <th class="pb-4">Deskripsi</th>
-                        <th class="pb-4 text-end">Aksi</th>
+                        <th class="pb-4">{{ __('dashboard.atlet_col_nama') }}</th>
+                        <th class="pb-4">{{ __('dashboard.atlet_col_kategori') }}</th>
+                        <th class="pb-4">{{ __('dashboard.atlet_col_umur') }}</th>
+                        <th class="pb-4">{{ __('dashboard.atlet_col_deskripsi') }}</th>
+                        <th class="pb-4 text-end">{{ __('dashboard.atlet_col_aksi') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y">
@@ -63,7 +63,7 @@
                         
                         <td class="py-5">
                             <div class="space-y-1">
-                                <span class="text-sm text-gray-600 font-medium">{{ $atlet->umur }} Tahun</span>
+                                <span class="text-sm text-gray-600 font-medium">{{ $atlet->umur }} {{ __('dashboard.atlet_tahun') }}</span>
                             </div>
                         </td>
 
@@ -78,13 +78,13 @@
                                 <form action="{{ route('atlet.approve', $atlet->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="px-5 py-2 border bg-green-100 text-green-500 rounded-none text-xs font-bold hover:bg-green-200 transition shadow-sm">
-                                        Terima
+                                        {{ __('dashboard.status_approved') }}
                                     </button>
                                 </form>
                                 <form action="{{ route('atlet.reject', $atlet->id) }}" method="POST" onsubmit="return confirm('Tolak permintaan ini?')">
                                     @csrf
                                     <button type="submit" class="px-5 py-2 bg-red-100 text-red-500 rounded-none text-xs font-bold hover:bg-red-200 transition shadow-sm">
-                                        Tolak
+                                        {{ __('dashboard.status_rejected') }}
                                     </button>
                                 </form>
                             </div>
@@ -92,7 +92,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="text-center py-20 text-gray-400 italic">Antrean bersih! Semua permintaan sudah diproses.</td>
+                        <td colspan="5" class="text-center py-20 text-gray-400 italic">{{ __('dashboard.atlet_queue_empty') }}</td>
                     </tr>
                     @endforelse
                 </tbody>

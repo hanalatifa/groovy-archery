@@ -92,12 +92,12 @@
                                         <form action="{{ route('testi.pending', $t->id) }}" method="POST">
                                             @csrf
                                             <button type="submit"
-                                                class="px-4 py-2 bg-yellow-400 text-white text-xs font-bold hover:bg-yellow-300 transition">
+                                                class="px-4 py-2 border bg-gray-100 text-gray-500 text-xs font-bold hover:bg-gray-200 transition">
                                                     {{ __('dashboard.testimoni_hide_btn') }}
                                             </button>
                                         </form>
                                         <button type="button" onclick="openDeleteModal({{ $t->id }})"
-                                            class="px-4 py-2 bg-red-500 text-white text-xs font-bold hover:bg-red-400 transition">
+                                            class="px-4 py-2 border bg-red-200 text-red-500 text-xs font-bold hover:bg-red-300 transition">
                                                 {{ __('dashboard.testimoni_delete_btn') }}
                                         </button>
                                     </div>

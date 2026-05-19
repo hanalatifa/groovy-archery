@@ -19,7 +19,7 @@ class PertandinganController extends Controller
 
     public function index()
     {
-        $pertandingan = Pertandingan::all();
+        $pertandingan = Pertandingan::latest()->get();
         return view('pertandingan.index', compact('pertandingan'));
     }
 
@@ -45,7 +45,7 @@ class PertandinganController extends Controller
             'status'      => 'success'
         ]);
 
-        return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil ditambah!');
+        return redirect()->route('pertandingan.index')->with('success', __('dashboard.pertandingan_success'));
     }
 
     public function edit($id)
@@ -78,7 +78,7 @@ class PertandinganController extends Controller
             'status'      => 'success'
         ]);
 
-        return redirect()->route('pertandingan.index')->with('success', 'Data pertandingan berhasil diupdate!');
+        return redirect()->route('pertandingan.index')->with('success', __('dashboard.pertandingan_updated'));
     }
 
     public function destroy($id)
@@ -86,8 +86,22 @@ class PertandinganController extends Controller
         $pertandingan = Pertandingan::findOrFail($id);
         $namaLama = $pertandingan->nama_pertandingan;
 
-        if ($pertandingan->dokumentasi && Storage::disk('public')->exists('pertandingan/' . $pertandingan->dokumentasi)) {
-            Storage::disk('public')->delete('pertandingan/' . $pertandingan->dokumentasi);
+        if ($pertandingan->dokumentasi) {
+            if (is_array($pertandingan->dokumentasi)) {
+                foreach ($pertandingan->dokumentasi as $foto) {
+                    if (Storage::disk('public')->exists($foto)) {
+                        Storage::disk('public')->delete($foto);
+                    } 
+                    elseif (Storage::disk('public')->exists('pertandingan/' . $foto)) {
+                        Storage::disk('public')->delete('pertandingan/' . $foto);
+                    }
+                }
+            } 
+            else {
+                if (Storage::disk('public')->exists('pertandingan/' . $pertandingan->dokumentasi)) {
+                    Storage::disk('public')->delete('pertandingan/' . $pertandingan->dokumentasi);
+                }
+            }
         }
 
         $pertandingan->delete();
@@ -95,10 +109,10 @@ class PertandinganController extends Controller
         Activity::create([
             'user_id'     => Auth::id(),
             'description' => 'activity_match_deleted|' . $namaLama,
-            'status'      => 'deleted'
+            'status'      => 'deleted' // atau ubah ke 'success' agar seragam dengan audit log lainnya
         ]);
 
-        return redirect()->route('pertandingan.index')->with('success', 'Pertandingan berhasil dihapus!');
+        return redirect()->route('pertandingan.index')->with('success', __('dashboard.pertandingan_deleted'));
     }
 
     public function achievements()

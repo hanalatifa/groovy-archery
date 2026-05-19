@@ -18,7 +18,7 @@ class DocumentationController extends Controller
 
     public function index()
     {
-        $docs = Documentation::all();
+        $docs = Documentation::latest()->get();
         $totalDocs = Documentation::count();
         return view('documentations.index', compact('docs', 'totalDocs'));
     }
@@ -56,7 +56,7 @@ class DocumentationController extends Controller
             'status'      => 'success'
         ]);
 
-        return redirect('/documentations')->with('success', 'Data berhasil ditambah!');
+        return redirect('/documentations')->with('success', __('dashboard.documentation_success'));
     }
 
     public function edit($id)
@@ -99,7 +99,7 @@ class DocumentationController extends Controller
             'status'      => 'success'
         ]);
 
-        return redirect('/documentations')->with('success', 'Data berhasil diupdate!');
+        return redirect('/documentations')->with('success', __('dashboard.documentation_updated'));
     }
 
     public function destroy($id)
@@ -119,6 +119,6 @@ class DocumentationController extends Controller
             'status'      => 'deleted'
         ]);
 
-        return redirect('/documentations')->with('success', 'Dokumentasi dan foto berhasil dihapus!');
+        return redirect('/documentations')->with('success', __('dashboard.documentation_deleted'));
     }
 }

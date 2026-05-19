@@ -150,7 +150,7 @@
     <div class="p-6 border-t border-gray-100 mt-auto">
         <a href="{{ route('logout') }}"
            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-           class="sidebar-logout flex items-center gap-3 px-5 py-3.5 text-red-500 rounded-2xl font-medium transition-colors">
+           class="sidebar-logout flex items-center gap-3 px-5 py-3.5 text-red-500 font-medium transition-colors">
             <i class="fa-solid fa-right-from-bracket w-5 text-center text-base"></i>
             <span>{{ __('dashboard.nav_logout') }}</span>
         </a>
