@@ -1,6 +1,4 @@
-{{-- CTA DAFTAR BLADE --}}
-
-{{-- ═══ TOAST (bottom-right) ═══ --}}
+{{-- App Toast Notification --}}
 <div id="appToast"
      class="fixed bottom-6 right-6 z-[99999] flex items-center gap-3
             px-5 py-3.5 rounded-2xl shadow-2xl
@@ -17,7 +15,7 @@
     <p id="appToastMsg" class="text-sm font-semibold leading-snug"></p>
 </div>
 
-{{-- ═══ CTA SECTION ═══ --}}
+{{-- CTA SECTION --}}
 <section class="py-24 px-6 text-center border-t border-gray-100 dark:border-slate-800 transition-colors duration-300">
     <p class="text-[10px] font-bold text-[#2b459a] dark:text-blue-400 uppercase tracking-[5px] mb-2">
         {{ __('athlets.request_label') }}
@@ -63,7 +61,7 @@
     </div>
 </section>
 
-{{-- ═══ REQUEST MODAL ═══ --}}
+{{-- Request Modal Backdrop --}}
 <div class="modal-backdrop" id="requestModal">
     <div class="modal-request mx-4">
 
@@ -238,7 +236,6 @@
     </div>
 </div>
 
-{{-- ═══ STYLES ═══ --}}
 <style>
     .modal-backdrop {
         position: fixed; inset: 0;
@@ -266,7 +263,6 @@
         background: #f0f4ff;
     }
 
-    /* Toast */
     #appToast.toast-show {
         transform: translateY(0) !important;
         opacity: 1 !important;
@@ -274,11 +270,7 @@
     }
 </style>
 
-{{-- ═══ SCRIPTS ═══ --}}
 <script>
-    /* ─────────────────────────────────────
-       TOAST
-    ───────────────────────────────────── */
     let _toastTimer = null;
 
     function showToast(message, isError = false) {
@@ -304,9 +296,6 @@
         _toastTimer = setTimeout(() => toast.classList.remove('toast-show'), 3500);
     }
 
-    /* ─────────────────────────────────────
-       MODAL
-    ───────────────────────────────────── */
     function openRequestModal() {
         document.getElementById('requestModal').classList.add('open');
         document.body.style.overflow = 'hidden';
@@ -333,14 +322,10 @@
         document.querySelectorAll('[id^="errReq"]').forEach(el => el.classList.add('hidden'));
     }
 
-    /* Klik backdrop → tutup */
     document.getElementById('requestModal').addEventListener('click', function (e) {
         if (e.target === this) closeRequestModal();
     });
 
-    /* ─────────────────────────────────────
-       FILE PREVIEW
-    ───────────────────────────────────── */
     document.getElementById('reqFoto').addEventListener('change', function (e) {
         const file = e.target.files[0];
         if (!file) return;
@@ -355,9 +340,6 @@
         reader.readAsDataURL(file);
     });
 
-    /* ─────────────────────────────────────
-       SUBMIT — handle redirect & JSON
-    ───────────────────────────────────── */
     let isSubmitting = false;
 
     document.getElementById('submitRequest').addEventListener('click', async function (e) {
@@ -367,23 +349,27 @@
         const btn       = this;
         const origLabel = btn.textContent.trim();
 
-        /* Kumpulkan nilai */
         const nama      = document.getElementById('reqNama').value.trim();
         const umur      = document.getElementById('reqUmur').value.trim();
         const deskripsi = document.getElementById('reqDeskripsi').value.trim();
-        const foto      = document.getElementById('reqFoto').files[0];
+        
+        // Ambil elemen input file secara presisi
+        const fotoInput = document.getElementById('reqFoto');
+        const foto      = fotoInput ? fotoInput.files[0] : null;
+        
         const katOption = document.querySelector('input[name="reqKategori"]:checked');
         const kategori  = katOption ? katOption.value : '';
 
-        /* Validasi */
+        /* Validasi Frontend */
         document.getElementById('errReqNama').classList.toggle('hidden', !!nama);
         document.getElementById('errReqUmur').classList.toggle('hidden', !!umur);
         document.getElementById('errReqDeskripsi').classList.toggle('hidden', !!deskripsi);
         document.getElementById('errReqFoto').classList.toggle('hidden', !!foto);
         document.getElementById('errReqKategori').classList.toggle('hidden', !!kategori);
+        
         if (!nama || !umur || !deskripsi || !foto || !kategori) return;
 
-        /* Loading */
+        /* State Loading */
         isSubmitting    = true;
         btn.disabled    = true;
         btn.textContent = '{{ __('athlets.request_loading') }}';
@@ -393,50 +379,36 @@
         formData.append('umur',      umur);
         formData.append('deskripsi', deskripsi);
         formData.append('kategori',  kategori);
-        formData.append('foto',      foto);
+        formData.append('foto',      foto); // Mengirim file asli biner gambar
         formData.append('_token',    '{{ csrf_token() }}');
 
         try {
             const response = await fetch("{{ route('atlet.store') }}", {
                 method:  'POST',
                 body:    formData,
-                headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                headers: { 
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json'
+                }
             });
 
-            /*
-             * Server bisa return:
-             *   A) redirect (302)  → response.redirected === true  → anggap sukses
-             *   B) JSON {success:true}                             → anggap sukses
-             *   C) JSON {success:false, message:'...'}             → tampilkan pesan error
-             *   D) non-2xx tanpa JSON                              → error generik
-             */
-            const contentType = response.headers.get('content-type') || '';
-            let result = null;
+            const result = await response.json().catch(() => null);
 
-            if (contentType.includes('application/json')) {
-                result = await response.json().catch(() => null);
-            }
-
-            const isSuccess = response.redirected          /* redirect = sukses */
-                || (response.ok && result === null)        /* ok tapi bukan JSON = sukses */
-                || (response.ok && result?.success);       /* ok + JSON success */
-
-            if (isSuccess) {
+            if (response.ok && result && result.success) {
                 closeRequestModal();
-                showToast("{{ __('athlets.request_success') }} 🎯");
+                showToast(result.message || "{{ __('athlets.request_success') }}");
 
-                /* Kalau server redirect ke URL lain, ikuti setelah toast tampil */
-                if (response.redirected && response.url && response.url !== window.location.href) {
-                    setTimeout(() => { window.location.href = response.url; }, 1800);
+                if (result.redirect) {
+                    setTimeout(() => { window.location.href = result.redirect; }, 1800);
                 }
             } else {
-                const errMsg = result?.message || 'Terjadi kesalahan pada server.';
-                showToast(errMsg, true);
+                const errMsg = result?.message || "{{ __('athlets.request_unknown_error') }}";
+                showToast("{{ __('athlets.request_failed') }} " + errMsg, true);
             }
 
         } catch (err) {
             console.error(err);
-            showToast('Gagal mengirim. Pastikan koneksi stabil dan coba lagi.', true);
+            showToast("{{ __('athlets.request_connection_error') }}", true);
         } finally {
             btn.disabled    = false;
             btn.textContent = origLabel;

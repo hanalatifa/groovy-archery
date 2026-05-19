@@ -58,7 +58,7 @@ return [
     'request_description_placeholder' => 'Prestasi atau info singkat...',
     'request_submit' => 'Kirim Request',
     'request_loading' => 'Mengirim...',
-    'request_success' => 'Request Berhasil Dikirim! Admin akan segera memproses. 🎯',
+    'request_success' => 'Request Berhasil Dikirim! 🎯',
     'request_failed' => 'Gagal Mengirim:',
     'request_unknown_error' => 'Terjadi kesalahan tidak diketahui',
     'request_connection_error' => 'Kesalahan Koneksi: Pastikan server jalan atau file tidak terlalu besar.',

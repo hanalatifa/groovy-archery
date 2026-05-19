@@ -39,7 +39,7 @@ class AtletController extends Controller
                 'deskripsi'     => 'required|string',
                 'kategori'      => 'nullable|string',
                 'tgl_bergabung' => 'nullable|date',
-                'foto'          => 'required|image|mimes:jpeg,png,jpg|max:10240',
+                'foto'          => 'required|image|mimes:jpeg,png,jpg,heic|max:10240',
             ]);
 
             $isDuplicate = Atlet::where('nama', $request->nama)
@@ -48,6 +48,9 @@ class AtletController extends Controller
                 ->exists();
 
             if ($isDuplicate) {
+                if ($request->wantsJson()) {
+                    return response()->json(['success' => false, 'message' => 'Mohon bersabar, data sedang diproses.'], 422);
+                }
                 return redirect()->back()->with('error', 'Mohon bersabar, data sedang diproses.');
             }
 
@@ -71,13 +74,30 @@ class AtletController extends Controller
                 'status'      => $isAdmin ? 'success' : 'pending'
             ]);
 
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    // Diubah: Memanggil keyword 'request_success' milik file bahasa athlets jika pendaftar adalah user biasa
+                    'message' => $isAdmin ? __('dashboard.atlet_success') : __('athlets.request_success'),
+                    'redirect' => $isAdmin ? route('atlet.kelola') : null
+                ]);
+            }
+
             if ($isAdmin) {
                 return redirect()->route('atlet.kelola')->with('success', __('dashboard.atlet_success'));
             } else {
-                return redirect()->back()->with('success', 'Pendaftaran Anda berhasil dikirim dan menunggu persetujuan.');
+                return redirect()->back()->with('success', __('athlets.request_success'));
             }
         } catch (\Exception $e) {
             Log::error('Gagal simpan atlet: ' . $e->getMessage());
+            
+            if ($request->wantsJson()) {
+                return response()->json([
+                    'success' => false, 
+                    // Mengirimkan pesan asli sistem langsung ke JavaScript toast kamu
+                    'message' => 'System Error: ' . $e->getMessage() 
+                ], 500);
+            }
             return redirect()->back()->with('error', 'Gagal simpan data.');
         }
     }

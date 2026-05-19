@@ -113,6 +113,6 @@ class TestimonialController extends Controller
             'status' => 'deleted'
         ]);
 
-        return redirect()->back()->with('error', __('dashboard.testi_deleted'));
+        return redirect()->route('testi.index')->with('success', __('dashboard.testi_deleted'));
     }
 }

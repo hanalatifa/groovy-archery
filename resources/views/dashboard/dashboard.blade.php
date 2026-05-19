@@ -97,7 +97,6 @@
 
         <div class="flex items-center gap-4">
 
-            {{-- LANGUAGE SWITCHER --}}
             <div class="admin-lang-wrap flex items-center p-1 border rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
                 @foreach (['id', 'en'] as $lang)
                     @php $isActive = app()->getLocale() === $lang; @endphp
@@ -109,7 +108,6 @@
                 @endforeach
             </div>
 
-            {{-- DARKMODE --}}
             <button id="admin-theme-toggle"
                     class="w-[44px] h-[44px] flex items-center justify-center border rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.05)]">
                 <svg class="icon-sun w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -124,7 +122,6 @@
         </div>
     </div>
 
-    {{-- Stat Cards --}}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-7">
 
         <div class="bg-white border border-gray-100 p-6" style="box-shadow: 0 1px 10px rgba(0,0,0,0.05);">
@@ -171,7 +168,6 @@
 
     </div>
 
-    {{-- Testimoni & Atlet Request --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-7">
 
         {{-- Testimoni --}}
@@ -191,24 +187,21 @@
                     <tbody class="divide-y divide-gray-50">
                         @forelse(($pendingTestis ?? collect())->take(3) as $t)
                             <tr>
-                                <td class="py-3.5 text-sm text-gray-500 whitespace-nowrap pr-4">{{ $t->created_at->format('H.i A, d M Y') }}</td>
-                                <td class="py-3.5 text-sm font-semibold text-gray-800 pr-4">{{ $t->nama }}</td>
-                                <td class="py-3.5 text-right">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <form action="{{ route('testi.approve', $t->id) }}" method="POST">
+                                <td class="py-3.5 text-sm text-gray-500 whitespace-nowrap pr-4 align-middle">{{ $t->created_at->format('H.i A, d M Y') }}</td>
+                                <td class="py-3.5 text-sm font-semibold text-gray-800 pr-4 align-middle">{{ $t->nama }}</td>
+                                <td class="py-3.5 text-right align-middle">
+                                    <div class="inline-flex items-center justify-end gap-2 vertical-align-middle">
+                                        <form action="{{ route('testi.approve', $t->id) }}" method="POST" class="inline-flex items-center m-0 p-0">
                                             @csrf
-                                            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors">
+                                            <button type="submit" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                                 {{ __('dashboard.btn_approve') }}
                                             </button>
                                         </form>
-                                        <form action="{{ route('testi.reject', $t->id) }}" method="POST">
-                                            @csrf
-                                            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-                                                {{ __('dashboard.btn_reject') }}
-                                            </button>
-                                        </form>
+                                        <button type="button" onclick="openRejectModal({{ $t->id }}, 'testi')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                                            {{ __('dashboard.btn_reject') }}
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -251,24 +244,22 @@
                     <tbody class="divide-y divide-gray-50">
                         @forelse(($pendingAtlets ?? collect())->take(3) as $req)
                             <tr>
-                                <td class="py-3.5 text-sm text-gray-500 whitespace-nowrap pr-4">{{ $req->created_at->format('H.i A, d M Y') }}</td>
-                                <td class="py-3.5 text-sm font-semibold text-gray-800 pr-4">{{ $req->nama }}</td>
-                                <td class="py-3.5 text-right">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <form action="{{ route('atlet.approve', $req->id) }}" method="POST">
+                                <td class="py-3.5 text-sm text-gray-500 whitespace-nowrap pr-4 align-middle">{{ $req->created_at->format('H.i A, d M Y') }}</td>
+                                <td class="py-3.5 text-sm font-semibold text-gray-800 pr-4 align-middle">{{ $req->nama }}</td>
+                                {{-- FIX: Menambahkan align-middle dan memastikan bungkus tombol berstruktur flex lurus --}}
+                                <td class="py-3.5 text-right align-middle">
+                                    <div class="inline-flex items-center justify-end gap-2 vertical-align-middle">
+                                        <form action="{{ route('atlet.approve', $req->id) }}" method="POST" class="inline-flex items-center m-0 p-0">
                                             @csrf
-                                            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors">
+                                            <button type="submit" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                                                 {{ __('dashboard.btn_approve') }}
                                             </button>
                                         </form>
-                                        <form action="{{ route('atlet.reject', $req->id) }}" method="POST">
-                                            @csrf
-                                            <button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
-                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
-                                                {{ __('dashboard.btn_reject') }}
-                                            </button>
-                                        </form>
+                                        <button type="button" onclick="openRejectModal({{ $req->id }}, 'atlet')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-50 text-red-500 hover:bg-red-100 transition-colors">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                                            {{ __('dashboard.btn_reject') }}
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -362,6 +353,33 @@
         <div class="h-6"></div>
     </div>
 
+
+    <div id="rejectModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
+        <div class="p-8 text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
+            
+            <h2 id="modalTitle" class="text-2xl font-bold text-gray-800 mb-2"></h2>
+            <p id="modalSubtitle" class="text-gray-500 mb-8"></p>
+
+            <div class="flex gap-3 w-full">
+                <button type="button" onclick="closeRejectModal()" 
+                        class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold transition">
+                    {{ __('dashboard.btn_batal') }}
+                </button>
+
+                <form id="rejectForm" method="POST" class="flex-1 m-0 p-0">
+                    @csrf
+                    <button type="submit" 
+                            class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
+                        {{ __('dashboard.btn_konfirmasi_tolak') }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </x-layouts.admin-layout>
 
 <script>
@@ -376,4 +394,37 @@
         }
         document.getElementById('admin-theme-toggle')?.addEventListener('click', toggleTheme);
     })();
+
+    // JS Engine Modal Reject Dinamis
+    function openRejectModal(id, type) {
+        const modal = document.getElementById('rejectModal');
+        const form  = document.getElementById('rejectForm');
+        const title = document.getElementById('modalTitle');
+        const sub   = document.getElementById('modalSubtitle');
+
+        if (type === 'atlet') {
+            form.action    = `/atlet/reject/${id}`;
+            title.textContent = "{{ __('dashboard.atlet_reject_title') }}";
+            sub.textContent   = "{{ __('dashboard.atlet_reject_subtitle') }}";
+        } else if (type === 'testi') {
+            form.action    = `/testi/reject/${id}`;
+            title.textContent = "{{ __('dashboard.testimoni_reject_title') }}";
+            sub.textContent   = "{{ __('dashboard.testimoni_reject_subtitle') }}";
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeRejectModal() {
+        const modal = document.getElementById('rejectModal');
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('rejectModal')?.addEventListener('click', function(e) {
+        if (e.target === this) closeRejectModal();
+    });
 </script>

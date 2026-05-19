@@ -127,7 +127,6 @@ return [
     'atlet_tambah_data'           => 'Tambah Atlet',
     'atlet_permintaan_btn'        => 'Permintaan',
     'atlet_terdaftar'             => 'Terdaftar',
-    'atlet_col_umur'              => 'Umur',
     'atlet_nama_foto'              => 'Nama & Foto',
     'modal_atlet_hapus_judul'     => 'Hapus Atlet?',
     'modal_atlet_hapus_pesan'     => 'Apakah Anda yakin ingin menghapus atlet ini?',
@@ -264,4 +263,11 @@ return [
         'atlet_success'             => 'Atlet berhasil ditambahkan!',
         'atlet_updated'             => 'Atlet berhasil diperbarui!',
         'atlet_deleted'             => 'Atlet berhasil dihapus',
+
+        // Modal Delete
+        'atlet_reject_title'       => 'Tolak Permintaan Atlet?',
+        'atlet_reject_subtitle'    => 'Berkas pendaftaran atlet ini akan dihapus dan ditolak secara permanen dari sistem.',
+        'testimoni_reject_title'   => 'Tolak Testimoni?',
+        'testimoni_reject_subtitle'=> 'Data pengajuan testimoni ini akan dihapus permanen dan ditolak dari antrean sistem.',
+        'btn_konfirmasi_tolak'     => 'Ya, Tolak',
 ];

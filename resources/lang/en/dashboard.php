@@ -268,4 +268,12 @@ return [
     'atlet_updated'             => 'Athlete updated',
     'atlet_deleted'             => 'Deleted athlete',
 
+    // Modal Delete
+
+    'atlet_reject_title'       => 'Reject Athlete Request?',
+    'atlet_reject_subtitle'    => 'This athlete registration file will be permanently deleted and rejected from the system.',
+    'testimoni_reject_title'   => 'Reject Testimonial?',
+    'testimoni_reject_subtitle'=> 'This testimonial submission data will be permanently deleted and rejected from the system queue.',
+    'btn_konfirmasi_tolak'     => 'Yes, Reject',
+
 ];

@@ -25,7 +25,7 @@
                 <tbody class="divide-y">
                     @forelse($pendingAtlets as $atlet)
                     <tr>
-                        <td class="py-5">
+                        <td class="py-5 align-middle">
                             <div class="flex items-center gap-4">
                                 @if($atlet->foto)
                                     <img src="{{ asset('storage/atlet/' . $atlet->foto) }}" 
@@ -37,56 +37,47 @@
                                 @endif
                                 <div>
                                     <div class="font-bold text-gray-800">{{ $atlet->nama }}</div>
-                                    {{-- FORMAT DITAMBAHKAN JAM DAN MENIT (H:i) --}}
                                     <div class="text-[10px] text-gray-400 italic">Request: {{ $atlet->created_at->format('H:i, d M Y') }}</div>
                                 </div>
                             </div>
                         </td>
 
-                        <td class="py-5">
-
+                        <td class="py-5 align-middle">
                             @if($atlet->kategori == 'Junior')
-
                                 <span class="border bg-indigo-50 text-indigo-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                     {{ $atlet->kategori }}
                                 </span>
-
                             @else
-
                                 <span class="border bg-purple-50 text-purple-500 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-tight">
                                     {{ $atlet->kategori }}
                                 </span>
-
                             @endif
-
                         </td>
                         
-                        <td class="py-5">
+                        <td class="py-5 align-middle">
                             <div class="space-y-1">
                                 <span class="text-sm text-gray-600 font-medium">{{ $atlet->umur }} {{ __('dashboard.atlet_tahun') }}</span>
                             </div>
                         </td>
 
-                        <td class="py-5">
+                        <td class="py-5 align-middle">
                             <p class="text-gray-500 text-sm leading-relaxed max-w-xs line-clamp-2">
                                 {{ $atlet->deskripsi ?? 'Tidak ada deskripsi.' }}
                             </p>
                         </td>
 
-                        <td class="py-5 text-right">
-                            <div class="flex justify-end gap-2">
-                                <form action="{{ route('atlet.approve', $atlet->id) }}" method="POST">
+                        <td class="py-5 text-right align-middle">
+                            <div class="inline-flex items-center justify-end gap-2 vertical-align-middle">
+                                <form action="{{ route('atlet.approve', $atlet->id) }}" method="POST" class="inline-flex items-center m-0 p-0">
                                     @csrf
                                     <button type="submit" class="px-5 py-2 border bg-green-100 text-green-500 rounded-none text-xs font-bold hover:bg-green-200 transition shadow-sm">
-                                        {{ __('dashboard.status_approved') }}
+                                        {{ __('dashboard.btn_approve') }}
                                     </button>
                                 </form>
-                                <form action="{{ route('atlet.reject', $atlet->id) }}" method="POST" onsubmit="return confirm('Tolak permintaan ini?')">
-                                    @csrf
-                                    <button type="submit" class="px-5 py-2 bg-red-100 text-red-500 rounded-none text-xs font-bold hover:bg-red-200 transition shadow-sm">
-                                        {{ __('dashboard.status_rejected') }}
-                                    </button>
-                                </form>
+                                <button type="button" onclick="openRejectModal({{ $atlet->id }})" 
+                                        class="px-5 py-2 bg-red-100 text-red-500 rounded-none text-xs font-bold hover:bg-red-200 transition shadow-sm inline-flex items-center">
+                                    {{ __('dashboard.btn_reject') }}
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -99,4 +90,54 @@
             </table>
         </div>
     </div>
+
+    <div id="rejectModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-[2rem] shadow-2xl max-w-sm w-full overflow-hidden border border-gray-100">
+            <div class="p-8 text-center">
+                <div class="w-20 h-20 mx-auto rounded-full bg-red-100 text-red-500 flex items-center justify-center text-4xl mb-5">!</div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">{{ __('dashboard.atlet_reject_title') }}</h2>
+                <p class="text-gray-500 mb-8">{{ __('dashboard.atlet_reject_subtitle') }}</p>
+                
+                <div class="flex gap-3 w-full">
+                    <button type="button" onclick="closeRejectModal()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold transition">
+                        {{ __('dashboard.btn_batal') }}
+                    </button>
+                    <form id="rejectForm" method="POST" class="flex-1 m-0 p-0">
+                        @csrf
+                        <button type="submit" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">
+                            {{ __('dashboard.btn_konfirmasi_tolak') }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openRejectModal(id) {
+            const modal = document.getElementById('rejectModal');
+            const form  = document.getElementById('rejectForm');
+
+            form.action = `/atlet/${id}/reject`; 
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRejectModal() {
+            const modal = document.getElementById('rejectModal');
+            const form  = document.getElementById('rejectForm');
+            
+            if (form) form.action = '';
+            
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('rejectModal').addEventListener('click', function(e) {
+            if (e.target === this) closeRejectModal();
+        });
+    </script>
 </x-layouts.admin-layout>

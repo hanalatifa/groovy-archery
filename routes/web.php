@@ -53,9 +53,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard/testimonials', 'adminIndex')->name('testi.index');
         Route::get('/dashboard/testimonials/requests', 'adminRequests')->name('testi.requests');
         Route::get('/dashboard/testimonials/create', 'create')->name('testi.create');
-        
         Route::post('/admin/testimoni/{id}/approve', 'approve')->name('testi.approve');
-        Route::post('/admin/testimoni/{id}/reject', 'reject')->name('testi.reject');
+        Route::delete('/admin/testimoni/{id}', 'reject')->name('testi.reject');
         Route::post('/admin/testimoni/{id}/pending', 'makePending')->name('testi.pending');
     });
 

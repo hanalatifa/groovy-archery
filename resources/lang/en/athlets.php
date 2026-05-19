@@ -58,7 +58,7 @@ return [
     'request_description_placeholder' => 'Achievements or short information...',
     'request_submit' => 'Send Request',
     'request_loading' => 'Sending...',
-    'request_success' => 'Request Sent Successfully!',
+    'request_success' => 'Request Sent Successfully! 🎯',
     'request_failed' => 'Failed to Send:',
     'request_unknown_error' => 'Unknown error occurred',
     'request_connection_error' => 'Connection Error: Make sure the server is running or the file is not too large.',
@@ -67,5 +67,4 @@ return [
     'request_error_age' => 'Age is required',
     'request_error_category' => 'Select a category',
     'request_error_description' => 'Description is required',
-    'request_success' => 'Request Sent Successfully! Admin will process it shortly. 🎯',
 ];

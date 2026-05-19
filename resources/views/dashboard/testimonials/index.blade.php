@@ -126,11 +126,12 @@
                     !</div>
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">    {{ __('dashboard.testimoni_delete_title') }}</h2>
                 <p class="text-gray-500 mb-8">    {{ __('dashboard.testimoni_delete_msg') }}</p>
-                <div class="flex gap-3">
+                <div class="flex gap-3 w-full">
                     <button type="button" onclick="closeDeleteModal()"
-                        class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-2xl font-semibold transition">{{ __('dashboard.documentation_cancel') }}</button>
-                    <form id="deleteForm" method="POST" class="flex-1">
+                        class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-2xl font-semibold transition">{{ __('dashboard.documentation_cancel') }}</button>
+                    <form id="deleteForm" method="POST" class="flex-1 m-0 p-0">
                         @csrf
+                        @method('DELETE')
                         <button type="submit"
                             class="w-full py-3 bg-red-500 hover:bg-red-600 text-white rounded-2xl font-semibold transition">{{ __('dashboard.documentation_confirm') }}</button>
                     </form>
@@ -139,17 +140,17 @@
         </div>
     </div>
 
-    @include('components.modal-testimoni')
-
     <script>
         function openDeleteModal(id) {
-            const modal = document.getElementById('deleteModal');
-            const form = document.getElementById('deleteForm');
-            form.action = `/admin/testimoni/${id}/reject`;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
+        const modal = document.getElementById('deleteModal');
+        const form = document.getElementById('deleteForm');
+
+        form.action = `/admin/testimoni/${id}`;
+        
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
 
         function closeDeleteModal() {
             const modal = document.getElementById('deleteModal');
@@ -157,5 +158,9 @@
             modal.classList.add('hidden');
             document.body.style.overflow = '';
         }
+
+        document.getElementById('deleteModal')?.addEventListener('click', function(e) {
+            if (e.target === this) closeDeleteModal();
+        });
     </script>
 </x-layouts.admin-layout>

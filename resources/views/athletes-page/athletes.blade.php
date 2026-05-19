@@ -66,7 +66,6 @@
     </main>
 
     @include('src.components.footer')
-    @include('src.components.modal-request')
     @include('src.components.modal-daftar')
 
 </body>
