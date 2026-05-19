@@ -1,11 +1,11 @@
-## Groovy Archery Management System
-# Overview
+# Groovy Archery Management System
+## Overview
 
 Groovy Archery Management System is a web-based application developed to support the management of archery training activities digitally and efficiently.
 This system helps administrators manage members, schedules, bookings, and payments within a single integrated platform.
 The project was developed as part of the Uji Kompetensi Keahlian (Ujikom) in the field of Web Development.
 
-# Features
+## Features
 - User Authentication
 - Dashboard Management
 - Member Management
@@ -16,7 +16,7 @@ The project was developed as part of the Uji Kompetensi Keahlian (Ujikom) in the
 - Responsive User Interface
 - Dark Mode Support
 
-# Technologies
+## Technologies
 The application was developed using the following technologies:
 - Laravel
 - PHP
@@ -24,7 +24,7 @@ The application was developed using the following technologies:
 - Tailwind CSS
 - JavaScript
 
-Installation Guide
+## Installation Guide
 1. Clone Repository
 git clone https://github.com/username/groovy-archery.git
 
@@ -59,7 +59,7 @@ php artisan migrate
 php artisan serve
 npm run dev
 
-# User Roles
+## User Roles
 Role	Access
 Admin	Full system management
 User	Booking and profile management
