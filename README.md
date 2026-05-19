@@ -28,37 +28,51 @@ The application was developed using the following technologies:
 
 ```bash
 git clone https://github.com/username/groovy-archery.git
+```
 
-2. Move to Project Directory
+### 2. Move to Project Directory
+```bash
 cd groovy-archery
+```
 
-3. Install Dependencies
+### 3. Install Dependencies
+```bash
 composer install
 npm install
+```
 
-4. Configure Environment File
+### 4. Configure Environment File
+```bash
 Copy the .env.example file and rename it to .env
 cp .env.example .env
+```
 
-5. Generate Application Key
+### 5. Generate Application Key
+```bash
 php artisan key:generate
+```
 
-6. Configure Database
+### 6. Configure Database
 Edit the database configuration inside the .env file
-
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=groovy_archery
 DB_USERNAME=root
 DB_PASSWORD=
+```
 
 7. Run Database Migration
+```bash
 php artisan migrate
+```
 
 8. Start Development Server
+```bash
 php artisan serve
 npm run dev
+```
 
 ## User Roles
 Role	Access
