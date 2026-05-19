@@ -3,7 +3,6 @@
 
 Groovy Archery Management System is a web-based application developed to support the management of archery training activities digitally and efficiently.
 This system helps administrators manage members, schedules, bookings, and payments within a single integrated platform.
-The project was developed as part of the Uji Kompetensi Keahlian (Ujikom) in the field of Web Development.
 
 ## Features
 - User Authentication
