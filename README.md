@@ -23,7 +23,10 @@ The application was developed using the following technologies:
 - JavaScript
 
 ## Installation Guide
-1. Clone Repository
+
+### 1. Clone Repository
+
+```bash
 git clone https://github.com/username/groovy-archery.git
 
 2. Move to Project Directory
